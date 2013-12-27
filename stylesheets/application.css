@@ -48,78 +48,9 @@ header {
     background-color:green;
 }
 
-/* Navigationsbereich 
-nav {
-    text-align:center;
-    margin-top: 30px;
-    margin-left:10%;
-    margin-right:10%;
-    background-color:rgb(22,127,193);
-    margin-bottom:30px;
-    height: 44px;
-    border-radius:5px;
-    -moz-box-shadow: 0 0 5px #999;
-    -webkit-box-shadow: 0 0 5px#999;
-    box-shadow: 0 0 5px #999;
-}
 
-nav ul {
-    list-style-type: none;
-    
-    
-}
+/* Sidebar */
 
-nav li {
-    display: inline;
-}
-
-nav ul a{
-    color: rgb(255,255,255);
-    margin-left: 20px;
-    margin-right: 20px;
-    text-decoration:none;
-    letter-spacing: 0.5px;
-    font-size:20px;
-    padding-left:30px;
-    padding-right:30px;
-    padding-top:10px;
-    padding-bottom:10px;
-    display:inline-block;
-    vertical-align:middle;
-    background-color:rgb(255,255,255);
-}
-
-nav ul a:hover{
-    color:rgb(22,127,193);
-    margin-left: 20px;
-    margin-right: 20px;
-    text-decoration:none;
-    letter-spacing: 0.5px;
-    font-size:20px;
-    padding-left:30px;
-    padding-right:30px;
-    padding-top:10px;
-    padding-bottom:10px;
-    display:inline-block;
-    vertical-align:middle;
-    background-color:rgb(255,255,255);
-}
-
-nav ul a>.active{
-    color: rgb(255,255,255);
-    margin-left: 20px;
-    margin-right: 20px;
-    text-decoration:underline;
-    letter-spacing: 0.5px;
-    font-size:20px;
-    padding-left:30px;
-    padding-right:30px;
-    padding-top:10px;
-    padding-bottom:10px;
-    display:inline-block;
-    vertical-align:middle;
-}
-*/
 
 /* Karte */
 #map {
@@ -131,45 +62,32 @@ nav ul a>.active{
     border-right:5px solid rgb(212,212,212);
 }
 
-/* Seiteninhalt 
-article {
-    background-color:rgb(255,255,255);
-    margin-left:10%;
-    margin-right:10%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom:30px;
-    padding: 50px;
-    
-    -moz-box-shadow: 0 0 5px #888;
-    -webkit-box-shadow: 0 0 5px#888;
-    box-shadow: 0 0 5px #888;
+
+#clear {
+    clear:both;
 }
-*/
 
 
 /* Fußzeile */
 footer {
-    clear: left;
-    background-color:rgb(140,188,62);
+    background-color:rgb(22,127,193);
     margin-left:0%;
     margin-right:0%;
     width: 100%;
     color: rgb(255,255,255);
 }
 
-/*
 #footerLine_1 {
-    background-color:rgb(140,188,62);
+    background-color:rgb(140,188,62); /*rgb(60,164,116);*/
     margin-left:0%;
     margin-right:0%;
-    height:30px;
+    height:5px;
     width:100%;
 }
-*/
+
 
 #footerLine_2 {
-    background-color:rgb(212,212,212);
+    background-color: rgb(60,164,116);/*rgb(212,212,212);*/
     margin-left:0%;
     margin-right:0%;
     height:5px;
@@ -177,20 +95,57 @@ footer {
 }
 
 #footerText {
-    height: 60px;
-    padding-left:10%;
-    padding-right:10%;
-    padding-top:60px; 
-    padding-bottom:20px;
+    height: 30px;
+    padding-left:1%;
+    padding-right:0%;
+    padding-top:5px; 
+    padding-bottom:5px;
+    float: left;
+    margin-left:0%;
+    width:39%;
+    background-color:rgb(22,127,193);
 }
 
-#footerShortlinks {
-    height: 60px;
-    padding-left:10%;
+#footerShortLinks {
+    height: 30px;
+    padding-left:0%;
     padding-right:10%;
-    padding-top:60px; 
-    padding-bottom:20px;
+    padding-top:-15px;
+    padding-bottom:10px;
+    margin-right:0%;
+    width:50%;
+    float:left;
+    background-color:rgb(22,127,193);
+    text-align:right;
 }
 
+#footerShortLinks li{
+    display: inline;
+    margin-left:10px;
+    
+}
+#footerShortLinks ul {
+    list-style-type: none;
+}
 
+#footerText  a {
+    color:rgb(255,255,255);
+    text-decoration:none;
+}
 
+#footerText  a:hover {
+    color:rgb(255,255,255);
+    text-decoration:underline;
+}
+
+#footerShortLinks a {
+    color:rgb(255,255,255);
+    text-decoration:none;
+    font-weight:bold;
+}
+
+#footerShortLinks a:hover {
+    color:rgb(255,255,255);
+    text-decoration:underline;
+    font-weight:bold;
+}
