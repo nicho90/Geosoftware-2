@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang=de>
+    <head>
+        <title>enviroCar-Analyser</title>
+        <meta charset=utf-8>
+        <meta name="description" content="Internet-Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten">
+        <meta name="keywords" content="enviroCar-Analyser">
+        <meta name="application-name" content="enviroCar-Analyser">
+        <meta name="author" content="Nicholas Schiestel">
+        <meta name="author" content="Johanna Möllmann">
+        
+        <link rel="stylesheet" type="text/css" href="application_styles.css">
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        
+        <!-- HTML5 for the Microsoft IE -->
+        <script>
+            document.createElement('header');
+            document.createElement('nav');
+            document.createElement('article');
+            document.createElement('footer');
+        </script>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="scripts/map.js"></script>
+        
+    </head>
+    <body>
+       <header role="banner">
+            <div id=banner>
+                <a href="index.html"><img src="final_envirocar_logo.png" class=logoImage></a>
+            </div>
+            <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
+            <div id=filter>
+                <form id=filterFormular>
+                    Anfangsdatum: <input type=date>
+                    Enddatum: <input type=date>
+                    Track-ID: <input type=text>
+                    bekannte User-ID: <input type=text>
+                    Fahrzeugtyp: <input type=text list=vehicletype>
+                        <datalist id=vehicletype>
+                        
+                        </datalist>
+                </form>
+            </div>
+            
+            <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
+            <div id=chooser>
+                CHOOSER
+            </div>
+        </header>
+        
+        <!-- Karte mit Navigationselementen -->
+        <div id=map> </div>
+
+		
+        
+        
+        <!-- rechte Sidebar -->
+        <div id="sidebar">
+            
+            <!-- Liste der selektierten Punkte / Tracks (standardmäßig ausgeblendet) -->
+            <div id="selectedPoints" class="">
+            
+            </div>
+            
+            <!-- Liste der selektierten Punkte / Tracks (standardmäßig ausgeblendet) -->
+            <div id="selectedPoints" class="sidebarElement">
+                <h3>Selektierte Punkte:</h3>
+                <table>
+                    <tr>
+                        <td>Point_id</td><td>Track_id</td><td>MAF</td><td>Speed</td>
+                    </tr>
+                </table>
+            </div>
+           
+            <!-- Analyseauswahl -->
+            <div id="analyses" class="sidebarElement">
+                <div id="textualresults" class="analyseElement">
+                    
+                    
+                    
+                    Mittelwert (MEAN): (Ergebnis)
+                    Standardabweichung (STD): (Ergebnis)
+                    Minimalster Wert (MIN): (Ergebnis)
+                    Maximalster Wert (MAX): (Ergebnis)
+                    Häufigstes Fahrzeug (): (Ergebnis)
+                </div>
+                <div id="diagramm" class="analyseElement">
+                
+                </div>
+                
+                <div id="interpolation" class="analyseElement">
+                
+                </div>
+            </div>
+            <div id="results" class="sidebarElement">
+            
+            </div>
+        <div/>
+        <footer>
+            <div id="footerLine_1"></div>
+            <div id="footerLine_2"></div>
+            <div id="footerText">
+                <small>
+                    &copy; 2014 &middot; <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a> &middot; <a href="http://www.uni-muenster.de/">Westfälische Wilhelms-Universität Münster</a> &middot; <a href="http://envirocar.org/">enviroCar Projekt</a><br>
+                    Design by Nicholas Schiestel &amp; Johanna Möllmann<br>  
+                </small>
+            </div>    
+        </footer>
+    </body>
+</html>
