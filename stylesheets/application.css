@@ -71,6 +71,8 @@ header {
 /* Fußzeile */
 footer {
     background-color:rgb(22,127,193);
+    position:absolute;
+    bottom:0px;
     margin-left:0%;
     margin-right:0%;
     width: 100%;

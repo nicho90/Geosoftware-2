@@ -156,6 +156,8 @@ footer {
     margin-right:0%;
     width: 100%;
     color: rgb(255,255,255);
+    position:absolute;
+    bottom:0px;
 }
 
 #footerLine_1 {
