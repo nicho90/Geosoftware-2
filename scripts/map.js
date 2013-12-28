@@ -8,6 +8,10 @@ var neLng;
 var swLat;
 var swLng;
 
+var markers = [];
+
+var overlays = [];
+
 window.onload = function(){
 	
     createMap();
@@ -24,7 +28,7 @@ function createMap(){
 	
 	mainMap = map;
 	
-	google.maps.event.addListener(map, 'bounds_changed', function() {
+	google.maps.event.addListener(map, 'idle', function() {
         addMeasurementsToMap();
     });
 }
@@ -41,16 +45,37 @@ function addMeasurementsToMap(){
 	
 		result = result.features;
 		
-		var infoWindow = new google.maps.InfoWindow();
+		markers.length = 0;
+		
+		var i = overlays.length;
+		while (i--) {
+			var overlay = overlays[i];
+			if (overlay){
+				overlay.setMap(null);
+			}
+			delete overlays[i];
+		}
+		
+		var id = 0;
+		
+		// var infoWindow = new google.maps.InfoWindow();
 	
 		$.each(result, function(i, result){
 		
-			var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(result.geometry.coordinates[1], result.geometry.coordinates[0]),
-			icon: "https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png",
-			map: mainMap
-			});
+			latlng = new google.maps.LatLng(result.geometry.coordinates[1], result.geometry.coordinates[0]);
+		
+			var marker = new com.redfin.FastMarker(id, latlng, ["<img src='https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png'>"], "myMarker", 0, 10/*px*/, 10/*px*/);
 			
+			markers.push(marker);
+		
+			/*
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(result.geometry.coordinates[1], result.geometry.coordinates[0]),
+				icon: "https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png",
+				//map: mainMap
+			});
+			*/
+			/*
 			result = result.properties;
 			
 			(function(marker, result) {
@@ -71,8 +96,10 @@ function addMeasurementsToMap(){
 
 
 			})(marker, result);
+			*/
 			
 		});
+		overlays.push(new com.redfin.FastMarkerOverlay(mainMap, markers));
 		
 	});
 	
