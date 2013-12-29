@@ -156,12 +156,13 @@ footer {
     margin-right:0%;
     width: 100%;
     color: rgb(255,255,255);
-    position:absolute;
+    position:relative;
     bottom:0px;
+    margin-bottom:0px;
 }
 
 #footerLine_1 {
-    background-color:rgb(140,188,62); /*rgb(60,164,116);*/
+    background-color:rgb(140,188,62);
     margin-left:0%;
     margin-right:0%;
     height:30px;
@@ -170,7 +171,7 @@ footer {
 
 
 #footerLine_2 {
-    background-color: rgb(60,164,116);/*rgb(212,212,212);*/
+    background-color: rgb(60,164,116);
     margin-left:0%;
     margin-right:0%;
     height:5px;
@@ -201,6 +202,7 @@ footer {
     background-color:rgb(22,127,193);
     text-align:right;
 }
+
 
 #footerShortLinks li{
     display: inline;

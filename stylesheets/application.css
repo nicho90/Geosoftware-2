@@ -49,9 +49,6 @@ header {
 }
 
 
-/* Sidebar */
-
-
 /* Karte */
 #map {
     float: left;
@@ -62,6 +59,8 @@ header {
     border-right:5px solid rgb(212,212,212);
 }
 
+
+/* Sidebar */
 
 #clear {
     clear:both;
