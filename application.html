@@ -21,12 +21,35 @@
         </script>
         
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-		<script type="text/javascript" src="scripts/map.js"></script>
-		<script type="text/javascript" src="scripts/FastMarkerOverlay.js"></script>
+                <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+                <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+                <script type="text/javascript" src="scripts/map.js"></script>
+                <script type="text/javascript" src="scripts/FastMarkerOverlay.js"></script>
         
-    </head>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+$(function() {
+$( "#Start" ).datepicker({
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#Ende" ).datepicker( "option", "minDate", selectedDate );
+}
+});
+$( "#Ende" ).datepicker({
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#Start" ).datepicker( "option", "maxDate", selectedDate );
+}
+});
+});
+</script>
+	</head>
     <body>
        <header role="banner">
             <div id=banner>
@@ -35,8 +58,8 @@
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
             <div id=filter>
                 <form id=filterFormular>
-                    Anfangsdatum: <input type=date>
-                    Enddatum: <input type=date>
+                    Anfangsdatum: <input type="text" id="Start" name="Start">
+                    Enddatum: <input type="text" id="Ende" name="Ende">
                     Track-ID: <input type=text>
                     bekannte User-ID: <input type=text>
                     Fahrzeugtyp: <input type=text list=vehicletype>
@@ -55,7 +78,7 @@
         <!-- Karte mit Navigationselementen -->
         <div id=map> </div>
 
-		
+                
         
         
         <!-- rechte Sidebar -->
@@ -101,7 +124,7 @@
             <div id="results" class="sidebarElement">
             
             </div>
-        </div>   
+        </div>
         <div id=clear> </div>
         
         <footer>
@@ -109,7 +132,7 @@
             <div id="footerLine_2"></div>
             <div id="footerText">
                 <small>
-                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a> &middot; Design by Nicholas Schiestel &amp; Johanna Möllmann<br>  
+                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a> &middot; Design by Nicholas Schiestel &amp; Johanna Möllmann<br>
                 </small>
             </div>
             <div id="footerShortLinks">
@@ -122,7 +145,8 @@
                         <li><a href="application.html">Applikation</a></li>
                     </ul>
                 </small>
-            </div>     
+            </div>
         </footer>
     </body>
 </html>
+
