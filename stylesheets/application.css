@@ -6,7 +6,6 @@ body {
     font-family:Droid Sans; /*, Helvetica, Arial;*/
 }
 
-
 header, footer, map {
     display:block;
 }
@@ -16,18 +15,15 @@ header {
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    height: 80px;  
-    width: 100%;
+    height: auto;  
+    width: 80%;
+    font-size:10pt;
 }
 
 #banner {
     float: left;
-    width:13%;
-    height:50px;
+    width:14%;
     border:0px;
-    margin-top:10px;
-    margin-left:1%;
-    margin-right:1%;
 }
 
 .logoImage {
@@ -38,14 +34,7 @@ header {
 
 #filter {
     float: left;
-    width: 55%;
-    background-color:red;
-}
-
-#chooser {
-    float: right;
-    width: 30%;
-    background-color:green;
+    width: 65%;
 }
 
 
@@ -55,8 +44,8 @@ header {
     width: 80%;
     min-height: 500px;
     margin: 0px;
-    border-top:5px solid rgb(212,212,212);
-    border-right:5px solid rgb(212,212,212);
+    /*border-top:5px solid rgb(212,212,212);
+    border-right:5px solid rgb(212,212,212);*/
 }
 
 
@@ -66,11 +55,39 @@ header {
     clear:both;
 }
 
+#sidebar{
+    width:20%;
+    float:left;
+    height:auto;
+    position:relative;
+    top:-60px;
+}
+
+#chooser {
+    width:auto;
+    background-color:green;
+}
+
+
+/* zunächst ausgeblendete Boxen 
+#DrawingPolygon {
+    display:none;
+}
+
+#selectedPoints {
+    display:none;
+}
+
+#selectedTracks {
+    display:none;
+}
+*/
+
 
 /* Fußzeile */
 footer {
     background-color:rgb(22,127,193);
-    position:absolute;
+    position:relative;
     bottom:0px;
     margin-left:0%;
     margin-right:0%;

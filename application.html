@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang=de>
     <head>
+        <!-- Metadaten -->
         <title>enviroCar-Analyser</title>
         <meta charset=utf-8>
         <meta name="description" content="Internet-Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten">
@@ -9,6 +10,7 @@
         <meta name="author" content="Nicholas Schiestel">
         <meta name="author" content="Johanna Möllmann">
         
+        <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
         
@@ -20,36 +22,84 @@
             document.createElement('footer');
         </script>
         
+        <!-- Skripte für das Kartenframework-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-                <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-                <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-                <script type="text/javascript" src="scripts/map.js"></script>
-                <script type="text/javascript" src="scripts/FastMarkerOverlay.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="scripts/map.js"></script>
+        <script type="text/javascript" src="scripts/FastMarkerOverlay.js"></script>
         
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script>
-$(function() {
-$( "#Start" ).datepicker({
-defaultDate: "+1w",
-changeMonth: true,
-numberOfMonths: 1,
-onClose: function( selectedDate ) {
-$( "#Ende" ).datepicker( "option", "minDate", selectedDate );
-}
-});
-$( "#Ende" ).datepicker({
-defaultDate: "+1w",
-changeMonth: true,
-numberOfMonths: 1,
-onClose: function( selectedDate ) {
-$( "#Start" ).datepicker( "option", "maxDate", selectedDate );
-}
-});
-});
-</script>
+        <!-- Skripte zum Ein- und Ausblenden der Polygonwerkzeugen -->
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#drawingPolygon').hide();
+            });
+            jQuery(document).ready(function() {
+                jQuery('#choosePolygon').click(function() {
+                    jQuery('#drawingPolygon').fadeIn('slow'); 
+                });
+                jQuery('#resetPolygon').click(function() {
+                    jQuery('#drawingPolygon').fadeOut('slow');
+                });
+            });
+        </script>
+        
+        <!-- Skripte zum Ein- und Ausblenden der selektierten Punkte -->
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#selectedPoints').hide();
+            });
+            jQuery(document).ready(function() {
+                jQuery('#showSelectedPoints').click(function() {
+                    jQuery('#selectedPoints').fadeIn('slow'); 
+                });
+                jQuery('#hideSelectedPoints').click(function() {
+                    jQuery('#selectedPoints').fadeOut('slow');
+                });
+            });
+        </script>
+        
+        <!-- Skripte zum Ein- und Ausblenden der selektierten Tracks -->
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#selectedTracks').hide();
+            });
+            jQuery(document).ready(function() {
+                jQuery('#showSelectedTracks').click(function() {
+                    jQuery('#selectedTracks').fadeIn('slow'); 
+                });
+                jQuery('#hideSelectedTracks').click(function() {
+                    jQuery('#selectedTracks').fadeOut('slow');
+                });
+            });
+        </script>
+        
+        <!-- Skripte für Kalenderauswahl im Filterbereich -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $( "#Start" ).datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    onClose: function( selectedDate ) {
+                        $( "#Ende" ).datepicker( "option", "minDate", selectedDate );
+                    }
+                });
+                $( "#Ende" ).datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    onClose: function( selectedDate ) {
+                        $( "#Start" ).datepicker( "option", "maxDate", selectedDate );
+                    }
+                });
+            });
+        </script>
 	</head>
+    
     <body>
        <header role="banner">
             <div id=banner>
@@ -58,60 +108,131 @@ $( "#Start" ).datepicker( "option", "maxDate", selectedDate );
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
             <div id=filter>
                 <form id=filterFormular>
-                    Anfangsdatum: <input type="text" id="Start" name="Start">
-                    Enddatum: <input type="text" id="Ende" name="Ende">
-                    Track-ID: <input type=text>
-                    bekannte User-ID: <input type=text>
-                    Fahrzeugtyp: <input type=text list=vehicletype>
-                        <datalist id=vehicletype>
+                <table>
+                    <tr>
+                        <td>Anfangsdatum:</td>
+                        <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014"></td>
+                        <td>Enddatum:</td>
+                        <td><input type="text" id="Ende" name="Ende" placeholder=" z.B. 02/01/2014"></td>
+                        <td>Fahrzeugtyp:</td>
+                        <td><input type=text list=vehicletype placeholder="z.B. BMW">
+                            <datalist id=vehicletype>
+                                <option value="BMW - R 1200 GS"></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                            </datalist></td>
+                    </tr>
+                    <tr>
+                        <td>Track-ID:</td>
+                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735"></td>
+                        <td>Sensor-ID:</td>
+                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735"></td>
+                        <td>User-ID:</td>
+                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735"></td>
                         
-                        </datalist>
+                    </tr>
+                </table>
                 </form>
             </div>
-            
-            <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
-            <div id=chooser>
-                CHOOSER
-            </div>
         </header>
-        
+        <div id=clear></div>
         <!-- Karte mit Navigationselementen -->
         <div id=map> </div>
 
                 
         
-        
         <!-- rechte Sidebar -->
         <div id="sidebar">
             
-            <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
-            <div id="selectedPoints" class="">
-                
-            </div>
-            
-            <!-- Liste der selektierten Tracks (standardmäßig ausgeblendet) -->
-            <div id="selectedPoints" class="sidebarElement">
-                <h3>Selektierte Punkte:</h3>
+            <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
+            <div id=chooser>
                 <table>
                     <tr>
-                        <td>Point_id</td><td>Track_id</td><td>MAF</td><td>Speed</td>
+                        <td>Selektierwerkzeuge</td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" id="chooseSinglePoint" name="chooseSinglePoint" value="Punkt auswählen"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" id="chooseTrack" name="chooseTrack" value="Track auswählen"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" id="choosePolygon" name="choosePolygon" value="Raumausschnitt wählen"></td>
                     </tr>
                 </table>
+                <!-- Werkzeuge für Polygonauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "choosePolygon" gewählt wurde) -->
+                
+                <div id=drawingPolygon class=sidebarElement>
+                    <input type="button" id="drawPolygon" name="drawPolygon" value="Raumausschnitt zeichnen"><br>
+                    <input type="button" id="acceptPolygon" name="acceptPolygon" value="OK">
+                    <input type="button" id="resetPolygon" name="resetPolygon" value="Abbrechen">
+                </div>
+                <input type="button" id="showSelectedPoints" name="showSelectedPoints" value="Selektierte Punkte">
+                <input type="button" id="showSelectedTracks" name="showSelectedTracks" value="Selektierte Tracks">
+            </div>
+            
+            <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
+            <div id=selectedPoints class=sidebarElement>
+                <h4>Selektierte Punkte</h4>
+                <table>
+                    <tr><td>Punkt</td><td>Punkt-ID</td><td>Koordinaten</td><td>Track-ID</td><td>Sensor-ID</td><td>Zeitpunkt</td><td>Fahrzeugtyp</td><td>Geschwindigkeit</td><td>Spritverbrauch</td><td>CO2-Ausstoß</td><td>MAF</td></tr>
+                    <tr><td>1</td><td>5325</td><td><a href="">7.61083,51.9414</a></td><td>51c97d05e4b0fe5a04e9e735</td><td>Sensor-ID</td><td>2013-06-08T11:28:20Z</td><td>BMW - R 1200 GS</td><td>Geschwindigkeit</td><td>Spritverbrauch</td><td>CO2-Ausstoß</td><td>MAF</td></tr>
+                </table>
+            <input type="button" id="hideSelectedPoints" name="showSelectedPoints" value="Ausblenden">
+            <hr>
+            </div>
+            
+            
+           
+            
+            <!-- Liste der selektierten Tracks (standardmäßig ausgeblendet) -->
+            <div id=selectedTracks class=sidebarElement>
+                <h3>Selektierte Tracks:</h3>
+                <table>
+                    <tr><td>Track</td><td>Track-ID</td></tr>
+                    <tr><td>1</td><td>gdfiwe09u23ßrz30eg</td></tr>
+                    <tr><td>2</td><td>vefuewz89261r097ß2</td></tr>
+                    <tr><td>2</td><td>e2z18r4938gfewp9t0</td></tr>
+                </table>
+            <input type="button" id="hideSelectedTracks" name="hideSelectedTracks" value="Ausblenden">
+            <hr>    
             </div>
            
             <!-- Analyseauswahl -->
-            <div id="analyses" class="sidebarElement">
+            <div id=analyses class=sidebarElement>
                 <div id="textualresults" class="analyseElement">
-                    
-                    
-                    
-                    Mittelwert (MEAN): (Ergebnis)
-                    Standardabweichung (STD): (Ergebnis)
-                    Minimalster Wert (MIN): (Ergebnis)
-                    Maximalster Wert (MAX): (Ergebnis)
-                    Häufigstes Fahrzeug (): (Ergebnis)
+                    <table>
+                        <tr>
+                            <td>Mittelwert (MEAN):</td>
+                            <td>22.0</td>
+                            <td>km/h</td>
+                        </tr>
+                        <tr>
+                            <td>Standardabweichung (STD):</td>
+                            <td>0.5</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Minimalster Wert:</td>
+                            <td>0.1</td>
+                            <td>km/h</td>
+                        </tr>
+                        <tr>
+                            <td>Maximalster Wert:</td>
+                            <td>100.00</td>
+                            <td>km/h</td>
+                        </tr>
+                        <tr>
+                            <td>Häufigstes Fahrzeug:</td>
+                            <td>BMW</td>
+                            <td></td>
+                        </tr>
+                    </table>
                 </div>
-            <!-- Diagrammvorschau -->
+                <!-- Diagrammvorschau -->
                 <div id="diagramm" class="analyseElement">
                     
                 </div>
