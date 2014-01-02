@@ -113,6 +113,26 @@ article {
     margin-left: 60px;
 }
 
+#next {
+    text-align:right;
+    padding-top:10px;
+}
+
+#next a {
+    font-size:9pt;
+    text-decoration:none;
+    color:rgb(22,127,193);
+}
+
+#next a:hover {
+    font-size:9pt;
+    text-decoration:underline;
+    color:rgb(22,127,193);
+}
+
+hr {
+    background-color:#888;
+}
 
 #clear {
     clear:both;
