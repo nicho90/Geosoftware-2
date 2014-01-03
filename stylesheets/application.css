@@ -49,7 +49,7 @@ header {
     margin: 0px;
     margin-top: 1%;
     /*border-top:5px solid rgb(212,212,212);*/
-    border-right:11px solid rgb(255,255,255);;
+    border-right:11px solid rgb(255,255,255);
 }
 
 
@@ -69,7 +69,7 @@ header {
 
 #chooser {
     width:auto;
-    background-color:green;
+    background-color:rgb(140,188,62);
 }
 
 
