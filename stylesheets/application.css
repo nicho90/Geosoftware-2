@@ -15,7 +15,7 @@ header {
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    height: auto;  
+    height: 35px;  
     width: 80%;
     font-size:10pt;
 }
@@ -24,30 +24,32 @@ header {
     float: left;
     width:14%;
     border:0px;
+	margin-left:0.5%;
 }
 
 .logoImage {
-    width:150px;
-    height:50px;
+    width:140px;
+    height:46.7px;
     border:0px;
 }
 
 #filter {
     float: left;
     width: 65%;
-    margin-left: 10%;
+	margin-left: 12%;
+	height:40px;
 }
 
 
 /* Karte */
 #map {
     float: left;
-    width: 80%;
+    width: 79%;
     min-height: 500px;
     margin: 0px;
-    margin-top: 2%;
-    /*border-top:5px solid rgb(212,212,212);
-    border-right:5px solid rgb(212,212,212);*/
+    margin-top: 1%;
+    /*border-top:5px solid rgb(212,212,212);*/
+    border-right:10px solid rgb(212,212,212);;
 }
 
 
