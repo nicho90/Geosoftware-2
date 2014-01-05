@@ -40,16 +40,104 @@ header {
 	height:40px;
 }
 
+.filterButton, .selectButton, .analyseButton {
+    border: 2px solid rgb(22,127,193);
+    padding:5px;
+    border-radius:2px;
+    background-color:rgb(255,255,255);
+}
+
+.filterButton:hover, .filterButton:active, .selectButton:hover, .selectButton:active, .analyseButton:hover, .analyseButton:active {
+    border: 2px solid rgb(22,127,193);
+    padding:5px;
+    border-radius:2px;
+    background-color:rgb(248,248,248);
+}
+
+
+.selectButton, .analyseButton {
+    border:2px solid rgb(22,127,193);
+    padding:5px;
+    border-radius:15px;
+    background-color:rgb(255,255,255);
+}
+
+.selectButton:hover, .selectButton:active, .analyseButton:hover, .analyseButton:active {
+    border:2px solid rgb(22,127,193);
+    padding:5px;
+    border-radius:15px;
+    background-color:rgb(248,248,248);
+}
+
+
+.submitButton {
+    border: 2px solid rgb(140,188,62);
+    padding:5px;
+    border-radius:15px;
+    background-color:rgb(140,188,62);
+    color:rgb(255,255,255);
+    font-weight:bold;
+}
+
+.submitButton:hover, .submitButton:active{
+    border: 2px solid rgb(140,188,62);
+    padding:5px;
+    border-radius:15px;
+    background-color:rgb(140,188,62);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+
+.hideButton {
+    border: 2px solid rgb(60,164,116);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(60,164,116);
+    color:rgb(255,255,255);
+    font-weight:bold;
+}
+
+.hideButton:hover, .hideButton:active{
+    border: 2px solid rgb(60,164,116);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(60,164,116);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+.resetButton {
+    border: 2px solid rgb(255,0,0);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(255,0,0);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    
+}
+
+.resetButton:hover, .resetButton:active{
+    border: 2px solid rgb(255,0,0);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(255,0,0);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+
 
 /* Karte */
 #map {
     float: left;
     width: 79%;
     min-height: 500px;
-    margin: 0px;
     margin-top: 1%;
-    /*border-top:5px solid rgb(212,212,212);*/
-    border-right:11px solid rgb(255,255,255);
+    margin-right:1%;
 }
 
 
@@ -64,29 +152,20 @@ header {
     float:left;
     height:auto;
     position:relative;
-    top:-60px;
+    top:-70px;
+}
+
+.sidebarElement {
+
 }
 
 #chooser {
     width:auto;
-    background-color:rgb(140,188,62);
-    color: rgb(255,255,255);
 }
 
-
-/* zunächst ausgeblendete Boxen 
-#DrawingPolygon {
-    display:none;
+#selectedPoints, #selectedTracks {
+    overflow:scroll;
 }
-
-#selectedPoints {
-    display:none;
-}
-
-#selectedTracks {
-    display:none;
-}
-*/
 
 
 /* Fußzeile */
@@ -101,7 +180,7 @@ footer {
 }
 
 #footerLine_1 {
-    background-color:rgb(140,188,62); /*rgb(60,164,116);*/
+    background-color:rgb(140,188,62);
     margin-left:0%;
     margin-right:0%;
     height:5px;
@@ -110,7 +189,7 @@ footer {
 
 
 #footerLine_2 {
-    background-color: rgb(60,164,116);/*rgb(212,212,212);*/
+    background-color: rgb(60,164,116);
     margin-left:0%;
     margin-right:0%;
     height:5px;

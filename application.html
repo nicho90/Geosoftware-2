@@ -105,8 +105,8 @@
             <div id=banner>
                 <a href="index.html"><img src="images/envirocar_logo.png" class=logoImage></a>
 			&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<font size="+0.3">Analyser</font>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<font size="+0.3" style="font-weight:bold; color:rgb(22,127,193);">Analyser</font>
 			</div>
 			
 			
@@ -116,11 +116,11 @@
                 <table>
                     <tr>
                         <td>Anfangsdatum:</td>
-                        <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014"></td>
+                        <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
                         <td>Enddatum:</td>
-                        <td><input type="text" id="Ende" name="Ende" placeholder=" z.B. 02/01/2014"></td>
+                        <td><input type="text" id="Ende" name="Ende" placeholder=" z.B. 02/01/2014" class=filterButton></td>
                         <td>Fahrzeugtyp:</td>
-                        <td><input type=text list=vehicletype placeholder="z.B. BMW">
+                        <td><input type=text list=vehicletype placeholder="z.B. BMW" class=filterButton>
                             <datalist id=vehicletype>
                                 <option value="BMW - R 1200 GS"></option>
                                 <option value=""></option>
@@ -129,15 +129,16 @@
                                 <option value=""></option>
                                 <option value=""></option>
                             </datalist></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Track-ID:</td>
-                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735"></td>
+                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
                         <td>Sensor-ID:</td>
-                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735"></td>
+                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
                         <td>User-ID:</td>
-                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735"></td>
-                        
+                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
+                        <td><input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton></td>
                     </tr>
                 </table>
                 </form>
@@ -159,24 +160,24 @@
                         <td>Selektierwerkzeuge</td>
                     </tr>
                     <tr>
-                        <td><input type="button" id="chooseSinglePoint" name="chooseSinglePoint" value="Punkt auswählen"></td>
+                        <td><input type="button" id="chooseSinglePoint" name="chooseSinglePoint" value="Punkt auswählen" class=selectButton></td>
                     </tr>
                     <tr>
-                        <td><input type="button" id="chooseTrack" name="chooseTrack" value="Track auswählen"></td>
+                        <td><input type="button" id="chooseTrack" name="chooseTrack" value="Track auswählen" class=selectButton></td>
                     </tr>
                     <tr>
-                        <td><input type="button" id="choosePolygon" name="choosePolygon" value="Raumausschnitt wählen"></td>
+                        <td><input type="button" id="choosePolygon" name="choosePolygon" value="Raumausschnitt wählen" class=selectButton></td>
                     </tr>
                 </table>
                 <!-- Werkzeuge für Polygonauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "choosePolygon" gewählt wurde) -->
                 
                 <div id=drawingPolygon class=sidebarElement>
-                    <input type="button" id="drawPolygon" name="drawPolygon" value="Raumausschnitt zeichnen"><br>
-                    <input type="button" id="acceptPolygon" name="acceptPolygon" value="OK">
-                    <input type="button" id="resetPolygon" name="resetPolygon" value="Abbrechen">
+                    <input type="button" id="drawPolygon" name="drawPolygon" value="Raumausschnitt zeichnen" class=selectButton><br>
+                    <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton>
+                    <input type="reset" id="resetPolygon" name="resetPolygon" value="Abbrechen" class=resetButton>
                 </div>
-                <input type="button" id="showSelectedPoints" name="showSelectedPoints" value="Selektierte Punkte">
-                <input type="button" id="showSelectedTracks" name="showSelectedTracks" value="Selektierte Tracks">
+                <input type="button" id="showSelectedPoints" name="showSelectedPoints" value="Selektierte Punkte" class=selectButton>
+                <input type="button" id="showSelectedTracks" name="showSelectedTracks" value="Selektierte Tracks" class=selectButton>
             </div>
             
             <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
@@ -186,7 +187,7 @@
                     <tr><td>Punkt</td><td>Punkt-ID</td><td>Koordinaten</td><td>Track-ID</td><td>Sensor-ID</td><td>Zeitpunkt</td><td>Fahrzeugtyp</td><td>Geschwindigkeit</td><td>Spritverbrauch</td><td>CO2-Ausstoß</td><td>MAF</td></tr>
                     <tr><td>1</td><td>5325</td><td><a href="">7.61083,51.9414</a></td><td>51c97d05e4b0fe5a04e9e735</td><td>Sensor-ID</td><td>2013-06-08T11:28:20Z</td><td>BMW - R 1200 GS</td><td>Geschwindigkeit</td><td>Spritverbrauch</td><td>CO2-Ausstoß</td><td>MAF</td></tr>
                 </table>
-            <input type="button" id="hideSelectedPoints" name="showSelectedPoints" value="Ausblenden">
+            <input type="button" id="hideSelectedPoints" name="showSelectedPoints" value="Ausblenden" class=hideButton>
             <hr>
             </div>
             
@@ -202,12 +203,12 @@
                     <tr><td>2</td><td>vefuewz89261r097ß2</td></tr>
                     <tr><td>2</td><td>e2z18r4938gfewp9t0</td></tr>
                 </table>
-            <input type="button" id="hideSelectedTracks" name="hideSelectedTracks" value="Ausblenden">
+            <input type="button" id="hideSelectedTracks" name="hideSelectedTracks" value="Ausblenden" class=hideButton>
             <hr>    
             </div>
            
             <!-- Analyseauswahl -->
-            <div id=analyses class=sidebarElement>
+            <div id=analyses class=sidebarElement class=analyseButton>
                 <div id="textualresults" class="analyseElement">
                     <table>
                     <br>
