@@ -13,17 +13,10 @@ function drawMap(){
 	// create a map in the "map" div, set the view to a given place and zoom
 	var map = L.map('map').setView([51.96, 7.62], 18);
 
-	   add an OpenStreetMap tile layer
+	  // add an OpenStreetMap tile layer
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-	
-    //  Alternative Karte von CloudMade 
-    //  Funktioniert nur mit gültigem API-Key
-    L.tileLayer('http://{s}.tile.cloudmade.com/API-key/997/256/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-    maxZoom: 18
-}).addTo(map);
     
 	mainMap = map;
 	mainMap.on('moveend', drawMeasurements);
