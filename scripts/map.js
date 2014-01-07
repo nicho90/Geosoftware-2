@@ -2,6 +2,10 @@
 
 var markers = new Array();
 
+//If true, measurements are not loaded with next movement in map
+//Used to load PopUps on MapEdge
+var doNotLoad = false;
+
 var redDot = L.icon({iconUrl: 'https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png'});
 
 window.onload = function() {
@@ -37,6 +41,8 @@ function drawMap(){
 }
 
 function drawMeasurements(){
+	if(doNotLoad){doNotLoad = false; return;}
+
 	var bounds = mainMap.getBounds();
 	
 	var neLat = bounds.getNorthEast().lat;
@@ -69,10 +75,10 @@ function drawMeasurements(){
 					'Spritverbrauch: ' + /*phenomenons.Consumption.value + */'<br>' + 
 					'CO2-Ausstoß: ' + /*phenomenons.CO2.value + */'<br>' + 
 					'MAF: ' + /*phenomenons.MAF.value + */'<br>' + 
-					'Geschwindigkeit: ' + /*phenomenons.Speed.value*/
-					'');
+					'Geschwindigkeit: ' + /*phenomenons.Speed.value + */'<br>' + 
+					'<a>Zoom to this point</a>');
 					
-					
+			marker.on('click', function(){doNotLoad=true;});
 			markers.push(marker);
 		});
 		
