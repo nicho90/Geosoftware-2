@@ -16,15 +16,24 @@ header, nav, footer, article {
 header {
     margin-left:10%;
     margin-right:10%;
-    padding:5px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-bottom:0px;
+    padding-top:20px;
     height: auto;   
+}
+
+.logoImage {
+    width:300px;
+    height:131px;
+    border:0px;
 }
 
 
 /* Navigationsbereich */
 nav {
     text-align:center;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left:10%;
     margin-right:10%;
     background-color:rgb(22,127,193);
@@ -152,8 +161,10 @@ hr {
     border-radius:70px;
     border: 5px solid rgb(140,188,62);
     float:left;
-    margin-top:-10px;
+    margin-top:-20px;
     margin-right: 60px;
+    width: 80px;
+    height: 80px;
 }
 
 .teamMembers a{
