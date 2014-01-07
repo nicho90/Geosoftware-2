@@ -1,4 +1,4 @@
-var mainMap;
+﻿var mainMap;
 
 var markers = new Array();
 
@@ -50,13 +50,29 @@ function drawMeasurements(){
 	
 	$.getJSON("https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result){
 	
-		result = result.features;		
+		result = result.features;
 		
-		$.each(result, function(i, result){
+		$.each(result, function(i, measurement){
 		
-			marker = L.marker([result.geometry.coordinates[1], result.geometry.coordinates[0]], {icon: redDot})
-				 .bindPopup('A pretty CSS3 popup. <br> Easily customizable.');
-				 
+			var geometry = measurement.geometry;
+			var properties = measurement.properties;
+			var sensor = properties.sensor;
+			var phenomenons = properties.phenomenons;
+		
+			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot})
+				.bindPopup('Latitude ' +  geometry.coordinates[1] + '<br>' + 
+					'Longitude: ' + geometry.coordinates[0] + '<br>' + 
+					'Zeitstempel: '  + properties.time + '<br>' + 
+					'Sensor_ID: ' + sensor.properties.id + '<br>' + 
+					'Track_ID: '  + '<br>' + 
+					'Fahrzeugtyp: ' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '<br>' + 
+					'Spritverbrauch: ' + /*phenomenons.Consumption.value + */'<br>' + 
+					'CO2-Ausstoß: ' + /*phenomenons.CO2.value + */'<br>' + 
+					'MAF: ' + /*phenomenons.MAF.value + */'<br>' + 
+					'Geschwindigkeit: ' + /*phenomenons.Speed.value*/
+					'');
+					
+					
 			markers.push(marker);
 		});
 		
