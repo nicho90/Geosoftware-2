@@ -261,3 +261,11 @@ footer {
     text-decoration:underline;
     font-weight:bold;
 }
+
+.leaflet-map-pane {
+    z-index: 2 !important;
+}
+
+.leaflet-google-layer {
+    z-index: 1 !important;
+}
