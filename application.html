@@ -10,10 +10,9 @@
         <meta name="author" content="Nicholas Schiestel">
         <meta name="author" content="Johanna Möllmann">
         
-        <!-- Stylesheets -->
+        <!-- Stylesheet -->
         <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-        <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
         
         <!-- HTML5 for the Microsoft IE -->
         <script>
@@ -23,18 +22,18 @@
             document.createElement('footer');
         </script>
         
-        <!-- Skripte für das Kartenframework-->
-        <!-- Skripte für das Kartenframework-->
+        <!-- Skripte für das Kartenframework -->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
         <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
 		<script type="text/javascript" src="scripts/map.js"></script>
-		<!--Needed for GoogleSatellite Layer-->
+		<!-- Needed for GoogleSatellite Layer -->
 		<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
 		<script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
-		<!--Needed for RESTful-Request-->
+		<!-- Needed for RESTful-Request -->
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         
-        <!-- Skripte zum Ein- und Ausblenden der Polygonwerkzeugen -->
+        <!-- Skript zum Ein- und Ausblenden der Polygonwerkzeugen -->
         <script type="text/javascript">
             jQuery(document).ready(function() {
                 jQuery('#drawingPolygon').hide();
@@ -49,39 +48,82 @@
             });
         </script>
         
-        <!-- Skripte zum Ein- und Ausblenden der selektierten Punkte -->
+        <!-- Skript zum Ein- und Ausblenden der selektierten Punkte und Tracks -->
         <script type="text/javascript">
-            jQuery(document).ready(function() {
-                jQuery('#selectedPoints').hide();
+           function toggle_visibility(id) {
+                var e = document.getElementById(id);
+                if (e.style.display != 'block')
+                        e.style.display = 'block';
+                    else 
+                        e.style.display = 'none';
+            }
+        </script>
+        
+        <!-- Skripts für die Tooltips in den Selektierwerkzeugen 
+            Source: http://onehackoranother.com/projects/jquery/tipsy/ -->
+        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird 
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+        <script type='text/javascript' src='scripts/jquery.tipsy.js'></script>
+        <link rel="stylesheet" href="stylesheets/tipsy.css" type="text/css" />
+        <script type='text/javascript'>
+            $(function() {
+	            // Ursprügnliche Einstellung:
+                // $('a[rel=tipsy]').tipsy({fade: true, gravity: 'w'}); // nw | n | ne | w | e | sw | s | se
+                $('#chooseSinglePoint').tipsy({fade:false, gravity: 'n'});
+                $('#chooseTrack').tipsy({fade:false, gravity: 'n'});
+                $('#choosePolygon').tipsy({fade:false, gravity: 'n'}); 
+	        });
+        </script>
+        
+        <!-- Skripts um alle Checkboxen der selektierten Punkte auf einmal auszuwählen 
+            Source: http://jsfiddle.net/7BXJF/1/ -->
+        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird 
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+        <script src="scripts/jquery.validate.js"></script>
+        <script type="text/javascript">
+            $(function(){
+            $('#checkAll').change(function(){
+                $('.chk').prop('checked',this.checked);
             });
-            jQuery(document).ready(function() {
-                jQuery('#showSelectedPoints').click(function() {
-                    jQuery('#selectedPoints').fadeIn('slow'); 
+
+            $(".chk").change(function () {
+                if ($(".chk:checked").length == $(".chk").length) {
+                    $('#checkAll').prop('checked','checked');
+                    }
+                else{
+                    $('#checkAll').prop('checked',false);  
+                    }
                 });
-                jQuery('#hideSelectedPoints').click(function() {
-                    jQuery('#selectedPoints').fadeOut('slow');
+            });
+        </script>
+    
+        <!-- Skripts um alle Checkboxen der selektierten Tracks auf einmal auszuwählen 
+            Source: http://jsfiddle.net/7BXJF/1/ -->
+        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird 
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+        <script src="scripts/jquery.validate.js"></script>
+        <script type="text/javascript">
+            $(function(){
+            $('#checkAll2').change(function(){
+                $('.chk2').prop('checked',this.checked);
+            });
+
+            $(".chk2").change(function () {
+                if ($(".chk2:checked").length == $(".chk2").length) {
+                    $('#checkAll2').prop('checked','checked');
+                    }
+                else{
+                    $('#checkAll2').prop('checked',false);  
+                    }
                 });
             });
         </script>
         
-        <!-- Skripte zum Ein- und Ausblenden der selektierten Tracks -->
-        <script type="text/javascript">
-            jQuery(document).ready(function() {
-                jQuery('#selectedTracks').hide();
-            });
-            jQuery(document).ready(function() {
-                jQuery('#showSelectedTracks').click(function() {
-                    jQuery('#selectedTracks').fadeIn('slow'); 
-                });
-                jQuery('#hideSelectedTracks').click(function() {
-                    jQuery('#selectedTracks').fadeOut('slow');
-                });
-            });
-        </script>
-        
-        <!-- Skripte für Kalenderauswahl im Filterbereich -->
+        <!-- Skripte für Kalenderauswahl im Filterbereich 
+            Source: -->
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script>
             $(function() {
@@ -105,12 +147,12 @@
         </script>
 	</head>
     
+    <!-- Beginn der Seite -->
     <body>
        <header role="banner">
             <div id=banner>
-                <a href="index.html"><img src="images/envirocar_analyser_logo.png" class=logoImage></a>
+                <a href="index.html"><img src="images/envirocar_analyser_logo.png" class=logoImage alt="enviroCar-Analyser"></a>
 			</div>
-			
 			
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
             <div id=filter>
@@ -138,9 +180,8 @@
                         <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
                         <td>Sensor-ID:</td>
                         <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                        <td>User-ID:</td>
-                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                        <td><input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton></td>
+                        <td></td>
+                        <td><input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
                     </tr>
                 </table>
                 </form>
@@ -157,20 +198,18 @@
             
             <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
             <div id=chooser>
-                <table>
-                    <tr>
-                        <td>Selektierwerkzeuge</td>
-                    </tr>
-                    <tr>
-                        <td><input type="button" id="chooseSinglePoint" name="chooseSinglePoint" value="Punkt auswählen" class=selectButton></td>
-                    </tr>
-                    <tr>
-                        <td><input type="button" id="chooseTrack" name="chooseTrack" value="Track auswählen" class=selectButton></td>
-                    </tr>
-                    <tr>
-                        <td><input type="button" id="choosePolygon" name="choosePolygon" value="Raumausschnitt wählen" class=selectButton></td>
-                    </tr>
-                </table>
+                <ul>
+                    <li>
+                        <input type=image src="images/bySinglePoint.png" id="chooseSinglePoint" name="chooseSinglePoint" value="Punkt auswählen" class=selectButton original-title="Mit diesem Werkzeug kannst du Punkt für Punkt auf der Karte selektieren">
+                    </li>
+                    <li>
+                        <input type=image src="images/byTrack.png" id="chooseTrack" name="chooseTrack" value="Track auswählen" class=selectButton original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
+                    </li>
+                    <li>
+                        <input type=image src="images/byPolygon.png" id="choosePolygon" name="choosePolygon" value="Raumausschnitt auswählen" class=selectButton original-title="Mit diesem Werkzeug kannst du einen beliebiegen Raumausschnitt zeichnen und alle darin enthaltene Punkte selektieren">
+                    </li>
+                </ul>
+                
                 <!-- Werkzeuge für Polygonauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "choosePolygon" gewählt wurde) -->
                 
                 <div id=drawingPolygon class=sidebarElement>
@@ -178,35 +217,88 @@
                     <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton>
                     <input type="reset" id="resetPolygon" name="resetPolygon" value="Abbrechen" class=resetButton>
                 </div>
-                <input type="button" id="showSelectedPoints" name="showSelectedPoints" value="Selektierte Punkte" class=selectButton>
-                <input type="button" id="showSelectedTracks" name="showSelectedTracks" value="Selektierte Tracks" class=selectButton>
-            </div>
+            
+            <br>
+            <a href="#" onclick="toggle_visibility('selectedPoints');" class=link>Selektierte Punkte</a>
+            <br>
             
             <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
             <div id=selectedPoints class=sidebarElement>
-                <h4>Selektierte Punkte</h4>
                 <table>
-                    <tr><td>Punkt</td><td>Punkt-ID</td><td>Koordinaten</td><td>Track-ID</td><td>Sensor-ID</td><td>Zeitpunkt</td><td>Fahrzeugtyp</td><td>Geschwindigkeit</td><td>Spritverbrauch</td><td>CO2-Ausstoß</td><td>MAF</td></tr>
-                    <tr><td>1</td><td>5325</td><td><a href="">7.61083,51.9414</a></td><td>51c97d05e4b0fe5a04e9e735</td><td>Sensor-ID</td><td>2013-06-08T11:28:20Z</td><td>BMW - R 1200 GS</td><td>Geschwindigkeit</td><td>Spritverbrauch</td><td>CO2-Ausstoß</td><td>MAF</td></tr>
+                    <tr>
+                        <td><input type="checkbox" id="checkAll" name="track_id" value="track_id"></td>
+                        <td>(Alle auswählen)</td>
+                        <td><a href="#" class="link">Löschen</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Punkt</td>
+                        <td>Punkt-ID</td>
+                        <td>Koordinaten</td>
+                        <td>Track-ID</td>
+                        <td>Sensor-ID</td>
+                        <td>Zeitpunkt</td>
+                        <td>Fahrzeugtyp</td>
+                        <td>Geschwindigkeit</td>
+                        <td>Spritverbrauch</td>
+                        <td>CO2-Ausstoß</td>
+                        <td>MAF</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="chk" name="point_id" value="point_id"></td>
+                        <td>1</td>
+                        <td>5325</td>
+                        <td><a href="">7.61083,51.9414</a></td>
+                        <td>51c97d05e4b0fe5a04e9e735</td>
+                        <td>Sensor-ID</td>
+                        <td>2013-06-08T11:28:20Z</td>
+                        <td>BMW - R 1200 GS</td>
+                        <td>55.6</td>
+                        <td>km/h</td>
+                        <td>5.0</td>
+                        <td>l</td>
+                        <td>32.3</td>
+                        <td>g/cm3??</td>
+                        <td>3.2</td>
+                        <td>Einheit??</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="chk" name="point_id" value="point_id"></td>
+                        <td>2</td>
+                        <td>568</td>
+                        <td><a href="">7.61083,51.9414</a></td>
+                        <td>51c97d05e4b0fe5a04e9e735</td>
+                        <td>Sensor-ID</td>
+                        <td>2014-06-08T11:28:20Z</td>
+                        <td>Mercedes Benz</td>
+                        <td>55.6</td>
+                        <td>km/h</td>
+                        <td>5.0</td>
+                        <td>l</td>
+                        <td>32.3</td>
+                        <td>g/cm3??</td>
+                        <td>3.2</td>
+                        <td>Einheit??</td>
+                    </tr>
                 </table>
-            <input type="button" id="hideSelectedPoints" name="showSelectedPoints" value="Ausblenden" class=hideButton>
             <hr>
             </div>
             
-            
-           
-            
+            <br>
+            <a href="#" onclick="toggle_visibility('selectedTracks');" class=link>Selektierte Tracks</a>
+            <br>
             <!-- Liste der selektierten Tracks (standardmäßig ausgeblendet) -->
             <div id=selectedTracks class=sidebarElement>
-                <h3>Selektierte Tracks:</h3>
                 <table>
-                    <tr><td>Track</td><td>Track-ID</td></tr>
-                    <tr><td>1</td><td>gdfiwe09u23ßrz30eg</td></tr>
-                    <tr><td>2</td><td>vefuewz89261r097ß2</td></tr>
-                    <tr><td>2</td><td>e2z18r4938gfewp9t0</td></tr>
-                    <tr><td>3</td><td>test</td></tr>
+                    <tr><td><input type="checkbox" id="checkAll2" name="track_id" value="track_id"></td><td>(Alle auswählen)</td><td><a href="#" class="link">Löschen</a></td></tr>
+                    <tr><td></td><td>Track</td><td>Track-ID</td></tr>
+                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>1</td><td>gdfiwe09u23ßrz30eg</td></tr>
+                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>2</td><td>vefuewz89261r097ß2</td></tr>
+                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>2</td><td>e2z18r4938gfewp9t0</td></tr>
+                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>3</td><td>test</td></tr>
                 </table>
-            <input type="button" id="hideSelectedTracks" name="hideSelectedTracks" value="Ausblenden" class=hideButton>
+                    
+            
             <hr>    
             </div>
            
@@ -249,7 +341,7 @@
                             <td>BMW</td>
                             <td></td>
                         </tr>
-                    </table>
+                    </table><br>
                 </div>
                 <!-- Diagrammvorschau -->
                 <div id="diagramm" class="analyseElement">
@@ -262,9 +354,17 @@
             </div>
             
             <div id="results" class="sidebarElement">
-            
+                
             </div>
         </div>
+        
+         
+            
+        </div>
+        <!-- Ende der Sidebar-->
+        
+        
+        
         <div id=clear> </div>
         <!---
         <footer>
@@ -287,6 +387,7 @@
                 </small>
             </div>
         </footer>-->
+    
     </body>
 </html>
 

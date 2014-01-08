@@ -47,14 +47,14 @@ header {
 	height:auto;
 }
 
-.filterButton, .selectButton, .analyseButton {
+.filterButton{
     border: 2px solid rgb(22,127,193);
     padding:5px;
     border-radius:2px;
     background-color:rgb(255,255,255);
 }
 
-.filterButton:hover, .filterButton:active, .selectButton:hover, .selectButton:active, .analyseButton:hover, .analyseButton:active {
+.filterButton:hover, .filterButton:active {
     border: 2px solid rgb(22,127,193);
     padding:5px;
     border-radius:2px;
@@ -62,20 +62,55 @@ header {
 }
 
 
-.selectButton, .analyseButton {
+.link{
+    color:rgb(22,127,193);
+    text-decoration:none;
+}
+
+.link:hover, .link:active{
+    color:rgb(22,127,193);
+    text-decoration:underline;
+}
+
+
+.selectButton {
+    width:50px;
+    height:50px;
+    background-color:transparent;
+    cursor: pointer;
+    border:0px;
+}
+
+.selectButton:hover {
+    width:50px;
+    height:50px;
+    background-color:transparent;
+    cursor: pointer;
+    border:0px;
+}
+
+/* Selektierte Punkte / Tracks */
+#selectedPoints, #selectedTracks {
+    display:none;
+}
+
+/* Zur Zeit nicht benötigt, vlt noch brauchbar für später, bitte drin lassen
+
+.analyseButton {
     border:2px solid rgb(22,127,193);
     padding:5px;
     border-radius:15px;
     background-color:rgb(255,255,255);
 }
 
-.selectButton:hover, .selectButton:active, .analyseButton:hover, .analyseButton:active {
+.analyseButton:hover, .analyseButton:active {
     border:2px solid rgb(22,127,193);
     padding:5px;
     border-radius:15px;
     background-color:rgb(248,248,248);
 }
 
+*/
 
 .submitButton {
     border: 2px solid rgb(140,188,62);
@@ -95,6 +130,8 @@ header {
     font-weight:bold;
     text-decoration:underline;
 }
+
+/* Zur Zeit nicht benötigt, vlt noch brauchbar für später, bitte drin lassen
 
 
 .hideButton {
@@ -135,7 +172,7 @@ header {
     font-weight:bold;
     text-decoration:underline;
 }
-
+*/
 
 
 /* Karte */
@@ -162,15 +199,25 @@ header {
     height:auto;
     position:relative;
     top:-70px;
-    background-color:red;
+    background-color:red; /* momenta nur zum testen / layouten, wird noch geändert */
 }
 
 .sidebarElement {
-
+    
 }
 
 #chooser {
     width:auto;
+    text-align:left;
+}
+
+#chooser ul {
+    list-style-type: none;
+}
+
+#chooser li {
+    display: inline;
+    margin-right:2px;
 }
 
 #selectedPoints, #selectedTracks {
