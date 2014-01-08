@@ -82,58 +82,63 @@
             <div id=banner>
                 <a href="index.html"><img src="images/envirocar_analyser_logo.png" class=logoImage alt="enviroCar-Analyser"></a>
 			</div>
-			
+            <!-- Hinweis auf das Portal -->
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
             <div id=filter>
-                <form id=filterFormular>
-                <table>
-                    <tr>
-                        <td>Anfangsdatum:</td>
-                        <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
-                        <td>Enddatum:</td>
-                        <td><input type="text" id="Ende" name="Ende" placeholder=" z.B. 02/01/2014" class=filterButton></td>
-                        <td>Fahrzeugtyp:</td>
-                        <td><input type=text list=vehicletype placeholder="z.B. BMW" class=filterButton>
-                            <datalist id=vehicletype>
-                                <option value="BMW R 1200 GS"></option>
-                                <option value="BMW 1"></option>
-                                <option value="BMW 525"></option>
-                                <option value="Citroen c1"></option>
-                                <option value="Chevrolet Spark"></option>
-                                <option value="Fiat Stilo"></option>
-                                <option value="Kia Cee'd"></option>
-                                <option value="Lexus IS250X"></option>
-                                <option value="MB R230"></option>
-                                <option value="MISC Freelancer"></option>
-                                <option value="Mitsubishi Outlander 2"></option>
-                                <option value="Opel Zafira_A_1.6_CNG"></option>
-                                <option value="Opel Zafira_1.6_CNG"></option>
-                                <option value="Porsche Boxster S"></option>
-                                <option value="Renault Clio"></option>
-                                <option value="Seat Leon"></option>
-                                <option value="Skoda Fabia"></option>
-                                <option value="skoda oktavia"></option>
-                                <option value="Skoda Octavia Kombi"></option>
-                                <option value="VW Golf"></option>
-                                <option value="VW Multivan"></option>
-                                <option value="vw polo"></option>
-                                <option value="VW T5"></option>
-                                <option value="VW Tiguan"></option>
-                                <option value="VW Touran"></option>
-                                <option value="VW Up"></option>
-                            </datalist></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Track-ID:</td>
-                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                        <td>Sensor-ID:</td>
-                        <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                        <td></td>
-                        <td><input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
-                    </tr>
-                </table>
-                </form>
+                    <div id=filter_1>Filteroptionen
+                    </div>
+                    <div id=filter_2>
+                        <form id=filterFormular>
+                        <table>
+                            <tr>
+                                <td>Anfangsdatum:</td>
+                                <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
+                                <td>Enddatum:</td>
+                                <td><input type="text" id="Ende" name="Ende" placeholder=" z.B. 02/01/2014" class=filterButton></td>
+                                <td>Fahrzeugtyp:</td>
+                                <td><input type=text list=vehicletype placeholder="z.B. BMW" class=filterButton>
+                                    <datalist id=vehicletype>
+                                        <option value="BMW R 1200 GS"></option>
+                                        <option value="BMW 1"></option>
+                                        <option value="BMW 525"></option>
+                                        <option value="Citroen c1"></option>
+                                        <option value="Chevrolet Spark"></option>
+                                        <option value="Fiat Stilo"></option>
+                                        <option value="Kia Cee'd"></option>
+                                        <option value="Lexus IS250X"></option>
+                                        <option value="MB R230"></option>
+                                        <option value="MISC Freelancer"></option>
+                                        <option value="Mitsubishi Outlander 2"></option>
+                                        <option value="Opel Zafira_A_1.6_CNG"></option>
+                                        <option value="Opel Zafira_1.6_CNG"></option>
+                                        <option value="Porsche Boxster S"></option>
+                                        <option value="Renault Clio"></option>
+                                        <option value="Seat Leon"></option>
+                                        <option value="Skoda Fabia"></option>
+                                        <option value="skoda oktavia"></option>
+                                        <option value="Skoda Octavia Kombi"></option>
+                                        <option value="VW Golf"></option>
+                                        <option value="VW Multivan"></option>
+                                        <option value="vw polo"></option>
+                                        <option value="VW T5"></option>
+                                        <option value="VW Tiguan"></option>
+                                        <option value="VW Touran"></option>
+                                        <option value="VW Up"></option>
+                                    </datalist></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Track-ID:</td>
+                                <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
+                                <td>Sensor-ID:</td>
+                                <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
+                                <td></td>
+                                <td><input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
+                            </tr>
+                        </table>
+                        </form>
+                    </div>
+                <div id=clear></div>
             </div>
         </header>
         <div id=clear></div>
@@ -146,18 +151,20 @@
         <div id="sidebar">
             
             <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
-            <div id=chooser>
+            <div id=chooser class=sidebarElement>
+                <h2>Selektierwerkzeuge</h2>        
                 <ul>
-                    <li>
-                        <input type=image src="images/bySinglePoint.png" id="chooseSinglePoint" name="chooseSinglePoint" value="Punkt auswählen" class=selectButton original-title="Mit diesem Werkzeug kannst du Punkt für Punkt auf der Karte selektieren">
+                    <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
+                        <a href=""> </a>
                     </li>
-                    <li>
-                        <input type=image src="images/byTrack.png" id="chooseTrack" name="chooseTrack" value="Track auswählen" class=selectButton original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
+                    <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
+                        <a href=""> </a>
                     </li>
-                    <li>
-                        <input type=image src="images/byPolygon.png" id="choosePolygon" name="choosePolygon" value="Raumausschnitt auswählen" class=selectButton original-title="Mit diesem Werkzeug kannst du einen beliebiegen Raumausschnitt zeichnen und alle darin enthaltene Punkte selektieren">
+                    <li id="choosePolygon" original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
+                        <a href=""> </a>
                     </li>
                 </ul>
+                <div id=clear></div>
                 
                 <!-- Werkzeuge für Polygonauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "choosePolygon" gewählt wurde) -->
                 
@@ -172,7 +179,7 @@
             <br>
             
             <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
-            <div id=selectedPoints class=sidebarElement>
+            <div id=selectedPoints class=sidebarSubElement>
                 <table>
                     <tr>
                         <td><input type="checkbox" id="checkAll" name="track_id" value="track_id"></td>
@@ -237,7 +244,7 @@
             <a href="#" onclick="toggle_visibility('selectedTracks');" class=link>Selektierte Tracks</a>
             <br>
             <!-- Liste der selektierten Tracks (standardmäßig ausgeblendet) -->
-            <div id=selectedTracks class=sidebarElement>
+            <div id=selectedTracks class=sidebarSubElement>
                 <table>
                     <tr><td><input type="checkbox" id="checkAll2" name="track_id" value="track_id"></td><td>(Alle auswählen)</td><td><a href="#" class="link">Löschen</a></td></tr>
                     <tr><td></td><td>Track</td><td>Track-ID</td></tr>
@@ -246,64 +253,77 @@
                     <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>2</td><td>e2z18r4938gfewp9t0</td></tr>
                     <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>3</td><td>test</td></tr>
                 </table>
-                    
-            
-            <hr>    
             </div>
-           
+            </div>
+            
             <!-- Analyseauswahl -->
-            <div id=analyses class=sidebarElement class=analyseButton>
+            <div id=analyse class=sidebarElement>
+                <h2>Analysefunktionen</h2>
+                <ul>
+                    <li>Berechnungen von</li>
+                    <li>
+                        <select>
+                            <option>Geschwindigkeit</option>
+                            <option>CO2-Aussto&szlig;</option>
+                            <option>Spritverbrauch</option>
+                            <option>MAF</option>
+                        </select>
+                    </li>
+                </ul>
                 <div id="textualresults" class="analyseElement">
                     <table>
-                    <br>
-			<tr>
-				Analyse von 
-				<select>
-				<option>Geschwindigkeit</option>
-				<option>CO2-Aussto&szlig;</option>
-				<option>Spritverbrauch</option>
-				<option>MAF</option>
-				</select>
-			</tr>
                         <tr>
-                            <td>Mittelwert (MEAN):</td>
+                            <td>Mittelwert</td>
                             <td>22.0</td>
                             <td>km/h</td>
                         </tr>
                         <tr>
-                            <td>Standardabweichung (STD):</td>
+                            <td>Standardabweichung</td>
                             <td>0.5</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Minimalster Wert:</td>
+                            <td>Minimalster Wert</td>
                             <td>0.1</td>
                             <td>km/h</td>
                         </tr>
                         <tr>
-                            <td>Maximalster Wert:</td>
+                            <td>Maximalster Wert</td>
                             <td>100.00</td>
                             <td>km/h</td>
                         </tr>
                         <tr>
-                            <td>Häufigstes Fahrzeug:</td>
+                            <td>Häufigster Fahrzeugtyp</td>
                             <td>BMW</td>
                             <td></td>
                         </tr>
-                    </table><br>
+                    </table>
                 </div>
+                <hr>
                 <!-- Diagrammvorschau -->
-                <div id="diagramm" class="analyseElement">
-                    
+                <div id="diagramm" class="sidebarSubElement">
+                    <h3>Diagramme</h3>
+                    <div id="diagrammPreview" class="analyseElement">
+                        Diagrammvorschaubild
+                    </div>
                 </div>
-                
-                <div id="interpolation" class="analyseElement">
-                
+                <hr>
+                <div id="interpolation" class="sidebarSubElement">
+                    <ul>
+                    <li>Interpolation mit </li>
+                    <li>
+                        <select>
+                            <option>Kriging</option>
+                            <option>IDW</option>
+                        </select>
+                    </li>
+                </ul>
+                    <div id="textualresults" class="analyseElement">
+                        <input type="submit" id="acceptFilter" name="acceptFilter" value="i" class=submitButton>
+                        <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>
+                        
+                    </div>
                 </div>
-            </div>
-            
-            <div id="results" class="sidebarElement">
-                
             </div>
         </div>
         
