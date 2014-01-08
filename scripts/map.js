@@ -72,10 +72,10 @@ function drawMeasurements(){
 				'Sensor_ID: ' + sensor.properties.id + '<br>' +
 				'Track_ID: ' + '<br>' +
 				'Fahrzeugtyp: ' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '<br>' +
-				'Spritverbrauch: ' + '<br>' +
-				'CO2-Ausstoß: ' + '<br>' +
-				'MAF: ' + phenomenons.MAF.value +'<br>' +
-				'Geschwindigkeit: ' + '<br>' +
+				'Spritverbrauch: ' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '<br>' +
+				'CO2-Ausstoß: ' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '<br>' +
+				'MAF: ' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '<br>' +
+				'Geschwindigkeit: ' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '<br>' +
 				'<a href="#" class="speciallink">Center this point</a></p>').click(function() {
 				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]]);
 			})[0];
