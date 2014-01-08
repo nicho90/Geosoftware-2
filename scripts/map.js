@@ -3,7 +3,6 @@
 var markers = new Array();
 
 //If true, measurements are not loaded with next movement in map
-//Used to load PopUps on MapEdge
 var doNotLoad = false;
 
 var redDot = L.icon({iconUrl: 'https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png'});
@@ -65,25 +64,35 @@ function drawMeasurements(){
 			var sensor = properties.sensor;
 			var phenomenons = properties.phenomenons;
 		
-			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot})
-				.bindPopup('Latitude ' +  geometry.coordinates[1] + '<br>' + 
-					'Longitude: ' + geometry.coordinates[0] + '<br>' + 
-					'Zeitstempel: '  + properties.time + '<br>' + 
-					'Sensor_ID: ' + sensor.properties.id + '<br>' + 
-					'Track_ID: '  + '<br>' + 
-					'Fahrzeugtyp: ' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '<br>' + 
-					'Spritverbrauch: ' + /*phenomenons.Consumption.value + */'<br>' + 
-					'CO2-Ausstoß: ' + /*phenomenons.CO2.value + */'<br>' + 
-					'MAF: ' + /*phenomenons.MAF.value + */'<br>' + 
-					'Geschwindigkeit: ' + /*phenomenons.Speed.value + */'<br>' + 
-					'<a>Zoom to this point</a>');
+			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
 					
-			marker.on('click', function(){doNotLoad=true;});
+			var content = $('<p>Latitude ' + geometry.coordinates[1] + '<br>' +
+				'Longitude: ' + geometry.coordinates[0] + '<br>' +
+				'Zeitstempel: '  + properties.time + '<br>' +
+				'Sensor_ID: ' + sensor.properties.id + '<br>' +
+				'Track_ID: ' + '<br>' +
+				'Fahrzeugtyp: ' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '<br>' +
+				'Spritverbrauch: ' + '<br>' +
+				'CO2-Ausstoß: ' + '<br>' +
+				'MAF: ' + '<br>' +
+				'Geschwindigkeit: ' + '<br>' +
+				'<a href="#" class="speciallink">Center this point</a></p>').click(function() {
+				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]]);
+			})[0];
+			
+			marker.bindPopup(content);
+			
+			//Do not load measurements if marker is clicked
+			marker.on('click', function(){doNotLoad = true;});
+			//Load markers if PopUp is closed
+			marker.on('popupclose', function(){drawMeasurements();});
 			markers.push(marker);
+			
 		});
 		
 		for(var i = 0; i < markers.length; i++){
 			mainMap.addLayer(markers[i]);
 		}
+		
 	});
 }
