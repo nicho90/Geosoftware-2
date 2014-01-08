@@ -49,15 +49,7 @@
         </script>
         
         <!-- Skript zum Ein- und Ausblenden der selektierten Punkte und Tracks -->
-        <script type="text/javascript">
-           function toggle_visibility(id) {
-                var e = document.getElementById(id);
-                if (e.style.display != 'block')
-                        e.style.display = 'block';
-                    else 
-                        e.style.display = 'none';
-            }
-        </script>
+        <script type="text/javascript" src="scripts/toggle.js"></script>
         
         <!-- Skripts für die Tooltips in den Selektierwerkzeugen 
             Source: http://onehackoranother.com/projects/jquery/tipsy/ -->
@@ -65,59 +57,15 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
         <script type='text/javascript' src='scripts/jquery.tipsy.js'></script>
         <link rel="stylesheet" href="stylesheets/tipsy.css" type="text/css" />
-        <script type='text/javascript'>
-            $(function() {
-	            // Ursprügnliche Einstellung:
-                // $('a[rel=tipsy]').tipsy({fade: true, gravity: 'w'}); // nw | n | ne | w | e | sw | s | se
-                $('#chooseSinglePoint').tipsy({fade:false, gravity: 'n'});
-                $('#chooseTrack').tipsy({fade:false, gravity: 'n'});
-                $('#choosePolygon').tipsy({fade:false, gravity: 'n'}); 
-	        });
-        </script>
+        <script type='text/javascript' src='scripts/tooltip.js'></script>
         
-        <!-- Skripts um alle Checkboxen der selektierten Punkte auf einmal auszuwählen 
+        <!-- Skripts um alle Checkboxen der selektierten Punkte & Tracks auf einmal auszuwählen 
             Source: http://jsfiddle.net/7BXJF/1/ -->
+        <script type='text/javascript' src='scripts/forcheckboxes.js'></script>
+        <script src="scripts/jquery.validate.js"></script>
         <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird 
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
-        <script src="scripts/jquery.validate.js"></script>
-        <script type="text/javascript">
-            $(function(){
-            $('#checkAll').change(function(){
-                $('.chk').prop('checked',this.checked);
-            });
-
-            $(".chk").change(function () {
-                if ($(".chk:checked").length == $(".chk").length) {
-                    $('#checkAll').prop('checked','checked');
-                    }
-                else{
-                    $('#checkAll').prop('checked',false);  
-                    }
-                });
-            });
-        </script>
-    
-        <!-- Skripts um alle Checkboxen der selektierten Tracks auf einmal auszuwählen 
-            Source: http://jsfiddle.net/7BXJF/1/ -->
-        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird 
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
-        <script src="scripts/jquery.validate.js"></script>
-        <script type="text/javascript">
-            $(function(){
-            $('#checkAll2').change(function(){
-                $('.chk2').prop('checked',this.checked);
-            });
-
-            $(".chk2").change(function () {
-                if ($(".chk2:checked").length == $(".chk2").length) {
-                    $('#checkAll2').prop('checked','checked');
-                    }
-                else{
-                    $('#checkAll2').prop('checked',false);  
-                    }
-                });
-            });
-        </script>
+       
         
         <!-- Skripte für Kalenderauswahl im Filterbereich 
             Source: -->
@@ -125,26 +73,7 @@
         <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script>
-            $(function() {
-                $( "#Start" ).datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 1,
-                    onClose: function( selectedDate ) {
-                        $( "#Ende" ).datepicker( "option", "minDate", selectedDate );
-                    }
-                });
-                $( "#Ende" ).datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 1,
-                    onClose: function( selectedDate ) {
-                        $( "#Start" ).datepicker( "option", "maxDate", selectedDate );
-                    }
-                });
-            });
-        </script>
+        <script type="text/javascript" src="scripts/calender.js"></script>
 	</head>
     
     <!-- Beginn der Seite -->
