@@ -74,7 +74,7 @@ function drawMeasurements(){
 				'Fahrzeugtyp: ' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '<br>' +
 				'Spritverbrauch: ' + '<br>' +
 				'CO2-Ausstoß: ' + '<br>' +
-				'MAF: ' + '<br>' +
+				'MAF: ' + phenomenons.MAF.value +'<br>' +
 				'Geschwindigkeit: ' + '<br>' +
 				'<a href="#" class="speciallink">Center this point</a></p>').click(function() {
 				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]]);
