@@ -1,4 +1,4 @@
-html {
+﻿html {
     position: relative;
     height: 100%;
 }
@@ -219,6 +219,52 @@ header {
     -moz-box-shadow: 0 0 5px #888;
     -webkit-box-shadow: 0 0 5px#888;
     box-shadow: 0 0 5px #888;
+}
+
+#pan {
+    position: absolute;
+    top: 180px;
+    left: 20px;
+    z-index: 999;
+}
+
+
+
+#pan  .panner {
+    background: #fff;
+    top: 0;
+    position: absolute;
+    left: 0;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    border-color:white;
+    color:black;
+    font-weight: bold;
+	box-shadow: -10px -10px 100px grey, 
+             10px 10px 100px grey;
+}
+
+#pan .panner#left {
+    top: 35px;
+}
+
+#pan .panner#right {
+    top: 35px;
+    left: 60px;
+}
+
+#pan .panner#down {
+    top: 70px;
+    left: 30px;
+}
+
+#pan .panner#up {
+    top: 0px;
+    left: 30px;
 }
 
 
