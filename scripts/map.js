@@ -92,20 +92,21 @@ function drawMeasurements(){
 		
 			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
 					
-			var content = $('<p>Latitude ' + geometry.coordinates[1] + '<br>' +
-				'Longitude: ' + geometry.coordinates[0] + '<br>' +
-				'Zeitstempel: '  + properties.time + '<br>' +
-				'Sensor_ID: ' + sensor.properties.id + '<br>' +
-				'Track_ID: ' + '<br>' +
-				'Fahrzeugtyp: ' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '<br>' +
-				'Spritverbrauch: ' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '<br>' +
-				'CO2-Ausstoß: ' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '<br>' +
-				'MAF: ' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '<br>' +
-				'Geschwindigkeit: ' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '<br>' +
-				'<a href="#" onclick="\'\'" class="popupLink">Auf Punkt zentrieren</a></p>').click(function() {
-				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18)
-                ;
-			})[0];
+			var content = $('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
+				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
+				'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
+				'<tr><td><b>Track-ID</b></td><td>' + '</td><td></td></tr>' +
+				'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
+				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
+				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
+				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
+				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+				'<tr><td><a href="#" class="link">Auf Punkt zentrieren</a></td><td>Zugehörigen Track anzeigen</td></tr></table></html>') .click(function(){
+                mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
+            }
+                                                                                                                                               )
+            [0];
 			
 			marker.bindPopup(content);
 			
@@ -122,4 +123,5 @@ function drawMeasurements(){
 		}
 		
 	});
+
 }
