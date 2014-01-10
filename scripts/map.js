@@ -63,6 +63,32 @@ function drawMeasurements(){
 			var properties = measurement.properties;
 			var sensor = properties.sensor;
 			var phenomenons = properties.phenomenons;
+			
+			//Check if phenomenons are not defined -> add default value
+			if(phenomenons.Consumption == undefined){
+				var Consumption = new Object();
+				Consumption.value = "-";
+				Consumption.unit = "l/s";
+				phenomenons.Consumption = Consumption;
+			}
+			if(phenomenons.CO2 == undefined){
+				var CO2 = new Object();
+				CO2.value = "-";
+				CO2.unit = "g/s";
+				phenomenons.CO2 = CO2;
+			}
+			if(phenomenons.MAF == undefined){
+				var MAF = new Object();
+				MAF.value = "-";
+				MAF.unit = "l/s";
+				phenomenons.MAF = MAF;
+			}
+			if(phenomenons.Speed == undefined){
+				var Speed = new Object();
+				Speed.value = "-";
+				Speed.unit = "km/s";
+				phenomenons.Speed = Speed;
+			}
 		
 			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
 					
