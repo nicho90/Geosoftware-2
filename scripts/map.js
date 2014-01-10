@@ -1,4 +1,4 @@
-﻿var mainMap;
+var mainMap;
 
 var markers = new Array();
 
@@ -102,8 +102,9 @@ function drawMeasurements(){
 				'CO2-Ausstoß: ' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '<br>' +
 				'MAF: ' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '<br>' +
 				'Geschwindigkeit: ' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '<br>' +
-				'<a href="#" class="speciallink">Center this point</a></p>').click(function() {
-				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]]);
+				'<a href="#" onclick="\'\'" class="popupLink">Auf Punkt zentrieren</a></p>').click(function() {
+				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18)
+                ;
 			})[0];
 			
 			marker.bindPopup(content);

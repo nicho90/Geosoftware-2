@@ -32,23 +32,9 @@
 		<!-- Needed for RESTful-Request -->
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        
-        <!-- Skript zum Ein- und Ausblenden der Polygonwerkzeugen -->
-        <script type="text/javascript">
-            jQuery(document).ready(function() {
-                jQuery('#drawingPolygon').hide();
-            });
-            jQuery(document).ready(function() {
-                jQuery('#choosePolygon').click(function() {
-                    jQuery('#drawingPolygon').fadeIn('slow'); 
-                });
-                jQuery('#resetPolygon').click(function() {
-                    jQuery('#drawingPolygon').fadeOut('slow');
-                });
-            });
-        </script>
-        
-        <!-- Skript zum Ein- und Ausblenden der selektierten Punkte und Tracks -->
+
+
+        <!-- Skript zum Ein- und Ausblenden der selektierten Punkte -->
         <script type="text/javascript" src="scripts/toggle.js"></script>
         
         <!-- Skripts für die Tooltips in den Selektierwerkzeugen 
@@ -59,7 +45,7 @@
         <link rel="stylesheet" href="stylesheets/tipsy.css" type="text/css" />
         <script type='text/javascript' src='scripts/tooltip.js'></script>
         
-        <!-- Skripts um alle Checkboxen der selektierten Punkte & Tracks auf einmal auszuwählen 
+        <!-- Skripts um alle Checkboxen der selektierten Punkte auf einmal auszuwählen 
             Source: http://jsfiddle.net/7BXJF/1/ -->
         <script type='text/javascript' src='scripts/forcheckboxes.js'></script>
         <script src="scripts/jquery.validate.js"></script>
@@ -85,8 +71,7 @@
             <!-- Hinweis auf das Portal -->
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
             <div id=filter>
-                    <div id=filter_1>Filteroptionen
-                    </div>
+                    <div id=filter_1>Filteroptionen</div>
                     <div id=filter_2>
                         <form id=filterFormular>
                         <table>
@@ -144,14 +129,14 @@
         <div id=clear></div>
         <!-- Karte mit Navigationselementen -->
         <div id=map> </div>
-		<div id='pan'class='pan'>
-		<div class='wrapper'>
-      <a id='left' class='panner'> &larr; </a>
-      <a id='right' class='panner'>&rarr;</a>
-      <a id='down' class='panner'>&darr;</a>
-      <a id='up' class='panner'>&uarr;</a>
-    </div>
-    </div>
+        <div id="pan" class="pan">
+            <div class="wrapper">
+                <a id="left" class="panner"> &larr; </a>
+                <a id="right" class="panner">&rarr;</a>
+                <a id="down" class="panner">&darr;</a>
+                <a id="up" class="panner">&uarr;</a>
+            </div>
+        </div>
                 
         
         <!-- rechte Sidebar -->
@@ -160,107 +145,109 @@
             <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
             <div id=chooser class=sidebarElement>
                 <h2>Selektierwerkzeuge</h2>        
-                <ul>
-                    <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
+                <div class=center>
+                <ul class=chooserTools>
+                    <li id="chooseSinglePoint" class="chooserTool" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
                         <a href=""> </a>
                     </li>
-                    <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
+                    <li id="chooseTrack" class="chooserTool" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
                         <a href=""> </a>
                     </li>
-                    <li id="choosePolygon" original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
-                        <a href=""> </a>
+                    <li id="choosePolygon"  class="chooserToolActive" original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
+                        <a href="#" onclick="toggle_visibility('drawingPolygon');"></a>
                     </li>
                 </ul>
-                <div id=clear></div>
-                
-                <!-- Werkzeuge für Polygonauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "choosePolygon" gewählt wurde) -->
-                
-                <div id=drawingPolygon class=sidebarElement>
-                    <input type="button" id="drawPolygon" name="drawPolygon" value="Raumausschnitt zeichnen" class=selectButton><br>
-                    <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton>
-                    <input type="reset" id="resetPolygon" name="resetPolygon" value="Abbrechen" class=resetButton>
                 </div>
-            
-            <br>
-            <a href="#" onclick="toggle_visibility('selectedPoints');" class=link>Selektierte Punkte</a>
-            <br>
-            
-            <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
-            <div id=selectedPoints class=sidebarSubElement>
-                <table>
-                    <tr>
-                        <td><input type="checkbox" id="checkAll" name="track_id" value="track_id"></td>
-                        <td>(Alle auswählen)</td>
-                        <td><a href="#" class="link">Löschen</a></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Punkt</td>
-                        <td>Punkt-ID</td>
-                        <td>Koordinaten</td>
-                        <td>Track-ID</td>
-                        <td>Sensor-ID</td>
-                        <td>Zeitpunkt</td>
-                        <td>Fahrzeugtyp</td>
-                        <td>Geschwindigkeit</td>
-                        <td>Spritverbrauch</td>
-                        <td>CO2-Ausstoß</td>
-                        <td>MAF</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="chk" name="point_id" value="point_id"></td>
-                        <td>1</td>
-                        <td>5325</td>
-                        <td><a href="">7.61083,51.9414</a></td>
-                        <td>51c97d05e4b0fe5a04e9e735</td>
-                        <td>Sensor-ID</td>
-                        <td>2013-06-08T11:28:20Z</td>
-                        <td>BMW - R 1200 GS</td>
-                        <td>55.6</td>
-                        <td>km/h</td>
-                        <td>5.0</td>
-                        <td>l</td>
-                        <td>32.3</td>
-                        <td>g/cm3??</td>
-                        <td>3.2</td>
-                        <td>Einheit??</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="chk" name="point_id" value="point_id"></td>
-                        <td>2</td>
-                        <td>568</td>
-                        <td><a href="">7.61083,51.9414</a></td>
-                        <td>51c97d05e4b0fe5a04e9e735</td>
-                        <td>Sensor-ID</td>
-                        <td>2014-06-08T11:28:20Z</td>
-                        <td>Mercedes Benz</td>
-                        <td>55.6</td>
-                        <td>km/h</td>
-                        <td>5.0</td>
-                        <td>l</td>
-                        <td>32.3</td>
-                        <td>g/cm3??</td>
-                        <td>3.2</td>
-                        <td>Einheit??</td>
-                    </tr>
-                </table>
-            <hr>
-            </div>
-            
-            <br>
-            <a href="#" onclick="toggle_visibility('selectedTracks');" class=link>Selektierte Tracks</a>
-            <br>
-            <!-- Liste der selektierten Tracks (standardmäßig ausgeblendet) -->
-            <div id=selectedTracks class=sidebarSubElement>
-                <table>
-                    <tr><td><input type="checkbox" id="checkAll2" name="track_id" value="track_id"></td><td>(Alle auswählen)</td><td><a href="#" class="link">Löschen</a></td></tr>
-                    <tr><td></td><td>Track</td><td>Track-ID</td></tr>
-                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>1</td><td>gdfiwe09u23ßrz30eg</td></tr>
-                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>2</td><td>vefuewz89261r097ß2</td></tr>
-                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>2</td><td>e2z18r4938gfewp9t0</td></tr>
-                    <tr><td><input type="checkbox" class="chk2" name="track_id" value="track_id"></td><td>3</td><td>test</td></tr>
-                </table>
-            </div>
+                <div id=clear></div>
+                <!-- Werkzeuge für Polygonauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "choosePolygon" gewählt wurde) -->
+                <div id=drawingPolygon>
+                    <div class="center"><font class="drawingElementTitle">Raumausschnitt zeichnen</font></div>
+                    <div class="drawingElementContent">
+                        <br>
+                        <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton>
+                        <input type="reset" id="resetPolygon" name="resetPolygon" value="Abbrechen" class=resetButton onclick="toggle_visibility('drawingPolygon');">
+                    </div>
+                </div>
+                <br>
+                <div class=center>
+                    <a href="#" onclick="toggle_visibility('selectedPoints');" class=chooserLink>Selektierte Punkte</a>
+                </div>
+                <br>
+                <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
+                <div id=selectedPoints class=chooserElement>
+                    <br>
+                    <ul class=deleteOptions>
+                        <li>
+                            <input type="checkbox" id="checkAll" name="track_id" value="track_id"> (Alle auswählen)
+                        </li>
+                        <li>
+                            <a href="#" class="link">Löschen</a>
+                        </li>
+                    </ul>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Punkt</th>
+                            <th>Punkt-ID</th>
+                            <th>Koordinaten</th>
+                            <th>Track-ID</th>
+                            <th>Sensor-ID</th>
+                            <th>Zeitpunkt</th>
+                            <th>Fahrzeugmarke</th>
+                            <th>Modell</th>
+                            <th>Geschwindigkeit</th>
+                            <th>Spritverbrauch</th>
+                            <th>CO2-Ausstoß</th>
+                            <th>MAF</th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="chk" name="point_id" value="point_id"></td>
+                            <td>1</td>
+                            <td>5325</td>
+                            <td><a href="">7.61083,51.9414</a></td>
+                            <td>51c97d05e4b0fe5a04e9e735</td>
+                            <td>Sensor-ID</td>
+                            <td>2013-06-08T11:28:20Z</td>
+                            <td>BMW</td>
+                            <td>R 1200 GS</td>
+                            <td>55.6 km/h</td>
+                            <td>5.0 l</td>
+                            <td>32.3 g/cm3</td>
+                            <td>3.2</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="chk" name="point_id" value="point_id"></td>
+                            <td>2</td>
+                            <td>829</td>
+                            <td><a href="">7.61083,51.9414</a></td>
+                            <td>51c97d05e4b0fe5a04e9e735</td>
+                            <td>Sensor-ID</td>
+                            <td>2013-06-08T11:28:20Z</td>
+                            <td>BMW</td>
+                            <td>R 1200 GS</td>
+                            <td>55.6 km/h</td>
+                            <td>5.0 l</td>
+                            <td>32.3 g/cm3</td>
+                            <td>3.2</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="chk" name="point_id" value="point_id"></td>
+                            <td>3</td>
+                            <td>67</td>
+                            <td><a href="">7.61083,51.9414</a></td>
+                            <td>51c97d05e4b0fe5a04e9e735</td>
+                            <td>Sensor-ID</td>
+                            <td>2013-06-08T11:28:20Z</td>
+                            <td>BMW</td>
+                            <td>R 1200 GS</td>
+                            <td>55.6 km/h</td>
+                            <td>5.0 l</td>
+                            <td>32.3 g/cm3</td>
+                            <td>3.2</td>
+                        </tr>
+                    </table>
+                </div>
+                
             </div>
             
             <!-- Analyseauswahl -->
@@ -311,7 +298,7 @@
                 <div id="diagramm" class="sidebarSubElement">
                     <h3>Diagramme</h3>
                     <div id="diagrammPreview" class="analyseElement">
-                        Diagrammvorschaubild
+                        <a href="#"><img src="images/charts.png" alt="Ergebnisse als Diagramme anzeigen" class="diagrammPreview"></a>
                     </div>
                 </div>
                 <hr>
@@ -326,9 +313,13 @@
                     </li>
                 </ul>
                     <div id="textualresults" class="analyseElement">
-                        <input type="submit" id="acceptFilter" name="acceptFilter" value="i" class=submitButton>
-                        <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>
-                        
+                        <ul>
+                            <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">               <a href="" class=submitButton>i</a>
+                            </li>
+                            <li>
+                                <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

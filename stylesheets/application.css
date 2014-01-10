@@ -1,4 +1,7 @@
-﻿html {
+/*
+    Allgemeine Dokumenteigenschaften
+*/
+html {
     position: relative;
     height: 100%;
 }
@@ -17,9 +20,18 @@ header, footer, map {
     display:block;
 }
 
+#clear {
+    clear:both;
+}
 
 
-/* Header */
+
+/* 
+    Header
+
+    auf der linken Seite befindet sich das Logo
+    auf der rechten Seite befindet sich der Filterbereich
+*/
 header {
     margin-top: 0px;
     margin-left: 0px;
@@ -43,6 +55,11 @@ header {
     border:0px;
 }
 
+
+
+/*
+    Filterbereich
+*/
 #filter {
     float: left;
     width: 78%;
@@ -79,6 +96,19 @@ header {
     border:0px;
 }
 
+
+/*
+    Ergänzungen zur Kalenderauswahl
+*/
+.ui-datepicker {
+	 z-index: 9999999999 !important;
+}
+
+
+
+/* 
+    Inputfelder im Filterbereich
+*/
 .filterButton{
     border: 2px solid rgb(22,127,193);
     padding:5px;
@@ -94,6 +124,10 @@ header {
 }
 
 
+
+/*
+    Links im Filterbereich
+*/
 .link{
     color:rgb(22,127,193);
     text-decoration:none;
@@ -105,6 +139,10 @@ header {
 }
 
 
+
+/*
+    Auswahlbuttons im Filterbereich
+*/
 .selectButton {
     width:50px;
     height:50px;
@@ -121,29 +159,12 @@ header {
     border:0px;
 }
 
-/* Selektierte Punkte / Tracks */
-#selectedPoints, #selectedTracks {
-    display:none;
-}
 
-/* Zur Zeit nicht benötigt, vlt noch brauchbar für später, bitte drin lassen
-
-.analyseButton {
-    border:2px solid rgb(22,127,193);
-    padding:5px;
-    border-radius:15px;
-    background-color:rgb(255,255,255);
-}
-
-.analyseButton:hover, .analyseButton:active {
-    border:2px solid rgb(22,127,193);
-    padding:5px;
-    border-radius:15px;
-    background-color:rgb(248,248,248);
-}
-
+/* 
+    Bestätigungsbutton im Filterbereich
+    Wiederverwendung bei der Polygonselektion
+    Wiederverwendung im Interpolationsbereich
 */
-
 .submitButton {
     border: 2px solid rgb(140,188,62);
     padding:5px;
@@ -163,51 +184,11 @@ header {
     text-decoration:underline;
 }
 
-/* Zur Zeit nicht benötigt, vlt noch brauchbar für später, bitte drin lassen
 
 
-.hideButton {
-    border: 2px solid rgb(60,164,116);
-    padding:5px;
-    border-radius:15px;
-    background-color: rgb(60,164,116);
-    color:rgb(255,255,255);
-    font-weight:bold;
-}
-
-.hideButton:hover, .hideButton:active{
-    border: 2px solid rgb(60,164,116);
-    padding:5px;
-    border-radius:15px;
-    background-color: rgb(60,164,116);
-    color:rgb(255,255,255);
-    font-weight:bold;
-    text-decoration:underline;
-}
-
-.resetButton {
-    border: 2px solid rgb(255,0,0);
-    padding:5px;
-    border-radius:15px;
-    background-color: rgb(255,0,0);
-    color:rgb(255,255,255);
-    font-weight:bold;
-    
-}
-
-.resetButton:hover, .resetButton:active{
-    border: 2px solid rgb(255,0,0);
-    padding:5px;
-    border-radius:15px;
-    background-color: rgb(255,0,0);
-    color:rgb(255,255,255);
-    font-weight:bold;
-    text-decoration:underline;
-}
+/* 
+    Karte
 */
-
-
-/* Karte */
 #map {
     float: left;
     width: 73%;
@@ -221,6 +202,10 @@ header {
     box-shadow: 0 0 5px #888;
 }
 
+
+/*
+    Navigationselemente der Karte
+*/
 #pan {
     position: absolute;
     top: 180px;
@@ -228,9 +213,7 @@ header {
     z-index: 999;
 }
 
-
-
-#pan  .panner {
+#pan .panner {
     background: #fff;
     top: 0;
     position: absolute;
@@ -244,8 +227,7 @@ header {
     border-color:white;
     color:black;
     font-weight: bold;
-	box-shadow: -10px -10px 100px grey, 
-             10px 10px 100px grey;
+	box-shadow: -10px -10px 100px grey, 10px 10px 100px grey;
 }
 
 #pan .panner#left {
@@ -268,12 +250,26 @@ header {
 }
 
 
-/* Sidebar */
-
-#clear {
-    clear:both;
+/*
+    Ergänzungen für den Leaflet-Kartenlayer
+*/
+.leaflet-map-pane {
+    z-index: 2 !important;
 }
 
+.leaflet-google-layer {
+    z-index: 1 !important;
+}
+
+
+
+/* 
+    Sidebar
+
+    besteht aus 
+    Selektionswerkzeuge
+    Analyseelemente
+*/
 #sidebar{
     width:24%;
     float:left;
@@ -293,6 +289,10 @@ header {
     padding-left:5px;
 }
 
+
+/*
+    Überschriften in der Sidebar
+*/
 h2 {
     font-size:12pt;
     color:rgb(22,127,193);
@@ -304,35 +304,70 @@ h3 {
     font-size:11pt;
 }
 
+
+/*
+    Selektionswerkzeuge
+*/
 #chooser {
     width:auto;
     text-align:left;
-    margin:0;
-    padding:0px;
+    position:relative;
 }
 
-#chooser ul{
+.chooserTools  {
+    display:inline;
+    float:left;
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:relative;
+    left:50%;
+    text-align:center;
 }
 
-#chooser li {
-    float: left;
-    margin:0;
-	padding:0;
+.chooserTools li {
+    float:left;
+    display:inline;
 	list-style-type: none;
+    right:50%;
+    position:relative;
+    margin-left:5px;
+    margin-right:5px;
 }
 
-#chooser li a { 
+.chooserTool a { 
     display: block;  
     height: 50px;
     width: 50px;
     color: transparent;
     text-decoration: none;
-    text-align: center;
     border:3px solid rgb(140,188,62);
     border-radius: 50px;
-    margin-right:10px;
 }
 
+.chooserTool a:active {
+    display:block;
+    height: 50px;
+    width: 50px;
+    color: transparent;
+    text-decoration: none;
+    border:3px solid rgb(255,165,0);
+    border-radius: 50px;
+}
+
+.chooserToolActive a {
+    display: block;  
+    height: 50px;
+    width: 50px;
+    color: transparent;
+    text-decoration: none;
+    border:3px solid rgb(255,165,0);
+    border-radius: 50px;
+}
+
+/*
+    Buttons der Selektionsmethoden
+*/
 #chooseSinglePoint a {
     display: block;
     background: transparent url(../images/bySinglePoint.png) center no-repeat;
@@ -341,8 +376,8 @@ h3 {
     
 #chooseSinglePoint a:hover {
     display: block;
-    background: transparent url(../images/byPolygon.png) center no-repeat;
-    background-size: 35px 35px;
+    background: transparent url(../images/bySinglePoint.png) center no-repeat;
+    background-size: 38px 38px;
 }
     
 #chooseTrack a {
@@ -353,8 +388,8 @@ h3 {
     
 #chooseTrack a:hover {
     display: block;
-    background: transparent url(../images/byPolygon.png) center no-repeat;
-    background-size: 35px 35px;
+    background: transparent url(../images/byTrack.png) center no-repeat;
+    background-size: 38px 38px;
 }    
 
 #choosePolygon a {
@@ -365,14 +400,156 @@ h3 {
     
 #choosePolygon a:hover {
     display: block;
-    background: transparent url(../images/byTrack.png) center no-repeat;
-    background-size: 35px 35px;
+    background: transparent url(../images/byPolygon.png) center no-repeat;
+    background-size: 38px 38px;
 }
 
-#selectedPoints, #selectedTracks {
+.center {
+    text-align: center;
+    position:relative;
+    z-index: 3;
+}
+
+.chooserLink {
+    font-size:11pt;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:3px;
+    padding-bottom:3px;
+    color:rgb(22,127,193);
+    text-decoration:none;
+    background-color:rgb(255,255,255);
+    z-index: 3;
+}
+
+.chooserLink:hover, .chooserLink:active{
+    font-size:11pt;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:3px;
+    padding-bottom:3px;
+    color:rgb(22,127,193);
+    text-decoration:underline;
+    background-color:rgb(255,255,255);
+    z-index: 3;
+}
+
+
+/*
+    Bereich für den Raumausschnitt zeichnen
+*/
+#drawingPolygon {
+    display:none;
+    margin-top:20px;
+}
+
+.drawingElementTitle {
+    font-size:11pt;
+    color:rgb(255,165,0);
+    z-index: 3;
+    background-color:rgb(255,255,255);
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:3px;
+    padding-bottom:3px;
+}
+
+.drawingElementContent {
+    font-size:10pt;
+    color:rgb(0,0,0);
+    padding-left:2px;
+    padding-right:2px;
+    margin-top:-10px;
+    margin-left: 3px;
+    margin-right:3px;
+    border: 1.5px solid rgb(255,165,0);
+    background-color:rgb(255,255,255);
+    height:auto;
+    z-index: 1;
+}
+
+.resetButton {
+    border: 2px solid rgb(255,0,0);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(255,0,0);
+    color:rgb(255,255,255);
+    font-weight:bold; 
+}
+
+.resetButton:hover, .resetButton:active{
+    border: 2px solid rgb(255,0,0);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(255,0,0);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+/*
+    Bereich der selektierten Punkte
+*/
+.chooserElement {
+    font-size:10pt;
+    color:rgb(0,0,0);
+    padding-left:2px;
+    padding-right:2px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border: 1.5px solid rgb(22,127,193);
+    background-color:rgb(255,255,255);
+    position: relative;
+    top: -28px;
+    z-index: 1;
+    max-height:330px;
+}
+
+#selectedPoints {
     overflow:scroll;
+    display:none;
 }
 
+.deleteOptions  {
+    margin:0px;
+	padding:0px;
+    display:inline;
+}
+
+.deleteOptions li  {
+    float:left;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left:3px;
+    margin-right:10px;
+	padding:0px;
+    list-style-type:none;
+}
+
+.chooserElement table, td, th {
+    border:0px;
+    border-collapse: collapse;
+}
+
+#selectedPoints table th {
+    border-bottom: 1.5px solid rgb(0,0,0);
+}
+
+tr.tableTitle td {
+    border-bottom: 1.5px solid rgb(0,0,0);
+}
+
+#selectedPoints table td, #selectedPoints table th {
+    min-width:auto;
+    white-space:nowrap;
+    padding-left:3px;
+    padding-right:3px;
+}
+
+
+/*
+    Analysebereich
+*/
 #analyse {
     margin-top:15px;
 }
@@ -395,6 +572,10 @@ h3 {
     font-size:9pt;
 }
 
+
+/*
+    Tabelle der allgemeinen Analysen, MEAN, STD, usw.
+*/
 #textualresults table{
     border:0px;
     margin-left:auto; 
@@ -403,8 +584,24 @@ h3 {
 }
 
 
+/*
+    Vorschaubild der Diagramme im Analysebereich
+*/
+#diagrammPreview {
+    text-align:center;
+}
+.diagrammPreview {
+    width:140px;
+    height:100px;
+    border:5px solid rgb(140,188,62);
+    border-radius:3px;
+}
 
-/* Fußzeile */
+
+
+/* 
+    Fußzeile (momentan nicht benutzt)
+*/
 footer {
     background-color:rgb(22,127,193);
     position:absolute;
@@ -444,6 +641,10 @@ footer {
     background-color:rgb(22,127,193);
 }
 
+
+/*
+    Links auf der rechten Seite des Footers
+*/
 #footerShortLinks {
     height: 30px;
     padding-left:0%;
@@ -486,16 +687,4 @@ footer {
     color:rgb(255,255,255);
     text-decoration:underline;
     font-weight:bold;
-}
-
-.leaflet-map-pane {
-    z-index: 2 !important;
-}
-
-.leaflet-google-layer {
-    z-index: 1 !important;
-}
-
-.ui-datepicker {
-	 z-index: 9999999999 !important;
 }

@@ -4,4 +4,5 @@
                 $('#chooseSinglePoint').tipsy({fade:false, gravity: 'n'});
                 $('#chooseTrack').tipsy({fade:false, gravity: 'n'});
                 $('#choosePolygon').tipsy({fade:false, gravity: 'n'}); 
+                $('#interpolationInfo').tipsy({fade:false, gravity: 'e'}); 
 });
