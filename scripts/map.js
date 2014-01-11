@@ -102,7 +102,7 @@ function drawMeasurements(){
 				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
 				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
-				'<tr><td><a href="#" class="link">Auf Punkt zentrieren</a></td><td>Zugehörigen Track anzeigen</td></tr></table></html>') .click(function(){
+				'<tr><td><a href="" class="link">Auf Punkt zentrieren</a></td><td>Zugehörigen Track anzeigen</td></tr></table></html>') .click(function(){
                 mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
             }
                                                                                                                                                )
