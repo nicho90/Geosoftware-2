@@ -1,17 +1,37 @@
+/***********************
+	Global variables
+***********************/
 var mainMap;
 
 var markers = new Array();
 
-//If true, measurements are not loaded with next movement in map
+var selection = new Array();
+
+//If true measurements are not loaded with next movement in map
 var doNotLoad = false;
+
+//If true user adds points to selection by clicking on them
+var singlePointSelection = false;
 
 var redDot = L.icon({iconUrl: 'https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png'});
 
+
+/***********************
+	Event register
+***********************/
 window.onload = function() {
   drawMap();
   drawMeasurements();
 }
 
+
+/***********************
+	Functions
+***********************/
+
+// Draw MainMap
+// Description: Initializes main map and navigation-elements
+// Author: René Unrau
 function drawMap(){
 	// create a map in the "map" div, set the view to a given place and zoom
 	
@@ -39,6 +59,9 @@ function drawMap(){
 	mainMap.on('moveend', drawMeasurements);
 }
 
+// Draw Measurements
+// Description: Adds dots to the map and controls click events
+// Author: René Unrau
 function drawMeasurements(){
 	if(doNotLoad){doNotLoad = false; return;}
 
@@ -92,7 +115,6 @@ function drawMeasurements(){
 		
 			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
 			
-			// Create an element to hold all your text and markup
 			var container = $('<div/>');
 
 			container.on('click', '.centerPoint', function() {
@@ -103,7 +125,6 @@ function drawMeasurements(){
 				showTrack(properties.id);
 			});
 
-			//PopUp Container
 			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
@@ -119,7 +140,12 @@ function drawMeasurements(){
 			marker.bindPopup(container[0]);
 			
 			//Do not load measurements if marker is clicked
-			marker.on('click', function(){doNotLoad = true;});
+			marker.on('click', function(){
+				doNotLoad = true
+				if(singlePointSelection){
+					addSinglePoint(measurement);
+				}
+			});
 			markers.push(marker);
 			
 		});
@@ -132,6 +158,28 @@ function drawMeasurements(){
 
 }
 
+// Choose Single Point-Selection in Sidebar
+// Description: User wants to add measurement for analysis by clicking on single points
+// Author: René Unrau
+function chooseSingleSelection(){
+	if(singlePointSelection){
+		singlePointSelection = false;
+	}else{
+		singlePointSelection = true;
+	}
+}
+
+// Show Track
+// Description: Searches for TrackID for a given Measurement
+// Author: René Unrau
 function showTrack(pointID){
 	alert('This function searches for the TrackID of this Point: ' + pointID);
+}
+
+// Add Single Measurement
+// Description: Adds a single measurement to the selection
+// Author: René Unrau
+function addSinglePoint(measurement){
+	selection.push(measurement);
+	alert('You\'ve added this measurement to your selection');
 }
