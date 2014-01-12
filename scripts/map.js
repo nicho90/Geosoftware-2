@@ -91,29 +91,35 @@ function drawMeasurements(){
 			}
 		
 			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
-					
-			var content = $('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+			
+			// Create an element to hold all your text and markup
+			var container = $('<div/>');
+
+			container.on('click', '.centerPoint', function() {
+				doNotLoad = true;
+				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
+			});
+			container.on('click', '.showTrack', function() {
+				showTrack(properties.id);
+			});
+
+			//PopUp Container
+			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 				'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
-				'<tr><td><b>Track-ID</b></td><td>' + '</td><td></td></tr>' +
 				'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
 				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
 				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
-				'<tr><td><a href="" class="link">Auf Punkt zentrieren</a></td><td>Zugehörigen Track anzeigen</td></tr></table></html>') .click(function(){
-                mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
-            }
-                                                                                                                                               )
-            [0];
-			
-			marker.bindPopup(content);
+				'<tr><td><a href="#" class="centerPoint">Auf Punkt zentrieren</a></td><td><a href="#" class="showTrack">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+
+			// Insert the container into the popup
+			marker.bindPopup(container[0]);
 			
 			//Do not load measurements if marker is clicked
 			marker.on('click', function(){doNotLoad = true;});
-			//Load markers if PopUp is closed
-			marker.on('popupclose', function(){drawMeasurements();});
 			markers.push(marker);
 			
 		});
@@ -124,4 +130,8 @@ function drawMeasurements(){
 		
 	});
 
+}
+
+function showTrack(pointID){
+	alert('This function searches for the TrackID of this Point: ' + pointID);
 }
