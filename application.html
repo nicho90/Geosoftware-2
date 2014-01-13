@@ -60,6 +60,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript" src="scripts/calender.js"></script>
+        
 	</head>
     
     <!-- Beginn der Seite -->
@@ -73,7 +74,7 @@
             <div id=filter>
                     <div id=filter_1>Filteroptionen</div>
                     <div id=filter_2>
-                        <form id=filterFormular>
+                        <form id=filterFormular name="filterFormular">
                         <table>
                             <tr>
                                 <td>Anfangsdatum:</td>
@@ -81,7 +82,7 @@
                                 <td>Enddatum:</td>
                                 <td><input type="text" id="Ende" name="Ende" placeholder=" z.B. 02/01/2014" class=filterButton></td>
                                 <td>Fahrzeugtyp:</td>
-                                <td><input type=text list=vehicletype placeholder="z.B. BMW" class=filterButton>
+                                <td><input type=text id="Typ" name="Typ" list=vehicletype placeholder="z.B. BMW" class=filterButton>
                                     <datalist id=vehicletype>
                                         <option value="BMW R 1200 GS"></option>
                                         <option value="BMW 1"></option>
@@ -114,11 +115,11 @@
                             </tr>
                             <tr>
                                 <td>Track-ID:</td>
-                                <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
+                                <td><input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
                                 <td>Sensor-ID:</td>
-                                <td><input type=text placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
+                                <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
                                 <td></td>
-                                <td><input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
+                                <td><input type="button" id="acceptFilter" name="acceptFilter" value="OK" class=Button onclick="drawMeasurements()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
                             </tr>
                         </table>
                         </form>

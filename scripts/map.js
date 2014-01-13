@@ -64,6 +64,12 @@ function drawMap(){
 // Author: René Unrau
 function drawMeasurements(){
 	if(doNotLoad){doNotLoad = false; return;}
+    
+    var filtStart = document.filterFormular.Start.value;
+    var filtEnde = document.filterFormular.Ende.value;
+    var filtTyp = document.filterFormular.Typ.value;
+    var filtTrack = document.filterFormular.Track_ID.value;
+    var filtSensor = document.filterFormular.Sensor_ID.value;
 
 	var bounds = mainMap.getBounds();
 	
@@ -147,6 +153,24 @@ function drawMeasurements(){
 				}
 			});
 			markers.push(marker);
+            
+            if(filtStart != "" &&filtEnde  != "") {
+                //alle Punkte, die nicht im Zeitintervall liegen, entfernen
+            }
+            if(filtTyp != "") {
+                //alle Punkte, die nicht zu dem entsprechenden Autotyp passen, entfernen
+                
+            }
+            if(filtTrack != "") {
+                //alle Punkte, die nicht zur entsprechenden Track-ID passen, entfernen
+                
+            }
+            if(filtSensor != "") {
+                //alle Punkte, die nicht zur entsprechenden Sensor-ID passen, entfernen
+                if(sensor.properties.id.indexOf(filtSensor) == -1) {
+                    markers.pop(marker);
+                }
+            }
 			
 		});
 		
