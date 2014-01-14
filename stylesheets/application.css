@@ -213,7 +213,9 @@ header {
     z-index: 999;
 }
 
-#pan .panner {
+
+
+#pan  .panelement {
     background: #fff;
     top: 0;
     position: absolute;
@@ -227,28 +229,29 @@ header {
     border-color:white;
     color:black;
     font-weight: bold;
-	box-shadow: -10px -10px 100px grey, 10px 10px 100px grey;
+	box-shadow: -10px -10px 100px grey, 
+             10px 10px 100px grey;
 }
 
-#pan .panner#left {
-    top: 35px;
+#pan .panelement#left {    
+top: 35px;
+left:5px;
 }
 
-#pan .panner#right {
+#pan .panelement#right {
     top: 35px;
     left: 60px;
 }
 
-#pan .panner#down {
+#pan .panelement#down {
     top: 70px;
     left: 30px;
 }
 
-#pan .panner#up {
+#pan .panelement#up {
     top: 0px;
     left: 30px;
 }
-
 
 /*
     Ergänzungen für den Leaflet-Kartenlayer
