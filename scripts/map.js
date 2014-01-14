@@ -53,6 +53,25 @@ function drawMap(){
 		layers: [osm]
 	});
 	
+	// navigation elements
+	// allows the user to pan with the give navigation elements
+	//Author: Johanna Möllmann
+	document.getElementById('left').onclick = function() {
+    		map.panBy([-300, 0]);;
+	};
+
+	document.getElementById('right').onclick = function() {
+    	map.panBy([300, 0]);
+	};
+
+	document.getElementById('down').onclick = function() {
+    	map.panBy([0, 300]);
+	};
+
+	document.getElementById('up').onclick = function() {
+    	map.panBy([0, -300]);
+	};
+	
 	L.control.layers(layer).addTo(map);
     
 	mainMap = map;
