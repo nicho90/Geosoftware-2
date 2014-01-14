@@ -142,11 +142,11 @@ function drawMeasurements(){
 			
 			var container = $('<div/>');
 
-			container.on('click', '.centerPoint', function() {
+			container.on('click', '#centerPoint', function() {
 				doNotLoad = true;
 				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
 			});
-			container.on('click', '.showTrack', function() {
+			container.on('click', '#showTrack', function() {
 				showTrack(properties.id);
 			});
 
@@ -159,7 +159,7 @@ function drawMeasurements(){
 				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
 				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
-				'<tr><td><a href="#" class="centerPoint">Auf Punkt zentrieren</a></td><td><a href="#" class="showTrack">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
 
 			// Insert the container into the popup
 			marker.bindPopup(container[0]);
@@ -213,10 +213,40 @@ function chooseSingleSelection(){
 }
 
 // Show Track
-// Description: Searches for TrackID for a given Measurement
+// Description: Searches for TrackID for a given Measurement in the current BoundingBox
 // Author: René Unrau
 function showTrack(pointID){
-	alert('This function searches for the TrackID of this Point: ' + pointID);
+	
+	//Get all Tracks in current BBox
+	var bounds = mainMap.getBounds();
+	
+	var neLat = bounds.getNorthEast().lat;
+	var neLng = bounds.getNorthEast().lng;
+	var swLat = bounds.getSouthWest().lat;
+	var swLng = bounds.getSouthWest().lng;
+	
+	//Loop all Tracks that have measurements within the current BoundingBox
+	$.getJSON("https://envirocar.org/api/stable/rest/tracks?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result){
+		
+		var tracks = result.tracks;
+		//For each Track that has measurements in the current BoundingBox
+		$.each(tracks, function(i, track){
+		
+			//Get all measurements of the current Track
+			$.getJSON("https://envirocar.org/api/stable/rest/tracks/" + track.id,function(measurements){
+				
+				//Loop all measurements within the current Track
+				for(var i = 0; i < measurements.features.length; i++){
+				
+					//If measurement matches with searched pointID
+					if(measurements.features[i].properties.id == pointID){
+						alert('Dieser Punkt ist Teil des Tracks: ' + track.id);
+						return;
+					}
+				}
+			});
+		});
+	});
 }
 
 // Add Single Measurement
