@@ -1,16 +1,20 @@
-body {
+html, body {
     background-color:rgb(252,252,252);
-    margin-left:0%;
-    margin-right:0%;
-    margin-top:0px;
-    margin-bottom:0px;
+    margin:0px;
+    padding:0px;
     word-wrap:break-word;
     font-family:Droid Sans; /*, Helvetica, Arial;*/
+    height:100%;
 }
 
 /* Header */
 header, nav, footer, article {
     display:block;
+}
+
+#main{
+    min-height:100%;
+    position:relative;
 }
 
 header {
@@ -89,38 +93,63 @@ nav ul a:hover{
 
 
 /* Seiteninhalt */
+
+#content {
+    padding-bottom: 230px;
+}
+
 article {
     background-color:rgb(255,255,255);
     margin-left:10%;
     margin-right:10%;
     animation-iteration-count: height: auto;
     border-radius: 5px;
-    margin-bottom:30px;
     padding: 50px;
     height:auto;
     -moz-box-shadow: 0 0 5px #888;
     -webkit-box-shadow: 0 0 5px#888;
     box-shadow: 0 0 5px #888;
-    text-align:justify;
+    text-align:justify
 }
 
-.imageLeftSide {
+/*
+    Bilder und Screenshots mit Bildunterschriften
+*/
+.image {
     border-left: 15px solid rgb(140,188,62);
     -moz-box-shadow: 0 0 5px #888;
     -webkit-box-shadow: 0 0 5px#888;
     box-shadow: 0 0 5px #888;
+    color:rgb(0,0,0);
+    text-align:center;
+    font-size:10pt;
+}
+
+.imageBoxLeft {
     float:left;
     margin-right: 60px;
+    text-align:center;
 }
 
-.imageRightSide {
-    border-left: 15px solid rgb(140,188,62);
-    -moz-box-shadow: 0 0 5px #888;
-    -webkit-box-shadow: 0 0 5px#888;
-    box-shadow: 0 0 5px #888;
+.imageBoxRight {
     float:right;
     margin-left: 60px;
+    text-align:center;
 }
+
+.imageCaption{
+    margin-top:3px;
+    padding-top:3px;
+}
+
+/* 
+    Links unter Bilder & Screenshots
+*/
+.imagelink, .imagelink:hover, .imagelink:active{
+    color:rgb(22,127,193);
+    text-decoration:none;
+}
+
 
 #next {
     text-align:right;
@@ -187,9 +216,10 @@ footer {
     margin-right:0%;
     width: 100%;
     color: rgb(255,255,255);
-    position:relative;
+    position:absolute;
     bottom:0px;
-    margin-bottom:0px;
+    height:auto;
+    clear:both;
 }
 
 #footerLine_1 {
