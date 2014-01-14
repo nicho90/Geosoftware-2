@@ -67,7 +67,7 @@
     <body>
        <header role="banner">
             <div id=banner>
-                <a href="index.html"><img src="images/envirocar_analyser_logo.png" class=logoImage alt="enviroCar-Analyser"></a>
+                <a href="index.html"><img src="images/envirocar_analyser_logo_small.png" class=logoImage alt="enviroCar-Analyser"></a>
 			</div>
             <!-- Hinweis auf das Portal -->
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
@@ -119,7 +119,7 @@
                                 <td>Sensor-ID:</td>
                                 <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
                                 <td></td>
-                                <td><input type="button" id="acceptFilter" name="acceptFilter" value="OK" class=Button onclick="drawMeasurements()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
+                                <td><input type="button" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onclick="drawMeasurements()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
                             </tr>
                         </table>
                         </form>
@@ -129,13 +129,15 @@
         </header>
         <div id=clear></div>
         <!-- Karte mit Navigationselementen -->
-        <div id=map> </div>
-        <div id='pan'>			
-		<a  id='left' class='panelement'> &larr; </a> 
-		<a id='right' class='panelement'>&rarr;</a>
-		<a  id='down' class='panelement'>&darr;</a>
-		<a id='up' class='panelement'>&uarr;</a>
-	</div>
+        <div id=map> 
+            <div id="pan" class="leaflet-control">			
+                <a id="left"     class="panelement"><img src="images/left.png" class="panLeft"></a> 
+                <a id="right"    class="panelement"><img src="images/right.png" class="panRight"></a>
+                <a id="down"     class="panelement"><img src="images/down.png" class="panDown"></a>
+                <a id="up"       class="panelement"><img src="images/up.png" class="panUp"></a>
+                <a id="locateMe" class="panelementMiddle"><img src="images/location.png" class="imageLocateMe"></a>
+            </div>
+        </div>
                 
         
         <!-- rechte Sidebar -->
@@ -327,18 +329,19 @@
          
             
         </div>
+        <div id=clear> </div>
         <!-- Ende der Sidebar-->
         
         
         
-        <div id=clear> </div>
+       
         <!---
         <footer>
             <div id="footerLine_1"></div>
             <div id="footerLine_2"></div>
             <div id="footerText">
                 <small>
-                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a> &middot; Design by Nicholas Schiestel &amp; Johanna Möllmann<br>
+                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a> &middot; Design by Johanna Möllmann &amp; Nicholas Schiestel<br>
                 </small>
             </div>
             <div id="footerShortLinks">

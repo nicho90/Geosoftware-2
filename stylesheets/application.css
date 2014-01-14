@@ -172,6 +172,7 @@ header {
     background-color:rgb(140,188,62);
     color:rgb(255,255,255);
     font-weight:bold;
+    cursor:pointer;
 }
 
 .submitButton:hover, .submitButton:active{
@@ -182,6 +183,7 @@ header {
     color:rgb(255,255,255);
     font-weight:bold;
     text-decoration:underline;
+    cursor:pointer;
 }
 
 
@@ -200,6 +202,8 @@ header {
     -moz-box-shadow: 0 0 5px #888;
     -webkit-box-shadow: 0 0 5px#888;
     box-shadow: 0 0 5px #888;
+    z-index: 9;
+    position:relative;
 }
 
 
@@ -208,53 +212,158 @@ header {
 */
 #pan {
     position: absolute;
-    top: 180px;
-    left: 20px;
+    top: 10px;
+    left: 48px;
     z-index: 999;
 }
 
 
-
-#pan  .panelement {
-    background: #fff;
+.panelement {
+    background:rgb(255,255,255);
     top: 0;
     position: absolute;
-    left: 0;
-    padding: 5px;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
     text-align: center;
-    border-color:white;
-    color:black;
-    font-weight: bold;
-	box-shadow: -10px -10px 100px grey, 
-             10px 10px 100px grey;
+    text-decoration: none;
+    color: black;
+    cursor:pointer;
+    font-size: 20px;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+    text-indent: 1px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
 }
 
+
+.panelement:hover {
+    background:rgb(244,244,244);
+    top: 0;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(0,0,0);
+    cursor:pointer;
+    font-size: 20px;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+    text-indent: 1px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+}
+
+
+
 #pan .panelement#left {    
-top: 35px;
-left:5px;
+    top:26px;
+    left:0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
 }
 
 #pan .panelement#right {
-    top: 35px;
-    left: 60px;
+    top: 26px;
+    left: 52px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
 }
 
 #pan .panelement#down {
-    top: 70px;
-    left: 30px;
+    top: 52px;
+    left: 26px;
+    line-height:22px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
 }
 
 #pan .panelement#up {
     top: 0px;
-    left: 30px;
+    left: 26px;
+    line-height:22px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.65);
+}
+/* 
+    Größen der Bilder
+*/
+.panLeft, .panRight{
+    width:6px;
+    height:12px;
+    border:0px;
+}
+.panDown, .panUp{
+    width:12px;
+    height:6px;
+    border:0px;
 }
 
+.imageLocateMe {
+    width:16px;
+    height:16px;
+    border:0px;
+}
+
+/* 
+    Lokalisierungselement
+*/
+.panelementMiddle {
+    background:rgb(255,255,255);
+    top: 0;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    cursor:pointer;
+    font-size: 20px;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+    text-indent: 1px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+    border:1px solid rgb(204,204,204);
+}
+
+.panelementMiddle:hover {
+    background:rgb(244,244,244);
+    top: 0;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    cursor:pointer;
+    font-size: 20px;
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+    text-indent: 1px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+    border:1px solid rgb(204,204,204);
+}
+
+#locateMe {
+    top:26px;
+    left:26px;
+    line-height: 27px;
+}
+
+
+
+
 /*
-    Ergänzungen für den Leaflet-Kartenlayer
+    Leaflet-Kartenlayer
 */
 .leaflet-map-pane {
     z-index: 2 !important;
@@ -346,6 +455,7 @@ h3 {
     text-decoration: none;
     border:3px solid rgb(140,188,62);
     border-radius: 50px;
+    cursor:pointer;
 }
 
 .chooserTool a:active {
@@ -356,6 +466,7 @@ h3 {
     text-decoration: none;
     border:3px solid rgb(255,165,0);
     border-radius: 50px;
+    cursor:pointer;
 }
 
 .chooserToolActive a {
@@ -366,6 +477,7 @@ h3 {
     text-decoration: none;
     border:3px solid rgb(255,165,0);
     border-radius: 50px;
+    cursor:pointer;
 }
 
 /*
