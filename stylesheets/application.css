@@ -426,6 +426,7 @@ h3 {
     position:relative;
 }
 
+/* ul */
 .chooserTools  {
     display:inline;
     float:left;
@@ -437,7 +438,8 @@ h3 {
     text-align:center;
 }
 
-.chooserTools li {
+/* li's */
+#chooseSinglePoint, #chooseTrack, #choosePolygon{
     float:left;
     display:inline;
 	list-style-type: none;
@@ -447,7 +449,7 @@ h3 {
     margin-right:5px;
 }
 
-.chooserTool a { 
+#chooseSinglePoint a, #chooseTrack a, #choosePolygon a { 
     display: block;  
     height: 50px;
     width: 50px;
@@ -458,27 +460,19 @@ h3 {
     cursor:pointer;
 }
 
-.chooserTool a:active {
+/*
+#chooseSinglePoint a:active, #chooseTrack a:active, #choosePolygon a:active {
     display:block;
     height: 50px;
     width: 50px;
     color: transparent;
     text-decoration: none;
-    border:3px solid rgb(255,165,0);
+    border:3px solid rgb(140,165,0);
     border-radius: 50px;
     cursor:pointer;
 }
 
-.chooserToolActive a {
-    display: block;  
-    height: 50px;
-    width: 50px;
-    color: transparent;
-    text-decoration: none;
-    border:3px solid rgb(255,165,0);
-    border-radius: 50px;
-    cursor:pointer;
-}
+
 
 /*
     Buttons der Selektionsmethoden
@@ -505,7 +499,7 @@ h3 {
     display: block;
     background: transparent url(../images/byTrack.png) center no-repeat;
     background-size: 38px 38px;
-}    
+}
 
 #choosePolygon a {
     display: block;

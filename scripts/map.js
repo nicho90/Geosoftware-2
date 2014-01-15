@@ -204,13 +204,26 @@ function drawMeasurements(){
 // Choose Single Point-Selection in Sidebar
 // Description: User wants to add measurement for analysis by clicking on single points
 // Author: René Unrau
-function chooseSingleSelection(){
+function chooseSingleSelection(id){
+   ;
 	if(singlePointSelection){
 		singlePointSelection = false;
-	}else{
+        var li = document.getElementById(id);
+        var atag = li.getElementsByTagName('a');
+            for (var i = 0; i<atag.length; i++) {
+            atag[i].style.border="3px solid rgb(140,188,62)";
+            }
+    }
+    else {
 		singlePointSelection = true;
-	}
+        var li = document.getElementById(id);
+        var atag = li.getElementsByTagName('a');
+            for (var i = 0; i<atag.length; i++) {
+            atag[i].style.border="3px solid rgb(255,165,0)";
+	       } 
+    }
 }
+
 
 // Show Track
 // Description: Searches for TrackID for a given Measurement in the current BoundingBox
