@@ -320,7 +320,7 @@ function addSinglePoint(measurement){
 // Author: René Unrau
 function updateSelectionList(){
 	var updatedList = $("<table id='selectionTable'>" + 
-		"<tr><th></th>" + 
+		"<tr><th> </th>" + 
 		"<th>Punkt</th>" + 
 		"<th>Punkt-ID</th>" + 
 		"<th>Koordinaten</th>" + 
