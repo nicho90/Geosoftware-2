@@ -14,6 +14,9 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
         
+        <!--Stylesheet für leaflet.draw -->
+        <link rel="stylesheet" type="text/css" href="scripts/leaflet.draw.css">
+        
         <!-- HTML5 for the Microsoft IE -->
         <script>
             document.createElement('header');
@@ -61,6 +64,8 @@
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript" src="scripts/calender.js"></script>
         
+        <!-- Skript zum Zeichnen eines Polygons -->
+        <script type="text/javascript" src="scripts/leaflet.draw.js"></script>
 	</head>
     
     <!-- Beginn der Seite -->
@@ -154,8 +159,13 @@
                     <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
                         <a href=""> </a>
                     </li>
+<<<<<<< HEAD
                     <li id="choosePolygon" original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
                         <a href="#" onclick="toggle_visibility('drawingPolygon');"></a>
+=======
+                    <li id="choosePolygon"  class="chooserToolActive" original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
+                        <a href="#" onclick="toggle_visibility('drawingPolygon'); drawPolygon()"></a>
+>>>>>>> abae385dd2cbfe8443f1ba967dfc4c36ced5c309
                     </li>
                 </ul>
                 </div>
@@ -166,7 +176,7 @@
                     <div class="drawingElementContent">
                         <br>
                         <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton>
-                        <input type="reset" id="resetPolygon" name="resetPolygon" value="Abbrechen" class=resetButton onclick="toggle_visibility('drawingPolygon');">
+                        <input type="reset" id="resetPolygon" name="resetPolygon" value="Abbrechen" class=resetButton onclick="toggle_visibility('drawingPolygon'); deletePolygon()">
                     </div>
                 </div>
                 <br>
