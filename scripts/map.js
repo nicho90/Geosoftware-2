@@ -5,12 +5,10 @@ var mainMap;
 
 var markers = new Array();
 
+//variables needed for drawing a polygon
 var polygon;
-
 var polygonLayer;
-
 var drawnItems;
-
 var drawControl;
 
 var selection = new Array();
@@ -60,8 +58,6 @@ function drawMap(){
 		zoom: 18,
 		layers: [osm]
 	});
-    
-    //leaflet.draw section
     
     //create a new FeatureGroup to store drawn items
     drawnItems = new L.FeatureGroup();
@@ -304,15 +300,13 @@ function addSinglePoint(measurement){
 	alert('You\'ve added this measurement to your selection');
 }
 
+//Draw a polygon
 function drawPolygon(){
-    
-    //alert("Eigentlich sollte das Polygon hierüber gezeichnet werden..");
     polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
     polygon.enable();
 }
 
-//Currently, polygon will be removed only if drawing has not been finished yet, i.e. the 
-//polygon has not been closed.
+//Delete polygon
 function deletePolygon(){
     polygon.disable();
     mainMap.removeLayer(polygonLayer);
