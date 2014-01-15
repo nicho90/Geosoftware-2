@@ -211,6 +211,7 @@ function drawMeasurements(){
 			marker.on('click', function(){
 				doNotLoad = true
 				if(singlePointSelection){
+					mainMap.closePopup();
 					addSinglePoint(measurement);
 				}
 			});
@@ -309,8 +310,56 @@ function showTrack(pointID){
 // Description: Adds a single measurement to the selection
 // Author: René Unrau
 function addSinglePoint(measurement){
+	//TODO: Check if Measurement is already inside
 	selection.push(measurement);
-	alert('You\'ve added this measurement to your selection');
+	updateSelectionList();
+}
+
+// Update Selection-List
+// Description: Refreshes the List of the selected Measurements
+// Author: René Unrau
+function updateSelectionList(){
+	var updatedList = $("<table id='selectionTable'>" + 
+		"<tr><th></th>" + 
+		"<th>Punkt</th>" + 
+		"<th>Punkt-ID</th>" + 
+		"<th>Koordinaten</th>" + 
+		"<th>Sensor-ID</th>" + 
+		"<th>Zeitpunkt</th>" + 
+		"<th>Fahrzeugmarke</th>" + 
+		"<th>Modell</th>" + 
+		"<th>Spritverbrauch</th>" + 
+		"<th>CO2-Ausstoß</th>" + 
+		"<th>Geschwindigkeit</th>" + 
+		"<th>MAF</th></tr>"
+	);
+	
+	for(var i = 0; i < selection.length; i++){
+		lat = selection[i].geometry.coordinates[1];
+		lon = selection[i].geometry.coordinates[0];
+		point = i + 1;
+	
+		var div = $("<tr>");
+		div.append("<td><input type='checkbox' class='chk' name='point_id' value='point_id'></td>");
+		div.append("<td>" + point + "</td>");
+		div.append("<td>" + selection[i].properties.id + "</td>");
+		div.append("<td><a href='#'>" + lat + ", "  + lon + "</a></td>");
+		div.append("<td>" + selection[i].properties.sensor.properties.id + "</td>");
+		div.append("<td>" + selection[i].properties.time + "</td>");
+		div.append("<td>" + selection[i].properties.sensor.properties.manufacturer + "</td>");
+		div.append("<td>" + selection[i].properties.sensor.properties.model + "</td>");
+		div.append("<td>" + selection[i].properties.phenomenons.Consumption.value + "</td>");
+		div.append("<td>" + selection[i].properties.phenomenons.CO2.value + "</td>");
+		div.append("<td>" + selection[i].properties.phenomenons.MAF.value + "</td>");
+		div.append("<td>" + selection[i].properties.phenomenons.Speed.value + "</td>");
+		div.append("</tr>");
+		div.find("a").click(function(){
+				mainMap.setView([lat,lon],18);
+			});
+		updatedList.append(div);
+	}
+	updatedList.append("</table");
+	$('#selectionTable').replaceWith(updatedList);
 }
 
 //Draw a polygon
