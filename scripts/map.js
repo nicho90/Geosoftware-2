@@ -5,6 +5,14 @@ var mainMap;
 
 var markers = new Array();
 
+var polygon;
+
+var polygonLayer;
+
+var drawnItems;
+
+var drawControl;
+
 var selection = new Array();
 
 //If true measurements are not loaded with next movement in map
@@ -52,8 +60,45 @@ function drawMap(){
 		zoom: 18,
 		layers: [osm]
 	});
-	
-	// navigation elements
+    
+    //leaflet.draw section
+    
+    //create a new FeatureGroup to store drawn items
+    drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    //create a drawControl
+    //will be invisible since the draw action will be fired by our draw buttons
+    drawControl = new L.Control.Draw({
+        draw: {
+            position: 'topleft',
+            circle: false,
+            rectangle: false,
+            marker: false,
+            polyline: false,
+            polygon: false
+        },
+            edit: {
+                featureGroup: drawnItems,
+                remove:false,
+                edit:false
+                
+            }
+    });
+    
+    map.addControl(drawControl);
+    
+    //eventListener after a draw is created it will be added as a layer to the map
+    map.on('draw:created', function (e) {
+        var type = e.layerType;
+        polygonLayer = e.layer;
+
+        //space for our actions
+        map.addLayer(polygonLayer);
+    });
+   
+    
+    // navigation elements
 	// allows the user to pan with the give navigation elements
 	//Author: Johanna Möllmann
 	document.getElementById('left').onclick = function() {
@@ -76,6 +121,8 @@ function drawMap(){
     
 	mainMap = map;
 	mainMap.on('moveend', drawMeasurements);
+    
+    
 }
 
 // Draw Measurements
@@ -256,3 +303,20 @@ function addSinglePoint(measurement){
 	selection.push(measurement);
 	alert('You\'ve added this measurement to your selection');
 }
+
+function drawPolygon(){
+    
+    //alert("Eigentlich sollte das Polygon hierüber gezeichnet werden..");
+    polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
+    polygon.enable();
+}
+
+//Currently, polygon will be removed only if drawing has not been finished yet, i.e. the 
+//polygon has not been closed.
+function deletePolygon(){
+    polygon.disable();
+    mainMap.removeLayer(polygonLayer);
+}
+
+
+
