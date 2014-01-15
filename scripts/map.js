@@ -127,6 +127,7 @@ function drawMap(){
 function drawMeasurements(){
 	if(doNotLoad){doNotLoad = false; return;}
     
+	//the values which are filled in the form
     var filtStart = document.filterFormular.Start.value;
     var filtEnde = document.filterFormular.Ende.value;
     var filtTyp = document.filterFormular.Typ.value;
@@ -143,6 +144,9 @@ function drawMeasurements(){
 	for(var i=0; i < markers.length; i++){
         mainMap.removeLayer(markers[i]);
     }
+	
+	//set the array 'markers' to a new array
+	markers = new Array();
 	
 	$.getJSON("https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result){
 	
@@ -215,23 +219,26 @@ function drawMeasurements(){
 					addSinglePoint(measurement);
 				}
 			});
+			
+			//add all points to the array 'markers'
 			markers.push(marker);
             
-            if(filtStart != "" &&filtEnde  != "") {
-                //alle Punkte, die nicht im Zeitintervall liegen, entfernen
+			//filter the points
+            if(filtStart != "" && filtEnde  != "") {
+                //delete the points which not fit to the filter 'period of time'
             }
             if(filtTyp != "") {
-                //alle Punkte, die nicht zu dem entsprechenden Autotyp passen, entfernen
+                //delete the points which not fit to the filter 'type'
                 
             }
             if(filtTrack != "") {
-                //alle Punkte, die nicht zur entsprechenden Track-ID passen, entfernen
+                //delete the points which not fit to the filter 'track-id'
                 
             }
             if(filtSensor != "") {
-                //alle Punkte, die nicht zur entsprechenden Sensor-ID passen, entfernen
+                //delete the points which not fit to the filter 'sensor-id'
                 if(sensor.properties.id.indexOf(filtSensor) == -1) {
-                    markers.pop(marker);
+                    markers.pop();
                 }
             }
 			
@@ -373,6 +380,3 @@ function deletePolygon(){
     polygon.disable();
     mainMap.removeLayer(polygonLayer);
 }
-
-
-
