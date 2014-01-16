@@ -137,7 +137,6 @@ function drawMeasurements() {
     var filtStart = document.filterFormular.Start.value;
     var filtEnde = document.filterFormular.Ende.value;
     var filtTyp = document.filterFormular.Typ.value;
-    var filtTrack = document.filterFormular.Track_ID.value;
     var filtSensor = document.filterFormular.Sensor_ID.value;
 
 	var bounds = mainMap.getBounds();
@@ -235,10 +234,6 @@ function drawMeasurements() {
             }
             if(filtTyp != "") {
                 //delete the points which not fit to the filter 'type'
-                
-            }
-            if(filtTrack != "") {
-                //delete the points which not fit to the filter 'track-id'
                 
             }
             if(filtSensor != "") {
