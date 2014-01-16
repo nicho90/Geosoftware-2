@@ -265,6 +265,7 @@ header {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    display:block;
 }
 
 #pan .panelement#right {
@@ -278,7 +279,6 @@ header {
 #pan .panelement#down {
     top: 52px;
     left: 26px;
-    line-height:22px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.65);
@@ -287,7 +287,6 @@ header {
 #pan .panelement#up {
     top: 0px;
     left: 26px;
-    line-height:22px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     box-shadow: 0 -1px 5px rgba(0,0,0,0.65);
@@ -296,20 +295,26 @@ header {
     Größen der Bilder
 */
 .panLeft, .panRight{
-    width:6px;
+    width:12px;
     height:12px;
     border:0px;
+    display: block;
+    margin: 6px auto 6px auto;
 }
 .panDown, .panUp{
     width:12px;
-    height:6px;
+    height:12px;
     border:0px;
+    display: block;
+    margin: 6px auto 6px auto;
 }
 
 .imageLocateMe {
     width:16px;
     height:16px;
     border:0px;
+    display: block;
+    margin: 3px auto 3px auto;
 }
 
 /* 
@@ -356,7 +361,6 @@ header {
 #locateMe {
     top:26px;
     left:26px;
-    line-height: 27px;
 }
 
 
@@ -612,7 +616,7 @@ h3 {
     position: relative;
     top: -28px;
     z-index: 1;
-    max-height:330px;
+    max-height:280px;
 }
 
 #selectedPoints {
