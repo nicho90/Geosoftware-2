@@ -138,6 +138,16 @@ function drawMeasurements() {
     var filtEnde = document.filterFormular.Ende.value;
     var filtTyp = document.filterFormular.Typ.value;
     var filtSensor = document.filterFormular.Sensor_ID.value;
+    
+    var splitStart = filtStart.split("/");
+	var filtStartMonth = parseInt(splitStart[0]);
+	var filtStartDay = parseInt(splitStart[1]); 
+	var filtStartYear = parseInt(splitStart[2]);
+
+	var splitEnd = filtEnde.split("/");
+	var filtEndMonth = parseInt(splitEnd[0]);
+	var filtEndDay = parseInt(splitEnd[1]);
+	var filtEndYear = parseInt(splitEnd[2]);
 
 	var bounds = mainMap.getBounds();
 	
@@ -227,21 +237,63 @@ function drawMeasurements() {
 			
 			//add all points to the array 'markers'
 			markers.push(marker);
+			
+			//split the time into 'day', 'month', 'year'
+			var splitTime = properties.time.split("-");
+			var year = parseInt(splitTime[0]);
+			var month = parseInt(splitTime[1]);
+			var day = parseInt(splitTime[2].substring(0,2));
+
+            		var cartype = sensor.properties.manufacturer + " " + sensor.properties.model;
             
 			//filter the points
-            if(filtStart != "" && filtEnde  != "") {
-                //delete the points which not fit to the filter 'period of time'
-            }
-            if(filtTyp != "") {
-                //delete the points which not fit to the filter 'type'
-                
-            }
-            if(filtSensor != "") {
-                //delete the points which not fit to the filter 'sensor-id'
-                if(sensor.properties.id.indexOf(filtSensor) == -1) {
-                    markers.pop();
-                }
-            }
+            		if(filtStart != "" && filtEnde  != "") {
+                		//delete the points which not fit to the filter 'period of time'
+                		if(year < filtStartYear) {
+					markers.pop();
+				} else if(year > filtStartYear) {
+					
+				} else {
+					if(month < filtStartMonth) {
+						markers.pop();
+					} else if(month > filtStartMonth) {
+
+					} else {
+						if(day < filtStartYear) {
+							markers.pop();
+						}
+					}
+				}
+				
+				if(year > filtEndYear) {
+					markers.pop();
+				} else if(year < filtEndYear) {
+					
+				} else {
+					if(month > filtEndMonth) {
+						markers.pop();
+					} else if(month < filtEndMonth) {
+
+					} else {
+						if(day > filtStartYear) {
+							markers.pop();
+						}
+					}
+				}
+				
+            		}
+            		if(filtTyp != "") {
+                		//delete the points which not fit to the filter 'type'
+				if(cartype.indexOf(filtTyp) == -1) {
+					markers.pop();
+				}
+            		}        		
+            		if(filtSensor != "") {
+                		//delete the points which not fit to the filter 'sensor-id'
+                		if(sensor.properties.id.indexOf(filtSensor) == -1) {
+                    			markers.pop();
+                		}	
+            		}
 			
 		} );
 		
