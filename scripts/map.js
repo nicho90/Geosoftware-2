@@ -115,6 +115,18 @@ function drawMap() {
     	map.panBy([0, -300]);
 	};
 	
+	// locate me - function 
+	// map pans to current position of the user 
+	//Author: Johanna Möllmann
+	
+	document.getElementById('locateMe').onclick = function() {
+       function handler(locateme){
+	   var longitude = locateme.coords.longitude;
+	   var latitude = locateme.coords.latitude;
+	   map.panTo(new L.LatLng(latitude, longitude));}
+       navigator.geolocation.getCurrentPosition(handler);
+	};
+	
 	L.control.layers(layer).addTo(map);
     
 	mainMap = map;
