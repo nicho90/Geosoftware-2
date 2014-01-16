@@ -40,7 +40,7 @@ window.onload = function() {
 // Draw MainMap
 // Description: Initializes main map and navigation-elements
 // Author: René Unrau
-function drawMap(){
+function drawMap() {
 	// create a map in the "map" div, set the view to a given place and zoom
 	
 
@@ -67,7 +67,7 @@ function drawMap(){
 
     //create a drawControl
     //will be invisible since the draw action will be fired by our draw buttons
-    drawControl = new L.Control.Draw({
+    drawControl = new L.Control.Draw( {
         draw: {
             position: 'topleft',
             circle: false,
@@ -82,7 +82,7 @@ function drawMap(){
                 edit:false
                 
             }
-    });
+    } );
     
     map.addControl(drawControl);
     
@@ -93,7 +93,7 @@ function drawMap(){
 
         //space for our actions
         map.addLayer(polygonLayer);
-    });
+    } );
    
     
     // navigation elements
@@ -126,8 +126,12 @@ function drawMap(){
 // Draw Measurements
 // Description: Adds dots to the map and controls click events
 // Author: René Unrau
-function drawMeasurements(){
-	if(doNotLoad){doNotLoad = false; return;}
+function drawMeasurements() {
+    
+	if(doNotLoad) {
+        doNotLoad = false; 
+        return;
+    }
     
 	//the values which are filled in the form
     var filtStart = document.filterFormular.Start.value;
@@ -143,14 +147,14 @@ function drawMeasurements(){
 	var swLat = bounds.getSouthWest().lat;
 	var swLng = bounds.getSouthWest().lng;
 	
-	for(var i=0; i < markers.length; i++){
+	for (var i=0; i < markers.length; i++) {
         mainMap.removeLayer(markers[i]);
     }
 	
 	//set the array 'markers' to a new array
 	markers = new Array();
 	
-	$.getJSON("https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result){
+	$.getJSON("https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result) {
 	
 		result = result.features;
 		
@@ -162,25 +166,25 @@ function drawMeasurements(){
 			var phenomenons = properties.phenomenons;
 			
 			//Check if phenomenons are not defined -> add default value
-			if(phenomenons.Consumption == undefined){
+			if(phenomenons.Consumption == undefined) {
 				var Consumption = new Object();
 				Consumption.value = "-";
 				Consumption.unit = "l/s";
 				phenomenons.Consumption = Consumption;
 			}
-			if(phenomenons.CO2 == undefined){
+			if(phenomenons.CO2 == undefined) {
 				var CO2 = new Object();
 				CO2.value = "-";
 				CO2.unit = "g/s";
 				phenomenons.CO2 = CO2;
 			}
-			if(phenomenons.MAF == undefined){
+			if(phenomenons.MAF == undefined) {
 				var MAF = new Object();
 				MAF.value = "-";
 				MAF.unit = "l/s";
 				phenomenons.MAF = MAF;
 			}
-			if(phenomenons.Speed == undefined){
+			if(phenomenons.Speed == undefined) {
 				var Speed = new Object();
 				Speed.value = "-";
 				Speed.unit = "km/s";
@@ -194,10 +198,10 @@ function drawMeasurements(){
 			container.on('click', '#centerPoint', function() {
 				doNotLoad = true;
 				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
-			});
+			} );
 			container.on('click', '#showTrack', function() {
 				showTrack(properties.id);
-			});
+			} );
 
 			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
@@ -216,11 +220,11 @@ function drawMeasurements(){
 			//Do not load measurements if marker is clicked
 			marker.on('click', function(){
 				doNotLoad = true
-				if(singlePointSelection){
+				if(singlePointSelection) {
 					mainMap.closePopup();
 					addSinglePoint(measurement);
 				}
-			});
+			} );
 			
 			//add all points to the array 'markers'
 			markers.push(marker);
@@ -244,20 +248,19 @@ function drawMeasurements(){
                 }
             }
 			
-		});
+		} );
 		
-		for(var i = 0; i < markers.length; i++){
+		for(var i = 0; i < markers.length; i++) {
 			mainMap.addLayer(markers[i]);
 		}
-		
-	});
+    } );
 
 }
 
 // Choose Single Point-Selection in Sidebar
 // Description: User wants to add measurement for analysis by clicking on single points
 // Author: René Unrau
-function chooseSingleSelection(id){
+function chooseSingleSelection(id) {
 	if(singlePointSelection){
 		singlePointSelection = false;
         var li = document.getElementById(id);
@@ -280,7 +283,7 @@ function chooseSingleSelection(id){
 // Show Track
 // Description: Searches for TrackID for a given Measurement in the current BoundingBox
 // Author: René Unrau
-function showTrack(pointID){
+function showTrack(pointID) {
 	
 	//Get all Tracks in current BBox
 	var bounds = mainMap.getBounds();
@@ -326,11 +329,11 @@ function addSinglePoint(measurement){
 // Update Selection-List
 // Description: Refreshes the List of the selected Measurements
 // Author: René Unrau
-function updateSelectionList(){
+function updateSelectionList() {
 	var updatedList = $("<table id='selectionTable'>" + 
-		"<tr><th> </th>" + 
+		"<tr><th></th>" + 
 		"<th>Punkt</th>" + 
-		"<th>Punkt-ID</th>" + 
+		"<th>ID</th>" + 
 		"<th>Koordinaten</th>" + 
 		"<th>Sensor-ID</th>" + 
 		"<th>Zeitpunkt</th>" + 
@@ -342,7 +345,7 @@ function updateSelectionList(){
 		"<th>MAF</th></tr>"
 	);
 	
-	for(var i = 0; i < selection.length; i++){
+	for(var i = 0; i < selection.length; i++) {
 		lat = selection[i].geometry.coordinates[1];
 		lon = selection[i].geometry.coordinates[0];
 		point = i + 1;
@@ -351,7 +354,7 @@ function updateSelectionList(){
 		div.append("<td><input type='checkbox' class='chk' name='point_id' value='point_id'></td>");
 		div.append("<td>" + point + "</td>");
 		div.append("<td>" + selection[i].properties.id + "</td>");
-		div.append("<td><a href='#'>" + lat + ", "  + lon + "</a></td>");
+		div.append("<td><a href='#' class='link'>" + lat + ", "  + lon + "</a></td>");
 		div.append("<td>" + selection[i].properties.sensor.properties.id + "</td>");
 		div.append("<td>" + selection[i].properties.time + "</td>");
 		div.append("<td>" + selection[i].properties.sensor.properties.manufacturer + "</td>");
@@ -366,7 +369,7 @@ function updateSelectionList(){
 			});
 		updatedList.append(div);
 	}
-	updatedList.append("</table");
+	updatedList.append("</table>");
 	$('#selectionTable').replaceWith(updatedList);
 }
 
