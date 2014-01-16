@@ -464,19 +464,6 @@ h3 {
     cursor:pointer;
 }
 
-/*
-#chooseSinglePoint a:active, #chooseTrack a:active, #choosePolygon a:active {
-    display:block;
-    height: 50px;
-    width: 50px;
-    color: transparent;
-    text-decoration: none;
-    border:3px solid rgb(140,165,0);
-    border-radius: 50px;
-    cursor:pointer;
-}
-
-
 
 /*
     Buttons der Selektionsmethoden
@@ -549,14 +536,14 @@ h3 {
 
 
 /*
-    Bereich für den Raumausschnitt zeichnen
+    Bereiche für die Trackselektierung und den Raumausschnitt zeichnen
 */
-#drawingPolygon {
+#drawingPolygon, #selectTrack {
     display:none;
     margin-top:20px;
 }
 
-.drawingElementTitle {
+.drawingElementTitle, .selectTrackTitle {
     font-size:11pt;
     color:rgb(255,165,0);
     z-index: 3;
@@ -567,14 +554,14 @@ h3 {
     padding-bottom:3px;
 }
 
-.drawingElementContent {
+.drawingElementContent, .selectTrackContent {
     font-size:10pt;
     color:rgb(0,0,0);
     padding-left:2px;
     padding-right:2px;
     padding-bottom:3px;
     margin-top:-10px;
-    margin-left: 3px;
+    margin-left:3px;
     margin-right:3px;
     border: 1.5px solid rgb(255,165,0);
     background-color:rgb(255,255,255);
@@ -710,6 +697,38 @@ tr.tableTitle td {
     border:5px solid rgb(140,188,62);
     border-radius:3px;
 }
+
+/*
+    Interpolationen
+*/
+.info {
+    background:rgb(255,255,255);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    /*line-height: 26px;*/
+    text-decoration: none;
+    color: rgb(0,0,0);
+    font-weight:bold;
+    border-radius: 18px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+}
+
+.info:hover {
+    background:rgb(244,244,244);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    /*line-height: 26px;*/
+    text-decoration: none;
+    color: rgb(0,0,0);
+    font-weight:bold;
+    border-radius: 18px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+}
+
 
 
 

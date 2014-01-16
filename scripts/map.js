@@ -19,6 +19,8 @@ var doNotLoad = false;
 //If true user adds points to selection by clicking on them
 var singlePointSelection = false;
 
+
+// Visualisation of the points
 var redDot = L.icon({iconUrl: 'https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png'});
 
 
@@ -256,7 +258,6 @@ function drawMeasurements(){
 // Description: User wants to add measurement for analysis by clicking on single points
 // Author: René Unrau
 function chooseSingleSelection(id){
-   ;
 	if(singlePointSelection){
 		singlePointSelection = false;
         var li = document.getElementById(id);

@@ -84,6 +84,11 @@
                             <tr>
                                 <td>Anfangsdatum:</td>
                                 <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
+                                <td>Sensor-ID:</td>
+                                <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
+                                <td></td>
+                            </tr>
+                            <tr>
                                 <td>Enddatum:</td>
                                 <td><input type="text" id="Ende" name="Ende" placeholder=" z.B. 02/01/2014" class=filterButton></td>
                                 <td>Fahrzeugtyp:</td>
@@ -116,23 +121,16 @@
                                         <option value="VW Touran"></option>
                                         <option value="VW Up"></option>
                                     </datalist></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Track-ID:</td>
-                                <td><input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                                <td>Sensor-ID:</td>
-                                <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                                <td></td>
                                 <td><input type="button" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onclick="drawMeasurements()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
                             </tr>
                         </table>
                         </form>
                     </div>
-                <div id=clear></div>
             </div>
         </header>
         <div id=clear></div>
+        
+        
         <!-- Karte mit Navigationselementen -->
         <div id=map> 
             <div id="pan" class="leaflet-control">			
@@ -154,20 +152,33 @@
                 <div class=center>
                 <ul class=chooserTools>
                     <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
-                        <a onclick="chooseSingleSelection('chooseSinglePoint')"> </a>
+                        <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
                     </li>
                     <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
-                        <a href=""> </a>
+                        <a onclick="toggle_visibility('selectTrack')"></a>
                     </li>
                     <li id="choosePolygon"  original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
-                        <a href="#" onclick="toggle_visibility('drawingPolygon'); drawPolygon()"></a>
+                        <a onclick="toggle_visibility('drawingPolygon'); drawPolygon()"></a>
                     </li>
                 </ul>
                 </div>
                 <div id=clear></div>
-                <!-- Werkzeuge für Polygonauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "choosePolygon" gewählt wurde) -->
+                <!-- Werkzeuge für Trackauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "chooseTrack" gewählt wurde) -->
+                <div id=selectTrack>
+                    <div class="center">
+                        <font class="selectTrackTitle">Track finden &amp; auswählen</font>
+                    </div>
+                    <div class="selectTrackContent">
+                        <p>
+                            <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>&nbsp;&nbsp;<input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class=link>Zurücksetzen</a>
+                        </p>
+                    </div>
+                </div>
+                
                 <div id=drawingPolygon>
-                    <div class="center"><font class="drawingElementTitle">Raumausschnitt zeichnen</font></div>
+                    <div class="center">
+                        <font class="drawingElementTitle">Raumausschnitt zeichnen</font>
+                    </div>
                     <div class="drawingElementContent">
                         <br>
                         <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton>
@@ -250,17 +261,17 @@
                 <hr>
                 <div id="interpolation" class="sidebarSubElement">
                     <ul>
-                    <li>Interpolation mit </li>
-                    <li>
-                        <select>
-                            <option>Kriging</option>
-                            <option>IDW</option>
-                        </select>
-                    </li>
-                </ul>
-                    <div id="textualresults" class="analyseElement">
+                        <li>Interpolation mit</li>
+                        <li>
+                            <select>
+                                <option>Kriging</option>
+                                <option>IDW</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <div class="analyseElement">
                         <ul>
-                            <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">               <a href="" class=submitButton>i</a>
+                            <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">               <a onclick="" class=info>i</a>
                             </li>
                             <li>
                                 <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>
@@ -269,12 +280,8 @@
                     </div>
                 </div>
             </div>
+            <div id=clear> </div>
         </div>
-        
-         
-            
-        </div>
-        <div id=clear> </div>
         <!-- Ende der Sidebar-->
         
         
