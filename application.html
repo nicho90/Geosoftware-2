@@ -86,6 +86,7 @@
                                 <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
                                 <td>Sensor-ID:</td>
                                 <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
+                                <td> </td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -122,6 +123,7 @@
                                         <option value="VW Up"></option>
                                     </datalist></td>
                                 <td><input type="button" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onclick="drawMeasurements()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:document.getElementById('filterFormular').reset();" class=link>Zurücksetzen</a></td>
+                                <td></td>
                             </tr>
                         </table>
                         </form>
@@ -150,17 +152,17 @@
             <div id=chooser class=sidebarElement>
                 <h2>Selektierwerkzeuge</h2>        
                 <div class=center>
-                <ul class=chooserTools>
-                    <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
-                        <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
-                    </li>
-                    <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
-                        <a onclick="toggle_visibility('selectTrack')"></a>
-                    </li>
-                    <li id="choosePolygon"  original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
-                        <a onclick="toggle_visibility('drawingPolygon'); drawPolygon()"></a>
-                    </li>
-                </ul>
+                    <ul class=chooserTools>
+                        <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
+                            <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
+                        </li>
+                        <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
+                            <a onclick="toggle_visibility('selectTrack')"></a>
+                        </li>
+                        <li id="choosePolygon"  original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
+                            <a onclick="toggle_visibility('drawingPolygon'); drawPolygon()"></a>
+                        </li>
+                    </ul>
                 </div>
                 <div id=clear></div>
                 <!-- Werkzeuge für Trackauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "chooseTrack" gewählt wurde) -->
@@ -170,7 +172,8 @@
                     </div>
                     <div class="selectTrackContent">
                         <p>
-                            <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>&nbsp;&nbsp;<input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class=link>Zurücksetzen</a>
+                            <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton><br>
+                            &nbsp;&nbsp;<input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class=link>Zurücksetzen</a>
                         </p>
                     </div>
                 </div>
@@ -193,16 +196,16 @@
                 <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
                 <div id=selectedPoints class=chooserElement>
                     <br>
-                    <ul class=deleteOptions>
-                        <li>
-                            <input type="checkbox" id="checkAll" name="track_id" value="track_id"> (Alle auswählen)
-                        </li>
-                        <li>
-                            <a href="#" class="link">Löschen</a>
-                        </li>
-                    </ul>
-                    <table id="selectionTable">
-                    </table>
+                        <ul class=deleteOptions>
+                            <li>
+                                <input type="checkbox" id="checkAll" name="track_id" value="track_id"> (Alle auswählen)
+                            </li>
+                            <li>
+                                <a href="#" class="link">Löschen</a>
+                            </li>
+                        </ul>
+                        <div id="selectionTable">
+                        </div>
                 </div>
                 
             </div>
@@ -287,7 +290,7 @@
         
         
        
-        <!---
+        <!--
         <footer>
             <div id="footerLine_1"></div>
             <div id="footerLine_2"></div>
@@ -307,8 +310,8 @@
                     </ul>
                 </small>
             </div>
-        </footer>-->
-    
+        </footer>
+    -->
     </body>
 </html>
 
