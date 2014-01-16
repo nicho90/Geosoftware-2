@@ -275,7 +275,7 @@ function drawMeasurements() {
 					} else if(month < filtEndMonth) {
 
 					} else {
-						if(day > filtStartYear) {
+						if(day > filtEndYear) {
 							markers.pop();
 						}
 					}
