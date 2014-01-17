@@ -257,53 +257,64 @@ function drawMeasurements() {
 			var day = parseInt(splitTime[2].substring(0,2));
 
             var cartype = sensor.properties.manufacturer + " " + sensor.properties.model;
-            
+			
+            //If true the marker is already deleted. If false the marker is not deleted
+			var isDeleted = false;
 			//filter the points
-            if(filtStart != "" && filtEnde  != "") {
+            if(filtStart != "" && isDeleted == false) {
                 //delete the points which not fit to the filter 'period of time'
                 if(year < filtStartYear) {
 					markers.pop();
+					isDeleted = true;
 				} else if(year > filtStartYear) {
 					
 				} else {
 					if(month < filtStartMonth) {
 						markers.pop();
+						isDeleted = true;
 					} else if(month > filtStartMonth) {
 
 					} else {
 						if(day < filtStartDay) {
 							markers.pop();
+							isDeleted = true;
 						}
 					}
 				}
-				
+			}
+			if(filtEnde != "" && isDeleted == false) {	
 				if(year > filtEndYear) {
 					markers.pop();
+					isDeleted = true;
 				} else if(year < filtEndYear) {
 					
 				} else {
 					if(month > filtEndMonth) {
 						markers.pop();
+						isDeleted = true;
 					} else if(month < filtEndMonth) {
 
 					} else {
 						if(day > filtEndDay) {
 							markers.pop();
+							isDeleted = true;
 						}
 					}
 				}
 				
             }
-            if(filtTyp != "") {
+            if(filtTyp != "" && isDeleted == false) {
                 //delete the points which not fit to the filter 'type'
 				if(cartype.indexOf(filtTyp) == -1) {
 					markers.pop();
+					isDeleted = true;
 				}
             }        		
-            if(filtSensor != "") {
+            if(filtSensor != "" && isDeleted == false) {
                 //delete the points which not fit to the filter 'sensor-id'
                 if(sensor.properties.id.indexOf(filtSensor) == -1) {
                     markers.pop();
+					isDeleted = true;
                 }	
             }
 			
