@@ -561,16 +561,18 @@ function refreshMAFAnalysis(){
 function getMean(phenomenon){
 
 	var sum = 0;
+	var n = 0;
 	
 	//For phenomenon "Speed"
 	if(phenomenon == 'Speed'){
 		for(var i = 0; i < selection.length; i++){
 			//If Speed is not undefined
 			if(selection[i].properties.phenomenons.Speed.value != '-'){
+				n++;
 				sum =+ selection[i].properties.phenomenons.Speed.value;
 			}
 		}
-		return sum/selection.length;
+		return sum/n;
 		
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -578,9 +580,10 @@ function getMean(phenomenon){
 			//If CO2 is not undefined
 			if(selection[i].properties.phenomenons.CO2.value != '-'){
 				sum =+ selection[i].properties.phenomenons.CO2.value;
+				n++;
 			}
 		}
-		return sum/selection.length;
+		return sum/n;
 	
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
@@ -588,9 +591,10 @@ function getMean(phenomenon){
 			//If Consumption is not undefined
 			if(selection[i].properties.phenomenons.Consumption.value != '-'){
 				sum =+ selection[i].properties.phenomenons.Consumption.value;
+				n++;
 			}
 		}
-		return sum/selection.length;
+		return sum/n;
 	
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -598,15 +602,17 @@ function getMean(phenomenon){
 			//If MAF is not undefined
 			if(selection[i].properties.phenomenons.MAF.value != '-'){
 				sum =+ selection[i].properties.phenomenons.MAF.value;
+				n++;
 			}
 		}
-		return sum/selection.length;
+		return sum/n;
 	}
 }
 
 function getSD(phenomenon){
 
 	var pre = 0;
+	var n = 0;
 
 	//For phenomenon "Speed"
 	if(phenomenon == 'Speed'){
@@ -616,9 +622,10 @@ function getSD(phenomenon){
 			//If Speed is not undefined
 			if(selection[i].properties.phenomenons.Speed.value != '-'){
 				pre += Math.pow(selection[i].properties.phenomenons.Speed.value - mean, 2);
+				n++;
 			}
 		}
-		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		var sd = Math.sqrt((1 / (n - 1)) * pre);
 		return sd;
 	
 	//For phenomenon "CO2"
@@ -629,9 +636,10 @@ function getSD(phenomenon){
 			//If CO2 is not undefined
 			if(selection[i].properties.phenomenons.CO2.value != '-'){
 				pre += Math.pow(selection[i].properties.phenomenons.CO2.value - mean, 2);
+				n++;
 			}
 		}
-		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		var sd = Math.sqrt((1 / (n - 1)) * pre);
 		return sd;
 	
 	//For phenomenon "Consumption"
@@ -642,9 +650,10 @@ function getSD(phenomenon){
 			//If Consumption is not undefined
 			if(selection[i].properties.phenomenons.Consumption.value != '-'){
 				pre += Math.pow(selection[i].properties.phenomenons.Consumption.value - mean, 2);
+				n++;
 			}
 		}
-		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		var sd = Math.sqrt((1 / (n - 1)) * pre);
 		return sd;
 		
 	//For phenomenon "MAF"
@@ -655,9 +664,10 @@ function getSD(phenomenon){
 			//If MAF is not undefined
 			if(selection[i].properties.phenomenons.MAF.value != '-'){
 				pre += Math.pow(selection[i].properties.phenomenons.MAF.value - mean, 2);
+				n++;
 			}
 		}
-		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		var sd = Math.sqrt((1 / (n - 1)) * pre);
 		return sd;
 	}
 }
