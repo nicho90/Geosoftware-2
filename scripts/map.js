@@ -256,12 +256,12 @@ function drawMeasurements() {
 			var month = parseInt(splitTime[1]);
 			var day = parseInt(splitTime[2].substring(0,2));
 
-            		var cartype = sensor.properties.manufacturer + " " + sensor.properties.model;
+            var cartype = sensor.properties.manufacturer + " " + sensor.properties.model;
             
 			//filter the points
-            		if(filtStart != "" && filtEnde  != "") {
-                		//delete the points which not fit to the filter 'period of time'
-                		if(year < filtStartYear) {
+            if(filtStart != "" && filtEnde  != "") {
+                //delete the points which not fit to the filter 'period of time'
+                if(year < filtStartYear) {
 					markers.pop();
 				} else if(year > filtStartYear) {
 					
@@ -271,7 +271,7 @@ function drawMeasurements() {
 					} else if(month > filtStartMonth) {
 
 					} else {
-						if(day < filtStartYear) {
+						if(day < filtStartDay) {
 							markers.pop();
 						}
 					}
@@ -287,25 +287,25 @@ function drawMeasurements() {
 					} else if(month < filtEndMonth) {
 
 					} else {
-						if(day > filtEndYear) {
+						if(day > filtEndDay) {
 							markers.pop();
 						}
 					}
 				}
 				
-            		}
-            		if(filtTyp != "") {
-                		//delete the points which not fit to the filter 'type'
+            }
+            if(filtTyp != "") {
+                //delete the points which not fit to the filter 'type'
 				if(cartype.indexOf(filtTyp) == -1) {
 					markers.pop();
 				}
-            		}        		
-            		if(filtSensor != "") {
-                		//delete the points which not fit to the filter 'sensor-id'
-                		if(sensor.properties.id.indexOf(filtSensor) == -1) {
-                    			markers.pop();
-                		}	
-            		}
+            }        		
+            if(filtSensor != "") {
+                //delete the points which not fit to the filter 'sensor-id'
+                if(sensor.properties.id.indexOf(filtSensor) == -1) {
+                    markers.pop();
+                }	
+            }
 			
 		} );
 		
@@ -443,4 +443,14 @@ function drawPolygon(){
 function deletePolygon(){
     polygon.disable();
     mainMap.removeLayer(polygonLayer);
+}
+
+//Reset the filter to update the measurements
+function resetFilter() {
+    document.filterFormular.Start.value = "";
+    document.filterFormular.Ende.value = "";
+    document.filterFormular.Typ.value = "";
+    document.filterFormular.Sensor_ID.value = "";
+    
+    drawMeasurements();
 }
