@@ -5,6 +5,12 @@ var mainMap;
 
 var markers = new Array();
 
+//variables for saving the input in the form of the filter
+var startForm = "";
+var endForm = "";
+var typForm = "";
+var sensorForm = "";
+
 //variables needed for drawing a polygon
 var polygon;
 var polygonLayer;
@@ -146,10 +152,16 @@ function drawMeasurements() {
     }
     
 	//the values which are filled in the form
-    var filtStart = document.filterFormular.Start.value;
-    var filtEnde = document.filterFormular.Ende.value;
-    var filtTyp = document.filterFormular.Typ.value;
-    var filtSensor = document.filterFormular.Sensor_ID.value;
+    var filtStart = startForm;
+    var filtEnde = endForm;
+    var filtTyp = typForm;
+    var filtSensor = sensorForm;
+    
+    //Fill the form with the currently activated filter
+    document.filterFormular.Start.value = startForm;
+    document.filterFormular.Ende.value = endForm;
+    document.filterFormular.Typ.value = typForm;
+    document.filterFormular.Sensor_ID.value = sensorForm;
     
     var splitStart = filtStart.split("/");
 	var filtStartMonth = parseInt(splitStart[0]);
@@ -462,6 +474,16 @@ function resetFilter() {
     document.filterFormular.Ende.value = "";
     document.filterFormular.Typ.value = "";
     document.filterFormular.Sensor_ID.value = "";
+    
+    startFilter();
+}
+
+//Start the filter if button 'OK' is pressed 
+function startFilter() {
+    startForm = document.filterFormular.Start.value;
+    endForm = document.filterFormular.Ende.value;
+    typForm = document.filterFormular.Typ.value;
+    sensorForm = document.filterFormular.Sensor_ID.value;
     
     drawMeasurements();
 }
