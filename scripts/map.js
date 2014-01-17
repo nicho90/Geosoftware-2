@@ -404,30 +404,31 @@ function updateSelectionList() {
 		"<th>MAF</th></tr>"
 	);
 	
-	for(var i = 0; i < selection.length; i++) {
+	$.each(selection, function(i, measurement){
 		lat = selection[i].geometry.coordinates[1];
-		lon = selection[i].geometry.coordinates[0];
-		point = i + 1;
-	
+        lon = selection[i].geometry.coordinates[0];
+        point = i + 1;
+        
 		var div = $("<tr>");
-		div.append("<td><input type='checkbox' class='chk' name='point_id' value='point_id'></td>");
+        div.append("<td><input type='checkbox' class='chk' name='point_id' value='point_id'></td>");
 		div.append("<td>" + point + "</td>");
-		div.append("<td>" + selection[i].properties.id + "</td>");
-		div.append("<td><a href='#' class='link'>" + lat + ", "  + lon + "</a></td>");
-		div.append("<td>" + selection[i].properties.sensor.properties.id + "</td>");
-		div.append("<td>" + selection[i].properties.time + "</td>");
-		div.append("<td>" + selection[i].properties.sensor.properties.manufacturer + "</td>");
-		div.append("<td>" + selection[i].properties.sensor.properties.model + "</td>");
-		div.append("<td>" + selection[i].properties.phenomenons.Consumption.value + "</td>");
-		div.append("<td>" + selection[i].properties.phenomenons.CO2.value + "</td>");
-		div.append("<td>" + selection[i].properties.phenomenons.MAF.value + "</td>");
-		div.append("<td>" + selection[i].properties.phenomenons.Speed.value + "</td>");
+		div.append("<td>" + measurement.properties.id + "</td>");
+		div.append("<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>");
+		div.append("<td>" + measurement.properties.sensor.properties.id + "</td>");
+		div.append("<td>" + measurement.properties.time + "</td>");
+		div.append("<td>" + measurement.properties.sensor.properties.manufacturer + "</td>");
+		div.append("<td>" + measurement.properties.sensor.properties.model + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.Consumption.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.CO2.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.MAF.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.Speed.value + "</td>");
 		div.append("</tr>");
 		div.find("a").click(function(){
-				mainMap.setView([lat,lon],18);
-			});
+			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
+		});
 		updatedList.append(div);
-	}
+	});
+		
 	updatedList.append("</table>");
 	$('#selectionTable').replaceWith(updatedList);
 }
