@@ -216,11 +216,11 @@
                 <ul>
                     <li>Berechnungen von</li>
                     <li>
-                        <select>
-                            <option>Geschwindigkeit</option>
-                            <option>CO2-Aussto&szlig;</option>
-                            <option>Spritverbrauch</option>
-                            <option>MAF</option>
+                        <select id="analysisSelectionBox">
+                            <option onClick="refreshSpeedAnalysis()">Geschwindigkeit</option>
+                            <option onClick="refreshCO2Analysis()">CO2-Ausstoß</option>
+                            <option onClick="refreshConsumptionAnalysis()">Spritverbrauch</option>
+                            <option onClick="refreshMAFAnalysis()">MAF</option>
                         </select>
                     </li>
                 </ul>

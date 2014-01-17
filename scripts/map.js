@@ -406,6 +406,16 @@ function addSinglePoint(measurement){
 	//TODO: Check if Measurement is already inside
 	selection.push(measurement);
 	updateSelectionList();
+	var e = document.getElementById("analysisSelectionBox");
+	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
+		refreshSpeedAnalysis();
+	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
+		refreshCO2Analysis();
+	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
+		refreshConsumptionAnalysis();
+	}else if(e.options[e.selectedIndex].text == 'MAF'){
+		refreshMAFAnalysis();
+	}
 }
 
 // Update Selection-List
@@ -443,8 +453,8 @@ function updateSelectionList() {
 		div.append("<td>" + measurement.properties.sensor.properties.model + "</td>");
 		div.append("<td>" + measurement.properties.phenomenons.Consumption.value + "</td>");
 		div.append("<td>" + measurement.properties.phenomenons.CO2.value + "</td>");
-		div.append("<td>" + measurement.properties.phenomenons.MAF.value + "</td>");
 		div.append("<td>" + measurement.properties.phenomenons.Speed.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.MAF.value + "</td>");
 		div.append("</tr>");
 		div.find("a").click(function(){
 			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
@@ -486,4 +496,293 @@ function startFilter() {
     sensorForm = document.filterFormular.Sensor_ID.value;
     
     drawMeasurements();
+}
+
+
+// Update SpeedAnalysis
+// Description: Refreshes the List of Speed-Parameters
+// Author: René Unrau
+function refreshSpeedAnalysis(){
+
+	var result = $("<div id='textualresults' class='analyseElement'><table>");
+        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td>" + getMin('Speed') + "</td><td>km/h</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('Speed') + "</td><td>km/h</td></tr></table></div>");
+	
+	$('#textualresults').replaceWith(result);
+}
+
+
+// Update CO2Analysis
+// Description: Refreshes the List of Speed-Parameters
+// Author: René Unrau
+function refreshCO2Analysis(){
+
+	var result = $("<div id='textualresults' class='analyseElement'><table>");
+        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td>" + getMin('CO2') + "</td><td>g/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('CO2') + "</td><td>g/s</td></tr></table></div>");
+	
+	$('#textualresults').replaceWith(result);
+}
+
+
+// Update ConsumptionAnalysis
+// Description: Refreshes the List of Speed-Parameters
+// Author: René Unrau
+function refreshConsumptionAnalysis(){
+
+	var result = $("<div id='textualresults' class='analyseElement'><table>");
+        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td>" + getMin('Consumption') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('Consumption') + "</td><td>l/s</td></tr></table></div>");
+	
+	$('#textualresults').replaceWith(result);
+}
+
+
+// Update MAFAnalysis
+// Description: Refreshes the List of Speed-Parameters
+// Author: René Unrau
+function refreshMAFAnalysis(){
+
+	var result = $("<div id='textualresults' class='analyseElement'><table>");
+        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('MAF') + "</td><td>l/s</td></tr></table></div>");
+	
+	$('#textualresults').replaceWith(result);
+}
+
+function getMean(phenomenon){
+
+	var sum = 0;
+	
+	//For phenomenon "Speed"
+	if(phenomenon == 'Speed'){
+		for(var i = 0; i < selection.length; i++){
+			//If Speed is not undefined
+			if(selection[i].properties.phenomenons.Speed.value != '-'){
+				sum =+ selection[i].properties.phenomenons.Speed.value;
+			}
+		}
+		return sum/selection.length;
+		
+	//For phenomenon "CO2"
+	}else if(phenomenon == 'CO2'){
+		for(var i = 0; i < selection.length; i++){
+			//If CO2 is not undefined
+			if(selection[i].properties.phenomenons.CO2.value != '-'){
+				sum =+ selection[i].properties.phenomenons.CO2.value;
+			}
+		}
+		return sum/selection.length;
+	
+	//For phenomenon "Consumption"
+	}else if(phenomenon == 'Consumption'){
+		for(var i = 0; i < selection.length; i++){
+			//If Consumption is not undefined
+			if(selection[i].properties.phenomenons.Consumption.value != '-'){
+				sum =+ selection[i].properties.phenomenons.Consumption.value;
+			}
+		}
+		return sum/selection.length;
+	
+	//For phenomenon "MAF"
+	}else if(phenomenon == 'MAF'){
+		for(var i = 0; i < selection.length; i++){
+			//If MAF is not undefined
+			if(selection[i].properties.phenomenons.MAF.value != '-'){
+				sum =+ selection[i].properties.phenomenons.MAF.value;
+			}
+		}
+		return sum/selection.length;
+	}
+}
+
+function getSD(phenomenon){
+
+	var pre = 0;
+
+	//For phenomenon "Speed"
+	if(phenomenon == 'Speed'){
+	
+		var mean = getMean(phenomenon);
+		for(var i = 0; i < selection.length; i++){
+			//If Speed is not undefined
+			if(selection[i].properties.phenomenons.Speed.value != '-'){
+				pre += Math.pow(selection[i].properties.phenomenons.Speed.value - mean, 2);
+			}
+		}
+		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		return sd;
+	
+	//For phenomenon "CO2"
+	}else if(phenomenon == 'CO2'){
+	
+		var mean = getMean(phenomenon);
+		for(var i = 0; i < selection.length; i++){
+			//If CO2 is not undefined
+			if(selection[i].properties.phenomenons.CO2.value != '-'){
+				pre += Math.pow(selection[i].properties.phenomenons.CO2.value - mean, 2);
+			}
+		}
+		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		return sd;
+	
+	//For phenomenon "Consumption"
+	}else if(phenomenon == 'Consumption'){
+	
+		var mean = getMean(phenomenon);
+		for(var i = 0; i < selection.length; i++){
+			//If Consumption is not undefined
+			if(selection[i].properties.phenomenons.Consumption.value != '-'){
+				pre += Math.pow(selection[i].properties.phenomenons.Consumption.value - mean, 2);
+			}
+		}
+		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		return sd;
+		
+	//For phenomenon "MAF"
+	}else if(phenomenon == 'MAF'){
+	
+		var mean = getMean(phenomenon);
+		for(var i = 0; i < selection.length; i++){
+			//If MAF is not undefined
+			if(selection[i].properties.phenomenons.MAF.value != '-'){
+				pre += Math.pow(selection[i].properties.phenomenons.MAF.value - mean, 2);
+			}
+		}
+		var sd = Math.sqrt((1 / (selection.length - 1)) * pre);
+		return sd;
+	}
+}
+
+function getMin(phenomenon){
+
+	var min = 999;
+	
+	//For phenomenon "Speed"
+	if(phenomenon == 'Speed'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If Speed is not undefined
+			if(selection[i].properties.phenomenons.Speed.value != '-'){
+				//If current Value is smaller than current mean
+				if(min > selection[i].properties.phenomenons.Speed.value){
+					min = selection[i].properties.phenomenons.Speed.value;
+				}
+			}
+		}
+		return min;
+	
+	//For phenomenon "CO2"
+	}else if(phenomenon == 'CO2'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If CO2 is not undefined
+			if(selection[i].properties.phenomenons.CO2.value != '-'){
+				//If current Value is smaller than current mean
+				if(min > selection[i].properties.phenomenons.CO2.value){
+					min = selection[i].properties.phenomenons.CO2.value;
+				}
+			}
+		}
+		return min;
+
+	//For phenomenon "Consumption"
+	}else if(phenomenon == 'Consumption'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If Consumption is not undefined
+			if(selection[i].properties.phenomenons.Consumption.value != '-'){
+				//If current Value is smaller than current mean
+				if(min > selection[i].properties.phenomenons.Consumption.value){
+					min = selection[i].properties.phenomenons.Consumption.value;
+				}
+			}
+		}
+		return min;
+
+	//For phenomenon "MAF"
+	}else if(phenomenon == 'MAF'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If MAF is not undefined
+			if(selection[i].properties.phenomenons.MAF.value != '-'){
+				//If current Value is smaller than current mean
+				if(min > selection[i].properties.phenomenons.MAF.value){
+					min = selection[i].properties.phenomenons.MAF.value;
+				}
+			}
+		}
+		return min;
+	}
+}
+
+function getMax(phenomenon){
+
+	var max = 0;
+	
+	//For phenomenon "Speed"
+	if(phenomenon == 'Speed'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If Speed is not undefined
+			if(selection[i].properties.phenomenons.Speed.value != '-'){
+				//If current Value is bigger than current mean
+				if(max < selection[i].properties.phenomenons.Speed.value){
+					max = selection[i].properties.phenomenons.Speed.value;
+				}
+			}
+		}
+		return max;
+	
+	//For phenomenon "CO2"
+	}else if(phenomenon == 'CO2'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If CO2 is not undefined
+			if(selection[i].properties.phenomenons.CO2.value != '-'){
+				//If current Value is bigger than current mean
+				if(max < selection[i].properties.phenomenons.CO2.value){
+					max = selection[i].properties.phenomenons.CO2.value;
+				}
+			}
+		}
+		return max;
+		
+	
+	//For phenomenon "Consumption"
+	}else if(phenomenon == 'Consumption'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If Consumption is not undefined
+			if(selection[i].properties.phenomenons.Consumption.value != '-'){
+				//If current Value is bigger than current mean
+				if(max < selection[i].properties.phenomenons.Consumption.value){
+					max = selection[i].properties.phenomenons.Consumption.value;
+				}
+			}
+		}
+		return max;
+		
+	//For phenomenon "MAF"
+	}else if(phenomenon == 'MAF'){
+	
+		for(var i = 0; i < selection.length; i++){
+			//If MAF is not undefined
+			if(selection[i].properties.phenomenons.MAF.value != '-'){
+				//If current Value is bigger than current mean
+				if(max < selection[i].properties.phenomenons.MAF.value){
+					max = selection[i].properties.phenomenons.MAF.value;
+				}
+			}
+		}
+		return max;
+	}
 }
