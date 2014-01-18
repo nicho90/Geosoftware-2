@@ -569,7 +569,7 @@ function getMean(phenomenon){
 			//If Speed is not undefined
 			if(selection[i].properties.phenomenons.Speed.value != '-'){
 				n++;
-				sum =+ selection[i].properties.phenomenons.Speed.value;
+				sum = sum + selection[i].properties.phenomenons.Speed.value;
 			}
 		}
 		return sum/n;
@@ -579,7 +579,7 @@ function getMean(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If CO2 is not undefined
 			if(selection[i].properties.phenomenons.CO2.value != '-'){
-				sum =+ selection[i].properties.phenomenons.CO2.value;
+				sum = sum + selection[i].properties.phenomenons.CO2.value;
 				n++;
 			}
 		}
@@ -590,7 +590,7 @@ function getMean(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If Consumption is not undefined
 			if(selection[i].properties.phenomenons.Consumption.value != '-'){
-				sum =+ selection[i].properties.phenomenons.Consumption.value;
+				sum = sum + selection[i].properties.phenomenons.Consumption.value;
 				n++;
 			}
 		}
@@ -601,7 +601,7 @@ function getMean(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If MAF is not undefined
 			if(selection[i].properties.phenomenons.MAF.value != '-'){
-				sum =+ selection[i].properties.phenomenons.MAF.value;
+				sum = sum + selection[i].properties.phenomenons.MAF.value;
 				n++;
 			}
 		}
@@ -621,7 +621,7 @@ function getSD(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If Speed is not undefined
 			if(selection[i].properties.phenomenons.Speed.value != '-'){
-				pre += Math.pow(selection[i].properties.phenomenons.Speed.value - mean, 2);
+				pre = pre + Math.pow(selection[i].properties.phenomenons.Speed.value - mean, 2);
 				n++;
 			}
 		}
@@ -635,7 +635,7 @@ function getSD(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If CO2 is not undefined
 			if(selection[i].properties.phenomenons.CO2.value != '-'){
-				pre += Math.pow(selection[i].properties.phenomenons.CO2.value - mean, 2);
+				pre = pre + Math.pow(selection[i].properties.phenomenons.CO2.value - mean, 2);
 				n++;
 			}
 		}
@@ -649,7 +649,7 @@ function getSD(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If Consumption is not undefined
 			if(selection[i].properties.phenomenons.Consumption.value != '-'){
-				pre += Math.pow(selection[i].properties.phenomenons.Consumption.value - mean, 2);
+				pre = pre + Math.pow(selection[i].properties.phenomenons.Consumption.value - mean, 2);
 				n++;
 			}
 		}
@@ -663,7 +663,7 @@ function getSD(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If MAF is not undefined
 			if(selection[i].properties.phenomenons.MAF.value != '-'){
-				pre += Math.pow(selection[i].properties.phenomenons.MAF.value - mean, 2);
+				pre = pre + Math.pow(selection[i].properties.phenomenons.MAF.value - mean, 2);
 				n++;
 			}
 		}
@@ -682,7 +682,7 @@ function getMin(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If Speed is not undefined
 			if(selection[i].properties.phenomenons.Speed.value != '-'){
-				//If current Value is smaller than current mean
+				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.Speed.value){
 					min = selection[i].properties.phenomenons.Speed.value;
 				}
@@ -696,7 +696,7 @@ function getMin(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If CO2 is not undefined
 			if(selection[i].properties.phenomenons.CO2.value != '-'){
-				//If current Value is smaller than current mean
+				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.CO2.value){
 					min = selection[i].properties.phenomenons.CO2.value;
 				}
@@ -710,7 +710,7 @@ function getMin(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If Consumption is not undefined
 			if(selection[i].properties.phenomenons.Consumption.value != '-'){
-				//If current Value is smaller than current mean
+				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.Consumption.value){
 					min = selection[i].properties.phenomenons.Consumption.value;
 				}
@@ -724,7 +724,7 @@ function getMin(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If MAF is not undefined
 			if(selection[i].properties.phenomenons.MAF.value != '-'){
-				//If current Value is smaller than current mean
+				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.MAF.value){
 					min = selection[i].properties.phenomenons.MAF.value;
 				}
@@ -744,7 +744,7 @@ function getMax(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If Speed is not undefined
 			if(selection[i].properties.phenomenons.Speed.value != '-'){
-				//If current Value is bigger than current mean
+				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.Speed.value){
 					max = selection[i].properties.phenomenons.Speed.value;
 				}
@@ -758,7 +758,7 @@ function getMax(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If CO2 is not undefined
 			if(selection[i].properties.phenomenons.CO2.value != '-'){
-				//If current Value is bigger than current mean
+				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.CO2.value){
 					max = selection[i].properties.phenomenons.CO2.value;
 				}
@@ -773,7 +773,7 @@ function getMax(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If Consumption is not undefined
 			if(selection[i].properties.phenomenons.Consumption.value != '-'){
-				//If current Value is bigger than current mean
+				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.Consumption.value){
 					max = selection[i].properties.phenomenons.Consumption.value;
 				}
@@ -787,7 +787,7 @@ function getMax(phenomenon){
 		for(var i = 0; i < selection.length; i++){
 			//If MAF is not undefined
 			if(selection[i].properties.phenomenons.MAF.value != '-'){
-				//If current Value is bigger than current mean
+				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.MAF.value){
 					max = selection[i].properties.phenomenons.MAF.value;
 				}
