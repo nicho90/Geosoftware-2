@@ -407,9 +407,31 @@ function showTrack(pointID) {
 // Description: Adds a single measurement to the selection
 // Author: René Unrau
 function addSinglePoint(measurement){
-	//TODO: Check if Measurement is already inside
-	selection.push(measurement);
-	updateSelectionList();
+	// If selection is empty, add to selection, update-sidebar-selection-list and current-analysis
+	if(selection.length == 0){
+		selection.push(measurement);
+		updateSelectionList();
+		updateCurrentAnalysis();
+	}else{
+		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
+		for(var i = 0; i < selection.length; i++){
+			// If already inside, do not add and throw alert
+			if(measurement.properties.id == selection[i].properties.id){
+				alert('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+				return;
+			}
+		}
+		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
+		selection.push(measurement);
+		updateSelectionList();
+		updateCurrentAnalysis();
+	}	
+}
+
+// Update Current Analysis
+// Description: Refreshes the currently selected Analysis
+// Author: René Unrau
+function updateCurrentAnalysis(){
 	var e = document.getElementById("analysisSelectionBox");
 	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
 		refreshSpeedAnalysis();
