@@ -3,7 +3,7 @@
 ***********************/
 var mainMap;
 
-var markers = new Array();
+var markers = {};
 
 //variables for saving the input in the form of the filter
 var startForm = "";
@@ -17,7 +17,11 @@ var polygonLayer;
 var drawnItems;
 var drawControl;
 
+// Current Measurement Selection
 var selection = new Array();
+
+// Current Frequency of Manufacturer in Selection
+var manufacturerSelection = new Array();
 
 //If true measurements are not loaded with next movement in map
 var doNotLoad = false;
@@ -415,6 +419,8 @@ function addSinglePoint(measurement){
 		refreshConsumptionAnalysis();
 	}else if(e.options[e.selectedIndex].text == 'MAF'){
 		refreshMAFAnalysis();
+	}else if(e.options[e.selectedIndex].text == 'Fahrzeugtyp'){
+		refreshManuAnalysis();
 	}
 }
 
@@ -515,7 +521,7 @@ function refreshSpeedAnalysis(){
 
 
 // Update CO2Analysis
-// Description: Refreshes the List of Speed-Parameters
+// Description: Refreshes the List of CO2-Parameters
 // Author: René Unrau
 function refreshCO2Analysis(){
 
@@ -530,7 +536,7 @@ function refreshCO2Analysis(){
 
 
 // Update ConsumptionAnalysis
-// Description: Refreshes the List of Speed-Parameters
+// Description: Refreshes the List of Consumption-Parameters
 // Author: René Unrau
 function refreshConsumptionAnalysis(){
 
@@ -545,7 +551,7 @@ function refreshConsumptionAnalysis(){
 
 
 // Update MAFAnalysis
-// Description: Refreshes the List of Speed-Parameters
+// Description: Refreshes the List of MAF-Parameters
 // Author: René Unrau
 function refreshMAFAnalysis(){
 
@@ -554,6 +560,18 @@ function refreshMAFAnalysis(){
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Maximum</td><td>" + getMax('MAF') + "</td><td>l/s</td></tr></table></div>");
+	
+	$('#textualresults').replaceWith(result);
+}
+
+// Update ManufacturerAnalysis
+// Description: Refreshes the List of Manufacturer-Parameters
+// Author: René Unrau
+function refreshManuAnalysis(){
+	var mostFreqManu = getMostFreqManu();
+
+	var result = $("<div id='textualresults' class='analyseElement'><table>");
+		result.append("<tr><td><td>Häufigster Fahrzeugtyp</td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table></div>");
 	
 	$('#textualresults').replaceWith(result);
 }
@@ -794,5 +812,42 @@ function getMax(phenomenon){
 			}
 		}
 		return max;
+	
+	//For phenomenon "Manufacturer"
+	}else if(phenomenon == 'Manufacturer'){
+		
+		var maxkey;
+		var first = true;
+		
+		for (var key in manufacturerSelection){
+			// Take first value as start-maximum
+			if(first){
+				maxkey = key;
+				first = false;
+			// Check for higher maximum
+			}else{
+				if(manufacturerSelection[maxkey] < manufacturerSelection[key])
+				maxkey = key;
+			}
+		}
+		return maxkey;
 	}
+}
+
+function getMostFreqManu(){
+	manufacturerSelection = {};
+
+	// Loop all measurements
+	for(var i = 0; i < selection.length; i++){
+		// if manufacturer is already in map do +1
+		if(selection[i].properties.sensor.properties.manufacturer in manufacturerSelection){
+			manufacturerSelection[selection[i].properties.sensor.properties.manufacturer]++;
+		// if not, create new element
+		}else{
+			manufacturerSelection[selection[i].properties.sensor.properties.manufacturer] = 1;
+		}
+	}
+	
+	// Get and return maximum
+	return getMax('Manufacturer');
 }
