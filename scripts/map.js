@@ -598,7 +598,7 @@ function refreshManuAnalysis(){
 	var mostFreqManu = getMostFreqManu();
 
 	var result = $("<div id='textualresults' class='analyseElement'><table>");
-		result.append("<tr><td><td>Häufigster Fahrzeugtyp</td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table></div>");
+		result.append("<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table></div>");
 	
 	$('#textualresults').replaceWith(result);
 }
@@ -688,7 +688,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return sd;
+		return Math.round(sd*100)/ 100;
 	
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
@@ -702,7 +702,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return sd;
+		return Math.round(sd*100)/ 100;
 		
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -716,7 +716,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return sd;
+		return Math.round(sd*100)/ 100;
 	}
 }
 
