@@ -473,7 +473,7 @@ function updateSelectionList() {
         point = i + 1;
         
 		var div = $("<tr>");
-        div.append("<td><input type='checkbox' class='chk' name='point_id' value='point_id'></td>");
+        div.append("<td><input type='checkbox' class='chk' name='point_id' id='" + i + "'></td>");
 		div.append("<td>" + point + "</td>");
 		div.append("<td>" + measurement.properties.id + "</td>");
 		div.append("<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>");
@@ -494,6 +494,29 @@ function updateSelectionList() {
 		
 	updatedList.append("</table>");
 	$('#selectionTable').replaceWith(updatedList);
+}
+
+function clearSelection(){
+
+	var deletions = new Array();
+	
+	// Get indices of measurements within selection that should be deleted
+	for(var i = 0; i < selection.length; i++){
+		if(document.getElementById('' + i).checked){
+			deletions.push(i);
+		}
+	}
+	
+	// Start deleting from the ending
+	deletions.reverse();
+	
+	for(var i = 0; i < deletions.length; i++){
+		selection.splice(deletions[i],1);
+	}
+	
+	updateSelectionList();
+	updateCurrentAnalysis();
+	
 }
 
 //Draw a polygon
