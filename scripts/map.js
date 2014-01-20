@@ -608,6 +608,8 @@ function getMean(phenomenon){
 	var sum = 0;
 	var n = 0;
 	
+	
+	
 	//For phenomenon "Speed"
 	if(phenomenon == 'Speed'){
 		for(var i = 0; i < selection.length; i++){
@@ -660,6 +662,7 @@ function getSD(phenomenon){
 	var n = 0;
 
 	//For phenomenon "Speed"
+	// Modified by Leon Vogel
 	if(phenomenon == 'Speed'){
 	
 		var mean = getMean(phenomenon);
@@ -671,7 +674,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return sd;
+		return Math.round(sd*100)/ 100;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
