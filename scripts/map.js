@@ -26,15 +26,16 @@ var manufacturerSelection = new Array();
 //If true user adds points to selection by clicking on them
 var singlePointSelection = false;
 
+// Polyline of currently selected track
+var trackLine;
+
 //If true measurements are not loaded with next movement in map
 var doNotLoad = false;
 
 // Visualisation of the points
-var redDot = L.icon({iconUrl: 'https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png'});
+var redDot = L.icon({iconUrl: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
 
 var greenDot = L.icon({iconUrl: 'https://storage.googleapis.com/support-kms-prod/SNP_2752129_en_v0'});
-
-var moveEndListener = true;
 
 
 /***********************
@@ -895,7 +896,7 @@ function chooseTrackSelection(){
 		
 		meas = result.features;
 		
-		var polyline = L.polyline([], {color: 'red'}).addTo(mainMap);
+		trackLine = L.polyline([], {color: 'red'}).addTo(mainMap);
 		
 		$.each(meas, function(i, measurement){
 		
@@ -969,7 +970,7 @@ function chooseTrackSelection(){
 			markers.push(marker);
 			
 			// Add element to polyline
-			polyline.addLatLng([geometry.coordinates[1], geometry.coordinates[0]]) ;
+			trackLine.addLatLng([geometry.coordinates[1], geometry.coordinates[0]]) ;
 		});
 		// Map should not draw measurements but keep this track
 		mainMap.off('moveend', drawMeasurements);
@@ -980,7 +981,15 @@ function chooseTrackSelection(){
 		}
 		
 		// Set bounds of map to track
-		mainMap.fitBounds(polyline.getBounds());
+		mainMap.fitBounds(trackLine.getBounds());
 		
 	});
+}
+
+// Deletes Track and draws standard measurements
+function resetTrackSelection(){
+	mainMap.removeLayer(trackLine);
+	drawMeasurements();
+	document.getElementById('Track_ID').value = '';
+	mainMap.on('moveend', drawMeasurements);
 }
