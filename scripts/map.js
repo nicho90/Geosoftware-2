@@ -23,12 +23,11 @@ var selection = new Array();
 // Current Frequency of Manufacturer in Selection
 var manufacturerSelection = new Array();
 
-//If true measurements are not loaded with next movement in map
-var doNotLoad = false;
-
 //If true user adds points to selection by clicking on them
 var singlePointSelection = false;
 
+//If true measurements are not loaded with next movement in map
+var doNotLoad = false;
 
 // Visualisation of the points
 var redDot = L.icon({iconUrl: 'https://maps.gstatic.com/intl/en_ALL/mapfiles/markers2/measle.png'});
@@ -146,19 +145,16 @@ function drawMap() {
 	L.control.layers(layer).addTo(map);
     
 	mainMap = map;
-	
-	mainMap.on('moveend', drawMeasurements);
 }
 
 // Draw Measurements
 // Description: Adds dots to the map and controls click events
 // Author: René Unrau
 function drawMeasurements() {
-    
-	if(doNotLoad) {
-        doNotLoad = false; 
-        return;
-    }
+	if(doNotLoad){
+		doNotLoad = false;
+		return;
+	}
     
 	//the values which are filled in the form
     var filtStart = startForm;
@@ -189,8 +185,8 @@ function drawMeasurements() {
 	var swLat = bounds.getSouthWest().lat;
 	var swLng = bounds.getSouthWest().lng;
 	
-	for (var i=0; i < markers.length; i++) {
-        mainMap.removeLayer(markers[i]);
+	for (var i=0; i < markers.length; i++){
+		mainMap.removeLayer(markers[i]);
     }
 	
 	//set the array 'markers' to a new array
@@ -261,7 +257,7 @@ function drawMeasurements() {
 			
 			//Do not load measurements if marker is clicked
 			marker.on('click', function(){
-				doNotLoad = true
+				doNotLoad = true;
 				if(singlePointSelection) {
 					mainMap.closePopup();
 					addSinglePoint(measurement);
@@ -899,6 +895,8 @@ function chooseTrackSelection(){
 		
 		meas = result.features;
 		
+		var polyline = L.polyline([], {color: 'red'}).addTo(mainMap);
+		
 		$.each(meas, function(i, measurement){
 		
 			var geometry = measurement.geometry;
@@ -967,16 +965,22 @@ function chooseTrackSelection(){
 				}
 			});
 			
-			//add all points to the array 'markers'
+			// Add this marker to the array, allows deletion
 			markers.push(marker);
-		
-			for(var i = 0; i < markers.length; i++) {
-				mainMap.addLayer(markers[i]);
-			}
 			
-			// Map should not draw measurements but keep this track
-			mainMap.off('moveend', drawMeasurements);
-		
+			// Add element to polyline
+			polyline.addLatLng([geometry.coordinates[1], geometry.coordinates[0]]) ;
 		});
+		// Map should not draw measurements but keep this track
+		mainMap.off('moveend', drawMeasurements);
+		
+		// Add all markers from array to map
+		for(var i = 0; i < markers.length; i++) {
+				mainMap.addLayer(markers[i]);	
+		}
+		
+		// Set bounds of map to track
+		mainMap.fitBounds(polyline.getBounds());
+		
 	});
 }
