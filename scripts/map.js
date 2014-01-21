@@ -396,10 +396,10 @@ function showTrack(pointID) {
 				
 					//If measurement matches with searched pointID
 					if(measurements.features[i].properties.id == pointID){
-						var dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + '</p>Was möchten sie tun?').dialog({
+						var dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + 'Möchten sie diesen Track:</p>').dialog({
 							buttons: {
-								"Visualisieren": function() {visualizeTrack(track.id);dialog.dialog('close');},
-								"Track zur Auswahl hinzufügen":  function() {addTrackToSelection(track);dialog.dialog('close');},
+								"visualisieren": function() {visualizeTrack(track.id);dialog.dialog('close');},
+								"zur Auswahl hinzufügen":  function() {addTrackToSelection(measurements);dialog.dialog('close');},
 								"Abbrechen":  function() {dialog.dialog('close');}
 							}
 						});
@@ -441,7 +441,27 @@ function addSinglePoint(measurement){
 // Description: Adds a single track to the selection
 // Author: René Unrau
 function addTrackToSelection(track){
-	alert('Funktion noch nicht implementiert');
+	var measurements = track.features
+	
+	for(var i = 0; i < measurements.length; i++){
+		var measurement = new Object();
+		
+		// Adjust parameters, so that are similar to single measurements from EnviroCar
+		measurement.geometry = new Object();
+		measurement.geometry.coordinates = new Array();
+		measurement.properties = new Object();
+		measurement.properties.sensor = new Object();
+		measurement.properties.sensor.properties = new Object();
+		measurement.properties.phenomenons = new Object();
+		measurement.properties.sensor = track.properties.sensor;
+		measurement.properties.phenomenons = measurements[i].properties.phenomenons;
+		measurement.properties.id = measurements[i].properties.id;
+		measurement.geometry.coordinates[0] = measurements[i].geometry.coordinates[0];
+		measurement.geometry.coordinates[1] = measurements[i].geometry.coordinates[1];
+		selection.push(measurement);
+	}
+	updateSelectionList();
+	updateCurrentAnalysis();
 }
 
 // Update Current Analysis
