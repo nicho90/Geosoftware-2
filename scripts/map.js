@@ -33,9 +33,9 @@ var trackLine;
 var doNotLoad = false;
 
 // Visualisation of the points
-var redDot = L.icon({iconUrl: 'https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0'});
+var redDot = L.icon({iconUrl: 'images/dots/redDot.png'});
 
-var greenDot = L.icon({iconUrl: 'https://storage.googleapis.com/support-kms-prod/SNP_2752129_en_v0'});
+var greenDot = L.icon({iconUrl: 'images/dots/greenDot.png'});
 
 
 /***********************
