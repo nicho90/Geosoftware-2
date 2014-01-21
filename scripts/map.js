@@ -454,10 +454,38 @@ function addTrackToSelection(track){
 		measurement.properties.sensor.properties = new Object();
 		measurement.properties.phenomenons = new Object();
 		measurement.properties.sensor = track.properties.sensor;
-		measurement.properties.phenomenons = measurements[i].properties.phenomenons;
 		measurement.properties.id = measurements[i].properties.id;
+		measurement.properties.time = measurements[i].properties.time;
 		measurement.geometry.coordinates[0] = measurements[i].geometry.coordinates[0];
 		measurement.geometry.coordinates[1] = measurements[i].geometry.coordinates[1];
+		
+		//Check if phenomenons are not defined -> add default value
+			if(measurements[i].properties.phenomenons.Consumption == undefined) {
+				var Consumption = new Object();
+				Consumption.value = "-";
+				Consumption.unit = "l/s";
+				measurements[i].properties.phenomenons.Consumption = Consumption;
+			}
+			if(measurements[i].properties.phenomenons.CO2 == undefined) {
+				var CO2 = new Object();
+				CO2.value = "-";
+				CO2.unit = "g/s";
+				measurements[i].properties.phenomenons.CO2 = CO2;
+			}
+			if(measurements[i].properties.phenomenons.MAF == undefined) {
+				var MAF = new Object();
+				MAF.value = "-";
+				MAF.unit = "l/s";
+				measurements[i].properties.phenomenons.MAF = MAF;
+			}
+			if(measurements[i].properties.phenomenons.Speed == undefined) {
+				var Speed = new Object();
+				Speed.value = "-";
+				Speed.unit = "km/s";
+				measurements[i].properties.phenomenons.Speed = Speed;
+			}
+		measurement.properties.phenomenons = measurements[i].properties.phenomenons;
+		
 		selection.push(measurement);
 	}
 	updateSelectionList();
