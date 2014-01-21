@@ -396,7 +396,13 @@ function showTrack(pointID) {
 				
 					//If measurement matches with searched pointID
 					if(measurements.features[i].properties.id == pointID){
-						alert('Dieser Punkt ist Teil des Tracks: ' + track.id);
+						var dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + '</p>Was möchten sie tun?').dialog({
+							buttons: {
+								"Visualisieren": function() {visualizeTrack(track.id);dialog.dialog('close');},
+								"Track zur Auswahl hinzufügen":  function() {addTrackToSelection(track);dialog.dialog('close');},
+								"Abbrechen":  function() {dialog.dialog('close');}
+							}
+						});
 						return;
 					}
 				}
@@ -405,7 +411,7 @@ function showTrack(pointID) {
 	});
 }
 
-// Add Single Measurement
+// Add Single Measurement to Selection
 // Description: Adds a single measurement to the selection
 // Author: René Unrau
 function addSinglePoint(measurement){
@@ -428,6 +434,14 @@ function addSinglePoint(measurement){
 		updateSelectionList();
 		updateCurrentAnalysis();
 	}	
+}
+
+
+// Add Single Track to Selection
+// Description: Adds a single track to the selection
+// Author: René Unrau
+function addTrackToSelection(track){
+	alert('Funktion noch nicht implementiert');
 }
 
 // Update Current Analysis
@@ -496,6 +510,9 @@ function updateSelectionList() {
 	$('#selectionTable').replaceWith(updatedList);
 }
 
+// Delete measurements from selection
+// Description: Deletes selected measurements from selection-list
+// Author: René Unrau
 function clearSelection(){
 
 	var deletions = new Array();
@@ -623,6 +640,9 @@ function refreshManuAnalysis(){
 	$('#textualresults').replaceWith(result);
 }
 
+// Get Mean Value
+// Description: Returns mean for a given phenomenon
+// Author: René Unrau
 function getMean(phenomenon){
 
 	var sum = 0;
@@ -676,6 +696,9 @@ function getMean(phenomenon){
 	}
 }
 
+// Get StandardDeviation
+// Description: Returns standard deviation for a given phenomenon
+// Author: René Unrau
 function getSD(phenomenon){
 
 	var pre = 0;
@@ -740,6 +763,9 @@ function getSD(phenomenon){
 	}
 }
 
+// Get Minimum
+// Description: Returns minimum for a given phenomenon
+// Author: René Unrau
 function getMin(phenomenon){
 
 	var min = 999;
@@ -802,6 +828,9 @@ function getMin(phenomenon){
 	}
 }
 
+// Get Maximum
+// Description: Returns maximum for a given phenomenon
+// Author: René Unrau
 function getMax(phenomenon){
 
 	var max = 0;
@@ -884,6 +913,9 @@ function getMax(phenomenon){
 	}
 }
 
+// Get Most Frequent Manufacturer
+// Description: Returns manufactures which is most frequent in selection
+// Author: René Unrau
 function getMostFreqManu(){
 	manufacturerSelection = {};
 
@@ -902,12 +934,22 @@ function getMostFreqManu(){
 	return getMax('Manufacturer');
 }
 
-
+// Choose Track for Selection
+// Description: Gets trackID from userinput and visualizes track
+// Author: René Unrau
 function chooseTrackSelection(){
 	var trackID = document.getElementById('Track_ID').value;
 	
+	visualizeTrack(trackID);
+}
+
+// Visualize Track
+// Description: Visualizes track on map and deletes other measurements
+// Author: René Unrau
+function visualizeTrack(trackID){
+	
 	// Get TrackJSON from enviroCar
-	$.getJSON("https://envirocar.org/api/stable/rest/tracks/" + trackID,function(result){
+	$.getJSON("https://envirocar.org/api/stable/rest/tracks/" + trackID,function(track){
 		
 		// Remove old markers
 		for (var i=0; i < markers.length; i++) {
@@ -917,7 +959,7 @@ function chooseTrackSelection(){
 		// Clear old array from markers
 		markers = new Array();
 		
-		meas = result.features;
+		meas = track.features;
 		
 		trackLine = L.polyline([], {color: 'red'}).addTo(mainMap);
 		
@@ -962,20 +1004,20 @@ function chooseTrackSelection(){
 				doNotLoad = true;
 				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
 			} );
-			container.on('click', '#showTrack', function() {
-				showTrack(properties.id);
+			container.on('click', '#addToSelection', function() {
+				addTrackToSelection(track);
 			} );
 
 			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
-				'<tr><td><b>Sensor-ID</b></td><td>' + result.properties.sensor.properties.id + '</td></tr>' +
-				'<tr><td><b>Fahrzeugtyp</b></td><td>' + result.properties.sensor.properties.manufacturer + ' ' + result.properties.sensor.properties.model + '</td></tr>' +
+				'<tr><td><b>Sensor-ID</b></td><td>' + track.properties.sensor.properties.id + '</td></tr>' +
+				'<tr><td><b>Fahrzeugtyp</b></td><td>' + track.properties.sensor.properties.manufacturer + ' ' + track.properties.sensor.properties.model + '</td></tr>' +
 				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
 				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
-				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="addToSelection" class="link">Track zur Auswahl hinzufügen</a></td></tr></table></html>');
 
 			// Insert the container into the popup
 			marker.bindPopup(container[0]);
@@ -1009,7 +1051,9 @@ function chooseTrackSelection(){
 	});
 }
 
-// Deletes Track and draws standard measurements
+// Reset Track Selection
+// Description: Deletes Track and draws standard measurements
+// Author: René Unrau
 function resetTrackSelection(){
 	mainMap.removeLayer(trackLine);
 	drawMeasurements();
