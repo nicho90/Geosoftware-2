@@ -10,14 +10,16 @@
         <meta name="author" content="Nicholas Schiestel">
         <meta name="author" content="Johanna Möllmann">
         
-        <!-- Stylesheet -->
+        
+        <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
-		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
         
         <!--Stylesheet für leaflet.draw -->
         <link rel="stylesheet" type="text/css" href="scripts/leaflet.draw.css">
         
-        <!-- HTML5 for the Microsoft IE -->
+        
+        <!-- Script für HTML5 im Microsoft IE -->
         <script>
             document.createElement('header');
             document.createElement('nav');
@@ -25,48 +27,71 @@
             document.createElement('footer');
         </script>
         
+        
         <!-- Skripte für das Kartenframework -->
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-        <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
-		<script type="text/javascript" src="scripts/map.js"></script>
-		<!-- Needed for GoogleSatellite Layer -->
-		<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-		<script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
-		<!-- Needed for RESTful-Request -->
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="scripts/externe/leaflet.js"></script>
+        <script type="text/javascript" src="scripts/map.js"></script>
+        <!-- original
+            <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+         -->
+        
+        <!-- Needed for GoogleSatellite Layer -->
+        <script src="scripts/externe/js.js"></script>
+        <script src="scripts/externe/leaflet-google.js"></script>
+        <!-- original
+            <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+            <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+        -->
+        
+        <!-- Needed for RESTful-Request -->
+        <script src="scripts/externe/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
+        <!-- original
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        -->
 
         <!-- Skript zum Ein- und Ausblenden der selektierten Punkte -->
         <script type="text/javascript" src="scripts/toggle.js"></script>
         
+        
         <!-- Skripts für die Tooltips in den Selektierwerkzeugen 
             Source: http://onehackoranother.com/projects/jquery/tipsy/ -->
-        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird 
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
         <script type='text/javascript' src='scripts/jquery.tipsy.js'></script>
         <link rel="stylesheet" href="stylesheets/tipsy.css" type="text/css" />
         <script type='text/javascript' src='scripts/tooltip.js'></script>
+        <!-- original
+             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        -->
+        
         
         <!-- Skripts um alle Checkboxen der selektierten Punkte auf einmal auszuwählen 
             Source: http://jsfiddle.net/7BXJF/1/ -->
         <script type='text/javascript' src='scripts/forcheckboxes.js'></script>
         <script src="scripts/jquery.validate.js"></script>
-        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird 
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+        <!-- original 
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        -->
        
         
         <!-- Skripte für Kalenderauswahl im Filterbereich 
-            Source: -->
+            Source: ?? -->
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-        <!-- muss nicht noch mal eingebunden werden, da JQuery bereits bei den Tooltips geladen wird
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script type="text/javascript" src="scripts/calender.js"></script>
+        <!-- original
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        -->
+        
         
         <!-- Skript zum Zeichnen eines Polygons -->
         <script type="text/javascript" src="scripts/leaflet.draw.js"></script>
-	</head>
+        
+    
+    
+    </head>
+    
     
     <!-- Beginn der Seite -->
     <body>
