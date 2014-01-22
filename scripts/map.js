@@ -64,11 +64,31 @@ function drawMap() {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	});
 	var google = new L.Google('SATELLITE');
+   
+    //add DTK10, a topographic map of NRW, coloured
+    var DTK10 = L.tileLayer.wms('http://www.wms.nrw.de/geobasis/wms_nw_dtk10', {
+     attribution: '| &copy Geobasis NRW 2013',
+	layers: 'nw_dtk10_pan,nw_dtk10_res,NW_DTK10_col,WMS_NW_DTK10',
+    format: 'image/png',
+    transparent: true,
+    opacity:0.4
+});
+    
+    //add DTK10, panchromatic
+    var DTK10_panchromatic=L.tileLayer.wms('http://www.wms.nrw.de/geobasis/wms_nw_dtk10',{
+   attribution: '| &copy Geobasis NRW 2013',
+	layers: 'NW_DTK10_pan',
+    format: 'image/png',
+    transparent: true,
+	opacity:0.4
+});
 	  
 	
 	var layer = {
 		"OSM": osm,
-		"Google": google
+		"Google": google,
+        "DTK10": DTK10,
+        "DTK10_pan": DTK10_panchromatic
 	};
 	  
 	var map = L.map('map', {
@@ -76,6 +96,35 @@ function drawMap() {
 		zoom: 18,
 		layers: [osm]
 	});
+    
+    
+    //adds zoomListener to ensure a map is displayed in case the zoom level is too 
+    //low for DTK10 or DTK10_panchromatic layers
+    
+    map.on('zoomend', onZoomend);
+    
+    function onZoomend(){
+        //if osm-layer is selected check, whether a DTK10 or DTK10_panchromatic
+        //is selected as well. Is this the case, the map zoomed out too far
+        //for these two and the osm-layer has been displayed instead.
+        //Since we enter DTK10's and DTK10_panchromatic's bounds again, the osm layer
+        //can be removed
+        //Note: DTK10 and DTK10_panchromatic disappear if zoom level is below 14
+        if(map.hasLayer(osm)){
+            
+            if(map.getZoom()>=14&&(map.hasLayer(DTK10) ||   map.hasLayer(DTK10_panchromatic))){
+                map.removeLayer(osm);
+            }
+        }
+        
+        //maps has DTK10 or DTK10_panchromatic and is about to leave their bounds
+        //Thus, the osm-layer is selected and displayed instead.
+        else{           
+            if(map.getZoom()<14&&(map.hasLayer(DTK10) ||   map.hasLayer(DTK10_panchromatic))){
+                map.addLayer(osm);
+            }
+        }
+    };
     
     //create a new FeatureGroup to store drawn items
     drawnItems = new L.FeatureGroup();
@@ -144,8 +193,7 @@ function drawMap() {
 	};
 	
 	L.control.layers(layer).addTo(map);
-    
-	mainMap = map;
+    mainMap = map;
 }
 
 // Draw Measurements
