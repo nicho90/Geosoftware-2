@@ -1161,6 +1161,9 @@ function visualizeTrack(trackID){
 // Author: René Unrau
 function resetTrackSelection(){
 	mainMap.removeLayer(trackLine);
+	for(var i = 0; i < markers.length; i++) {
+		mainMap.removeLayer(markers[i]);	
+	}
 	drawMeasurements();
 	document.getElementById('Track_ID').value = '';
 	mainMap.on('moveend', drawMeasurements);
