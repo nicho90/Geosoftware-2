@@ -181,15 +181,24 @@ function drawMap() {
 	};
 	
 	// locate me - function 
-	// map pans to current position of the user 
+	// map pans to current position of the user and sets a marker
+	// source of the marker-image: http://www.iconsdb.com/orange-icons/marker-icon.html
 	//Author: Johanna Möllmann
 	
 	document.getElementById('locateMe').onclick = function() {
        function handler(locateme){
 	   var longitude = locateme.coords.longitude;
 	   var latitude = locateme.coords.latitude;
-	   map.panTo(new L.LatLng(latitude, longitude));}
-       navigator.geolocation.getCurrentPosition(handler);
+	   map.panTo(new L.LatLng(latitude, longitude));
+	   var markerIcon = L.icon(
+			{
+			iconUrl: 'images/marker/marker.png', 
+			iconSize:[50, 50]
+			}
+		);
+	   L.marker(new L.LatLng(latitude, longitude), {icon: markerIcon}).addTo(map).bindPopup("Ihre Position: " + longitude + ", " + latitude);
+	   }
+       navigator.geolocation.getCurrentPosition(handler); 
 	};
 	
 	L.control.layers(layer).addTo(map);
