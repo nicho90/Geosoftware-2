@@ -643,6 +643,9 @@ function clearSelection(){
 
 //Draw a polygon
 function drawPolygon(){
+    if(mainMap.hasLayer(polygonLayer)){
+        mainMap.removeLayer(polygonLayer);
+    }
     polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
     polygon.enable();
 }
@@ -651,6 +654,11 @@ function drawPolygon(){
 function deletePolygon(){
     polygon.disable();
     mainMap.removeLayer(polygonLayer);
+}
+
+//Confirm selected Polygon
+function confirmPolygon(){
+    polygon.disable;
 }
 
 //Reset the filter to update the measurements
