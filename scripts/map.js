@@ -493,6 +493,78 @@ function addSinglePoint(measurement){
 	}	
 }
 
+// Add Single Measurement to Selection from a Track
+// Description: Adds a single measurement to the selection from a track
+// Measurement-object needs to be changed before insert
+// Author: René Unrau
+function addSinglePointFromTrack(trackMeasurement, track){
+
+	var measurement = new Object();
+		
+	// Adjust parameters, so that are similar to single measurements from EnviroCar
+	measurement.geometry = new Object();
+	measurement.geometry.coordinates = new Array();
+	measurement.properties = new Object();
+	measurement.properties.sensor = new Object();
+	measurement.properties.sensor.properties = new Object();
+	measurement.properties.phenomenons = new Object();
+	measurement.properties.sensor = track.properties.sensor;
+	measurement.properties.id = trackMeasurement.properties.id;
+	measurement.properties.time = trackMeasurement.properties.time;
+	measurement.geometry.coordinates[0] = trackMeasurement.geometry.coordinates[0];
+	measurement.geometry.coordinates[1] = trackMeasurement.geometry.coordinates[1];
+	
+	//Check if phenomenons are not defined -> add default value
+		if(trackMeasurement.properties.phenomenons.Consumption == undefined) {
+			var Consumption = new Object();
+			Consumption.value = "-";
+			Consumption.unit = "l/s";
+			trackMeasurement.properties.phenomenons.Consumption = Consumption;
+		}
+		if(trackMeasurement.properties.phenomenons.CO2 == undefined) {
+			var CO2 = new Object();
+			CO2.value = "-";
+			CO2.unit = "g/s";
+			trackMeasurement.properties.phenomenons.CO2 = CO2;
+		}
+		if(trackMeasurement.properties.phenomenons.MAF == undefined) {
+			var MAF = new Object();
+			MAF.value = "-";
+			MAF.unit = "l/s";
+			trackMeasurement.properties.phenomenons.MAF = MAF;
+		}
+		if(trackMeasurement.properties.phenomenons.Speed == undefined) {
+			var Speed = new Object();
+			Speed.value = "-";
+			Speed.unit = "km/s";
+			trackMeasurement.properties.phenomenons.Speed = Speed;
+		}
+	measurement.properties.phenomenons = trackMeasurement.properties.phenomenons;
+	
+	// If selection is empty, add to selection, update-sidebar-selection-list and current-analysis
+	if(selection.length == 0){
+		selection.push(measurement);
+		updateSelectionList();
+		updateCurrentAnalysis();
+	}else{
+		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
+		for(var i = 0; i < selection.length; i++){
+			// If already inside, do not add and throw alert
+			if(measurement.properties.id == selection[i].properties.id){
+				alert('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+				return;
+			}
+		}
+		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
+		selection.push(measurement);
+		updateSelectionList();
+		updateCurrentAnalysis();
+	}	
+}
+
+
+
+
 
 // Add Single Track to Selection
 // Description: Adds a single track to the selection
@@ -1140,7 +1212,7 @@ function visualizeTrack(trackID){
 				doNotLoad = true
 				if(singlePointSelection) {
 					mainMap.closePopup();
-					addSinglePoint(measurement);
+					addSinglePointFromTrack(measurement, track);
 				}
 			});
 			
