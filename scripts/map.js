@@ -453,13 +453,17 @@ function showTrack(pointID) {
 				
 					//If measurement matches with searched pointID
 					if(measurements.features[i].properties.id == pointID){
-						var dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + 'Möchten sie diesen Track:</p>').dialog({
+						var dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + '. <br> Möchten sie diesen Track:</p>').dialog(
+						{
+							height: 220,
+							width: 600,
+							modal: true,
 							buttons: {
 								"visualisieren": function() {visualizeTrack(track.id);dialog.dialog('close');},
 								"zur Auswahl hinzufügen":  function() {addTrackToSelection(measurements);dialog.dialog('close');},
 								"Abbrechen":  function() {dialog.dialog('close');}
 							}
-						});
+						});										
 						return;
 					}
 				}
