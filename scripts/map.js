@@ -380,7 +380,7 @@ function drawMeasurements() {
             }
             if(filtTyp != "" && isDeleted == false) {
                 //delete the points which not fit to the filter 'type'
-				if(cartype.indexOf(filtTyp) == -1) {
+				if(cartype.toLowerCase().indexOf(filtTyp.toLowerCase()) == -1) {
 					markers.pop();
 					isDeleted = true;
 				}
