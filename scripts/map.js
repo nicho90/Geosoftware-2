@@ -3,7 +3,8 @@
 ***********************/
 var mainMap;
 
-var markers = {};
+var markers = new Array();
+var currentMeasurements = new Array();
 
 //variables for saving the input in the form of the filter
 var startForm = "";
@@ -250,13 +251,14 @@ function drawMeasurements() {
     }
 	
 	//set the array 'markers' to a new array
+	currentMeasurements = new Array();
 	markers = new Array();
 	
 	$.getJSON("https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result) {
 	
-		result = result.features;
+		currentMeasurements = result.features;
 		
-		$.each(result, function(i, measurement){
+		$.each(currentMeasurements, function(i, measurement){
 		
 			var geometry = measurement.geometry;
 			var properties = measurement.properties;
@@ -738,8 +740,28 @@ function deletePolygon(){
 function confirmPolygon(){
 	var polygonCorners = polygonLayer.getLatLngs();
     polygon.disable;
-	for(var i = 0; i < polygonCorners.length; i++){
-		alert('' + polygonCorners[i]);
+	//For each measurement in current map-bounds
+	for(var i = 0; i < currentMeasurements.length; i++){
+	
+		//Check if it is in Polygon
+		var oddNodes = false;
+		k = polygonCorners.length - 1;
+		for(var j = 0; j < polygonCorners.length; j++){
+		
+			if(polygonCorners[j].lat < currentMeasurements[i].geometry.coordinates[1] && polygonCorners[k].lat >= currentMeasurements[i].geometry.coordinates[1] ||
+				polygonCorners[k].lat < currentMeasurements[i].geometry.coordinates[1] && polygonCorners[j].lat >= currentMeasurements[i].geometry.coordinates[1]){
+				if(polygonCorners[j].lng + (currentMeasurements[i].geometry.coordinates[1] - polygonCorners[j].lat) / (polygonCorners[k].lat - polygonCorners[j].lat) * (polygonCorners[k].lng - polygonCorners[j].lng) < currentMeasurements[i].geometry.coordinates[0]){
+					if(oddNodes){oddNodes = false;}
+					else{oddNodes = true;}
+				}
+			}
+		
+		k = j;
+		}
+		if(oddNodes){
+			addSinglePoint(currentMeasurements[i]);
+		}
+	
 	}
 }
 
