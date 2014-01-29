@@ -736,7 +736,11 @@ function deletePolygon(){
 
 //Confirm selected Polygon
 function confirmPolygon(){
+	var polygonCorners = polygonLayer.getLatLngs();
     polygon.disable;
+	for(var i = 0; i < polygonCorners.length; i++){
+		alert('' + polygonCorners[i]);
+	}
 }
 
 //Reset the filter to update the measurements
