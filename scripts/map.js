@@ -37,6 +37,8 @@ var redDot = L.icon({iconUrl: 'images/dots/redDot.png'});
 
 var greenDot = L.icon({iconUrl: 'images/dots/greenDot.png'});
 
+var blueDot = L.icon({iconUrl: 'images/dots/blueDot.png'});
+
 
 /***********************
 	Event register
@@ -1251,4 +1253,48 @@ function resetTrackSelection(){
 	drawMeasurements();
 	document.getElementById('Track_ID').value = '';
 	mainMap.on('moveend', drawMeasurements);
+}
+
+// Start Interpolation
+// Description: Checks which interpolation is choosed and starts it
+// Author René Unrau
+function startInterpolation(){
+	var e = document.getElementById("interpolationSelectionBox");
+	if(e.options[e.selectedIndex].text == 'IDW'){
+		idwInterpolation();
+	}else if(e.options[e.selectedIndex].text == 'Kriging'){
+		alert('Not yet implemented');
+	}
+}
+
+// Reset Track Selection
+// Description: Deletes Track and draws standard measurements
+// Author: René Unrau
+function idwInterpolation(){
+
+	interpolated = new Object();
+	interpolated.latitude = new Array();
+	interpolated.longitude = new Array();
+
+	for(var i = 1; i < selection.length; i++){
+	
+		// Create coordinates of new interpolated locations
+		halfDifference = Math.abs(selection[i].geometry.coordinates[1] - selection[i-1].geometry.coordinates[1]) / 2;
+		minimum = Math.min(selection[i].geometry.coordinates[1],selection[i-1].geometry.coordinates[1]);
+	
+		interpolated.latitude[i-1] = halfDifference + minimum;
+		
+		halfDifference = Math.abs(selection[i].geometry.coordinates[0] - selection[i-1].geometry.coordinates[0]) / 2;
+		minimum = Math.min(selection[i].geometry.coordinates[0],selection[i-1].geometry.coordinates[0]);
+	
+		interpolated.longitude[i-1] = halfDifference + minimum;
+		
+		//TODO: Interpolate Values
+		
+		// Add interpolations to map
+		marker = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: blueDot});
+		
+		mainMap.addLayer(marker);
+	}
+	alert('Only marker position, no values');
 }

@@ -292,7 +292,7 @@
                     <ul>
                         <li>Interpolation mit</li>
                         <li>
-                            <select>
+                            <select id="interpolationSelectionBox">
                                 <option>Kriging</option>
                                 <option>IDW</option>
                             </select>
@@ -303,7 +303,7 @@
                             <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">               <a onclick="" class=info>i</a>
                             </li>
                             <li>
-                                <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton>
+                                <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
                             </li>
                         </ul>
                     </div>
