@@ -1,10 +1,10 @@
 Geosoftware-2
 =============
 
-University of Muenster<br/>
-Course: Geosoftware 2<br/>
-WiSe13/14<br/>
-Group D
+**University of Muenster**<br/>
+**Course: Geosoftware 2**<br/>
+**WiSe13/14**<br/>
+**Group D**
 
 
 ***
