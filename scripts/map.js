@@ -40,6 +40,8 @@ var greenDot = L.icon({iconUrl: 'images/dots/greenDot.png'});
 
 var blueDot = L.icon({iconUrl: 'images/dots/blueDot.png'});
 
+var yellowDot = L.icon({iconUrl: 'images/dots/yellowDot.png'});
+
 
 /***********************
 	Event register
@@ -291,7 +293,16 @@ function drawMeasurements() {
 				phenomenons.Speed = Speed;
 			}
 		
-			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
+			found = false;
+			for(var i = 0; i < selection.length; i++){
+				if(selection[i].properties.id == properties.id){
+					marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: yellowDot});
+					found = true;
+					break;
+				}
+			}
+			
+			if(!found){marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});}
 			
 			var container = $('<div/>');
 
