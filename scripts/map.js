@@ -1301,6 +1301,21 @@ function idwInterpolation(){
 	interpolated = new Object();
 	interpolated.latitude = new Array();
 	interpolated.longitude = new Array();
+	interpolated.phenomenons = new Object();
+	interpolated.phenomenons.Consumption = new Array();
+	interpolated.phenomenons.CO2 = new Array();
+	interpolated.phenomenons.MAF = new Array();
+	interpolated.phenomenons.Speed = new Array();
+	
+	// Check which attributes are available for this track
+	var consumption = false;
+	var co2 = false;
+	var maf = false;
+	var speed = false;
+	if(selection[0].properties.phenomenons.Consumption.value != '-'){consumption = true;}
+	if(selection[0].properties.phenomenons.CO2.value != '-'){co2 = true;}
+	if(selection[0].properties.phenomenons.MAF.value != '-'){maf = true;}
+	if(selection[0].properties.phenomenons.Speed.value != '-'){speed = true;}
 
 	for(var i = 1; i < selection.length; i++){
 	
@@ -1315,12 +1330,92 @@ function idwInterpolation(){
 	
 		interpolated.longitude[i-1] = halfDifference + minimum;
 		
-		//TODO: Interpolate Values
+		//Interpolate Consumption
+		if(consumption){
+			var firstsum = 0;
+			var secondsum = 0;
+			
+			for(var j = 0; j < selection.length; j++){
+				var value = selection[j].properties.phenomenons.Consumption.value;
+				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
+				firstsum = firstsum + (value / dist);
+				
+				secondsum = secondsum + (1 / dist);
+			}
+			
+			interpolated.phenomenons.Consumption[i-1] = firstsum / secondsum;
+		}else{
+			interpolated.phenomenons.Consumption[i-1] = '-';
+		}
+		
+		//Interpolate CO2
+		if(co2){
+			var firstsum = 0;
+			var secondsum = 0;
+			
+			for(var j = 0; j < selection.length; j++){
+				var value = selection[j].properties.phenomenons.CO2.value;
+				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
+				firstsum = firstsum + (value / dist);
+				
+				secondsum = secondsum + (1 / dist);
+			}
+			
+			interpolated.phenomenons.CO2[i-1] = firstsum / secondsum;
+		}else{
+			interpolated.phenomenons.CO2[i-1] = '-';
+		}
+		
+		//Interpolate MAF
+		if(maf){
+			var firstsum = 0;
+			var secondsum = 0;
+			
+			for(var j = 0; j < selection.length; j++){
+				var value = selection[j].properties.phenomenons.MAF.value;
+				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
+				firstsum = firstsum + (value / dist);
+				
+				secondsum = secondsum + (1 / dist);
+			}
+			
+			interpolated.phenomenons.MAF[i-1] = firstsum / secondsum;
+		}else{
+			interpolated.phenomenons.MAF[i-1] = '-';
+		}
+		
+		//Interpolate Speed
+		if(speed){
+			var firstsum = 0;
+			var secondsum = 0;
+			
+			for(var j = 0; j < selection.length; j++){
+				var value = selection[j].properties.phenomenons.Speed.value;
+				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
+				firstsum = firstsum + (value / dist);
+				
+				secondsum = secondsum + (1 / dist);
+			}
+			
+			interpolated.phenomenons.Speed[i-1] = firstsum / secondsum;
+		}else{
+			interpolated.phenomenons.Speed[i-1] = '-';
+		}
 		
 		// Add interpolations to map
 		marker = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: blueDot});
 		
+		var container = $('<div/>');
+		
+		container.html('<html><table><tr><td>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/s</td></tr>' +
+			'<tr><td>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
+			'<tr><td>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
+			'<tr><td>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+			'</table></html>');
+			
+		// Insert the container into the popup
+		marker.bindPopup(container[0]);
+		
 		mainMap.addLayer(marker);
 	}
-	alert('Only marker position, no values');
 }
