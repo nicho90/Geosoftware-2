@@ -774,6 +774,7 @@ function confirmPolygon(){
 		}
 	
 	}
+	centerPolygon(polygonCorners);
 }
 
 //Reset the filter to update the measurements
@@ -1429,4 +1430,36 @@ function idwInterpolation(){
 		
 		mainMap.addLayer(marker);
 	}
+}
+
+// centers the polygon on the map
+// created by Johanna Möllmann
+
+function centerPolygon(polygonCorners){
+	var xmin = polygonCorners[0].lat;
+	var xmax = polygonCorners[0].lat;
+	var ymin = polygonCorners[0].lng;
+	var ymax = polygonCorners[0].lng;
+	var cornerNr = polygonCorners.length;
+	
+	for (var i = 1;  cornerNr > i ; i++) {
+	var point = polygonCorners[i];
+	var xnew = parseFloat(polygonCorners[i].lat);
+	var ynew = parseFloat(polygonCorners[i].lng);
+	if (xnew < xmin){
+		xmin = xnew;
+	}
+	if (xnew > xmax){
+		xmax = xnew;
+	}
+	if (ynew < ymin){
+		ymin = ynew;
+	}
+	if (ynew > ymax){
+		ymax = ynew;
+	} 
+}
+var southWest = L.latLng(xmin, ymin),  northEast = L.latLng(xmax, ymax);
+var bounds = L.latLngBounds(southWest, northEast);
+mainMap.fitBounds(bounds);
 }
