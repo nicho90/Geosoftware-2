@@ -1310,6 +1310,8 @@ function startInterpolation(){
 // Author: René Unrau
 function idwInterpolation(){
 
+	mainMap.removeLayer(trackLine);
+
 	interpolated = new Object();
 	interpolated.latitude = new Array();
 	interpolated.longitude = new Array();
@@ -1430,11 +1432,12 @@ function idwInterpolation(){
 		
 		mainMap.addLayer(marker);
 	}
+	visualizeInterpolation('Consumption');
 }
 
-// centers the polygon on the map
-// created by Johanna Möllmann
 
+// Center Polygon
+// Author: Johanna Möllmann
 function centerPolygon(polygonCorners){
 	var xmin = polygonCorners[0].lat;
 	var xmax = polygonCorners[0].lat;
@@ -1443,23 +1446,58 @@ function centerPolygon(polygonCorners){
 	var cornerNr = polygonCorners.length;
 	
 	for (var i = 1;  cornerNr > i ; i++) {
-	var point = polygonCorners[i];
-	var xnew = parseFloat(polygonCorners[i].lat);
-	var ynew = parseFloat(polygonCorners[i].lng);
-	if (xnew < xmin){
-		xmin = xnew;
+		var point = polygonCorners[i];
+		var xnew = parseFloat(polygonCorners[i].lat);
+		var ynew = parseFloat(polygonCorners[i].lng);
+		if (xnew < xmin){
+			xmin = xnew;
+		}
+		if (xnew > xmax){
+			xmax = xnew;
+		}
+		if (ynew < ymin){
+			ymin = ynew;
+		}
+		if (ynew > ymax){
+			ymax = ynew;
+		} 
 	}
-	if (xnew > xmax){
-		xmax = xnew;
-	}
-	if (ynew < ymin){
-		ymin = ynew;
-	}
-	if (ynew > ymax){
-		ymax = ynew;
-	} 
+	var southWest = L.latLng(xmin, ymin),  northEast = L.latLng(xmax, ymax);
+	var bounds = L.latLngBounds(southWest, northEast);
+	mainMap.fitBounds(bounds);
 }
-var southWest = L.latLng(xmin, ymin),  northEast = L.latLng(xmax, ymax);
-var bounds = L.latLngBounds(southWest, northEast);
-mainMap.fitBounds(bounds);
+
+// Visualize Interpolation
+// Author: René Unrau
+
+function visualizeInterpolation(phenomenon){
+
+	if(phenomenon == 'Consumption'){
+	
+		var interpolationLines = new Array();
+	
+		max = getMax(phenomenon);
+		min = getMin(phenomenon);
+		firstThird = min + ((max - min) * 0.33);
+		secondThird = min + ((max - min) * 0.66);
+		
+	
+		for(var i = 0; i < selection.length; i++){
+		
+			var pointA = new L.LatLng(selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]);
+			var pointB = new L.LatLng(selection[i+1].geometry.coordinates[1],selection[i+1].geometry.coordinates[0]);
+			var pointList = [pointA, pointB];
+		
+		
+			if(selection[i].properties.phenomenons.Consumption.value < firstThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.Consumption.value < secondThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+				
+			}else{
+				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+			}
+		}
+	}
 }
