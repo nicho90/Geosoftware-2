@@ -296,7 +296,7 @@ function drawMeasurements() {
 			found = false;
 			for(var i = 0; i < selection.length; i++){
 				if(selection[i].properties.id == properties.id){
-					marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: yellowDot});
+					marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
 					found = true;
 					break;
 				}
@@ -1415,7 +1415,7 @@ function idwInterpolation(){
 		}
 		
 		// Add interpolations to map
-		marker = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: blueDot});
+		marker = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: yellowDot});
 		
 		var container = $('<div/>');
 		
