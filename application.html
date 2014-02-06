@@ -102,8 +102,7 @@
             <!-- Hinweis auf das Portal -->
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
             <div id=filter>
-                    <div id=filter_1>Filteroptionen</div>
-                    <div id=filter_2>
+                   <div id=filter_2>
                         <form id=filterFormular name="filterFormular">
                         <table>
                             <tr>
@@ -153,6 +152,7 @@
                         </table>
                         </form>
                     </div>
+                    <div id=filter_1>Filteroptionen</div>
             </div>
         </header>
         <div id=clear></div>
@@ -171,13 +171,13 @@
                 
         
         <!-- rechte Sidebar -->
-        <div id="sidebar">
+        <div id=sidebar>
             
             <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
-            <div id=chooser class=sidebarElement>
+            <div id=selection class=sidebarElement>
                 <h2>Selektierwerkzeuge</h2>        
-                <div class=center>
-                    <ul class=chooserTools>
+                <div id=chooser>
+                    <ul>
                         <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
                             <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
                         </li>
@@ -197,8 +197,8 @@
                     </div>
                     <div class="selectTrackContent">
                         <p>
-                            <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton><br>
-                            &nbsp;&nbsp;<input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton onClick="chooseTrackSelection()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' class=link onClick="resetTrackSelection()">Zurücksetzen</a>
+                            <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
+                            &nbsp;&nbsp;<input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton onClick="chooseTrackSelection()">
                         </p>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                     <a href="#" onclick="toggle_visibility('selectedPoints');" class=chooserLink>Selektierte Punkte</a>
                 </div>
                 <br>
-                <!-- Liste der selektierten Punkte (standardmäßig ausgeblendet) -->
+                <!-- Liste der selektierten Punkte (standardmäßig eingeblendet) -->
                 <div id=selectedPoints class=chooserElement>
                     <br>
                         <ul class=deleteOptions>
@@ -228,89 +228,70 @@
                             <li>
                                 <a href="#" class="link" onClick="clearSelection()">Löschen</a>
                             </li>
+                            <li>
+                                <a href="#" class="link" onClick="">Alle Messwerte</a>
+                            </li>
                         </ul>
-                        <div id="selectionTable">
-                        </div>
+                        <!-- Liste erscheint mit erstem ausgewählten Punkt-->
+                        <div id="selectionTable"></div>
                 </div>
                 
             </div>
             
-            <!-- Analyseauswahl -->
+            <!-- Analysebox (standardmäßig ausgeblendet) -->
             <div id=analyse class=sidebarElement>
                 <h2>Analysefunktionen</h2>
-                <ul>
-                    <li>Berechnungen von</li>
-                    <li>
-                        <select id="analysisSelectionBox">
-                            <option onClick="refreshSpeedAnalysis()">Geschwindigkeit</option>
-                            <option onClick="refreshCO2Analysis()">CO2-Ausstoß</option>
-                            <option onClick="refreshConsumptionAnalysis()">Spritverbrauch</option>
-                            <option onClick="refreshMAFAnalysis()">MAF</option>
-							<option onClick="refreshManuAnalysis()">Fahrzeugtyp</option>
-                        </select>
-                    </li>
-                </ul>
-                <div id="textualresults" class="analyseElement">
-                    <table>
-                        <tr>
-                            <td>Mittelwert</td>
-                            <td>22.0</td>
-                            <td>km/h</td>
-                        </tr>
-                        <tr>
-                            <td>Standardabweichung</td>
-                            <td>0.5</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Minimalster Wert</td>
-                            <td>0.1</td>
-                            <td>km/h</td>
-                        </tr>
-                        <tr>
-                            <td>Maximalster Wert</td>
-                            <td>100.00</td>
-                            <td>km/h</td>
-                        </tr>
-                        <tr>
-                            <td>Häufigster Fahrzeugtyp</td>
-                            <td>BMW</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-                <hr>
-                <!-- Diagrammvorschau -->
-                <div id="diagramm" class="sidebarSubElement">
-                    <h3>Diagramme</h3>
-                    <div id="diagrammPreview" class="analyseElement">
-                        <a href="#"><img src="images/charts.png" alt="Ergebnisse als Diagramme anzeigen" class="diagrammPreview"></a>
-                    </div>
-                </div>
-                <hr>
-                <div id="interpolation" class="sidebarSubElement">
+                <div id=analyseBox class=sidebarSubElement>
                     <ul>
-                        <li>Interpolation mit</li>
+                        <li>Berechnungen von</li>
+                        <li>
+                            <select id="analysisSelectionBox">
+                                <option onClick="refreshSpeedAnalysis()">Geschwindigkeit</option>
+                                <option onClick="refreshCO2Analysis()">CO2-Ausstoß</option>
+                                <option onClick="refreshConsumptionAnalysis()">Spritverbrauch</option>
+                                <option onClick="refreshMAFAnalysis()">MAF</option>
+                                <option onClick="refreshManuAnalysis()">Fahrzeugtyp</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <div id=textualresults class=sidebarSubElement></div>
+                    <hr>
+                    <!-- Diagrammvorschau -->
+                    <div id=diagramm class=sidebarSubElement>
+                        <h3>Diagramme</h3>
+                        <div id="diagrammPreview" class="analyseElement">
+                            <a href="#"><img src="images/charts.png" alt="Ergebnisse als Diagramme anzeigen" class="diagrammPreview"></a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            
+            <!-- Interpolationsbox -->
+            <div id=interpolation class=sidebarElement>
+                <h2>Interpolation</h2>
+                <div id=interpolationBox class=sidebarSubElement>
+                    <ul>
+                        <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">                                       <a onclick="" class=info>i</a>
+                        </li>
+                        <li>
+                            Wählen Sie eine Methode aus
+                        </li>
                         <li>
                             <select id="interpolationSelectionBox">
                                 <option>Kriging</option>
                                 <option>IDW</option>
                             </select>
                         </li>
+                        <li>
+                            <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
+                        </li>
                     </ul>
-                    <div class="analyseElement">
-                        <ul>
-                            <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">               <a onclick="" class=info>i</a>
-                            </li>
-                            <li>
-                                <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
+            
             <div id=clear> </div>
         </div>
+        <div id=clear> </div>
         <!-- Ende der Sidebar-->    
         
         

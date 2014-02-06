@@ -1,9 +1,10 @@
-/*
+/***********************************************
     Allgemeine Dokumenteigenschaften
-*/
+***********************************************/
 html {
     position: relative;
     height: 100%;
+    width:100%;
 }
 
 body {
@@ -14,6 +15,7 @@ body {
     font-family:Droid Sans; /*, Helvetica, Arial;*/
     position: relative;
     height: 100%;
+    width:100%;
 }
 
 header, footer, map {
@@ -26,12 +28,12 @@ header, footer, map {
 
 
 
-/* 
+/***********************************************
     Header
 
-    auf der linken Seite befindet sich das Logo
-    auf der rechten Seite befindet sich der Filterbereich
-*/
+    - auf der linken Seite befindet sich das Logo
+    - auf der rechten Seite befindet sich der Filterbereich
+***********************************************/
 header {
     margin-top: 0px;
     margin-left: 0px;
@@ -57,12 +59,12 @@ header {
 
 
 
-/*
+/***********************************************
     Filterbereich
-*/
+***********************************************/
 #filter {
-    float: left;
-    width: 78%;
+    float: right;
+    width: auto;
 	margin-left: 1%;
     margin-right: 1%;
     margin-top:1%;
@@ -74,10 +76,10 @@ header {
 }
 
 #filter_1 {
-    float:left;
+    float:right;
     margin-left:5px;
     margin-right:5px;
-    text-align:right;
+    text-align:left;
     font-size:12pt;
     font-weight:bold;
     color:rgb(22,127,193);
@@ -90,6 +92,7 @@ header {
 
 #filter_2 {
     float:right;
+    margin-left:10px;
 }
 
 #filter_2 table {
@@ -97,18 +100,18 @@ header {
 }
 
 
-/*
+/***********************************************
     Ergänzungen zur Kalenderauswahl
-*/
+***********************************************/
 .ui-datepicker {
 	 z-index: 9999999999 !important;
 }
 
 
 
-/* 
+/***********************************************
     Inputfelder im Filterbereich
-*/
+***********************************************/
 .filterButton{
     border: 2px solid rgb(22,127,193);
     padding:5px;
@@ -125,24 +128,27 @@ header {
 
 
 
-/*
-    Links im Filterbereich
-*/
-.link{
+/***********************************************
+    Links (blau), genutzt im
+    - Filterbereich
+    - Seletierten Punkte
+    - Popups
+***********************************************/
+.link {
     color:rgb(22,127,193);
     text-decoration:none;
 }
 
-.link:hover, .link:active{
+.link:hover, .link:active {
     color:rgb(22,127,193);
     text-decoration:underline;
 }
 
 
 
-/*
+/***********************************************
     Auswahlbuttons im Filterbereich
-*/
+***********************************************/
 .selectButton {
     width:50px;
     height:50px;
@@ -160,11 +166,13 @@ header {
 }
 
 
-/* 
-    Bestätigungsbutton im Filterbereich
-    Wiederverwendung bei der Polygonselektion
-    Wiederverwendung im Interpolationsbereich
-*/
+/***********************************************
+    Bestätigungsbuttons (grün), genutzt
+    - im Filterbereich
+    - in der Trackauswahl
+    - im der Polygonselektion
+    - im Interpolationsbereich
+***********************************************/
 .submitButton {
     border: 2px solid rgb(140,188,62);
     padding:5px;
@@ -188,9 +196,9 @@ header {
 
 
 
-/* 
+/***********************************************
     Karte
-*/
+***********************************************/
 #map {
     float: left;
     width: 73%;
@@ -200,16 +208,16 @@ header {
     margin-right:1%;
     margin-bottom:1%;
     -moz-box-shadow: 0 0 5px #888;
-    -webkit-box-shadow: 0 0 5px#888;
+    -webkit-box-shadow: 0 0 5px #888;
     box-shadow: 0 0 5px #888;
     z-index: 9;
     position:relative;
 }
 
 
-/*
+/***********************************************
     Navigationselemente der Karte
-*/
+***********************************************/
 #pan {
     position: absolute;
     top: 10px;
@@ -291,9 +299,9 @@ header {
     border-top-right-radius: 4px;
     box-shadow: 0 -1px 5px rgba(0,0,0,0.65);
 }
-/* 
+/***********************************************
     Größen der Bilder
-*/
+***********************************************/
 .panLeft, .panRight{
     width:12px;
     height:12px;
@@ -317,9 +325,9 @@ header {
     margin: 3px auto 3px auto;
 }
 
-/* 
+/***********************************************
     Lokalisierungselement
-*/
+***********************************************/
 .panelementMiddle {
     background:rgb(255,255,255);
     top: 0;
@@ -364,11 +372,9 @@ header {
 }
 
 
-
-
-/*
+/***********************************************
     Leaflet-Kartenlayer
-*/
+***********************************************/
 .leaflet-map-pane {
     z-index: 2 !important;
 }
@@ -379,13 +385,12 @@ header {
 
 
 
-/* 
-    Sidebar
-
-    besteht aus 
-    Selektionswerkzeuge
-    Analyseelemente
-*/
+/***********************************************
+    Sidebar, bestehend aus 
+    - Selektion
+    - Analyse
+    - Interpolation
+***********************************************/
 #sidebar{
     width:24%;
     float:left;
@@ -403,12 +408,13 @@ header {
 
 .sidebarSubElement {
     padding-left:5px;
+    padding-right:5px;
 }
 
 
-/*
+/***********************************************
     Überschriften in der Sidebar
-*/
+***********************************************/
 h2 {
     font-size:12pt;
     color:rgb(22,127,193);
@@ -421,36 +427,30 @@ h3 {
 }
 
 
-/*
+/***********************************************
     Selektionswerkzeuge
-*/
-#chooser {
+***********************************************/
+#selection {
     width:auto;
     text-align:left;
-    position:relative;
+}
+
+#chooser {
+    text-align:center;
+    padding-right: 10%;
 }
 
 /* ul */
 .chooserTools  {
-    display:inline;
-    float:left;
     list-style:none;
     margin:0;
     padding:0;
-    position:relative;
-    left:50%;
-    text-align:center;
 }
 
 /* li's */
-#chooseSinglePoint, #chooseTrack, #choosePolygon{
-    float:left;
-    display:inline;
+#chooseSinglePoint, #chooseTrack, #choosePolygon {
+    display:inline-block;
 	list-style-type: none;
-    right:50%;
-    position:relative;
-    margin-left:5px;
-    margin-right:5px;
 }
 
 #chooseSinglePoint a, #chooseTrack a, #choosePolygon a { 
@@ -465,9 +465,9 @@ h3 {
 }
 
 
-/*
+/***********************************************
     Buttons der Selektionsmethoden
-*/
+***********************************************/
 #chooseSinglePoint a {
     display: block;
     background: transparent url(../images/bySinglePoint.png) center no-repeat;
@@ -477,7 +477,7 @@ h3 {
 #chooseSinglePoint a:hover {
     display: block;
     background: transparent url(../images/bySinglePoint.png) center no-repeat;
-    background-size: 38px 38px;
+    background-size: 35px 35px;
 }
     
 #chooseTrack a {
@@ -489,7 +489,7 @@ h3 {
 #chooseTrack a:hover {
     display: block;
     background: transparent url(../images/byTrack.png) center no-repeat;
-    background-size: 38px 38px;
+    background-size: 35px 35px;
 }
 
 #choosePolygon a {
@@ -501,9 +501,12 @@ h3 {
 #choosePolygon a:hover {
     display: block;
     background: transparent url(../images/byPolygon.png) center no-repeat;
-    background-size: 38px 38px;
+    background-size: 35px 35px;
 }
 
+/***********************************************
+    Link der Selektierten Punkte
+***********************************************/
 .center {
     text-align: center;
     position:relative;
@@ -535,9 +538,12 @@ h3 {
 }
 
 
-/*
-    Bereiche für die Trackselektierung und den Raumausschnitt zeichnen
-*/
+/***********************************************
+    Bereich
+    - für Tracksuche 
+    - Raumausschnitt zeichnen
+    (standardmäßig ausgeblendet)
+***********************************************/
 #drawingPolygon, #selectTrack {
     display:none;
     margin-top:20px;
@@ -569,6 +575,9 @@ h3 {
     z-index: 1;
 }
 
+/***********************************************
+    Reset-Button (rot) beim Polygon zeichnen
+***********************************************/
 .resetButton {
     border: 2px solid rgb(255,0,0);
     padding:5px;
@@ -588,9 +597,10 @@ h3 {
     text-decoration:underline;
 }
 
-/*
-    Bereich der selektierten Punkte
-*/
+/***********************************************
+    Bereich und Tabelle der selektierten Punkte
+    (standardmäßig eingeblendet)
+***********************************************/
 .chooserElement {
     font-size:10pt;
     color:rgb(0,0,0);
@@ -608,7 +618,7 @@ h3 {
 
 #selectedPoints {
     overflow:scroll;
-    display:none;
+    display:block;
 }
 
 .deleteOptions  {
@@ -648,35 +658,39 @@ tr.tableTitle td {
 }
 
 
-/*
+/***********************************************
     Analysebereich
-*/
-#analyse {
-    margin-top:15px;
+    (standardmäßig ausgeblendet)
+***********************************************/
+#analyse {}
+
+#analyseBox {
+    display:block;
+    font-size:9pt;
 }
 
-#analyse ul {
+#analyseBox ul {
     list-style-type: none;
     display: table;
     margin:0px;
     padding:0px;
 }
 
-#analyse li {
+#analyseBox li {
     display: table-cell;
     padding-left:3px;
     font-size:11pt;
     font-weight:bold;
 }
 
-.analyseElement {
-    font-size:9pt;
-}
 
 
-/*
-    Tabelle der allgemeinen Analysen, MEAN, STD, usw.
-*/
+/***********************************************
+    Tabelle der allgemeinen Analysen:
+    - MEAN
+    - STD
+    - usw.
+***********************************************/
 #textualresults table{
     border:0px;
     margin-left:auto; 
@@ -685,9 +699,9 @@ tr.tableTitle td {
 }
 
 
-/*
+/***********************************************
     Vorschaubild der Diagramme im Analysebereich
-*/
+***********************************************/
 #diagrammPreview {
     text-align:center;
 }
@@ -698,16 +712,38 @@ tr.tableTitle td {
     border-radius:3px;
 }
 
-/*
+
+
+/***********************************************
     Interpolationen
-*/
+    (standardmäßig ausgeblendet)
+***********************************************/
+#interpolation {}
+
+#interpolationBox {
+    display:block;
+}
+
+#interpolationBox ul {
+    list-style-type: none;
+    display: inline;
+    margin:0px;
+    padding:0px;
+}
+
+#interpolationBox li {
+    display: table-cell;
+    padding-left:3px;
+    font-size:11pt;
+    font-weight:bold;
+}
+
 .info {
     background:rgb(255,255,255);
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 4px;
     padding-bottom: 4px;
-    /*line-height: 26px;*/
     text-decoration: none;
     color: rgb(0,0,0);
     font-weight:bold;
@@ -721,7 +757,6 @@ tr.tableTitle td {
     padding-right: 10px;
     padding-top: 4px;
     padding-bottom: 4px;
-    /*line-height: 26px;*/
     text-decoration: none;
     color: rgb(0,0,0);
     font-weight:bold;
@@ -732,9 +767,9 @@ tr.tableTitle td {
 
 
 
-/* 
+/***********************************************
     Fußzeile (momentan nicht benutzt)
-*/
+***********************************************/
 footer {
     background-color:rgb(22,127,193);
     position:absolute;
@@ -775,9 +810,9 @@ footer {
 }
 
 
-/*
+/***********************************************
     Links auf der rechten Seite des Footers
-*/
+***********************************************/
 #footerShortLinks {
     height: 30px;
     padding-left:0%;
