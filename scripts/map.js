@@ -334,7 +334,12 @@ function drawMeasurements() {
 						doNotLoad = true;
 						if(singlePointSelection) {
 							mainMap.closePopup();
-							alert('Diesen Punkt von der Auswahle entfernen?');
+							var dialog = $('<p>Möchten sie diesen track von der Auswahl entfernen?</p>').dialog({
+								buttons: {
+									"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
+									"Nein":  function() {dialog.dialog('close');}
+								}
+							});	
 						}
 					});
 				
@@ -714,15 +719,33 @@ function addTrackToSelection(track){
 	visualizeSelection();
 	//Open and Close info-popup
 	//Author: Nicho and Johanna	
-		$('#infodialog').html('Punkte wurden hinzugefügt.');
-		$('#infodialog').dialog({ 
+	$('#infodialog').html('Punkte wurden hinzugefügt.');
+	$('#infodialog').dialog({ 
 		height: 100,
 		width: 300,
 		autoOpen: true,   
 		modal: true, 
-		open: function(event, ui) { 
+		open: function(event, ui) {
 			setTimeout(function(){ 
-			$('#infodialog').dialog('close'); }, 1000); } });
+			$('#infodialog').dialog('close'); }, 1000); 
+		}
+	});
+}
+
+// Delete Single Measurement
+// Description: Delete Single Measurement from Selection by ID
+// Author: René Unrau
+function deleteSingleMeasurement(measurementID){
+
+	for(var i = 0; i < selection.length; i++){
+	
+		if(selection[i].properties.id == measurementID){
+			selection.splice(i,1);
+			updateSelectionList();
+			updateCurrentAnalysis();
+			drawMeasurements();
+		}
+	}
 }
 
 // Visualize Selection
@@ -765,12 +788,19 @@ function visualizeSelection(){
 				// Insert the container into the popup
 				marker.bindPopup(container[0]);
 			
+				measurement = selection[j];
+				
 				//Do not load measurements if marker is clicked
 				marker.on('click', function(){
 					doNotLoad = true;
 					if(singlePointSelection) {
 						mainMap.closePopup();
-						alert('Diesen Punkt von der Auswahle entfernen?');
+						var dialog = $('<p>Möchten sie diesen track von der Auswahl entfernen?</p>').dialog({
+							buttons: {
+								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
+								"Nein":  function() {dialog.dialog('close');}
+							}
+						});	
 					}
 				});
 				
