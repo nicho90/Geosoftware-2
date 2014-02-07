@@ -89,15 +89,18 @@
         <script type="text/javascript" src="scripts/leaflet.draw.js"></script>
         
     
-    
     </head>
     
     
     <!-- Beginn der Seite -->
     <body>
-		<!--- Infopopups (standarmäßig ausgeblendet) -->
+		<!-- Infopopups (standarmäßig ausgeblendet) -->
 		<div id="infodialog" style="display:none;"></div>
 
+		<!-- Digramm-Popup (standardmäßig ausgeblendet) -->
+		<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto; display:none;"></div>
+		
+		
 	 <header role="banner">
             <div id=banner>
                 <a href="index.html"><img src="images/envirocar_analyser_logo_mini.png" class=logoImage alt="enviroCar-Analyser"></a>
@@ -265,7 +268,7 @@
                     <div id=diagramm class=sidebarSubElement>
                         <h3>Diagramme</h3>
                         <div id="diagrammPreview" class="analyseElement">
-                            <a href="#"><img src="images/charts.png" alt="Ergebnisse als Diagramme anzeigen" class="diagrammPreview"></a>
+                            <a href="#" onclick="diagrams()"><img src="images/charts.png" alt="Ergebnisse als Diagramme anzeigen" class="diagrammPreview"></a>
                         </div>
                     </div>
                 </div> 

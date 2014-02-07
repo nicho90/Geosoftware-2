@@ -1,0 +1,84 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+</head>
+<body>
+<div id="container" style="width:100%; height:400px;"></div>
+<script>
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Monthly Average Rainfall'
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com'
+            },
+            xAxis: {
+                categories: [
+                    'Autotypen'
+                ]
+            },
+            yAxis: {
+                min: 0,
+				max: 100,
+                title: {
+                    text: 'Häufigkeit [%]'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.1,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Autotyp 4',
+                data: [20]
+    
+            }, {
+                name: 'Autotyp 3',
+                data: [20]
+    
+            }, {
+                name: 'Autotyp 2',
+                data: [30]
+    
+            }, {
+                name: 'Autotyp 1',
+                data: [30]
+    
+            }]
+        });
+    });
+    
+var chart1; // globally available
+$(function() {
+      chart1 = new Highcharts.StockChart({
+         chart: {
+            renderTo: 'container'
+         },
+         rangeSelector: {
+            selected: 1
+         },
+         series: [{
+            name: 'USD to EUR',
+            data: usdtoeur // predefined JavaScript array
+         }]
+      });
+   });
+</script>
+</body>
+</html>

@@ -1583,3 +1583,16 @@ function visualizeInterpolation(phenomenon){
 		}
 	}
 }
+
+//Diagrammfunktion 
+//Description: Opens diagrams in a new popup
+//Authors: Nicho and Johanna
+
+function diagrams(){
+for(var i=0; i < selection.length; i++){
+alert(selection[i].properties.phenomenons);
+}
+//selection
+
+window.open('charts.html');	
+}
