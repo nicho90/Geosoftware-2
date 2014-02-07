@@ -494,8 +494,22 @@ function addSinglePoint(measurement){
 	// If selection is empty, add to selection, update-sidebar-selection-list and current-analysis
 	if(selection.length == 0){
 		selection.push(measurement);
+	
 		updateSelectionList();
-		updateCurrentAnalysis();
+		updateCurrentAnalysis();	
+
+	
+//Open and Close info-popup
+//Author: Nicho and Johanna	
+		$('#infodialog').html('Punkt wurde hinzugefügt.');
+		$('#infodialog').dialog({ 
+		height: 100,
+		width: 300,
+		autoOpen: true,   
+		modal: true, 
+		open: function(event, ui) { 
+			setTimeout(function(){ 
+			$('#infodialog').dialog('close'); }, 1000); } });
 	}else{
 		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
 		for(var i = 0; i < selection.length; i++){
@@ -509,7 +523,19 @@ function addSinglePoint(measurement){
 		selection.push(measurement);
 		updateSelectionList();
 		updateCurrentAnalysis();
-	}	
+		//Open and Close info-popup
+		//Author: Nicho and Johanna	
+		$('#infodialog').html('Punkt wurde hinzugefügt.');
+		$('#infodialog').dialog({ 
+		height: 100,
+		width: 300,
+		autoOpen: true,   
+		modal: true, 
+		open: function(event, ui) { 
+			setTimeout(function(){ 
+			$('#infodialog').dialog('close'); }, 1000); } });
+	}
+	
 }
 
 // Add Single Measurement to Selection from a Track
@@ -638,6 +664,17 @@ function addTrackToSelection(track){
 	}
 	updateSelectionList();
 	updateCurrentAnalysis();
+	//Open and Close info-popup
+	//Author: Nicho and Johanna	
+		$('#infodialog').html('Punkte wurden hinzugefügt.');
+		$('#infodialog').dialog({ 
+		height: 100,
+		width: 300,
+		autoOpen: true,   
+		modal: true, 
+		open: function(event, ui) { 
+			setTimeout(function(){ 
+			$('#infodialog').dialog('close'); }, 1000); } });
 }
 
 // Update Current Analysis
@@ -807,6 +844,17 @@ function confirmPolygon(){
 	
 	}
 	centerPolygon(polygonCorners);
+	//Open and Close info-popup
+	//Author: Nicho and Johanna	
+		$('#infodialog').html('Punkte wurden hinzugefügt.');
+		$('#infodialog').dialog({ 
+		height: 100,
+		width: 300,
+		autoOpen: true,   
+		modal: true, 
+		open: function(event, ui) { 
+			setTimeout(function(){ 
+			$('#infodialog').dialog('close'); }, 1000); } });
 	mainMap.removeLayer(polygonLayer);
 }
 
@@ -1498,6 +1546,7 @@ function centerPolygon(polygonCorners){
 	var southWest = L.latLng(xmin, ymin),  northEast = L.latLng(xmax, ymax);
 	var bounds = L.latLngBounds(southWest, northEast);
 	mainMap.fitBounds(bounds);
+	
 }
 
 // Visualize Interpolation
