@@ -500,6 +500,13 @@ function showTrack(pointID) {
 	var neLng = bounds.getNorthEast().lng;
 	var swLat = bounds.getSouthWest().lat;
 	var swLng = bounds.getSouthWest().lng;
+    
+    var dialog = $('<div class="loading_box"><img src=images/loading.gif class="loading_picture"></div>').dialog(
+	            {
+	                height: 220,
+	                width: 600,
+	                modal: true
+	            });
 	
 	//Loop all Tracks that have measurements within the current BoundingBox
 	$.getJSON("https://envirocar.org/api/stable/rest/tracks?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result){
@@ -516,17 +523,19 @@ function showTrack(pointID) {
 				
 					//If measurement matches with searched pointID
 					if(measurements.features[i].properties.id == pointID){
-						var dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + '. <br> Möchten sie diesen Track:</p>').dialog(
-						{
-							height: 220,
-							width: 600,
-							modal: true,
-							buttons: {
-								"visualisieren": function() {visualizeTrack(track.id);dialog.dialog('close');},
-								"zur Auswahl hinzufügen":  function() {addTrackToSelection(measurements);dialog.dialog('close');},
-								"Abbrechen":  function() {dialog.dialog('close');}
-							}
-						});										
+						   dialog.dialog('close');
+                                dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + '. <br> Möchten sie diesen Track:</p>').dialog(
+							{
+	 								height: 220,
+	 								width: 600,
+	 								modal: true,
+	 								buttons: {
+                                        "Visualisieren": function() {visualizeTrack(track.id);dialog.dialog('close');},
+                                        "Zur Auswahl hinzufügen":  function() {addTrackToSelection(measurements);dialog.dialog('close');},
+	 									"Abbrechen":  function() {dialog.dialog('close');}
+	 								}
+	 							});										
+									
 						return;
 					}
 				}

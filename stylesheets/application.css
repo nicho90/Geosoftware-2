@@ -855,3 +855,17 @@ footer {
     text-decoration:underline;
     font-weight:bold;
 }
+
+/*
+    loading picture
+*/
+.loading_box{
+    text-align:center;
+    margin-top:50px;
+}
+
+.loading_picture{
+    width:50px;
+    height:48px;
+}
+
