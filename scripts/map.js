@@ -292,50 +292,94 @@ function drawMeasurements() {
 				Speed.unit = "km/s";
 				phenomenons.Speed = Speed;
 			}
-		
-			found = false;
+			
+			var marker;
+			var found = false;
+			
+			//Check if Measurement is already in selection
 			for(var i = 0; i < selection.length; i++){
-				if(selection[i].properties.id == properties.id){
+			
+				// If measurement was already selected:
+				if(selection[i].properties.id == measurement.properties.id){
+				
 					marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
-					found = true;
-					break;
+			
+					var container = $('<div/>');
+
+					container.on('click', '#centerPoint', function() {
+						doNotLoad = true;
+						mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
+					});
+				
+					container.on('click', '#showTrack', function() {
+						showTrack(selection[j].properties.id);
+					});
+
+					container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+						'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
+						'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
+						'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
+						'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
+						'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + properties.phenomenons.Consumption.unit + '</td></tr>' +
+						'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
+						'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
+						'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+						'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+	
+					// Insert the container into the popup
+					marker.bindPopup(container[0]);
+			
+					//Do not load measurements if marker is clicked
+					marker.on('click', function(){
+						doNotLoad = true;
+						if(singlePointSelection) {
+							mainMap.closePopup();
+							alert('Diesen Punkt von der Auswahle entfernen?');
+						}
+					});
+				
+				found = true;
 				}
 			}
+				
+			if(!found){
+		
+				marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
 			
-			if(!found){marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});}
+				var container = $('<div/>');
+
+				container.on('click', '#centerPoint', function() {
+					doNotLoad = true;
+					mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
+				});
+				
+				container.on('click', '#showTrack', function() {
+					showTrack(properties.id);
+				});
+
+				container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+					'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
+					'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
+					'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
+					'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
+					'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
+					'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
+					'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
+					'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+
+				// Insert the container into the popup
+				marker.bindPopup(container[0]);
 			
-			var container = $('<div/>');
-
-			container.on('click', '#centerPoint', function() {
-				doNotLoad = true;
-				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
-			} );
-			container.on('click', '#showTrack', function() {
-				showTrack(properties.id);
-			} );
-
-			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
-				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
-				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
-				'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
-				'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
-				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
-				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
-				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
-				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
-
-			// Insert the container into the popup
-			marker.bindPopup(container[0]);
-			
-			//Do not load measurements if marker is clicked
-			marker.on('click', function(){
-				doNotLoad = true;
-				if(singlePointSelection) {
-					mainMap.closePopup();
-					addSinglePoint(measurement);
-				}
-			} );
+				//Do not load measurements if marker is clicked
+				marker.on('click', function(){
+					doNotLoad = true;
+					if(singlePointSelection) {
+						mainMap.closePopup();
+						addSinglePoint(measurement);
+					}
+				});
+			}
 			
 			//add all points to the array 'markers'
 			markers.push(marker);
@@ -414,7 +458,6 @@ function drawMeasurements() {
 			mainMap.addLayer(markers[i]);
 		}
     } );
-
 }
 
 // Choose Single Point-Selection in Sidebar
@@ -496,7 +539,8 @@ function addSinglePoint(measurement){
 		selection.push(measurement);
 	
 		updateSelectionList();
-		updateCurrentAnalysis();	
+		updateCurrentAnalysis();
+		visualizeSelection();
 
 	
 //Open and Close info-popup
@@ -523,6 +567,7 @@ function addSinglePoint(measurement){
 		selection.push(measurement);
 		updateSelectionList();
 		updateCurrentAnalysis();
+		visualizeSelection();
 		//Open and Close info-popup
 		//Author: Nicho and Johanna	
 		$('#infodialog').html('Punkt wurde hinzugefügt.');
@@ -591,6 +636,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		selection.push(measurement);
 		updateSelectionList();
 		updateCurrentAnalysis();
+		visualizeSelection();
 	}else{
 		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
 		for(var i = 0; i < selection.length; i++){
@@ -604,6 +650,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		selection.push(measurement);
 		updateSelectionList();
 		updateCurrentAnalysis();
+		visualizeSelection();
 	}	
 }
 
@@ -664,6 +711,7 @@ function addTrackToSelection(track){
 	}
 	updateSelectionList();
 	updateCurrentAnalysis();
+	visualizeSelection();
 	//Open and Close info-popup
 	//Author: Nicho and Johanna	
 		$('#infodialog').html('Punkte wurden hinzugefügt.');
@@ -675,6 +723,63 @@ function addTrackToSelection(track){
 		open: function(event, ui) { 
 			setTimeout(function(){ 
 			$('#infodialog').dialog('close'); }, 1000); } });
+}
+
+// Visualize Selection
+// Description: Searches for selected Measurements in BBox and change Color
+// Auhtor: René Unrau
+function visualizeSelection(){
+
+	for(var i = 0; i < markers.length; i++){
+	
+		for(var j = 0; j < selection.length; j++){
+	
+			if(markers[i].getLatLng().lat == selection[j].geometry.coordinates[1] && markers[i].getLatLng().lng == selection[j].geometry.coordinates[0]){
+			
+				mainMap.removeLayer(markers[i]);
+				
+				marker = L.marker([selection[j].geometry.coordinates[1], selection[j].geometry.coordinates[0]], {icon: blueDot});
+			
+				var container = $('<div/>');
+
+				container.on('click', '#centerPoint', function() {
+					doNotLoad = true;
+					mainMap.setView([selection[j].geometry.coordinates[1], selection[j].geometry.coordinates[0]],18);
+				} );
+				
+				container.on('click', '#showTrack', function() {
+					showTrack(selection[j].properties.id);
+				} );
+
+				container.html('<html><table><tr><td><b>Latitude</b></td><td>' + selection[j].geometry.coordinates[1] + '</td></tr>' +
+					'<tr><td><b>Longitude</b></td><td>' + selection[j].geometry.coordinates[0] + '</td></tr>' +
+					'<tr><td><b>Zeitstempel</b></td><td>'  + selection[j].properties.time + '</td></tr>' +
+					'<tr><td><b>Sensor-ID</b></td><td>' + selection[j].properties.sensor.properties.id + '</td></tr>' +
+					'<tr><td><b>Fahrzeugtyp</b></td><td>' + selection[j].properties.sensor.properties.manufacturer + ' ' + selection[j].properties.sensor.properties.model + '</td></tr>' +
+					'<tr><td><b>Spritverbrauch</b></td><td>' + selection[j].properties.phenomenons.Consumption.value + ' ' + selection[j].properties.phenomenons.Consumption.unit + '</td></tr>' +
+					'<tr><td><b>CO2-Ausstoß</b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' ' + selection[j].properties.phenomenons.CO2.unit + '</td></tr>' +
+					'<tr><td><b>MAF</b></td><td>' + selection[j].properties.phenomenons.MAF.value + ' ' + selection[j].properties.phenomenons.MAF.unit + '</td></tr>' +
+					'<tr><td><b>Geschwindigkeit</b></td><td>' + selection[j].properties.phenomenons.Speed.value + ' ' + selection[j].properties.phenomenons.Speed.unit + '</td></tr>' +
+					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+
+				// Insert the container into the popup
+				marker.bindPopup(container[0]);
+			
+				//Do not load measurements if marker is clicked
+				marker.on('click', function(){
+					doNotLoad = true;
+					if(singlePointSelection) {
+						mainMap.closePopup();
+						alert('Diesen Punkt von der Auswahle entfernen?');
+					}
+				});
+				
+				markers[i] = marker;
+				mainMap.addLayer(markers[i]);
+			
+			}
+		}
+	}
 }
 
 // Update Current Analysis
