@@ -775,6 +775,7 @@ function confirmPolygon(){
 	
 	}
 	centerPolygon(polygonCorners);
+	mainMap.removeLayer(polygonLayer);
 }
 
 //Reset the filter to update the measurements
