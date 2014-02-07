@@ -192,10 +192,10 @@
                 <div id=clear></div>
                 <!-- Werkzeuge für Trackauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "chooseTrack" gewählt wurde) -->
                 <div id=selectTrack>
-                    <div class="center">
-                        <font class="selectTrackTitle">Track finden &amp; auswählen</font>
+                    <div class=center>
+                        <font class=selectTrackTitle>Track finden &amp; auswählen</font>
                     </div>
-                    <div class="selectTrackContent">
+                    <div class=selectTrackContent>
                         <p>
                             <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
                             &nbsp;&nbsp;<input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton onClick="chooseTrackSelection()">
@@ -204,10 +204,10 @@
                 </div>
                 
                 <div id=drawingPolygon>
-                    <div class="center">
-                        <font class="drawingElementTitle">Raumausschnitt zeichnen</font>
+                    <div class=center>
+                        <font class=drawingElementTitle>Raumausschnitt zeichnen</font>
                     </div>
-                    <div class="drawingElementContent">
+                    <div class=drawingElementContent>
                         <br>
                         <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton onclick="toggle_visibility('drawingPolygon'); confirmPolygon()">
                         <input type="reset" id="resetPolygon" name="resetPolygon" value="Abbrechen" class=resetButton onclick="toggle_visibility('drawingPolygon'); deletePolygon()">
@@ -232,10 +232,12 @@
                                 <a href="#" class="link" onClick="">Alle Messwerte</a>
                             </li>
                         </ul>
+                        <br>
                         <!-- Liste erscheint mit erstem ausgewählten Punkt-->
-                        <div id="selectionTable"></div>
+                        <div id=pointTable>
+                            <br>
+                        </div>    
                 </div>
-                
             </div>
             
             <!-- Analysebox (standardmäßig ausgeblendet) -->

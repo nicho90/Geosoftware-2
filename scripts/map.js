@@ -661,6 +661,9 @@ function updateCurrentAnalysis(){
 // Update Selection-List
 // Description: Refreshes the List of the selected Measurements
 // Author: René Unrau
+
+
+/* Alter Teil:
 function updateSelectionList() {
 	var updatedList = $("<table id='selectionTable'>" + 
 		"<tr><th></th>" + 
@@ -676,7 +679,7 @@ function updateSelectionList() {
 		"<th>Geschwindigkeit</th>" + 
 		"<th>MAF</th></tr>"
 	);
-	
+
 	$.each(selection, function(i, measurement){
 		lat = selection[i].geometry.coordinates[1];
         lon = selection[i].geometry.coordinates[0];
@@ -701,9 +704,38 @@ function updateSelectionList() {
 		});
 		updatedList.append(div);
 	});
-		
+
 	updatedList.append("</table>");
 	$('#selectionTable').replaceWith(updatedList);
+}
+*/
+
+/* neuer Teil */
+function updateSelectionList() {
+	var updatedList = $("<div id=\"pointTable\">"+
+        "<table class=\"points\">" +
+        "<tr><th></th>" +
+        "<th>Punkt</th>" + 
+        "<th>Koordinaten</th></tr>"
+	);
+    
+	$.each(selection, function(i, measurement){
+		lat = selection[i].geometry.coordinates[1];
+        lon = selection[i].geometry.coordinates[0];
+        point = i + 1;
+        
+		var div = $("<tr>");
+        div.append("<td><input type='checkbox' class='chk' name='point_id' id='" + i + "'></td>");
+		div.append("<td>" + point + "</td>");
+		div.append("<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>");
+		div.append("</tr>");
+		div.find("a").click(function(){
+			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
+		});
+		updatedList.append(div);
+	});
+	updatedList.append("</table>");
+	$('#pointTable').replaceWith(updatedList);
 }
 
 // Delete measurements from selection
@@ -804,7 +836,7 @@ function startFilter() {
 // Author: René Unrau
 function refreshSpeedAnalysis(){
 
-	var result = $("<div id='textualresults' class='analyseElement'><table>");
+	var result = $("<div id=textualresults class=analyseElement><table>");
         result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
 		result.append("<tr><td><td>Minimum</td><td>" + getMin('Speed') + "</td><td>km/h</td></tr>");
@@ -819,7 +851,7 @@ function refreshSpeedAnalysis(){
 // Author: René Unrau
 function refreshCO2Analysis(){
 
-	var result = $("<div id='textualresults' class='analyseElement'><table>");
+	var result = $("<div id=textualresults class=analyseElement><table>");
         result.append("<tr><td><td>Mittelwert</td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
 		result.append("<tr><td><td>Minimum</td><td>" + getMin('CO2') + "</td><td>g/s</td></tr>");
@@ -834,7 +866,7 @@ function refreshCO2Analysis(){
 // Author: René Unrau
 function refreshConsumptionAnalysis(){
 
-	var result = $("<div id='textualresults' class='analyseElement'><table>");
+	var result = $("<div id=textualresults class='analyseElement><table>");
         result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Minimum</td><td>" + getMin('Consumption') + "</td><td>l/s</td></tr>");
@@ -849,7 +881,7 @@ function refreshConsumptionAnalysis(){
 // Author: René Unrau
 function refreshMAFAnalysis(){
 
-	var result = $("<div id='textualresults' class='analyseElement'><table>");
+	var result = $("<div id=textualresults class=analyseElement><table>");
         result.append("<tr><td><td>Mittelwert</td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>");
@@ -864,7 +896,7 @@ function refreshMAFAnalysis(){
 function refreshManuAnalysis(){
 	var mostFreqManu = getMostFreqManu();
 
-	var result = $("<div id='textualresults' class='analyseElement'><table>");
+	var result = $("<div id=textualresults class=analyseElement><table>");
 		result.append("<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table></div>");
 	
 	$('#textualresults').replaceWith(result);

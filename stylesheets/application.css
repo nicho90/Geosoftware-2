@@ -476,8 +476,9 @@ h3 {
     
 #chooseSinglePoint a:hover {
     display: block;
-    background: transparent url(../images/bySinglePoint.png) center no-repeat;
-    background-size: 35px 35px;
+    /*background: transparent url(../images/bySinglePoint.png) center no-repeat;
+    background-size: 35px 35px;*/
+    background-color:rgb(251,251,251);
 }
     
 #chooseTrack a {
@@ -488,8 +489,9 @@ h3 {
     
 #chooseTrack a:hover {
     display: block;
-    background: transparent url(../images/byTrack.png) center no-repeat;
-    background-size: 35px 35px;
+    /*background: transparent url(../images/byTrack.png) center no-repeat;
+    background-size: 35px 35px;*/
+    background-color:rgb(251,251,251);
 }
 
 #choosePolygon a {
@@ -500,8 +502,9 @@ h3 {
     
 #choosePolygon a:hover {
     display: block;
-    background: transparent url(../images/byPolygon.png) center no-repeat;
-    background-size: 35px 35px;
+    /*background: transparent url(../images/byPolygon.png) center no-repeat;
+    background-size: 35px 35px;*/
+    background-color:rgb(251,251,251);
 }
 
 /***********************************************
@@ -613,13 +616,14 @@ h3 {
     position: relative;
     top: -28px;
     z-index: 1;
-    max-height:280px;
+    
+    
 }
 
 #selectedPoints {
-    overflow:scroll;
     display:block;
 }
+
 
 .deleteOptions  {
     margin:0px;
@@ -637,25 +641,20 @@ h3 {
     list-style-type:none;
 }
 
-.chooserElement table, td, th {
-    border:0px;
-    border-collapse: collapse;
+/***********************************************
+    Punkttabelle 
+    (füllt sich, sobald Punkte selektiert werden)
+***********************************************/
+
+#pointTable {
+    margin:0;
+    padding:0;
+    overflow: scroll;
+    max-height: 220px;
+    display: block;
+    width:350px;
 }
 
-#selectedPoints table th {
-    border-bottom: 1.5px solid rgb(0,0,0);
-}
-
-tr.tableTitle td {
-    border-bottom: 1.5px solid rgb(0,0,0);
-}
-
-#selectedPoints table td, #selectedPoints table th {
-    min-width:auto;
-    white-space:nowrap;
-    padding-left:3px;
-    padding-right:3px;
-}
 
 
 /***********************************************
