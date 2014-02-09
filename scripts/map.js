@@ -30,6 +30,9 @@ var singlePointSelection = false;
 // Polyline of currently selected track
 var trackLine;
 
+// Array of Line Segments between Measurements after Interpolation
+var interpolationLines = new Array();
+
 //If true measurements are not loaded with next movement in map
 var doNotLoad = false;
 
@@ -1657,7 +1660,17 @@ function idwInterpolation(){
 		
 		mainMap.addLayer(marker);
 	}
-	visualizeInterpolation('Consumption');
+	
+	var e = document.getElementById("interpolationAttrSelectionBox");
+	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
+		visualizeInterpolation('Speed');
+	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
+		visualizeInterpolation('CO2');
+	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
+		visualizeInterpolation('Consumption');
+	}else if(e.options[e.selectedIndex].text == 'MAF'){
+		visualizeInterpolation('MAF');
+	}
 }
 
 
@@ -1695,26 +1708,33 @@ function centerPolygon(polygonCorners){
 
 // Visualize Interpolation
 // Author: René Unrau
-
+// Description Draws colored line between measurements, based on selected attributes
 function visualizeInterpolation(phenomenon){
+	
+	// Remove old InterpolationLines from Map
+	for(var i = 0; i < interpolationLines.length; i++){
+	
+		mainMap.removeLayer(interpolationLines[i]);
+	
+	}
 
-	if(phenomenon == 'Consumption'){
+	// Compute steps for coloring
+	max = getMax(phenomenon);
+	min = getMin(phenomenon);
+	firstThird = min + ((max - min) * 0.33);
+	secondThird = min + ((max - min) * 0.66);
 	
-		var interpolationLines = new Array();
+	//Start drawing lines
+	for(var i = 0; i < (selection.length-1); i++){
 	
-		max = getMax(phenomenon);
-		min = getMin(phenomenon);
-		firstThird = min + ((max - min) * 0.33);
-		secondThird = min + ((max - min) * 0.66);
-		
+		// Compute Coordinates for current section
+		var pointA = new L.LatLng(selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]);
+		var pointB = new L.LatLng(selection[i+1].geometry.coordinates[1],selection[i+1].geometry.coordinates[0]);
+		var pointList = [pointA, pointB];
 	
-		for(var i = 0; i < selection.length; i++){
-		
-			var pointA = new L.LatLng(selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]);
-			var pointB = new L.LatLng(selection[i+1].geometry.coordinates[1],selection[i+1].geometry.coordinates[0]);
-			var pointList = [pointA, pointB];
-		
-		
+		// Choose phenomenon and draw line with corresponding color
+		if(phenomenon == 'Consumption'){
+	
 			if(selection[i].properties.phenomenons.Consumption.value < firstThird){
 				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
 				
@@ -1724,6 +1744,43 @@ function visualizeInterpolation(phenomenon){
 			}else{
 				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
 			}
+		
+		}else if(phenomenon == 'Speed'){
+	
+			if(selection[i].properties.phenomenons.Speed.value < firstThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.Speed.value < secondThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+				
+			}else{
+				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+			}
+		
+		}else if(phenomenon == 'CO2'){
+	
+			if(selection[i].properties.phenomenons.CO2.value < firstThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.CO2.value < secondThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+				
+			}else{
+				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+			}
+		
+		}else if(phenomenon == 'MAF'){
+	
+			if(selection[i].properties.phenomenons.MAF.value < firstThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.MAF.value < secondThird){
+				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+				
+			}else{
+				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+			}
+		
 		}
 	}
 }
