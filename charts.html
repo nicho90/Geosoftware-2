@@ -44,9 +44,12 @@ $(function () {
                     borderWidth: 0
                 }
             },
+			
+			// Achtung! Funktioniert lokal nur mit Firefox. Mit Chrome wird hier nichts angezeigt, aber nur wenn man das Projekt lokal aufmacht.
+			// Handelt sich um ein internes Sicherheitsproblem bei Chrome, wenn man die Seite aber über den Server anspricht, funktioniert es auch in Chrome.
             series: [{
                 name: 'Autotyp 4',
-                data: [20]
+                data: [window.opener.getMean('Speed')]
     
             }, {
                 name: 'Autotyp 3',
