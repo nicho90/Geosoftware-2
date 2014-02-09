@@ -1790,10 +1790,13 @@ function visualizeInterpolation(phenomenon){
 //Authors: Nicho and Johanna
 
 function diagrams(){
+//Anmerkung von Leon: die Funktion unten schmeisst 2 Warnmeldungen und tut sonst nichts, deshalb auskommentiert.
+/*
 for(var i=0; i < selection.length; i++){
 alert(selection[i].properties.phenomenons);
 }
 //selection
+*/
 
 window.open('charts.html');	
 }
