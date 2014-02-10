@@ -1135,7 +1135,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return Math.round(sum/n*100)/ 100;
+		return Math.round(sd*100)/ 100;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
