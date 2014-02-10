@@ -72,31 +72,18 @@ function drawMap() {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	});
 	var google = new L.Google('SATELLITE');
-   
-    //add DTK10, a topographic map of NRW, coloured
-    var DTK10 = L.tileLayer.wms('http://www.wms.nrw.de/geobasis/wms_nw_dtk10', {
-     attribution: '| &copy Geobasis NRW 2013',
-	layers: 'nw_dtk10_pan,nw_dtk10_res,NW_DTK10_col,WMS_NW_DTK10',
-    format: 'image/png',
-    transparent: true,
-    opacity:0.4
-});
-    
-    //add DTK10, panchromatic
-    var DTK10_panchromatic=L.tileLayer.wms('http://www.wms.nrw.de/geobasis/wms_nw_dtk10',{
-   attribution: '| &copy Geobasis NRW 2013',
-	layers: 'NW_DTK10_pan',
-    format: 'image/png',
-    transparent: true,
-	opacity:0.4
-});
+	
+	var topo = new L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	//maxZoom: 18,
+	transparent: true,
+	attribution: 'Kartendaten: <a href="https://openstreetmap.org">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Kartendarstellung: <a href="https://opentopomap.org">OpenTopoMap</a>, &copy; <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>'
+	});
 	  
 	
 	var layer = {
 		"OSM": osm,
 		"Google": google,
-        "DTK10": DTK10,
-        "DTK10_pan": DTK10_panchromatic
+		"topo map": topo
 	};
 	  
 	var map = L.map('map', {
@@ -1787,7 +1774,7 @@ function visualizeInterpolation(phenomenon){
 
 //Diagrammfunktion 
 //Description: Opens diagrams in a new popup
-//Authors: Nicho and Johanna
+//Authors: Nicho, Leon and Johanna
 
 function diagrams(){
 //Anmerkung von Leon: die Funktion unten schmeisst 2 Warnmeldungen und tut sonst nichts, deshalb auskommentiert.
