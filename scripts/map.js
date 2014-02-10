@@ -259,7 +259,10 @@ function drawMeasurements() {
 	currentMeasurements = new Array();
 	markers = new Array();
 	
-	$.getJSON("https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,function(result) {
+	jQuery.ajax({
+		async : false,
+		url: "https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,
+		success: function(result){
 	
 		currentMeasurements = result.features;
 		
@@ -465,7 +468,7 @@ function drawMeasurements() {
 		for(var i = 0; i < markers.length; i++) {
 			mainMap.addLayer(markers[i]);
 		}
-    } );
+    }});
 }
 
 // Choose Single Point-Selection in Sidebar
@@ -1028,42 +1031,66 @@ function refreshAnalysis(){
 
 	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
 		var min = getMin('Speed');
+		var max = getMax('Speed');
 
 		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td><a class='link'>" + min.value + "</a></td><td>km/h</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('Speed') + "</td><td>km/h</td></tr></table></div>");
-		result.find("a").click(function(){
-			mainMap.setView([min.lat, min.lng],18);
-			
-		});
+		result.append("<tr><td><td>Minimum</td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>km/h</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>km/h</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
+		var min = getMin('CO2');
+		var max = getMax('CO2');
 	
 		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td>" + getMin('CO2') + "</td><td>g/s</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('CO2') + "</td><td>g/s</td></tr></table></div>");
+		result.append("<tr><td><td>Minimum</td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>g/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>g/s</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
+		var min = getMin('Consumption');
+		var max = getMax('Consumption');
 	
 		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td>" + getMin('Consumption') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('Consumption') + "</td><td>l/s</td></tr></table></div>");
+		result.append("<tr><td><td>Minimum</td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/s</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'MAF'){
+		var min = getMin('MAF');
+		var max = getMax('MAF');
 	
 		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('MAF') + "</td><td>l/s</td></tr></table></div>");
+		result.append("<tr><td><td>Minimum</td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/s</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'Fahrzeugtyp'){
 	
 		var mostFreqManu = getMostFreqManu();
 		result.append("<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
 	}
+	
+	result.on('click', '#centerMin', function(){
+		mainMap.setView([min.lat, min.lng],18);
+		for(var j = 0; j < markers.length; j++){
+			if(markers[j].getLatLng().lat == min.lat && markers[j].getLatLng().lng == min.lng){
+				doNotLoad = true;
+				markers[j].openPopup();
+				break;
+			}
+		}
+	});
+	result.on('click', '#centerMax', function(){
+		mainMap.setView([max.lat, max.lng],18);
+		for(var j = 0; j < markers.length; j++){
+			if(markers[j].getLatLng().lat == max.lat && markers[j].getLatLng().lng == max.lng){
+				doNotLoad = true;
+				markers[j].openPopup();
+				break;
+			}
+		}
+	});
 	
 	$("#textualresults").html(result);
 }
@@ -1215,13 +1242,13 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		
 		result.value = Math.round(min*100)/ 100;
-		
-		return result
+		return result;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
+	
+		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
 			//If CO2 is not undefined
@@ -1229,13 +1256,18 @@ function getMin(phenomenon){
 				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.CO2.value){
 					min = selection[i].properties.phenomenons.CO2.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];		
 				}
 			}
 		}
-		return Math.round(min*100)/ 100;
+		result.value = Math.round(min*100)/ 100;
+		return result;
 
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
+	
+		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
 			//If Consumption is not undefined
@@ -1243,13 +1275,18 @@ function getMin(phenomenon){
 				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.Consumption.value){
 					min = selection[i].properties.phenomenons.Consumption.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];		
 				}
 			}
 		}
-		return Math.round(min*100)/ 100;
+		result.value = Math.round(min*100)/ 100;
+		return result;
 
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
+	
+		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
 			//If MAF is not undefined
@@ -1257,10 +1294,13 @@ function getMin(phenomenon){
 				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.MAF.value){
 					min = selection[i].properties.phenomenons.MAF.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];		
 				}
 			}
 		}
-		return Math.round(min*100)/ 100;
+		result.value = Math.round(min*100)/ 100;
+		return result;
 	}
 }
 
@@ -1270,6 +1310,7 @@ function getMin(phenomenon){
 function getMax(phenomenon){
 
 	var max = 0;
+	var result = new Object();
 	
 	//For phenomenon "Speed"
 	if(phenomenon == 'Speed'){
@@ -1280,10 +1321,13 @@ function getMax(phenomenon){
 				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.Speed.value){
 					max = selection[i].properties.phenomenons.Speed.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];
 				}
 			}
 		}
-		return Math.round(max*100)/ 100;
+		result.value = Math.round(max*100)/ 100;
+		return result;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -1294,10 +1338,13 @@ function getMax(phenomenon){
 				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.CO2.value){
 					max = selection[i].properties.phenomenons.CO2.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];		
 				}
 			}
 		}
-		return Math.round(max*100)/ 100;
+		result.value = Math.round(max*100)/ 100;
+		return result;
 		
 	
 	//For phenomenon "Consumption"
@@ -1309,10 +1356,13 @@ function getMax(phenomenon){
 				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.Consumption.value){
 					max = selection[i].properties.phenomenons.Consumption.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];		
 				}
 			}
 		}
-		return Math.round(max*100)/ 100;
+		result.value = Math.round(max*100)/ 100;
+		return result;
 		
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -1323,10 +1373,13 @@ function getMax(phenomenon){
 				//If current Value is bigger than current max
 				if(max < selection[i].properties.phenomenons.MAF.value){
 					max = selection[i].properties.phenomenons.MAF.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];		
 				}
 			}
 		}
-		return Math.round(max*100)/ 100;
+		result.value = Math.round(max*100)/ 100;
+		return result;
 	
 	//For phenomenon "Manufacturer"
 	}else if(phenomenon == 'Manufacturer'){
