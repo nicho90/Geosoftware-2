@@ -52,19 +52,19 @@ $(function () {
 			// Handelt sich um ein internes Sicherheitsproblem bei Chrome, wenn man die Seite aber über den Server anspricht, funktioniert es auch in Chrome.
             series: [{
                 name: 'Geschwindigkeit',
-                data: [window.opener.getMean('Speed'), window.opener.getSD('Speed'), window.opener.getMin('Speed'), window.opener.getMax('Speed')]
+                data: [window.opener.getMean('Speed'), window.opener.getSD('Speed'), window.opener.getMin('Speed').value, window.opener.getMax('Speed').value]
     
             }, {
                 name: 'CO2 Ausstoß',
-                data: [window.opener.getMean('CO2'), window.opener.getSD('CO2'), window.opener.getMin('CO2'), window.opener.getMax('CO2')]
+                data: [window.opener.getMean('CO2'), window.opener.getSD('CO2'), window.opener.getMin('CO2').value, window.opener.getMax('CO2').value]
     
             }, {
                 name: 'Kraftstoffverbrauch',
-                data: [window.opener.getMean('Consumption'), window.opener.getSD('Consumption'), window.opener.getMin('Consumption'), window.opener.getMax('Consumption')]
+                data: [window.opener.getMean('Consumption'), window.opener.getSD('Consumption'), window.opener.getMin('Consumption').value, window.opener.getMax('Consumption').value]
     
             }, {
                 name: 'Mass Air Flow',
-                data: [window.opener.getMean('MAF'), window.opener.getSD('MAF'), window.opener.getMin('MAF'), window.opener.getMax('MAF')]
+                data: [window.opener.getMean('MAF'), window.opener.getSD('MAF'), window.opener.getMin('MAF').value, window.opener.getMax('MAF').value]
     
             }]
         });
