@@ -27,6 +27,11 @@ var manufacturerSelection = new Array();
 //If true user adds points to selection by clicking on them
 var singlePointSelection = false;
 
+//Buttons
+var button1 = false;
+var button2 = false;
+var button3 = false;
+
 // Polyline of currently selected track
 var trackLine;
 
@@ -477,21 +482,12 @@ function drawMeasurements() {
 function chooseSingleSelection(id) {
 	if(singlePointSelection){
 		singlePointSelection = false;
-        var li = document.getElementById(id);
-        var atag = li.getElementsByTagName('a');
-            for (var i = 0; i<atag.length; i++) {
-            atag[i].style.border="3px solid rgb(140,188,62)";
-            }
     }
     else {
 		singlePointSelection = true;
-        var li = document.getElementById(id);
-        var atag = li.getElementsByTagName('a');
-            for (var i = 0; i<atag.length; i++) {
-            atag[i].style.border="3px solid rgb(255,165,0)";
-	       } 
-    }
+    } 
 }
+
 
 
 // Show Track
@@ -673,9 +669,6 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		visualizeSelection();
 	}	
 }
-
-
-
 
 
 // Add Single Track to Selection
@@ -1832,3 +1825,74 @@ alert(selection[i].properties.phenomenons);
 
 window.open('charts.html');	
 }
+
+// Selectionsbuttons
+// Selectionsbuttons change their color from green to orange, if they are active
+// Author: Nicho
+function colorize(button) {
+    // for singlePointSelection
+    if(button == 'chooseSinglePoint'){
+        if(button1 == false) {
+            var li = document.getElementById(button);
+            var atag = li.getElementsByTagName('a');
+            for (var i = 0; i<atag.length; i++) {
+                atag[i].style.border="3px solid rgb(255,165,0)";
+            }
+            button1=true;
+        }
+        else {
+            var li = document.getElementById(button);
+            var atag = li.getElementsByTagName('a');
+            for (var i = 0; i<atag.length; i++) {
+                atag[i].style.border="3px solid rgb(140,188,62)";
+            }
+            button1=false;
+        }
+    }
+    
+    else {
+        // for trackSelection
+        if(button == 'chooseTrack'){
+            if(button2 == false) {
+                var li = document.getElementById(button);
+                var atag = li.getElementsByTagName('a');
+                for (var i = 0; i<atag.length; i++) {
+                    atag[i].style.border="3px solid rgb(255,165,0)";
+                }
+                button2=true;
+            }
+            else {
+                var li = document.getElementById(button);
+                var atag = li.getElementsByTagName('a');
+                for (var i = 0; i<atag.length; i++) {
+                    atag[i].style.border="3px solid rgb(140,188,62)";
+                }
+                button2=false;
+            }
+        } 
+        else {
+            // for polygonSelection
+            if(button == 'choosePolygon'){
+                if(button3 == false) {
+                    var li = document.getElementById(button);
+                    var atag = li.getElementsByTagName('a');
+                    for (var i = 0; i<atag.length; i++) {
+                        atag[i].style.border="3px solid rgb(255,165,0)";
+                    }
+                    button3=true;
+                }
+                else {
+                    var li = document.getElementById(button);
+                    var atag = li.getElementsByTagName('a');
+                    for (var i = 0; i<atag.length; i++) {
+                        atag[i].style.border="3px solid rgb(140,188,62)";
+                    }
+                    button3=false;
+                }
+            }
+            else {
+                alert("Error");
+            }
+        } 
+    }
+ }

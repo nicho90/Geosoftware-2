@@ -185,13 +185,13 @@
                 <div id=chooser>
                     <ul>
                         <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
-                            <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
+                            <a onclick="chooseSingleSelection('chooseSinglePoint'); colorize('chooseSinglePoint')"></a>
                         </li>
                         <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
-                            <a onclick="toggle_visibility('selectTrack')"></a>
+                            <a onclick="toggle_visibility('selectTrack'); colorize('chooseTrack')"></a>
                         </li>
                         <li id="choosePolygon"  original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
-                            <a onclick="toggle_visibility('drawingPolygon'); drawPolygon()"></a>
+                            <a onclick="toggle_visibility('drawingPolygon'); drawPolygon(); colorize('choosePolygon')"></a>
                         </li>
                     </ul>
                 </div>
