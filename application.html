@@ -220,15 +220,15 @@
                     </div>
                 </div>
                 <br>
-                <div class=center>
-                    <a href="#" onclick="toggle_visibility('selectedPoints');" class=chooserLink>Selektierte Punkte</a>
-                </div>
-                <br>
-                <!-- Liste der selektierten Punkte (standardmäßig eingeblendet) -->
-                <div id=selectedPoints class=chooserElement>
+            </div>
+            
+            <!-- Liste der selektierten Punkte (standardmäßig eingeblendet) -->
+            <div id=selectedPoints class=sidebarElement>
+                    <a href="#" onclick="toggle_visibility('selectedPointsBox');" class=link><h2>Selektierte Punkte</h2></a>
+                    <div id=selectedPointsBox class=sidebarSubElement>
                     <br>
                         <ul class=deleteOptions>
-                            <li>
+                            <li style="margin-top:-3px;">
                                 <input type="checkbox" id="checkAll" name="track_id" value="track_id"> (Alle auswählen)
                             </li>
                             <li>
@@ -238,17 +238,17 @@
                                 <a href="#" class="link" onClick="">Alle Messwerte</a>
                             </li>
                         </ul>
+                        <div id=clear></div>
                         <br>
                         <!-- Liste erscheint mit erstem ausgewählten Punkt-->
                         <div id=pointTable>
                             <br>
                         </div>    
-                </div>
+                    </div>
             </div>
-            
             <!-- Analysebox (standardmäßig ausgeblendet) -->
             <div id=analyse class=sidebarElement>
-                <h2>Analysefunktionen</h2>
+                <a href="#" onclick="toggle_visibility('analyseBox'); toggle_visibility('textualResults');" class=link><h2>Analysefunktionen</h2></a>
                 <div id=analyseBox class=sidebarSubElement>
                     <ul>
                         <li>Berechnungen von</li>
@@ -276,7 +276,7 @@
             
             <!-- Interpolationsbox -->
             <div id=interpolation class=sidebarElement>
-                <h2>Interpolation</h2>
+                <a href="#" onclick="toggle_visibility('interpolationBox');" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
                     <ul>
                         <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">                                       <a onclick="" class=info>i</a>

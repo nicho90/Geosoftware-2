@@ -137,11 +137,13 @@ header {
 .link {
     color:rgb(22,127,193);
     text-decoration:none;
+    cursor:pointer;
 }
 
 .link:hover, .link:active {
     color:rgb(22,127,193);
     text-decoration:underline;
+    cursor:pointer;
 }
 
 
@@ -476,9 +478,7 @@ h3 {
     
 #chooseSinglePoint a:hover {
     display: block;
-    /*background: transparent url(../images/bySinglePoint.png) center no-repeat;
-    background-size: 35px 35px;*/
-    background-color:rgb(251,251,251);
+    background-color:rgb(248,248,248);
 }
     
 #chooseTrack a {
@@ -489,9 +489,7 @@ h3 {
     
 #chooseTrack a:hover {
     display: block;
-    /*background: transparent url(../images/byTrack.png) center no-repeat;
-    background-size: 35px 35px;*/
-    background-color:rgb(251,251,251);
+    background-color:rgb(248,248,248);
 }
 
 #choosePolygon a {
@@ -502,42 +500,7 @@ h3 {
     
 #choosePolygon a:hover {
     display: block;
-    /*background: transparent url(../images/byPolygon.png) center no-repeat;
-    background-size: 35px 35px;*/
-    background-color:rgb(251,251,251);
-}
-
-/***********************************************
-    Link der Selektierten Punkte
-***********************************************/
-.center {
-    text-align: center;
-    position:relative;
-    z-index: 3;
-}
-
-.chooserLink {
-    font-size:11pt;
-    padding-left:10px;
-    padding-right:10px;
-    padding-top:3px;
-    padding-bottom:3px;
-    color:rgb(22,127,193);
-    text-decoration:none;
-    background-color:rgb(255,255,255);
-    z-index: 3;
-}
-
-.chooserLink:hover, .chooserLink:active{
-    font-size:11pt;
-    padding-left:10px;
-    padding-right:10px;
-    padding-top:3px;
-    padding-bottom:3px;
-    color:rgb(22,127,193);
-    text-decoration:underline;
-    background-color:rgb(255,255,255);
-    z-index: 3;
+    background-color:rgb(248,248,248);
 }
 
 
@@ -604,26 +567,10 @@ h3 {
     Bereich und Tabelle der selektierten Punkte
     (standardmäßig eingeblendet)
 ***********************************************/
-.chooserElement {
-    font-size:10pt;
-    color:rgb(0,0,0);
-    padding-left:2px;
-    padding-right:2px;
-    margin-left: 3px;
-    margin-right: 3px;
-    border: 1.5px solid rgb(22,127,193);
-    background-color:rgb(255,255,255);
-    position: relative;
-    top: -28px;
-    z-index: 1;
-    
-    
-}
-
-#selectedPoints {
+#selectedPointsBox {
     display:block;
+    font-size: 9pt;
 }
-
 
 .deleteOptions  {
     margin:0px;
@@ -651,8 +598,14 @@ h3 {
     padding:0;
     overflow: scroll;
     max-height: 220px;
-    display: block;
-    width:350px;
+}
+
+#pointTable table{
+    border:0px;
+    margin-left:auto; 
+    margin-right:auto;
+    margin-top:0;
+    margin-bottom:10px;
 }
 
 
@@ -710,6 +663,14 @@ h3 {
     border:5px solid rgb(140,188,62);
     border-radius:3px;
 }
+.diagrammPreview:hover {
+    width:140px;
+    height:100px;
+    border:5px solid rgb(140,188,62);
+    border-radius:3px;
+    background-color: rgb(248,248,248);
+}
+
 
 
 
@@ -856,9 +817,9 @@ footer {
     font-weight:bold;
 }
 
-/*
-    loading picture
-*/
+/***********************************************
+    Ladebild bei Popups 
+***********************************************/
 .loading_box{
     text-align:center;
     margin-top:50px;
