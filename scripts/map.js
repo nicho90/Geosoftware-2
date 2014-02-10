@@ -1024,43 +1024,48 @@ function startFilter() {
 function refreshAnalysis(){
 	var e = document.getElementById("analysisSelectionBox");
 	
-	var result = "<table>";
+	var result = $("<table>");
 
 	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
+		var min = getMin('Speed');
 
-		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>";
-		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>";
-		result = result + "<tr><td><td>Minimum</td><td>" + getMin('Speed') + "</td><td>km/h</td></tr>";
-		result = result + "<tr><td><td>Maximum</td><td>" + getMax('Speed') + "</td><td>km/h</td></tr></table></div>";
+		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td><a class='link'>" + min.value + "</a></td><td>km/h</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('Speed') + "</td><td>km/h</td></tr></table></div>");
+		result.find("a").click(function(){
+			mainMap.setView([min.lat, min.lng],18);
+			
+		});
 	
 	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
 	
-		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>";
-		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>";
-		result = result + "<tr><td><td>Minimum</td><td>" + getMin('CO2') + "</td><td>g/s</td></tr>";
-		result = result + "<tr><td><td>Maximum</td><td>" + getMax('CO2') + "</td><td>g/s</td></tr></table></div>";
+		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td>" + getMin('CO2') + "</td><td>g/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('CO2') + "</td><td>g/s</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
 	
-		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>";
-		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>";
-		result = result + "<tr><td><td>Minimum</td><td>" + getMin('Consumption') + "</td><td>l/s</td></tr>";
-		result = result + "<tr><td><td>Maximum</td><td>" + getMax('Consumption') + "</td><td>l/s</td></tr></table></div>";
+		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td>" + getMin('Consumption') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('Consumption') + "</td><td>l/s</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'MAF'){
 	
-		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>";
-		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>";
-		result = result + "<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>";
-		result = result + "<tr><td><td>Maximum</td><td>" + getMax('MAF') + "</td><td>l/s</td></tr></table></div>";
+		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td>" + getMax('MAF') + "</td><td>l/s</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'Fahrzeugtyp'){
 	
 		var mostFreqManu = getMostFreqManu();
-		result = result + "<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>";
+		result.append("<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
 	}
 	
-	document.getElementById("textualresults").innerHTML = result;
+	$("#textualresults").html(result);
 }
 
 
@@ -1197,16 +1202,23 @@ function getMin(phenomenon){
 	//For phenomenon "Speed"
 	if(phenomenon == 'Speed'){
 	
+		var result = new Object();
+	
 		for(var i = 0; i < selection.length; i++){
 			//If Speed is not undefined
 			if(selection[i].properties.phenomenons.Speed.value != '-'){
 				//If current Value is smaller than current min
 				if(min > selection[i].properties.phenomenons.Speed.value){
 					min = selection[i].properties.phenomenons.Speed.value;
+					result.lat = selection[i].geometry.coordinates[1];
+					result.lng = selection[i].geometry.coordinates[0];		
 				}
 			}
 		}
-		return Math.round(min*100)/ 100;
+		
+		result.value = Math.round(min*100)/ 100;
+		
+		return result
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
