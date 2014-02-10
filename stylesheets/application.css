@@ -510,6 +510,12 @@ h3 {
     - Raumausschnitt zeichnen
     (standardmäßig ausgeblendet)
 ***********************************************/
+.center {
+    text-align: center;
+    position:relative;
+    z-index: 3;
+}
+
 #drawingPolygon, #selectTrack {
     display:none;
     margin-top:20px;
