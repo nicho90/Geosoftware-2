@@ -556,7 +556,7 @@ function addSinglePoint(measurement){
 		selection.push(measurement);
 	
 		updateSelectionList();
-		updateCurrentAnalysis();
+		refreshAnalysis();
 		visualizeSelection();
 
 	
@@ -583,7 +583,7 @@ function addSinglePoint(measurement){
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
 		updateSelectionList();
-		updateCurrentAnalysis();
+		refreshAnalysis();
 		visualizeSelection();
 		//Open and Close info-popup
 		//Author: Nicho and Johanna	
@@ -595,7 +595,7 @@ function addSinglePoint(measurement){
 		modal: true, 
 		open: function(event, ui) { 
 			setTimeout(function(){ 
-			$('#infodialog').dialog('close'); }, 1000); } });
+			$('#infodialog').dialog('close'); }, 500); } });
 	}
 	
 }
@@ -652,7 +652,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
 	if(selection.length == 0){
 		selection.push(measurement);
 		updateSelectionList();
-		updateCurrentAnalysis();
+		refreshAnalysis();
 		visualizeSelection();
 	}else{
 		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
@@ -666,7 +666,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
 		updateSelectionList();
-		updateCurrentAnalysis();
+		refreshAnalysis();
 		visualizeSelection();
 	}	
 }
@@ -727,7 +727,7 @@ function addTrackToSelection(track){
 		selection.push(measurement);
 	}
 	updateSelectionList();
-	updateCurrentAnalysis();
+	refreshAnalysis();
 	visualizeSelection();
 	//Open and Close info-popup
 	//Author: Nicho and Johanna	
@@ -739,7 +739,7 @@ function addTrackToSelection(track){
 		modal: true, 
 		open: function(event, ui) {
 			setTimeout(function(){ 
-			$('#infodialog').dialog('close'); }, 1000); 
+			$('#infodialog').dialog('close'); }, 500); 
 		}
 	});
 }
@@ -754,7 +754,7 @@ function deleteSingleMeasurement(measurementID){
 		if(selection[i].properties.id == measurementID){
 			selection.splice(i,1);
 			updateSelectionList();
-			updateCurrentAnalysis();
+			refreshAnalysis();
 			drawMeasurements();
 		}
 	}
@@ -827,20 +827,7 @@ function visualizeSelection(){
 // Update Current Analysis
 // Description: Refreshes the currently selected Analysis
 // Author: René Unrau
-function updateCurrentAnalysis(){
-	var e = document.getElementById("analysisSelectionBox");
-	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
-		refreshSpeedAnalysis();
-	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
-		refreshCO2Analysis();
-	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
-		refreshConsumptionAnalysis();
-	}else if(e.options[e.selectedIndex].text == 'MAF'){
-		refreshMAFAnalysis();
-	}else if(e.options[e.selectedIndex].text == 'Fahrzeugtyp'){
-		refreshManuAnalysis();
-	}
-}
+
 
 // Update Selection-List
 // Description: Refreshes the List of the selected Measurements
@@ -911,9 +898,9 @@ function updateSelectionList() {
 		div = div + "<td>" + point + "</td>";
 		div = div + "<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>";
 		div = div + "</tr>";
-		/*div.find("a").click(function(){
-			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
-		});*/
+		//div.getElementbyTagname("a").click(function(){
+		//	mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
+		//});
 		updatedList = updatedList + div;
 	});
 	updatedList = updatedList + "</table>";
@@ -943,7 +930,7 @@ function clearSelection(){
 	}
 	
 	updateSelectionList();
-	updateCurrentAnalysis();
+	refreshAnalysis();
 	
 }
 
@@ -1000,7 +987,7 @@ function confirmPolygon(){
 		modal: true, 
 		open: function(event, ui) { 
 			setTimeout(function(){ 
-			$('#infodialog').dialog('close'); }, 1000); } });
+			$('#infodialog').dialog('close'); }, 500); } });
 	mainMap.removeLayer(polygonLayer);
 }
 
@@ -1025,76 +1012,51 @@ function startFilter() {
 }
 
 
-// Update SpeedAnalysis
-// Description: Refreshes the List of Speed-Parameters
+// Update Analysis
+// Description: Refreshes the current Analysis
 // Author: René Unrau
-function refreshSpeedAnalysis(){
-
-	var result = $("<div id=textualresults class=analyseElement><table>");
-        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
-		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td>" + getMin('Speed') + "</td><td>km/h</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('Speed') + "</td><td>km/h</td></tr></table></div>");
+function refreshAnalysis(){
+	var e = document.getElementById("analysisSelectionBox");
 	
-	$('#textualresults').replaceWith(result);
+	var result = "<div id=textualresults class=analyseElement><table>";
+
+	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
+
+		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>";
+		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>";
+		result = result + "<tr><td><td>Minimum</td><td>" + getMin('Speed') + "</td><td>km/h</td></tr>";
+		result = result + "<tr><td><td>Maximum</td><td>" + getMax('Speed') + "</td><td>km/h</td></tr></table></div>";
+	
+	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
+	
+		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>";
+		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>";
+		result = result + "<tr><td><td>Minimum</td><td>" + getMin('CO2') + "</td><td>g/s</td></tr>";
+		result = result + "<tr><td><td>Maximum</td><td>" + getMax('CO2') + "</td><td>g/s</td></tr></table></div>";
+	
+	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
+	
+		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>";
+		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>";
+		result = result + "<tr><td><td>Minimum</td><td>" + getMin('Consumption') + "</td><td>l/s</td></tr>";
+		result = result + "<tr><td><td>Maximum</td><td>" + getMax('Consumption') + "</td><td>l/s</td></tr></table></div>";
+	
+	}else if(e.options[e.selectedIndex].text == 'MAF'){
+	
+		result = result + "<tr><td><td>Mittelwert</td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>";
+		result = result + "<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>";
+		result = result + "<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>";
+		result = result + "<tr><td><td>Maximum</td><td>" + getMax('MAF') + "</td><td>l/s</td></tr></table></div>";
+	
+	}else if(e.options[e.selectedIndex].text == 'Fahrzeugtyp'){
+	
+		var mostFreqManu = getMostFreqManu();
+		result = result + "<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table></div>";
+	}
+	
+	document.getElementById("textualresults").innerHTML = result;
 }
 
-
-// Update CO2Analysis
-// Description: Refreshes the List of CO2-Parameters
-// Author: René Unrau
-function refreshCO2Analysis(){
-
-	var result = $("<div id=textualresults class=analyseElement><table>");
-        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
-		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td>" + getMin('CO2') + "</td><td>g/s</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('CO2') + "</td><td>g/s</td></tr></table></div>");
-	
-	$('#textualresults').replaceWith(result);
-}
-
-
-// Update ConsumptionAnalysis
-// Description: Refreshes the List of Consumption-Parameters
-// Author: René Unrau
-function refreshConsumptionAnalysis(){
-
-	var result = $("<div id=textualresults class='analyseElement><table>");
-        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td>" + getMin('Consumption') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('Consumption') + "</td><td>l/s</td></tr></table></div>");
-	
-	$('#textualresults').replaceWith(result);
-}
-
-
-// Update MAFAnalysis
-// Description: Refreshes the List of MAF-Parameters
-// Author: René Unrau
-function refreshMAFAnalysis(){
-
-	var result = $("<div id=textualresults class=analyseElement><table>");
-        result.append("<tr><td><td>Mittelwert</td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td>" + getMin('MAF') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td>" + getMax('MAF') + "</td><td>l/s</td></tr></table></div>");
-	
-	$('#textualresults').replaceWith(result);
-}
-
-// Update ManufacturerAnalysis
-// Description: Refreshes the List of Manufacturer-Parameters
-// Author: René Unrau
-function refreshManuAnalysis(){
-	var mostFreqManu = getMostFreqManu();
-
-	var result = $("<div id=textualresults class=analyseElement><table>");
-		result.append("<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table></div>");
-	
-	$('#textualresults').replaceWith(result);
-}
 
 // Get Mean Value
 // Description: Returns mean for a given phenomenon
@@ -1115,7 +1077,7 @@ function getMean(phenomenon){
 				sum = sum + selection[i].properties.phenomenons.Speed.value;
 			}
 		}
-		return sum/n;
+		return Math.round(sum/n*100)/ 100;
 		
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -1126,7 +1088,7 @@ function getMean(phenomenon){
 				n++;
 			}
 		}
-		return sum/n;
+		return Math.round(sum/n*100)/ 100;
 	
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
@@ -1137,7 +1099,7 @@ function getMean(phenomenon){
 				n++;
 			}
 		}
-		return sum/n;
+		return Math.round(sum/n*100)/ 100;
 	
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -1148,7 +1110,7 @@ function getMean(phenomenon){
 				n++;
 			}
 		}
-		return sum/n;
+		return Math.round(sum/n*100)/ 100;
 	}
 }
 
@@ -1173,7 +1135,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return Math.round(sd*100)/ 100;
+		return Math.round(sum/n*100)/ 100;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -1238,7 +1200,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		return min;
+		return Math.round(min*100)/ 100;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -1252,7 +1214,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		return min;
+		return Math.round(min*100)/ 100;
 
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
@@ -1266,7 +1228,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		return min;
+		return Math.round(min*100)/ 100;
 
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -1280,7 +1242,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		return min;
+		return Math.round(min*100)/ 100;
 	}
 }
 
@@ -1303,7 +1265,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		return max;
+		return Math.round(max*100)/ 100;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -1317,7 +1279,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		return max;
+		return Math.round(max*100)/ 100;
 		
 	
 	//For phenomenon "Consumption"
@@ -1332,7 +1294,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		return max;
+		return Math.round(max*100)/ 100;
 		
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -1346,7 +1308,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		return max;
+		return Math.round(max*100)/ 100;
 	
 	//For phenomenon "Manufacturer"
 	}else if(phenomenon == 'Manufacturer'){
