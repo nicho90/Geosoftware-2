@@ -883,29 +883,35 @@ function updateSelectionList() {
 
 /* neuer Teil */
 function updateSelectionList() {
-	var updatedList = "<table class=\"points\">" +
+	var updatedList = $("<table class=\"points\">" +
         "<tr><th></th>" +
         "<th>Punkt</th>" + 
-        "<th>Koordinaten</th></tr>";
+        "<th>Koordinaten</th></tr>");
     
 	$.each(selection, function(i, measurement){
 		lat = selection[i].geometry.coordinates[1];
         lon = selection[i].geometry.coordinates[0];
         point = i + 1;
         
-		var div = "<tr>";
-        div = div + "<td><input type='checkbox' class='chk' name='point_id' id='" + i + "'></td>";
-		div = div + "<td>" + point + "</td>";
-		div = div + "<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>";
-		div = div + "</tr>";
-		//div.getElementbyTagname("a").click(function(){
-		//	mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
-		//});
-		updatedList = updatedList + div;
+		var div = $("<tr>");
+        div.append("<td><input type='checkbox' class='chk' name='point_id' id='" + i + "'></td>");
+		div.append("<td>" + point + "</td>");
+		div.append("<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>");
+		div.append("</tr>");
+		div.find("a").click(function(){
+			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
+			for(var j = 0; j < markers.length; j++){
+				if(markers[j].getLatLng().lat == selection[i].geometry.coordinates[1] && markers[j].getLatLng().lng == selection[i].geometry.coordinates[0]){
+					doNotLoad = true;
+					markers[j].openPopup();
+					break;
+				}
+			}
+		});
+		updatedList.append(div);
 	});
-	updatedList = updatedList + "</table>";
-	document.getElementById("pointTable").innerHTML = updatedList;
-	//$('#pointTable').replaceWith(updatedList);
+	updatedList.append("</table>");
+	$('#pointTable').html(updatedList);
 }
 
 // Delete measurements from selection
@@ -1018,7 +1024,7 @@ function startFilter() {
 function refreshAnalysis(){
 	var e = document.getElementById("analysisSelectionBox");
 	
-	var result = "<div id=textualresults class=analyseElement><table>";
+	var result = "<table>";
 
 	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
 
@@ -1051,7 +1057,7 @@ function refreshAnalysis(){
 	}else if(e.options[e.selectedIndex].text == 'Fahrzeugtyp'){
 	
 		var mostFreqManu = getMostFreqManu();
-		result = result + "<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table></div>";
+		result = result + "<tr><td><td>Häufigster Fahrzeugtyp: </td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>";
 	}
 	
 	document.getElementById("textualresults").innerHTML = result;
