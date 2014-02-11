@@ -1,36 +1,48 @@
 // Visualize the diagram for the analysis
 // authors: Nicho and Johanna
-
+function diagrams() {
+$('#diagram').html('<div id=diagramBar class=popuplinks>'+
+						'<ul>'+
+							'<li><a href="">Geschwindigkeit</a></li>'+
+							'<li><a href="">Spritverbrauch</a></li>'+
+							'<li><a href="">MAF</a></li>'+
+							'<li><a href="">Fahrzeugtypen</a></li>'+
+						'</ul>'+
+					'</div>'+
+					'<div id=container style="width: 80%; height: 80%; margin: 0 auto;"></div>');
+		$('#diagram').dialog({ 
+		autoOpen: true,   
+		modal: true,
+		width: 900,
+		height: 620});
+		
 $(function () {
         $('#container').highcharts({
             chart: {
                 type: 'column'
             },
             title: {
-                text: 'Punktdatenauswertung'
+                text: 'Monthly Average Rainfall'
             },
             subtitle: {
-                text: 'Mit ersten Werten befüllt'
+                text: 'Source: WorldClimate.com'
             },
             xAxis: {
                 categories: [
-                    'Durchschnittswerte',
-					'Standartabweichung',
-					'Minimum',
-					'Maximum'
+                    'Autotypen'
                 ]
             },
             yAxis: {
                 min: 0,
 				max: 100,
                 title: {
-                    text: 'Anzahl'
+                    text: 'Häufigkeit [%]'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -41,24 +53,21 @@ $(function () {
                     borderWidth: 0
                 }
             },
-			// Author: Leon Vogel
-			// Achtung! Funktioniert lokal nur mit Firefox. Mit Chrome wird hier nichts angezeigt, aber nur wenn man das Projekt lokal aufmacht.
-			// Handelt sich um ein internes Sicherheitsproblem bei Chrome, wenn man die Seite aber über den Server anspricht, funktioniert es auch in Chrome.
             series: [{
-                name: 'Geschwindigkeit',
-                data: [window.opener.getMean('Speed'), window.opener.getSD('Speed'), window.opener.getMin('Speed').value, window.opener.getMax('Speed').value]
+                name: 'Autotyp 4',
+                data: [20]
     
             }, {
-                name: 'CO2 Ausstoß',
-                data: [window.opener.getMean('CO2'), window.opener.getSD('CO2'), window.opener.getMin('CO2').value, window.opener.getMax('CO2').value]
+                name: 'Autotyp 3',
+                data: [20]
     
             }, {
-                name: 'Kraftstoffverbrauch',
-                data: [window.opener.getMean('Consumption'), window.opener.getSD('Consumption'), window.opener.getMin('Consumption').value, window.opener.getMax('Consumption').value]
+                name: 'Autotyp 2',
+                data: [30]
     
             }, {
-                name: 'Mass Air Flow',
-                data: [window.opener.getMean('MAF'), window.opener.getSD('MAF'), window.opener.getMin('MAF').value, window.opener.getMax('MAF').value]
+                name: 'Autotyp 1',
+                data: [30]
     
             }]
         });
@@ -79,3 +88,5 @@ $(function() {
          }]
       });
    });
+   
+   }
