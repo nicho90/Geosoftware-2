@@ -1,9 +1,9 @@
 // Visualize the diagram for the analysis
 // authors: Nicho and Johanna
 function diagrams() {
-
-var interval_0_5 = 0;
-var interval_5_10 = 0;
+    
+var interval_0_5   = 0;
+var interval_5_10  = 0;
 var interval_10_15 = 0;
 var interval_15_20 = 0;
 var interval_20_25 = 0;
@@ -23,8 +23,6 @@ var gesamt = selection.length;
 
 
 
-
-
 for(var i = 0; i < selection.length; i++){
 			// If speed is not undefined
 			if (selection[i].properties.phenomenons.Speed.value == '-'){
@@ -38,7 +36,7 @@ for(var i = 0; i < selection.length; i++){
 				}
 				// checks for the right interval
 				if(selection[i].properties.phenomenons.Speed.value >= 0 && selection[i].properties.phenomenons.Speed.value  <= 5){interval_0_5++;}
-				if(selection[i].properties.phenomenons.Speed.value > 5 && selection[i].properties.phenomenons.Speed.value  <= 10){interval_5_10++;}
+				if(selection[i].properties.phenomenons.Speed.value >  5 && selection[i].properties.phenomenons.Speed.value  <= 10){interval_5_10++;}
 				if(selection[i].properties.phenomenons.Speed.value > 10 && selection[i].properties.phenomenons.Speed.value  <= 15){interval_10_15++;}
 				if(selection[i].properties.phenomenons.Speed.value > 15 && selection[i].properties.phenomenons.Speed.value  <= 20){interval_15_20++;}
 				if(selection[i].properties.phenomenons.Speed.value > 20 && selection[i].properties.phenomenons.Speed.value  <= 25){interval_20_25++;}
@@ -57,7 +55,11 @@ for(var i = 0; i < selection.length; i++){
 			}
 }
 
-var ergebnis = new Array((interval_0_5/gesamt)*100,(interval_5_10/gesamt)*100,(interval_10_15/gesamt)*100,(interval_15_20/gesamt)*100,
+var ergebnis = new Array(
+                        (interval_0_5/gesamt)*100,
+                        (interval_5_10/gesamt)*100,
+                        (interval_10_15/gesamt)*100,
+                        (interval_15_20/gesamt)*100,
 						(interval_20_25/gesamt)*100,
 						(interval_25_30/gesamt)*100,
 						(interval_30_35/gesamt)*100,
@@ -74,21 +76,20 @@ var ergebnis = new Array((interval_0_5/gesamt)*100,(interval_5_10/gesamt)*100,(i
 					
 var maxErgebnis = Math.max(ergebnis[0],ergebnis[1],ergebnis[2],ergebnis[3],ergebnis[4],ergebnis[5],ergebnis[6],ergebnis[7],ergebnis[8],ergebnis[9],ergebnis[10],
 ergebnis[11],ergebnis[12],ergebnis[13],ergebnis[14],ergebnis[15],ergebnis[16]);
-alert(maxErgebnis);
 
 $('#diagram').html('<div id=diagramBar class=popuplinks>'+
 						'<ul>'+
-							'<li><a href="">Geschwindigkeit</a></li>'+
-							'<li><a href="">CO2-Ausstoss</a></li>'+
-							'<li><a href="">Spritverbrauch</a></li>'+
-							'<li><a href="">MAF</a></li>'+
-							'<li><a href="">Fahrzeugtypen</a></li>'+
+							'<li><a href="" class=link>Geschwindigkeit</a></li>'+
+							'<li><a href="" class=link>CO2-Aussto&szlig;</a></li>'+
+							'<li><a href="" class=link>Spritverbrauch</a></li>'+
+							'<li><a href="" class=link>MAF</a></li>'+
+							'<li><a href="" class=link>Fahrzeugtypen</a></li>'+
 						'</ul>'+
 					'</div>'+
-					'<div id=container style="width: 100%; height: 90%; margin: 0 auto;"></div>');
+					'<div id=container style="width: 100%; height: 520px; margin: 0 auto;"></div>');
 		$('#diagram').dialog({ 
-		autoOpen: true,   
-		modal: true,
+		//autoOpen: true,   
+		//modal: true,
 		width: 900,
 		height: 620});
 		
