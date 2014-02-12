@@ -284,26 +284,57 @@
                 <a href="#" onclick="toggle_visibility('interpolationBox');" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
                     <ul>
-                        <li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">                                       <a onclick="" class=info>i</a>
-                        </li>
+                        <!--<li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">                                       <a onclick="" class=info>i</a>
+                        </li>-->
                         <li>
                             Wählen Sie eine Methode aus
                         </li>
                         <li>
                             <select id="interpolationSelectionBox">
-                                <option>Kriging</option>
                                 <option>IDW</option>
+                                <option>Kriging</option>
                             </select>
                         </li>
 					</ul>
-					<br>
-					<select id="interpolationAttrSelectionBox">
-                        <option>Geschwindigkeit</option>
-                        <option>CO2-Ausstoß</option>
-                        <option>Spritverbrauch</option>
-						<option>MAF</option>
-                    </select>
-                    <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
+                    <br>
+                    <div id=krigingBox class="">
+                        <table>
+                            <tr>
+                                <td>Lag Size</td>
+                                <td><input type=text name=LagSize placeholder="Lag Size"></td>
+                            </tr>
+                            <tr>
+                                <td>Major range</td>
+                                <td><input type=text name=MajorRange, placeholder="Major range"></td>
+                            </tr>
+                            <tr>
+                                <td>Partial Sill</td>
+                                <td><input type=text name=PartialSill placeholder="Partial sill"></td>
+                            </tr>
+                            <tr>
+                                <td>Nugget</td>
+                                <td><input type=text name=PartialSill placeholder="Nugget"></td>
+                            </tr>
+                        </table>
+                        <hr>
+                    </div>
+                    <ul>
+                        <li>
+                            Wählen Sie ein Attribut aus
+                        </li>
+                        <li>
+                            <select id="interpolationAttrSelectionBox">
+                                <option>Geschwindigkeit</option>
+                                <option>CO2-Ausstoß</option>
+                                <option>Spritverbrauch</option>
+                                <option>MAF</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
+                        </li>
+					</ul>
+                    <br>
                 </div>
             </div>
             
