@@ -1068,10 +1068,10 @@ function refreshAnalysis(){
 		var min = getMin('Consumption');
 		var max = getMax('Consumption');
 	
-		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Minimum</td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/s</td></tr>");
-		result.append("<tr><td><td>Maximum</td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/s</td></tr></table></div>");
+		result.append("<tr><td><td>Mittelwert</td><td>" + getMean('Consumption') + "</td><td>l/h</td></tr>");
+		result.append("<tr><td><td>Standardabweichung</td><td>" + getSD('Consumption') + "</td><td>l/h</td></tr>");
+		result.append("<tr><td><td>Minimum</td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/h</td></tr>");
+		result.append("<tr><td><td>Maximum</td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/h</td></tr></table></div>");
 	
 	}else if(e.options[e.selectedIndex].text == 'MAF'){
 		var min = getMin('MAF');
