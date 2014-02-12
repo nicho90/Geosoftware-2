@@ -308,10 +308,11 @@ function drawMeasurements() {
 			var found = false;
 			
 			//Check if Measurement is already in selection
-			for(var i = 0; i < selection.length; i++){
+			for(var j = 0; j < selection.length; j++){
 			
 				// If measurement was already selected:
-				if(selection[i].properties.id == measurement.properties.id){
+				if(selection[j].properties.id == measurement.properties.id){
+					var propertiesID = selection[j].properties.id;
 				
 					marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
 			
@@ -323,7 +324,7 @@ function drawMeasurements() {
 					});
 				
 					container.on('click', '#showTrack', function() {
-						showTrack(selection[j].properties.id);
+						showTrack(propertiesID);
 					});
 
 					container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
