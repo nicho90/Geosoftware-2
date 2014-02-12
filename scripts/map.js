@@ -345,7 +345,7 @@ function drawMeasurements() {
 						doNotLoad = true;
 						if(singlePointSelection) {
 							mainMap.closePopup();
-							var dialog = $('<p>Möchten sie diesen track von der Auswahl entfernen?</p>').dialog({
+							var dialog = $('<p>Möchten sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
 								buttons: {
 									"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
 									"Nein":  function() {dialog.dialog('close');}
@@ -575,7 +575,19 @@ function addSinglePoint(measurement){
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
 			if(measurement.properties.id == selection[i].properties.id){
-				alert('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+                $('#infodialog').dialog({ 
+                    height: 100,
+                    width: 300,
+                    autoOpen: true,   
+                    modal: true, 
+                    open: function(event, ui) { 
+                        setTimeout(function(){ 
+                            $('#infodialog').dialog('close'); 
+                        }, 1000); 
+                    } 
+                });
+                
 				return;
 			}
 		}
@@ -658,7 +670,19 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
 			if(measurement.properties.id == selection[i].properties.id){
-				alert('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+                $('#infodialog').dialog({ 
+                    height: 100,
+                    width: 300,
+                    autoOpen: true,   
+                    modal: true, 
+                    open: function(event, ui) { 
+                        setTimeout(function(){ 
+                            $('#infodialog').dialog('close'); 
+                        }, 1000); 
+                    } 
+                });
+                
 				return;
 			}
 		}
@@ -803,7 +827,7 @@ function visualizeSelection(){
 					doNotLoad = true;
 					if(singlePointSelection) {
 						mainMap.closePopup();
-						var dialog = $('<p>Möchten sie diesen track von der Auswahl entfernen?</p>').dialog({
+						var dialog = $('<p>Möchten sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
 							buttons: {
 								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
 								"Nein":  function() {dialog.dialog('close');}
