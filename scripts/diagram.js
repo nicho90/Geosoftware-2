@@ -2,27 +2,27 @@
 // authors: Nicho and Johanna
 
 /***********************************************
-1. Diagrammloader
+    1. Diagram-loader
 ***********************************************/
 function diagrams() {
+    
+    $('#diagram').html('<div id=diagramBar class=popuplinks>'+
+                            '<ul>'+
+                            '<li><a href="#diagram" onclick="diagramSpeed()" class=link>Geschwindigkeit</a></li>'+
+                            '<li><a href="#diagram" onclick="diagramCO2()" class=link>CO2-Aussto&szlig;</a></li>'+
+                            '<li><a href="#diagram" onclick="diagramConsumption()" class=link>Spritverbrauch</a></li>'+
+                            '<li><a href="#diagram" onclick="diagramMAF()" class=link>MAF</a></li>'+
+                            '<li><a href="#diagram" onclick="diagramCarType()" class=link>Fahrzeugtypen</a></li>'+
+                            '</ul>'+
+                        '</div>'+
+                        '<div id=container style="width: 100%; height: 520px; margin: 0 auto;"></div>');
+    $('#diagram').dialog({
+    //autoOpen: true,
+    //modal: true,
+    width: 900,
+    height: 620});
 
-$('#diagram').html('<div id=diagramBar class=popuplinks>'+
-'<ul>'+
-'<li><a href="#diagram" onclick="diagramSpeed()" class=link>Geschwindigkeit</a></li>'+
-'<li><a href="#diagram" onclick="diagramCO2()" class=link>CO2-Aussto&szlig;</a></li>'+
-'<li><a href="#diagram" onclick="diagramConsumption()" class=link>Spritverbrauch</a></li>'+
-'<li><a href="#diagram" onclick="diagramMAF()" class=link>MAF</a></li>'+
-'<li><a href="#diagram" onclick="diagramCarType()" class=link>Fahrzeugtypen</a></li>'+
-'</ul>'+
-'</div>'+
-'<div id=container style="width: 100%; height: 520px; margin: 0 auto;"></div>');
-$('#diagram').dialog({
-//autoOpen: true,
-//modal: true,
-width: 900,
-height: 620});
-
-diagramSpeed();
+    diagramSpeed();
 
 }
 
@@ -30,7 +30,7 @@ diagramSpeed();
 
 
 /***********************************************
-1. Diagramm for speed
+    2. Diagram for speed
 ***********************************************/
 function diagramSpeed() {
 
@@ -75,7 +75,7 @@ var interval_gr_160 = 0;
 
 
 /***********************************************
-1.1 Diagramm for low speed values
+    2.1 Diagram for low speed values
 ***********************************************/
 
 var gesamt = selection.length;
@@ -149,7 +149,7 @@ var maxResult_low_speed = Math.max( result_low_speed[0],
 									result_low_speed[15],
 									result_low_speed[16]);
 
-if(((interval_gr_80/gesamt)*100) <= 10) {
+if( ((interval_gr_80/gesamt)*100) <= 10) {
 
 $(function () {
         $('#container').highcharts({
@@ -185,7 +185,7 @@ $(function () {
             },
             yAxis: {
                 min: 0,
-max: maxResult_low_speed,
+                max: maxResult_low_speed,
                 title: {
                     text: 'Haeufigkeit [%]'
                 }
@@ -231,7 +231,7 @@ max: maxResult_low_speed,
 }
 
 /***********************************************
-1.2 Diagramm for high speed values
+    2.2 Diagram for high speed values
 ***********************************************/
 else {
 
@@ -339,7 +339,7 @@ $(function () {
             },
             yAxis: {
                 min: 0,
-max: maxResult_high_speed,
+                max: maxResult_high_speed,
                 title: {
                     text: 'Haeufigkeit [%]'
                 }
@@ -386,8 +386,164 @@ max: maxResult_high_speed,
 
 }
 /***********************************************
-	3. Diagramm for consumption  
-**********************************************/
+	3. Diagram for CO2  
+***********************************************/
+function diagramCO2() {
+
+var co_interval_0_5   = 0;
+var co_interval_5_10  = 0;
+var co_interval_10_15 = 0;
+var co_interval_15_20 = 0;
+var co_interval_20_25 = 0;
+var co_interval_25_30 = 0;
+var co_interval_30_35 = 0;
+var co_interval_35_40 = 0;
+var co_interval_40_45 = 0;
+var co_interval_45_50 = 0;
+var co_interval_50_55 = 0;
+var co_interval_55_60 = 0;
+var co_interval_gr_60 = 0;
+
+var co_gesamt = selection.length;
+
+for(var i = 0; i < selection.length; i++){
+			// If Consumption is not undefined
+			if (selection[i].properties.phenomenons.CO2.value == '-'){
+				co_gesamt = co_gesamt-1;
+			}
+			// If Consumption is defined
+			else {
+				// check if value is a positive value; values smaller 0 will be ignored
+				if( selection[i].properties.phenomenons.CO2.value < 0){
+					co_gesamt = co_gesamt-1;
+				}
+				// checks for the right interval
+				if(selection[i].properties.phenomenons.CO2.value >= 0 && selection[i].properties.phenomenons.CO2.value  <= 5){co_interval_0_5++;}
+				if(selection[i].properties.phenomenons.CO2.value >  5 && selection[i].properties.phenomenons.CO2.value  <= 10){co_interval_5_10++;}
+				if(selection[i].properties.phenomenons.CO2.value > 10 && selection[i].properties.phenomenons.CO2.value  <= 15){co_interval_10_15++;}
+				if(selection[i].properties.phenomenons.CO2.value > 15 && selection[i].properties.phenomenons.CO2.value  <= 20){co_interval_15_20++;}
+				if(selection[i].properties.phenomenons.CO2.value > 20 && selection[i].properties.phenomenons.CO2.value  <= 25){co_interval_20_25++;}
+				if(selection[i].properties.phenomenons.CO2.value > 25 && selection[i].properties.phenomenons.CO2.value  <= 30){co_interval_25_30++;}
+				if(selection[i].properties.phenomenons.CO2.value > 30 && selection[i].properties.phenomenons.CO2.value  <= 35){co_interval_30_35++;}
+				if(selection[i].properties.phenomenons.CO2.value > 35 && selection[i].properties.phenomenons.CO2.value  <= 40){co_interval_35_40++;}
+				if(selection[i].properties.phenomenons.CO2.value > 40 && selection[i].properties.phenomenons.CO2.value  <= 45){co_interval_40_45++;}
+				if(selection[i].properties.phenomenons.CO2.value > 45 && selection[i].properties.phenomenons.CO2.value  <= 50){co_interval_45_50++;}
+				if(selection[i].properties.phenomenons.CO2.value > 50 && selection[i].properties.phenomenons.CO2.value  <= 55){co_interval_50_55++;}
+				if(selection[i].properties.phenomenons.CO2.value > 55 && selection[i].properties.phenomenons.CO2.value  <= 60){co_interval_55_60++;}
+				if(selection[i].properties.phenomenons.CO2.value > 60){co_interval_gr_60++;}
+			}
+}
+if(co_gesamt > 0){
+var result_consumption = new Array(
+                        (co_interval_0_5/co_gesamt)*100,
+                        (co_interval_5_10/co_gesamt)*100,
+                        (co_interval_10_15/co_gesamt)*100,
+                        (co_interval_15_20/co_gesamt)*100,
+						(co_interval_20_25/co_gesamt)*100,
+						(co_interval_25_30/co_gesamt)*100,
+						(co_interval_30_35/co_gesamt)*100,
+						(co_interval_35_40/co_gesamt)*100,
+						(co_interval_40_45/co_gesamt)*100,
+						(co_interval_45_50/co_gesamt)*100,
+						(co_interval_50_55/co_gesamt)*100,
+						(co_interval_55_60/co_gesamt)*100,
+						(co_interval_gr_60/co_gesamt)*100);
+					
+var maxResult_co2 = Math.max(result_consumption[0],
+                             result_consumption[1],
+                             result_consumption[2],
+                             result_consumption[3],
+                             result_consumption[4],
+                             result_consumption[5],
+                             result_consumption[6],
+                             result_consumption[7],
+                             result_consumption[8],
+                             result_consumption[9],
+                             result_consumption[10],
+                             result_consumption[11],
+                             result_consumption[12]);
+
+	
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'CO2-Ausstoß'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    '0-5',
+					'5-10',
+					'10-15',
+					'15-20',
+					'20-25',
+					'25-30',
+					'30-35',
+					'35-40',
+					'40-45',
+					'45-50',
+					'50-55',
+					'55-60',
+					'>60'
+                ]
+            },
+            yAxis: {
+                min: 0,
+				max: maxResult_co2,
+                title: {
+                    text: 'Haeufigkeit [%]'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.1,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'CO2-Ausstoß [g/s]',
+                data: [ (co_interval_0_5/co_gesamt)*100,
+						(co_interval_5_10/co_gesamt)*100,
+						(co_interval_10_15/co_gesamt)*100,
+						(co_interval_15_20/co_gesamt)*100,
+						(co_interval_20_25/co_gesamt)*100,
+						(co_interval_25_30/co_gesamt)*100,
+						(co_interval_30_35/co_gesamt)*100,
+						(co_interval_35_40/co_gesamt)*100,
+						(co_interval_40_45/co_gesamt)*100,
+						(co_interval_45_50/co_gesamt)*100,
+						(co_interval_50_55/co_gesamt)*100,
+						(co_interval_55_60/co_gesamt)*100,
+						(co_interval_gr_60/co_gesamt)*100
+					],
+				color: '#B22222'
+            }]
+        });
+    });
+}
+else {
+	//document.getElementById('#container').innerHTML
+	alert("Diagramm konnte nicht erstellt werden, da keine Werte vorlagen.");
+}
+}
+
+/***********************************************
+	4. Diagram for Consumption 
+***********************************************/
+
 function diagramConsumption() {
 
 var c_interval_0_5   = 0;
@@ -405,7 +561,6 @@ var c_interval_55_60 = 0;
 var c_interval_gr_60 = 0;
 
 var c_gesamt = selection.length;
-
 for(var i = 0; i < selection.length; i++){
 			// If Consumption is not undefined
 			if (selection[i].properties.phenomenons.Consumption.value == '-'){
@@ -449,9 +604,19 @@ var result_consumption = new Array(
 						(c_interval_55_60/c_gesamt)*100,
 						(c_interval_gr_60/c_gesamt)*100);
 					
-var maxResult_consumption = Math.max(result_consumption[0],result_consumption[1],result_consumption[2],result_consumption[3],result_consumption[4],
-result_consumption[5],result_consumption[6],result_consumption[7],result_consumption[8],result_consumption[9],result_consumption[10],
-result_consumption[11],result_consumption[12]);
+var maxResult_consumption = Math.max(result_consumption[0],
+                                     result_consumption[1],
+                                     result_consumption[2],
+                                     result_consumption[3],
+                                     result_consumption[4],
+                                     result_consumption[5],
+                                     result_consumption[6],
+                                     result_consumption[7],
+                                     result_consumption[8],
+                                     result_consumption[9],
+                                     result_consumption[10],
+                                     result_consumption[11],
+                                     result_consumption[12]);
 
 	
 $(function () {
