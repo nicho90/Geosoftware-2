@@ -694,3 +694,189 @@ else {
 	alert("Diagramm konnte nicht erstellt werden, da keine Werte vorlagen.");
 }
 }
+
+
+/***********************************************
+	5. Diagram for MAF 
+***********************************************/
+
+function diagramMAF() {
+
+var m_interval_0_5   = 0;
+var m_interval_5_10  = 0;
+var m_interval_10_15 = 0;
+var m_interval_15_20 = 0;
+var m_interval_20_25 = 0;
+var m_interval_25_30 = 0;
+var m_interval_30_35 = 0;
+var m_interval_35_40 = 0;
+var m_interval_40_45 = 0;
+var m_interval_45_50 = 0;
+var m_interval_50_55 = 0;
+var m_interval_55_60 = 0;
+var m_interval_60_65 = 0;
+var m_interval_65_70 = 0;
+var m_interval_70_75 = 0;
+var m_interval_75_80 = 0;
+var m_interval_gr_80 = 0;
+
+var m_gesamt = selection.length;
+for(var i = 0; i < selection.length; i++){
+			// If MAF is not undefined
+			if (selection[i].properties.phenomenons.MAF.value == '-'){
+				m_gesamt = m_gesamt-1;
+			}
+			// If MAF is defined
+			else {
+				// check if value is a positive value; values smaller 0 will be ignored
+				if( selection[i].properties.phenomenons.MAF.value < 0){
+					m_gesamt = m_gesamt-1;
+				}
+				// checks for the right interval
+				if(selection[i].properties.phenomenons.MAF.value >= 0 && selection[i].properties.phenomenons.MAF.value  <= 5){m_interval_0_5++;}
+				if(selection[i].properties.phenomenons.MAF.value >  5 && selection[i].properties.phenomenons.MAF.value  <= 10){m_interval_5_10++;}
+				if(selection[i].properties.phenomenons.MAF.value > 10 && selection[i].properties.phenomenons.MAF.value  <= 15){m_interval_10_15++;}
+				if(selection[i].properties.phenomenons.MAF.value > 15 && selection[i].properties.phenomenons.MAF.value  <= 20){m_interval_15_20++;}
+				if(selection[i].properties.phenomenons.MAF.value > 20 && selection[i].properties.phenomenons.MAF.value  <= 25){m_interval_20_25++;}
+				if(selection[i].properties.phenomenons.MAF.value > 25 && selection[i].properties.phenomenons.MAF.value  <= 30){m_interval_25_30++;}
+				if(selection[i].properties.phenomenons.MAF.value > 30 && selection[i].properties.phenomenons.MAF.value  <= 35){m_interval_30_35++;}
+				if(selection[i].properties.phenomenons.MAF.value > 35 && selection[i].properties.phenomenons.MAF.value  <= 40){m_interval_35_40++;}
+				if(selection[i].properties.phenomenons.MAF.value > 40 && selection[i].properties.phenomenons.MAF.value  <= 45){m_interval_40_45++;}
+				if(selection[i].properties.phenomenons.MAF.value > 45 && selection[i].properties.phenomenons.MAF.value  <= 50){m_interval_45_50++;}
+				if(selection[i].properties.phenomenons.MAF.value > 50 && selection[i].properties.phenomenons.MAF.value  <= 55){m_interval_50_55++;}
+				if(selection[i].properties.phenomenons.MAF.value > 55 && selection[i].properties.phenomenons.MAF.value  <= 60){m_interval_55_60++;}
+				if(selection[i].properties.phenomenons.MAF.value > 60 && selection[i].properties.phenomenons.MAF.value  <= 65){m_interval_60_65++;}
+				if(selection[i].properties.phenomenons.MAF.value > 65 && selection[i].properties.phenomenons.MAF.value  <= 70){m_interval_65_70++;}
+				if(selection[i].properties.phenomenons.MAF.value > 70 && selection[i].properties.phenomenons.MAF.value  <= 75){m_interval_70_75++;}
+				if(selection[i].properties.phenomenons.MAF.value > 75 && selection[i].properties.phenomenons.MAF.value  <= 80){m_interval_75_80++;}
+				if(selection[i].properties.phenomenons.MAF.value > 80){m_interval_gr_80++;}
+			}
+}
+if(m_gesamt > 0){
+var result_MAF = new Array(
+                        (m_interval_0_5/m_gesamt)*100,
+                        (m_interval_5_10/m_gesamt)*100,
+                        (m_interval_10_15/m_gesamt)*100,
+                        (m_interval_15_20/m_gesamt)*100,
+						(m_interval_20_25/m_gesamt)*100,
+						(m_interval_25_30/m_gesamt)*100,
+						(m_interval_30_35/m_gesamt)*100,
+						(m_interval_35_40/m_gesamt)*100,
+						(m_interval_40_45/m_gesamt)*100,
+						(m_interval_45_50/m_gesamt)*100,
+						(m_interval_50_55/m_gesamt)*100,
+						(m_interval_55_60/m_gesamt)*100,
+						(m_interval_60_65/m_gesamt)*100,
+						(m_interval_65_70/m_gesamt)*100,
+						(m_interval_70_75/m_gesamt)*100,
+						(m_interval_75_80/m_gesamt)*100,
+						(m_interval_gr_80/m_gesamt)*100
+						);
+					
+var maxResult_MAF = Math.max(result_MAF[0],
+                                     result_MAF[1],
+                                     result_MAF[2],
+                                     result_MAF[3],
+                                     result_MAF[4],
+                                     result_MAF[5],
+                                     result_MAF[6],
+                                     result_MAF[7],
+                                     result_MAF[8],
+                                     result_MAF[9],
+                                     result_MAF[10],
+                                     result_MAF[11],
+                                     result_MAF[12],
+									 result_MAF[13],
+                                     result_MAF[14],
+                                     result_MAF[15],
+                                     result_MAF[16]
+									 );
+
+	
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'MAF-Werte'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    '0-5',
+					'5-10',
+					'10-15',
+					'15-20',
+					'20-25',
+					'25-30',
+					'30-35',
+					'35-40',
+					'40-45',
+					'45-50',
+					'50-55',
+					'55-60',
+					'60-65',
+					'65-70',
+					'70-75',
+					'75-80',
+					'>80'					
+                ]
+            },
+            yAxis: {
+                min: 0,
+				max: maxResult_MAF,
+                title: {
+                    text: 'Haeufigkeit [%]'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.1,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'MAF [l/s]',
+                data: [ (m_interval_0_5/m_gesamt)*100,
+						(m_interval_5_10/m_gesamt)*100,
+						(m_interval_10_15/m_gesamt)*100,
+						(m_interval_15_20/m_gesamt)*100,
+						(m_interval_20_25/m_gesamt)*100,
+						(m_interval_25_30/m_gesamt)*100,
+						(m_interval_30_35/m_gesamt)*100,
+						(m_interval_35_40/m_gesamt)*100,
+						(m_interval_40_45/m_gesamt)*100,
+						(m_interval_45_50/m_gesamt)*100,
+						(m_interval_50_55/m_gesamt)*100,
+						(m_interval_55_60/m_gesamt)*100,
+						(m_interval_60_65/m_gesamt)*100,
+						(m_interval_65_70/m_gesamt)*100,
+						(m_interval_70_75/m_gesamt)*100,
+						(m_interval_75_80/m_gesamt)*100,
+						(m_interval_gr_80/m_gesamt)*100
+					],
+				color: '#167FC1'
+            }]
+        });
+    });
+}
+else {
+	//document.getElementById('#container').innerHTML
+	alert("Diagramm konnte nicht erstellt werden, da keine Werte vorlagen.");
+}
+}
+
+/***********************************************
+	6. Diagram for Fahrzeugtypen 
+***********************************************/
