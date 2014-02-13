@@ -535,8 +535,7 @@ $(function () {
     });
 }
 else {
-	//document.getElementById('#container').innerHTML
-	alert("Diagramm konnte nicht erstellt werden, da keine Werte vorlagen.");
+	fehlermeldung();
 }
 }
 
@@ -690,8 +689,7 @@ $(function () {
     });
 }
 else {
-	//document.getElementById('#container').innerHTML
-	alert("Diagramm konnte nicht erstellt werden, da keine Werte vorlagen.");
+	fehlermeldung();
 }
 }
 
@@ -872,11 +870,42 @@ $(function () {
     });
 }
 else {
-	//document.getElementById('#container').innerHTML
-	alert("Diagramm konnte nicht erstellt werden, da keine Werte vorlagen.");
+	fehlermeldung();
 }
 }
 
 /***********************************************
 	6. Diagram for Fahrzeugtypen 
 ***********************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************
+	7. Fehlermeldung 
+***********************************************/
+function fehlermeldung(){
+	var fehlertext = document.getElementById("container");
+	fehlertext.style.fontSize = "20px";
+	fehlertext.style.color = '#B22222';
+	fehlertext.style.textAlign = "center";
+	fehlertext.innerHTML = "Diagramm konnte nicht erstellt werden, da keine Werte vorliegen.";
+}
+
