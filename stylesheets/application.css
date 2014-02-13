@@ -618,9 +618,12 @@ h3 {
 /***********************************************
     Messdatendetailtabelle
 ***********************************************/
-
 #measurementDetails {
-       
+    
+}
+
+#measurementDetails table{
+    
 }
 /***********************************************
     Analysebereich

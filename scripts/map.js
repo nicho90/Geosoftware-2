@@ -910,6 +910,7 @@ function updateSelectionList() {
 */
 
 /* neuer Teil */
+var measurementList;
 function updateSelectionList() {
         var updatedList = $("<table class=\"points\">" +
         "<tr><th></th>" +
@@ -940,6 +941,7 @@ function updateSelectionList() {
 	});
 	updatedList.append("</table>");
 	$('#pointTable').html(updatedList);
+    measurementList=updatedList;
 }
 
 // Delete measurements from selection
@@ -968,8 +970,55 @@ function clearSelection(){
 	
 }
 
+// Creates a more detailed list of selected points
 function showMeasurementDetails() {
-    alert ('Hier kommt die Detailtabelle');
+
+    var updatedList = $("<table class='measurementDetails'>" + 
+		 
+		"<th>Punkt</th>" + 
+		"<th>ID</th>" + 
+		"<th>Koordinaten</th>" + 
+		"<th>Sensor-ID</th>" + 
+		"<th>Zeitpunkt</th>" + 
+		"<th>Fahrzeugmarke</th>" + 
+		"<th>Modell</th>" + 
+		"<th>Spritverbrauch</th>" + 
+		"<th>CO2-Ausstoß</th>" + 
+		"<th>Geschwindigkeit</th>" + 
+		"<th>MAF</th></tr>"
+	);
+
+	$.each(selection, function(i, measurement){
+		lat = selection[i].geometry.coordinates[1];
+        lon = selection[i].geometry.coordinates[0];
+        point = i + 1;
+        
+		var div = $("<tr>");
+        
+		div.append("<td>" + point + "</td>");
+		div.append("<td>" + measurement.properties.id + "</td>");
+		div.append("<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>");
+		div.append("<td>" + measurement.properties.sensor.properties.id + "</td>");
+		div.append("<td>" + measurement.properties.time + "</td>");
+		div.append("<td>" + measurement.properties.sensor.properties.manufacturer + "</td>");
+		div.append("<td>" + measurement.properties.sensor.properties.model + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.Consumption.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.CO2.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.Speed.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.MAF.value + "</td>");
+		div.append("</tr>");
+		div.find("a").click(function(){
+			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
+		});
+		updatedList.append(div);
+	});
+
+    updatedList.append("</table>");
+	//$('#selectionTable').replaceWith(updatedList);
+    var dialog=$(updatedList).dialog(
+        {
+            modal:true
+        });
 }
 
 //Draw a polygon
