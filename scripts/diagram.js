@@ -920,7 +920,7 @@ function diagramCarType() {
 		},
 		yAxis: {
             min: 0,
-			max: 10,
+			max: manufacturerSelection[getMax('Manufacturer')],
             title: {
                 text: 'Haeufigkeit'
             }
@@ -928,7 +928,7 @@ function diagramCarType() {
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                   '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                   '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
@@ -940,7 +940,7 @@ function diagramCarType() {
             }
         },
 		series: [{
-			name: 'Fahrzeughersteller',
+			name: 'Anzahl',
 			data: manufacturerFrequency,
 			color: '#167FC1'
 		}]
