@@ -345,10 +345,10 @@ function drawMeasurements() {
 						'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 						'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
 						'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
-						'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + properties.phenomenons.Consumption.unit + '</td></tr>' +
-						'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
-						'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-						'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+						'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' l/h</td></tr>' +
+						'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +
+						'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' l/s</td></tr>' +
+						'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
 						'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
 	
 					// Insert the container into the popup
@@ -392,10 +392,10 @@ function drawMeasurements() {
 					'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 					'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
 					'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
-					'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
-					'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
-					'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-					'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+					'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' l/h</td></tr>' +
+					'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +
+					'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' l/s</td></tr>' +
+					'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
 					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
 
 				// Insert the container into the popup
@@ -831,10 +831,10 @@ function visualizeSelection(){
 					'<tr><td><b>Zeitstempel</b></td><td>'  + selection[j].properties.time + '</td></tr>' +
 					'<tr><td><b>Sensor-ID</b></td><td>' + selection[j].properties.sensor.properties.id + '</td></tr>' +
 					'<tr><td><b>Fahrzeugtyp</b></td><td>' + selection[j].properties.sensor.properties.manufacturer + ' ' + selection[j].properties.sensor.properties.model + '</td></tr>' +
-					'<tr><td><b>Spritverbrauch</b></td><td>' + selection[j].properties.phenomenons.Consumption.value + ' ' + selection[j].properties.phenomenons.Consumption.unit + '</td></tr>' +
-					'<tr><td><b>CO2-Ausstoß</b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' ' + selection[j].properties.phenomenons.CO2.unit + '</td></tr>' +
-					'<tr><td><b>MAF</b></td><td>' + selection[j].properties.phenomenons.MAF.value + ' ' + selection[j].properties.phenomenons.MAF.unit + '</td></tr>' +
-					'<tr><td><b>Geschwindigkeit</b></td><td>' + selection[j].properties.phenomenons.Speed.value + ' ' + selection[j].properties.phenomenons.Speed.unit + '</td></tr>' +
+					'<tr><td><b>Spritverbrauch</b></td><td>' + selection[j].properties.phenomenons.Consumption.value + ' l/h</td></tr>' +
+					'<tr><td><b>CO2-Ausstoß</b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' g/s</td></tr>' +
+					'<tr><td><b>MAF</b></td><td>' + selection[j].properties.phenomenons.MAF.value + ' l/s</td></tr>' +
+					'<tr><td><b>Geschwindigkeit</b></td><td>' + selection[j].properties.phenomenons.Speed.value + ' km/h</td></tr>' +
 					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
 
 				// Insert the container into the popup
@@ -1314,7 +1314,8 @@ function getSD(phenomenon){
 // Author: René Unrau
 function getMin(phenomenon){
 
-	var min = 999;
+	var first = true;
+	var min;
 	
 	//For phenomenon "Speed"
 	if(phenomenon == 'Speed'){
@@ -1322,13 +1323,24 @@ function getMin(phenomenon){
 		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
-			//If Speed is not undefined
-			if(selection[i].properties.phenomenons.Speed.value != '-'){
-				//If current Value is smaller than current min
-				if(min > selection[i].properties.phenomenons.Speed.value){
+		
+			// If first value, then take as minimum
+			if(first){
+				if(selection[i].properties.phenomenons.Speed.value != '-'){
 					min = selection[i].properties.phenomenons.Speed.value;
 					result.lat = selection[i].geometry.coordinates[1];
-					result.lng = selection[i].geometry.coordinates[0];		
+					result.lng = selection[i].geometry.coordinates[0];
+					first = false;
+				}
+			}else{
+				//If Speed is not undefined
+				if(selection[i].properties.phenomenons.Speed.value != '-'){
+					//If current Value is smaller than current min
+					if(min > selection[i].properties.phenomenons.Speed.value){
+						min = selection[i].properties.phenomenons.Speed.value;
+						result.lat = selection[i].geometry.coordinates[1];
+						result.lng = selection[i].geometry.coordinates[0];		
+					}
 				}
 			}
 		}
@@ -1341,13 +1353,24 @@ function getMin(phenomenon){
 		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
-			//If CO2 is not undefined
-			if(selection[i].properties.phenomenons.CO2.value != '-'){
-				//If current Value is smaller than current min
-				if(min > selection[i].properties.phenomenons.CO2.value){
+		
+			// If first value, then take as minimum
+			if(first){
+				if(selection[i].properties.phenomenons.CO2.value != '-'){
 					min = selection[i].properties.phenomenons.CO2.value;
 					result.lat = selection[i].geometry.coordinates[1];
-					result.lng = selection[i].geometry.coordinates[0];		
+					result.lng = selection[i].geometry.coordinates[0];
+					first = false;
+				}
+			}else{
+				//If CO2 is not undefined
+				if(selection[i].properties.phenomenons.CO2.value != '-'){
+					//If current Value is smaller than current min
+					if(min > selection[i].properties.phenomenons.CO2.value){
+						min = selection[i].properties.phenomenons.CO2.value;
+						result.lat = selection[i].geometry.coordinates[1];
+						result.lng = selection[i].geometry.coordinates[0];		
+					}
 				}
 			}
 		}
@@ -1360,13 +1383,24 @@ function getMin(phenomenon){
 		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
-			//If Consumption is not undefined
-			if(selection[i].properties.phenomenons.Consumption.value != '-'){
-				//If current Value is smaller than current min
-				if(min > selection[i].properties.phenomenons.Consumption.value){
+		
+			// If first value, then take as minimum
+			if(first){
+				if(selection[i].properties.phenomenons.Consumption.value != '-'){
 					min = selection[i].properties.phenomenons.Consumption.value;
 					result.lat = selection[i].geometry.coordinates[1];
-					result.lng = selection[i].geometry.coordinates[0];		
+					result.lng = selection[i].geometry.coordinates[0];
+					first = false;
+				}
+			}else{
+				//If Consumption is not undefined
+				if(selection[i].properties.phenomenons.Consumption.value != '-'){
+					//If current Value is smaller than current min
+					if(min > selection[i].properties.phenomenons.Consumption.value){
+						min = selection[i].properties.phenomenons.Consumption.value;
+						result.lat = selection[i].geometry.coordinates[1];
+						result.lng = selection[i].geometry.coordinates[0];		
+					}
 				}
 			}
 		}
@@ -1379,13 +1413,24 @@ function getMin(phenomenon){
 		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
-			//If MAF is not undefined
-			if(selection[i].properties.phenomenons.MAF.value != '-'){
-				//If current Value is smaller than current min
-				if(min > selection[i].properties.phenomenons.MAF.value){
+		
+			// If first value, then take as minimum
+			if(first){
+				if(selection[i].properties.phenomenons.MAF.value != '-'){
 					min = selection[i].properties.phenomenons.MAF.value;
 					result.lat = selection[i].geometry.coordinates[1];
-					result.lng = selection[i].geometry.coordinates[0];		
+					result.lng = selection[i].geometry.coordinates[0];
+					first = false;
+				}
+			}else{
+				//If MAF is not undefined
+				if(selection[i].properties.phenomenons.MAF.value != '-'){
+					//If current Value is smaller than current min
+					if(min > selection[i].properties.phenomenons.MAF.value){
+						min = selection[i].properties.phenomenons.MAF.value;
+						result.lat = selection[i].geometry.coordinates[1];
+						result.lng = selection[i].geometry.coordinates[0];		
+					}
 				}
 			}
 		}
@@ -1610,10 +1655,10 @@ function visualizeTrack(trackID){
 				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 				'<tr><td><b>Sensor-ID</b></td><td>' + track.properties.sensor.properties.id + '</td></tr>' +
 				'<tr><td><b>Fahrzeugtyp</b></td><td>' + track.properties.sensor.properties.manufacturer + ' ' + track.properties.sensor.properties.model + '</td></tr>' +
-				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
-				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
-				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' l/h</td></tr>' +
+				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +
+				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' l/s</td></tr>' +
+				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
 				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="addToSelection" class="link">Track zur Auswahl hinzufügen</a></td></tr></table></html>');
 
 			// Insert the container into the popup
@@ -1789,7 +1834,7 @@ function idwInterpolation(){
 		
 		var container = $('<div/>');
 		
-		container.html('<html><table><tr><td>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/s</td></tr>' +
+		container.html('<html><table><tr><td>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
 			'<tr><td>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
 			'<tr><td>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
 			'<tr><td>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
