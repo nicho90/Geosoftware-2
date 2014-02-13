@@ -985,7 +985,7 @@ function clearSelection(){
 // Creates a more detailed list of selected points
 function showMeasurementDetails() {
 
-    var updatedList = $("<table class='measurementDetails'>" + 
+    var updatedList = $("<table class='measurementDetails' border= 1>" + 
 		 
 		"<th>Punkt</th>" + 
 		"<th>ID</th>" + 
@@ -1027,9 +1027,17 @@ function showMeasurementDetails() {
 
     updatedList.append("</table>");
 	//$('#selectionTable').replaceWith(updatedList);
-    var dialog=$(updatedList).dialog(
+	
+	var table = $("<div>");
+	table.append(updatedList);
+	table.append("</div>");
+	
+    var dialog=$(table).dialog(
         {
-            modal:true
+		height: 500,
+		width: 600,
+		modal:true,
+		title: "Alle ausgewählten Messwerte"
         });
 }
 
