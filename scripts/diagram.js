@@ -904,24 +904,48 @@ else {
 	6. Diagram for Fahrzeugtypen 
 ***********************************************/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function diagramCarType() {
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Fahrzeughersteller'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: manufacturerNames
+		},
+		yAxis: {
+            min: 0,
+			max: 10,
+            title: {
+                text: 'Haeufigkeit'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                   '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.1,
+                borderWidth: 0
+            }
+        },
+		series: [{
+			name: 'Fahrzeughersteller',
+			data: manufacturerFrequency,
+			color: '#167FC1'
+		}]
+	});
+};
 
 
 /***********************************************************************

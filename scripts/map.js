@@ -24,6 +24,11 @@ var selection = new Array();
 // Current Frequency of Manufacturer in Selection
 var manufacturerSelection = new Array();
 
+// "manufacturerSelection" -> splitted up
+var manufacturerNames = new Array();
+var manufacturerFrequency = new Array();
+
+
 //If true user adds points to selection by clicking on them
 var singlePointSelection = false;
 
@@ -564,6 +569,7 @@ function addSinglePoint(measurement){
 		selection.push(measurement);
 	
 		updateSelectionList();
+		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
 
@@ -603,6 +609,7 @@ function addSinglePoint(measurement){
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
 		updateSelectionList();
+		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
 		//Open and Close info-popup
@@ -672,6 +679,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
 	if(selection.length == 0){
 		selection.push(measurement);
 		updateSelectionList();
+		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
 	}else{
@@ -698,6 +706,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
 		updateSelectionList();
+		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
 	}	
@@ -756,6 +765,7 @@ function addTrackToSelection(track){
 		selection.push(measurement);
 	}
 	updateSelectionList();
+	refreshManufacturers();
 	refreshAnalysis();
 	visualizeSelection();
 	//Open and Close info-popup
@@ -783,6 +793,7 @@ function deleteSingleMeasurement(measurementID){
 		if(selection[i].properties.id == measurementID){
 			selection.splice(i,1);
 			updateSelectionList();
+			refreshManufacturers();
 			refreshAnalysis();
 			drawMeasurements();
 		}
@@ -966,6 +977,7 @@ function clearSelection(){
 	}
 	
 	updateSelectionList();
+	refreshManufacturers()
 	refreshAnalysis();
 	
 }
@@ -1484,7 +1496,17 @@ function getMax(phenomenon){
 // Description: Returns manufactures which is most frequent in selection
 // Author: René Unrau
 function getMostFreqManu(){
-	manufacturerSelection = {};
+
+	return getMax('Manufacturer');
+
+}
+
+
+// Refresh Manufacturers
+// Description: Refresh Manufacturers Arrays
+// Author: René Unrau
+function refreshManufacturers(){
+	manufacturerSelection = new Array();
 
 	// Loop all measurements
 	for(var i = 0; i < selection.length; i++){
@@ -1495,6 +1517,14 @@ function getMostFreqManu(){
 		}else{
 			manufacturerSelection[selection[i].properties.sensor.properties.manufacturer] = 1;
 		}
+	}
+	
+	manufacturerNames = new Array();
+	manufacturerFrequency = new Array();
+	
+	for(var key in manufacturerSelection){
+		manufacturerNames.push(key);
+		manufacturerFrequency.push(manufacturerSelection[key]);
 	}
 	
 	// Get and return maximum
