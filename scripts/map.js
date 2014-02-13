@@ -95,18 +95,25 @@ function drawMap() {
     transparent: true,
 	opacity:0.4
 });
+    
+    var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        attribution: 'Kartendaten: &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, <a href="http://viewfinderpanoramas.org">SRTM</a> | Kartendarstellung: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+        minZoom: 5,
+        maxZoom: 15
+    });
 	  
-	
+
 	var layer = {
 		"OSM": osm,
 		"Google": google,
         "DTK10": DTK10,
-        "DTK10_pan": DTK10_panchromatic
+        "DTK10_pan": DTK10_panchromatic,
+        "OpenTopoMap":topo
 	};
 	  
 	var map = L.map('map', {
 		center: new L.LatLng(51.96, 7.62),
-		zoom: 18,
+		zoom: 15,
 		layers: [osm]
 	});
     
@@ -854,7 +861,6 @@ function visualizeSelection(){
 // Description: Refreshes the List of the selected Measurements
 // Author: René Unrau
 
-
 /* Alter Teil:
 function updateSelectionList() {
 	var updatedList = $("<table id='selectionTable'>" + 
@@ -904,7 +910,7 @@ function updateSelectionList() {
 
 /* neuer Teil */
 function updateSelectionList() {
-	var updatedList = $("<table class=\"points\">" +
+        var updatedList = $("<table class=\"points\">" +
         "<tr><th></th>" +
         "<th>Punkt</th>" + 
         "<th>Koordinaten</th></tr>");
@@ -959,6 +965,10 @@ function clearSelection(){
 	updateSelectionList();
 	refreshAnalysis();
 	
+}
+
+function showMeasurementDetails() {
+    $('#measurementDetails').html(updatedList);   
 }
 
 //Draw a polygon
