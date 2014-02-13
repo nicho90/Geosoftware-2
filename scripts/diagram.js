@@ -78,18 +78,18 @@ var interval_gr_160 = 0;
     2.1 Diagram for low speed values
 ***********************************************/
 
-var gesamt = selection.length;
+var s_total = selection.length;
 
 for (var i = 0; i < selection.length; i++){
 	// If speed is not undefined
 	if (selection[i].properties.phenomenons.Speed.value == '-'){
-		gesamt = gesamt-1;
+		s_total = s_total-1;
 	}
 	// If speed is defined
 	else {
 		// check if value is a positive value; values smaller 0 will be ignored
 		if( selection[i].properties.phenomenons.Speed.value < 0){
-			gesamt = gesamt-1;
+			s_total = s_total-1;
 		}
 		// checks for the right interval
 		if(selection[i].properties.phenomenons.Speed.value >= 0 && selection[i].properties.phenomenons.Speed.value <= 5){interval_0_5++;}
@@ -112,279 +112,287 @@ for (var i = 0; i < selection.length; i++){
 	}
 }
 
-var result_low_speed = new Array(
-                        (interval_0_5/gesamt)*100,
-                        (interval_5_10/gesamt)*100,
-                        (interval_10_15/gesamt)*100,
-                        (interval_15_20/gesamt)*100,
-						(interval_20_25/gesamt)*100,
-						(interval_25_30/gesamt)*100,
-						(interval_30_35/gesamt)*100,
-						(interval_35_40/gesamt)*100,
-						(interval_40_45/gesamt)*100,
-						(interval_45_50/gesamt)*100,
-						(interval_50_55/gesamt)*100,
-						(interval_55_60/gesamt)*100,
-						(interval_60_65/gesamt)*100,
-						(interval_65_70/gesamt)*100,
-						(interval_70_75/gesamt)*100,
-						(interval_75_80/gesamt)*100,
-						(interval_gr_80/gesamt)*100);
+// check if there are existing speed values
+if(s_total > 0){
+	var result_low_speed = new Array(
+							(interval_0_5/s_total)*100,
+							(interval_5_10/s_total)*100,
+							(interval_10_15/s_total)*100,
+							(interval_15_20/s_total)*100,
+							(interval_20_25/s_total)*100,
+							(interval_25_30/s_total)*100,
+							(interval_30_35/s_total)*100,
+							(interval_35_40/s_total)*100,
+							(interval_40_45/s_total)*100,
+							(interval_45_50/s_total)*100,
+							(interval_50_55/s_total)*100,
+							(interval_55_60/s_total)*100,
+							(interval_60_65/s_total)*100,
+							(interval_65_70/s_total)*100,
+							(interval_70_75/s_total)*100,
+							(interval_75_80/s_total)*100,
+							(interval_gr_80/s_total)*100);
 
-var maxResult_low_speed = Math.max( result_low_speed[0],
-									result_low_speed[1],
-									result_low_speed[2],
-									result_low_speed[3],
-									result_low_speed[4],
-									result_low_speed[5],
-									result_low_speed[6],
-									result_low_speed[7],
-									result_low_speed[8],
-									result_low_speed[9],
-									result_low_speed[10],
-									result_low_speed[11],
-									result_low_speed[12],
-									result_low_speed[13],
-									result_low_speed[14],
-									result_low_speed[15],
-									result_low_speed[16]);
+	var maxResult_low_speed = Math.max( result_low_speed[0],
+										result_low_speed[1],
+										result_low_speed[2],
+										result_low_speed[3],
+										result_low_speed[4],
+										result_low_speed[5],
+										result_low_speed[6],
+										result_low_speed[7],
+										result_low_speed[8],
+										result_low_speed[9],
+										result_low_speed[10],
+										result_low_speed[11],
+										result_low_speed[12],
+										result_low_speed[13],
+										result_low_speed[14],
+										result_low_speed[15],
+										result_low_speed[16]);
 
-if( ((interval_gr_80/gesamt)*100) <= 10) {
+	if( ((interval_gr_80/s_total)*100) <= 10) {
 
-$(function () {
-        $('#container').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Verteilung der Geschwindigkeit'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                categories: [
-                    '0-5',
-					'5-10',
-					'10-15',
-					'15-20',
-					'20-25',
-					'25-30',
-					'30-35',
-					'35-40',
-					'40-45',
-					'45-50',
-					'50-55',
-					'55-60',
-					'60-65',
-					'65-70',
-					'70-75',
-					'75-80',
-					'>80'
-                ]
-            },
-            yAxis: {
-                min: 0,
-                max: maxResult_low_speed,
-                title: {
-                    text: 'Haeufigkeit [%]'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.1,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Geschwindigkeit [km/h]',
-                data: [ (interval_0_5/gesamt)*100,
-						(interval_5_10/gesamt)*100,
-						(interval_10_15/gesamt)*100,
-						(interval_15_20/gesamt)*100,
-						(interval_20_25/gesamt)*100,
-						(interval_25_30/gesamt)*100,
-						(interval_30_35/gesamt)*100,
-						(interval_35_40/gesamt)*100,
-						(interval_40_45/gesamt)*100,
-						(interval_45_50/gesamt)*100,
-						(interval_50_55/gesamt)*100,
-						(interval_55_60/gesamt)*100,
-						(interval_60_65/gesamt)*100,
-						(interval_65_70/gesamt)*100,
-						(interval_70_75/gesamt)*100,
-						(interval_75_80/gesamt)*100,
-						(interval_gr_80/gesamt)*100
-					],
-				color: '#8CBC3E'
-            }]
-        });
-    });
-}
+	$(function () {
+			$('#container').highcharts({
+				chart: {
+					type: 'column'
+				},
+				title: {
+					text: 'Verteilung der Geschwindigkeit'
+				},
+				subtitle: {
+					text: ''
+				},
+				xAxis: {
+					categories: [
+						'0-5',
+						'5-10',
+						'10-15',
+						'15-20',
+						'20-25',
+						'25-30',
+						'30-35',
+						'35-40',
+						'40-45',
+						'45-50',
+						'50-55',
+						'55-60',
+						'60-65',
+						'65-70',
+						'70-75',
+						'75-80',
+						'>80'
+					]
+				},
+				yAxis: {
+					min: 0,
+					max: maxResult_low_speed,
+					title: {
+						text: 'Haeufigkeit [%]'
+					}
+				},
+				tooltip: {
+					headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						'<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+					footerFormat: '</table>',
+					shared: true,
+					useHTML: true
+				},
+				plotOptions: {
+					column: {
+						pointPadding: 0.1,
+						borderWidth: 0
+					}
+				},
+				series: [{
+					name: 'Geschwindigkeit [km/h]',
+					data: [ (interval_0_5/s_total)*100,
+							(interval_5_10/s_total)*100,
+							(interval_10_15/s_total)*100,
+							(interval_15_20/s_total)*100,
+							(interval_20_25/s_total)*100,
+							(interval_25_30/s_total)*100,
+							(interval_30_35/s_total)*100,
+							(interval_35_40/s_total)*100,
+							(interval_40_45/s_total)*100,
+							(interval_45_50/s_total)*100,
+							(interval_50_55/s_total)*100,
+							(interval_55_60/s_total)*100,
+							(interval_60_65/s_total)*100,
+							(interval_65_70/s_total)*100,
+							(interval_70_75/s_total)*100,
+							(interval_75_80/s_total)*100,
+							(interval_gr_80/s_total)*100
+						],
+					color: '#8CBC3E'
+				}]
+			});
+		});
+	}
 
 /***********************************************
-    2.2 Diagram for high speed values
+	2.2 Diagram for high speed values
 ***********************************************/
-else {
-
-var gesamt_high_speed = selection.length;
-for(var i = 0; i < selection.length; i++){
-// If speed is not undefined
-	if (selection[i].properties.phenomenons.Speed.value == '-'){
-		gesamt_high_speed = gesamt_high_speed-1;
-	}
-	// If speed is defined
 	else {
-	// check if value is a positive value; values smaller 0 will be ignored
-		if( selection[i].properties.phenomenons.Speed.value < 0){
-			gesamt_high_speed = gesamt_high_speed-1;
+
+	var total_high_speed = selection.length;
+	for(var i = 0; i < selection.length; i++){
+	// If speed is not undefined
+		if (selection[i].properties.phenomenons.Speed.value == '-'){
+			total_high_speed = total_high_speed-1;
 		}
-		// checks for the right interval
-		if(selection[i].properties.phenomenons.Speed.value >= 0 && selection[i].properties.phenomenons.Speed.value <= 10){interval_0_10++;}
-		if(selection[i].properties.phenomenons.Speed.value > 10 && selection[i].properties.phenomenons.Speed.value <= 20){interval_10_20++;}
-		if(selection[i].properties.phenomenons.Speed.value > 20 && selection[i].properties.phenomenons.Speed.value <= 30){interval_20_30++;}
-		if(selection[i].properties.phenomenons.Speed.value > 30 && selection[i].properties.phenomenons.Speed.value <= 40){interval_30_40++;}
-		if(selection[i].properties.phenomenons.Speed.value > 40 && selection[i].properties.phenomenons.Speed.value <= 50){interval_40_50++;}
-		if(selection[i].properties.phenomenons.Speed.value > 50 && selection[i].properties.phenomenons.Speed.value <= 60){interval_50_60++;}
-		if(selection[i].properties.phenomenons.Speed.value > 60 && selection[i].properties.phenomenons.Speed.value <= 70){interval_60_70++;}
-		if(selection[i].properties.phenomenons.Speed.value > 70 && selection[i].properties.phenomenons.Speed.value <= 80){interval_70_80++;}
-		if(selection[i].properties.phenomenons.Speed.value > 80 && selection[i].properties.phenomenons.Speed.value <= 90){interval_80_90++;}
-		if(selection[i].properties.phenomenons.Speed.value > 90 && selection[i].properties.phenomenons.Speed.value <= 100){interval_90_100++;}
-		if(selection[i].properties.phenomenons.Speed.value > 100 && selection[i].properties.phenomenons.Speed.value <= 110){interval_100_110++;}
-		if(selection[i].properties.phenomenons.Speed.value > 110 && selection[i].properties.phenomenons.Speed.value <= 120){interval_110_120++;}
-		if(selection[i].properties.phenomenons.Speed.value > 120 && selection[i].properties.phenomenons.Speed.value <= 130){interval_120_130++;}
-		if(selection[i].properties.phenomenons.Speed.value > 130 && selection[i].properties.phenomenons.Speed.value <= 140){interval_130_140++;}
-		if(selection[i].properties.phenomenons.Speed.value > 140 && selection[i].properties.phenomenons.Speed.value <= 150){interval_140_150++;}
-		if(selection[i].properties.phenomenons.Speed.value > 150 && selection[i].properties.phenomenons.Speed.value <= 160){interval_150_160++;}
-		if(selection[i].properties.phenomenons.Speed.value > 160){interval_gr_160++;}
+		// If speed is defined
+		else {
+		// check if value is a positive value; values smaller 0 will be ignored
+			if( selection[i].properties.phenomenons.Speed.value < 0){
+				total_high_speed = total_high_speed-1;
+			}
+			// checks for the right interval
+			if(selection[i].properties.phenomenons.Speed.value >= 0 && selection[i].properties.phenomenons.Speed.value <= 10){interval_0_10++;}
+			if(selection[i].properties.phenomenons.Speed.value > 10 && selection[i].properties.phenomenons.Speed.value <= 20){interval_10_20++;}
+			if(selection[i].properties.phenomenons.Speed.value > 20 && selection[i].properties.phenomenons.Speed.value <= 30){interval_20_30++;}
+			if(selection[i].properties.phenomenons.Speed.value > 30 && selection[i].properties.phenomenons.Speed.value <= 40){interval_30_40++;}
+			if(selection[i].properties.phenomenons.Speed.value > 40 && selection[i].properties.phenomenons.Speed.value <= 50){interval_40_50++;}
+			if(selection[i].properties.phenomenons.Speed.value > 50 && selection[i].properties.phenomenons.Speed.value <= 60){interval_50_60++;}
+			if(selection[i].properties.phenomenons.Speed.value > 60 && selection[i].properties.phenomenons.Speed.value <= 70){interval_60_70++;}
+			if(selection[i].properties.phenomenons.Speed.value > 70 && selection[i].properties.phenomenons.Speed.value <= 80){interval_70_80++;}
+			if(selection[i].properties.phenomenons.Speed.value > 80 && selection[i].properties.phenomenons.Speed.value <= 90){interval_80_90++;}
+			if(selection[i].properties.phenomenons.Speed.value > 90 && selection[i].properties.phenomenons.Speed.value <= 100){interval_90_100++;}
+			if(selection[i].properties.phenomenons.Speed.value > 100 && selection[i].properties.phenomenons.Speed.value <= 110){interval_100_110++;}
+			if(selection[i].properties.phenomenons.Speed.value > 110 && selection[i].properties.phenomenons.Speed.value <= 120){interval_110_120++;}
+			if(selection[i].properties.phenomenons.Speed.value > 120 && selection[i].properties.phenomenons.Speed.value <= 130){interval_120_130++;}
+			if(selection[i].properties.phenomenons.Speed.value > 130 && selection[i].properties.phenomenons.Speed.value <= 140){interval_130_140++;}
+			if(selection[i].properties.phenomenons.Speed.value > 140 && selection[i].properties.phenomenons.Speed.value <= 150){interval_140_150++;}
+			if(selection[i].properties.phenomenons.Speed.value > 150 && selection[i].properties.phenomenons.Speed.value <= 160){interval_150_160++;}
+			if(selection[i].properties.phenomenons.Speed.value > 160){interval_gr_160++;}
+		}
+	}
+
+	var result_high_speed = new Array(
+							(interval_0_10/total_high_speed)*100,
+							(interval_10_20/total_high_speed)*100,
+							(interval_20_30/total_high_speed)*100,
+							(interval_30_40/total_high_speed)*100,
+							(interval_40_50/total_high_speed)*100,
+							(interval_50_60/total_high_speed)*100,
+							(interval_60_70/total_high_speed)*100,
+							(interval_70_80/total_high_speed)*100,
+							(interval_80_90/total_high_speed)*100,
+							(interval_90_100/total_high_speed)*100,
+							(interval_100_110/total_high_speed)*100,
+							(interval_110_120/total_high_speed)*100,
+							(interval_120_130/total_high_speed)*100,
+							(interval_130_140/total_high_speed)*100,
+							(interval_140_150/total_high_speed)*100,
+							(interval_150_160/total_high_speed)*100,
+							(interval_gr_160/total_high_speed)*100);
+
+	var maxResult_high_speed = Math.max(result_high_speed[0],
+										result_high_speed[1],
+										result_high_speed[2],
+										result_high_speed[3],
+										result_high_speed[4],
+										result_high_speed[5],
+										result_high_speed[6],
+										result_high_speed[7],
+										result_high_speed[8],
+										result_high_speed[9],
+										result_high_speed[10],
+										result_high_speed[11],
+										result_high_speed[12],
+										result_high_speed[13],
+										result_high_speed[14],
+										result_high_speed[15],
+										result_high_speed[16]);
+
+	$(function () {
+			$('#container').highcharts({
+				chart: {
+					type: 'column'
+				},
+				title: {
+					text: 'Verteilung der Geschwindigkeit'
+				},
+				subtitle: {
+					text: ''
+				},
+				xAxis: {
+					categories: [
+						'0-10',
+						'10-20',
+						'20-30',
+						'30-40',
+						'40-50',
+						'50-60',
+						'60-70',
+						'70-80',
+						'80-90',
+						'90-100',
+						'100-110',
+						'110-120',
+						'120-130',
+						'130-140',
+						'140-150',
+						'150-160',
+						'>160'
+					]
+				},
+				yAxis: {
+					min: 0,
+					max: maxResult_high_speed,
+					title: {
+						text: 'Haeufigkeit [%]'
+					}
+				},
+				tooltip: {
+					headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						'<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+					footerFormat: '</table>',
+					shared: true,
+					useHTML: true
+				},
+				plotOptions: {
+					column: {
+						pointPadding: 0.1,
+						borderWidth: 0
+					}
+				},
+				series: [{
+					name: 'Geschwindigkeit [km/h]',
+					data: [ (interval_0_10/total_high_speed)*100,
+							(interval_10_20/total_high_speed)*100,
+							(interval_20_30/total_high_speed)*100,
+							(interval_30_40/total_high_speed)*100,
+							(interval_40_50/total_high_speed)*100,
+							(interval_50_60/total_high_speed)*100,
+							(interval_60_70/total_high_speed)*100,
+							(interval_70_80/total_high_speed)*100,
+							(interval_80_90/total_high_speed)*100,
+							(interval_90_100/total_high_speed)*100,
+							(interval_100_110/total_high_speed)*100,
+							(interval_110_120/total_high_speed)*100,
+							(interval_120_130/total_high_speed)*100,
+							(interval_130_140/total_high_speed)*100,
+							(interval_140_150/total_high_speed)*100,
+							(interval_150_160/total_high_speed)*100,
+							(interval_gr_160/total_high_speed)*100
+							],
+					color: '#8CBC3E'
+				}]
+			});
+		});
 	}
 }
 
-var result_high_speed = new Array(
-                        (interval_0_10/gesamt_high_speed)*100,
-                        (interval_10_20/gesamt_high_speed)*100,
-                        (interval_20_30/gesamt_high_speed)*100,
-                        (interval_30_40/gesamt_high_speed)*100,
-						(interval_40_50/gesamt_high_speed)*100,
-						(interval_50_60/gesamt_high_speed)*100,
-						(interval_60_70/gesamt_high_speed)*100,
-						(interval_70_80/gesamt_high_speed)*100,
-						(interval_80_90/gesamt_high_speed)*100,
-						(interval_90_100/gesamt_high_speed)*100,
-						(interval_100_110/gesamt_high_speed)*100,
-						(interval_110_120/gesamt_high_speed)*100,
-						(interval_120_130/gesamt_high_speed)*100,
-						(interval_130_140/gesamt_high_speed)*100,
-						(interval_140_150/gesamt_high_speed)*100,
-						(interval_150_160/gesamt_high_speed)*100,
-						(interval_gr_160/gesamt_high_speed)*100);
-
-var maxResult_high_speed = Math.max(result_high_speed[0],
-									result_high_speed[1],
-									result_high_speed[2],
-									result_high_speed[3],
-									result_high_speed[4],
-									result_high_speed[5],
-									result_high_speed[6],
-									result_high_speed[7],
-									result_high_speed[8],
-									result_high_speed[9],
-									result_high_speed[10],
-									result_high_speed[11],
-									result_high_speed[12],
-									result_high_speed[13],
-									result_high_speed[14],
-									result_high_speed[15],
-									result_high_speed[16]);
-
-$(function () {
-        $('#container').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Verteilung der Geschwindigkeit'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                categories: [
-                    '0-10',
-					'10-20',
-					'20-30',
-					'30-40',
-					'40-50',
-					'50-60',
-					'60-70',
-					'70-80',
-					'80-90',
-					'90-100',
-					'100-110',
-					'110-120',
-					'120-130',
-					'130-140',
-					'140-150',
-					'150-160',
-					'>160'
-                ]
-            },
-            yAxis: {
-                min: 0,
-                max: maxResult_high_speed,
-                title: {
-                    text: 'Haeufigkeit [%]'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.1,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Geschwindigkeit [km/h]',
-                data: [ (interval_0_10/gesamt_high_speed)*100,
-						(interval_10_20/gesamt_high_speed)*100,
-						(interval_20_30/gesamt_high_speed)*100,
-						(interval_30_40/gesamt_high_speed)*100,
-						(interval_40_50/gesamt_high_speed)*100,
-						(interval_50_60/gesamt_high_speed)*100,
-						(interval_60_70/gesamt_high_speed)*100,
-						(interval_70_80/gesamt_high_speed)*100,
-						(interval_80_90/gesamt_high_speed)*100,
-						(interval_90_100/gesamt_high_speed)*100,
-						(interval_100_110/gesamt_high_speed)*100,
-						(interval_110_120/gesamt_high_speed)*100,
-						(interval_120_130/gesamt_high_speed)*100,
-						(interval_130_140/gesamt_high_speed)*100,
-						(interval_140_150/gesamt_high_speed)*100,
-						(interval_150_160/gesamt_high_speed)*100,
-						(interval_gr_160/gesamt_high_speed)*100
-						],
-				color: '#8CBC3E'
-            }]
-        });
-    });
+// if there are no existing speed values
+else{
+	errorMessage();
+}
 }
 
-}
 /***********************************************
 	3. Diagram for CO2  
 ***********************************************/
@@ -404,18 +412,18 @@ var co_interval_50_55 = 0;
 var co_interval_55_60 = 0;
 var co_interval_gr_60 = 0;
 
-var co_gesamt = selection.length;
+var co_total = selection.length;
 
 for(var i = 0; i < selection.length; i++){
-			// If Consumption is not undefined
+			// If CO2 is not undefined
 			if (selection[i].properties.phenomenons.CO2.value == '-'){
-				co_gesamt = co_gesamt-1;
+				co_total = co_total-1;
 			}
-			// If Consumption is defined
+			// If CO2 is defined
 			else {
 				// check if value is a positive value; values smaller 0 will be ignored
 				if( selection[i].properties.phenomenons.CO2.value < 0){
-					co_gesamt = co_gesamt-1;
+					co_total = co_total-1;
 				}
 				// checks for the right interval
 				if(selection[i].properties.phenomenons.CO2.value >= 0 && selection[i].properties.phenomenons.CO2.value  <= 5){co_interval_0_5++;}
@@ -433,21 +441,21 @@ for(var i = 0; i < selection.length; i++){
 				if(selection[i].properties.phenomenons.CO2.value > 60){co_interval_gr_60++;}
 			}
 }
-if(co_gesamt > 0){
+if(co_total > 0){
 var result_consumption = new Array(
-                        (co_interval_0_5/co_gesamt)*100,
-                        (co_interval_5_10/co_gesamt)*100,
-                        (co_interval_10_15/co_gesamt)*100,
-                        (co_interval_15_20/co_gesamt)*100,
-						(co_interval_20_25/co_gesamt)*100,
-						(co_interval_25_30/co_gesamt)*100,
-						(co_interval_30_35/co_gesamt)*100,
-						(co_interval_35_40/co_gesamt)*100,
-						(co_interval_40_45/co_gesamt)*100,
-						(co_interval_45_50/co_gesamt)*100,
-						(co_interval_50_55/co_gesamt)*100,
-						(co_interval_55_60/co_gesamt)*100,
-						(co_interval_gr_60/co_gesamt)*100);
+                        (co_interval_0_5/co_total)*100,
+                        (co_interval_5_10/co_total)*100,
+                        (co_interval_10_15/co_total)*100,
+                        (co_interval_15_20/co_total)*100,
+						(co_interval_20_25/co_total)*100,
+						(co_interval_25_30/co_total)*100,
+						(co_interval_30_35/co_total)*100,
+						(co_interval_35_40/co_total)*100,
+						(co_interval_40_45/co_total)*100,
+						(co_interval_45_50/co_total)*100,
+						(co_interval_50_55/co_total)*100,
+						(co_interval_55_60/co_total)*100,
+						(co_interval_gr_60/co_total)*100);
 					
 var maxResult_co2 = Math.max(result_consumption[0],
                              result_consumption[1],
@@ -515,19 +523,19 @@ $(function () {
             },
             series: [{
                 name: 'CO2-Ausstoß [g/s]',
-                data: [ (co_interval_0_5/co_gesamt)*100,
-						(co_interval_5_10/co_gesamt)*100,
-						(co_interval_10_15/co_gesamt)*100,
-						(co_interval_15_20/co_gesamt)*100,
-						(co_interval_20_25/co_gesamt)*100,
-						(co_interval_25_30/co_gesamt)*100,
-						(co_interval_30_35/co_gesamt)*100,
-						(co_interval_35_40/co_gesamt)*100,
-						(co_interval_40_45/co_gesamt)*100,
-						(co_interval_45_50/co_gesamt)*100,
-						(co_interval_50_55/co_gesamt)*100,
-						(co_interval_55_60/co_gesamt)*100,
-						(co_interval_gr_60/co_gesamt)*100
+                data: [ (co_interval_0_5/co_total)*100,
+						(co_interval_5_10/co_total)*100,
+						(co_interval_10_15/co_total)*100,
+						(co_interval_15_20/co_total)*100,
+						(co_interval_20_25/co_total)*100,
+						(co_interval_25_30/co_total)*100,
+						(co_interval_30_35/co_total)*100,
+						(co_interval_35_40/co_total)*100,
+						(co_interval_40_45/co_total)*100,
+						(co_interval_45_50/co_total)*100,
+						(co_interval_50_55/co_total)*100,
+						(co_interval_55_60/co_total)*100,
+						(co_interval_gr_60/co_total)*100
 					],
 				color: '#B22222'
             }]
@@ -535,7 +543,7 @@ $(function () {
     });
 }
 else {
-	fehlermeldung();
+	errorMessage();
 }
 }
 
@@ -545,63 +553,72 @@ else {
 
 function diagramConsumption() {
 
-var c_interval_0_5   = 0;
-var c_interval_5_10  = 0;
-var c_interval_10_15 = 0;
-var c_interval_15_20 = 0;
-var c_interval_20_25 = 0;
-var c_interval_25_30 = 0;
-var c_interval_30_35 = 0;
-var c_interval_35_40 = 0;
-var c_interval_40_45 = 0;
-var c_interval_45_50 = 0;
-var c_interval_50_55 = 0;
-var c_interval_55_60 = 0;
-var c_interval_gr_60 = 0;
+var c_interval_0_1   = 0;
+var c_interval_1_2  = 0;
+var c_interval_2_3 = 0;
+var c_interval_3_4 = 0;
+var c_interval_4_5 = 0;
+var c_interval_5_6 = 0;
+var c_interval_6_7 = 0;
+var c_interval_7_8 = 0;
+var c_interval_8_9 = 0;
+var c_interval_9_10 = 0;
+var c_interval_10_11 = 0;
+var c_interval_11_12 = 0;
+var c_interval_12_13 = 0;
+var c_interval_13_14 = 0;
+var c_interval_14_15 = 0;
+var c_interval_gr_15 = 0;
 
-var c_gesamt = selection.length;
+var c_total = selection.length;
 for(var i = 0; i < selection.length; i++){
 			// If Consumption is not undefined
 			if (selection[i].properties.phenomenons.Consumption.value == '-'){
-				c_gesamt = c_gesamt-1;
+				c_total = c_total-1;
 			}
 			// If Consumption is defined
 			else {
 				// check if value is a positive value; values smaller 0 will be ignored
 				if( selection[i].properties.phenomenons.Consumption.value < 0){
-					c_gesamt = c_gesamt-1;
+					c_total = c_total-1;
 				}
 				// checks for the right interval
-				if(selection[i].properties.phenomenons.Consumption.value >= 0 && selection[i].properties.phenomenons.Consumption.value  <= 5){c_interval_0_5++;}
-				if(selection[i].properties.phenomenons.Consumption.value >  5 && selection[i].properties.phenomenons.Consumption.value  <= 10){c_interval_5_10++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 10 && selection[i].properties.phenomenons.Consumption.value  <= 15){c_interval_10_15++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 15 && selection[i].properties.phenomenons.Consumption.value  <= 20){c_interval_15_20++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 20 && selection[i].properties.phenomenons.Consumption.value  <= 25){c_interval_20_25++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 25 && selection[i].properties.phenomenons.Consumption.value  <= 30){c_interval_25_30++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 30 && selection[i].properties.phenomenons.Consumption.value  <= 35){c_interval_30_35++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 35 && selection[i].properties.phenomenons.Consumption.value  <= 40){c_interval_35_40++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 40 && selection[i].properties.phenomenons.Consumption.value  <= 45){c_interval_40_45++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 45 && selection[i].properties.phenomenons.Consumption.value  <= 50){c_interval_45_50++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 50 && selection[i].properties.phenomenons.Consumption.value  <= 55){c_interval_50_55++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 55 && selection[i].properties.phenomenons.Consumption.value  <= 60){c_interval_55_60++;}
-				if(selection[i].properties.phenomenons.Consumption.value > 60){c_interval_gr_60++;}
+				if(selection[i].properties.phenomenons.Consumption.value >= 0 && selection[i].properties.phenomenons.Consumption.value  <= 1){c_interval_0_1++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  1 && selection[i].properties.phenomenons.Consumption.value  <= 2){c_interval_1_2++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  2 && selection[i].properties.phenomenons.Consumption.value  <= 3){c_interval_2_3++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  3 && selection[i].properties.phenomenons.Consumption.value  <= 4){c_interval_3_4++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  4 && selection[i].properties.phenomenons.Consumption.value  <= 5){c_interval_4_5++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  5 && selection[i].properties.phenomenons.Consumption.value  <= 6){c_interval_5_6++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  6 && selection[i].properties.phenomenons.Consumption.value  <= 7){c_interval_6_7++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  7 && selection[i].properties.phenomenons.Consumption.value  <= 8){c_interval_7_8++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  8 && selection[i].properties.phenomenons.Consumption.value  <= 9){c_interval_8_9++;}
+				if(selection[i].properties.phenomenons.Consumption.value >  9 && selection[i].properties.phenomenons.Consumption.value  <= 10){c_interval_9_10++;}
+				if(selection[i].properties.phenomenons.Consumption.value > 10 && selection[i].properties.phenomenons.Consumption.value  <= 11){c_interval_10_11++;}
+				if(selection[i].properties.phenomenons.Consumption.value > 11 && selection[i].properties.phenomenons.Consumption.value  <= 12){c_interval_11_12++;}
+				if(selection[i].properties.phenomenons.Consumption.value > 12 && selection[i].properties.phenomenons.Consumption.value  <= 13){c_interval_12_13++;}
+				if(selection[i].properties.phenomenons.Consumption.value > 13 && selection[i].properties.phenomenons.Consumption.value  <= 14){c_interval_13_14++;}
+				if(selection[i].properties.phenomenons.Consumption.value > 14 && selection[i].properties.phenomenons.Consumption.value  <= 15){c_interval_14_15++;}
+				if(selection[i].properties.phenomenons.Consumption.value > 15){c_interval_gr_15++;}
 			}
 }
-if(c_gesamt > 0){
+if(c_total > 0){
 var result_consumption = new Array(
-                        (c_interval_0_5/c_gesamt)*100,
-                        (c_interval_5_10/c_gesamt)*100,
-                        (c_interval_10_15/c_gesamt)*100,
-                        (c_interval_15_20/c_gesamt)*100,
-						(c_interval_20_25/c_gesamt)*100,
-						(c_interval_25_30/c_gesamt)*100,
-						(c_interval_30_35/c_gesamt)*100,
-						(c_interval_35_40/c_gesamt)*100,
-						(c_interval_40_45/c_gesamt)*100,
-						(c_interval_45_50/c_gesamt)*100,
-						(c_interval_50_55/c_gesamt)*100,
-						(c_interval_55_60/c_gesamt)*100,
-						(c_interval_gr_60/c_gesamt)*100);
+                        (c_interval_0_1/c_total)*100,
+                        (c_interval_1_2/c_total)*100,
+                        (c_interval_2_3/c_total)*100,
+                        (c_interval_3_4/c_total)*100,
+						(c_interval_4_5/c_total)*100,
+						(c_interval_5_6/c_total)*100,
+						(c_interval_6_7/c_total)*100,
+						(c_interval_7_8/c_total)*100,
+						(c_interval_8_9/c_total)*100,
+						(c_interval_9_10/c_total)*100,
+						(c_interval_10_11/c_total)*100,
+						(c_interval_11_12/c_total)*100,
+						(c_interval_12_13/c_total)*100,
+						(c_interval_13_14/c_total)*100,
+						(c_interval_14_15/c_total)*100,
+						(c_interval_gr_15/c_total)*100);
 					
 var maxResult_consumption = Math.max(result_consumption[0],
                                      result_consumption[1],
@@ -615,7 +632,10 @@ var maxResult_consumption = Math.max(result_consumption[0],
                                      result_consumption[9],
                                      result_consumption[10],
                                      result_consumption[11],
-                                     result_consumption[12]);
+                                     result_consumption[12],
+									 result_consumption[13],
+									 result_consumption[14],
+									 result_consumption[15]);
 
 	
 $(function () {
@@ -631,19 +651,22 @@ $(function () {
             },
             xAxis: {
                 categories: [
-                    '0-5',
-					'5-10',
-					'10-15',
-					'15-20',
-					'20-25',
-					'25-30',
-					'30-35',
-					'35-40',
-					'40-45',
-					'45-50',
-					'50-55',
-					'55-60',
-					'>60'
+                    '0-1',
+					'1-2',
+					'2-3',
+					'3-4',
+					'4-5',
+					'5-6',
+					'6-7',
+					'7-8',
+					'8-9',
+					'9-10',
+					'10-11',
+					'11-12',
+					'12-13',
+					'13-14',
+					'14-15',
+					'>15'
                 ]
             },
             yAxis: {
@@ -669,19 +692,22 @@ $(function () {
             },
             series: [{
                 name: 'Spritverbrauch [l/h]',
-                data: [ (c_interval_0_5/c_gesamt)*100,
-						(c_interval_5_10/c_gesamt)*100,
-						(c_interval_10_15/c_gesamt)*100,
-						(c_interval_15_20/c_gesamt)*100,
-						(c_interval_20_25/c_gesamt)*100,
-						(c_interval_25_30/c_gesamt)*100,
-						(c_interval_30_35/c_gesamt)*100,
-						(c_interval_35_40/c_gesamt)*100,
-						(c_interval_40_45/c_gesamt)*100,
-						(c_interval_45_50/c_gesamt)*100,
-						(c_interval_50_55/c_gesamt)*100,
-						(c_interval_55_60/c_gesamt)*100,
-						(c_interval_gr_60/c_gesamt)*100
+                data: [ (c_interval_0_1/c_total)*100,
+                        (c_interval_1_2/c_total)*100,
+                        (c_interval_2_3/c_total)*100,
+                        (c_interval_3_4/c_total)*100,
+						(c_interval_4_5/c_total)*100,
+						(c_interval_5_6/c_total)*100,
+						(c_interval_6_7/c_total)*100,
+						(c_interval_7_8/c_total)*100,
+						(c_interval_8_9/c_total)*100,
+						(c_interval_9_10/c_total)*100,
+						(c_interval_10_11/c_total)*100,
+						(c_interval_11_12/c_total)*100,
+						(c_interval_12_13/c_total)*100,
+						(c_interval_13_14/c_total)*100,
+						(c_interval_14_15/c_total)*100,
+						(c_interval_gr_15/c_total)*100
 					],
 				color: '#FFA500'
             }]
@@ -689,7 +715,7 @@ $(function () {
     });
 }
 else {
-	fehlermeldung();
+	errorMessage();
 }
 }
 
@@ -718,17 +744,17 @@ var m_interval_70_75 = 0;
 var m_interval_75_80 = 0;
 var m_interval_gr_80 = 0;
 
-var m_gesamt = selection.length;
+var m_total = selection.length;
 for(var i = 0; i < selection.length; i++){
 			// If MAF is not undefined
 			if (selection[i].properties.phenomenons.MAF.value == '-'){
-				m_gesamt = m_gesamt-1;
+				m_total = m_total-1;
 			}
 			// If MAF is defined
 			else {
 				// check if value is a positive value; values smaller 0 will be ignored
 				if( selection[i].properties.phenomenons.MAF.value < 0){
-					m_gesamt = m_gesamt-1;
+					m_total = m_total-1;
 				}
 				// checks for the right interval
 				if(selection[i].properties.phenomenons.MAF.value >= 0 && selection[i].properties.phenomenons.MAF.value  <= 5){m_interval_0_5++;}
@@ -750,25 +776,25 @@ for(var i = 0; i < selection.length; i++){
 				if(selection[i].properties.phenomenons.MAF.value > 80){m_interval_gr_80++;}
 			}
 }
-if(m_gesamt > 0){
+if(m_total > 0){
 var result_MAF = new Array(
-                        (m_interval_0_5/m_gesamt)*100,
-                        (m_interval_5_10/m_gesamt)*100,
-                        (m_interval_10_15/m_gesamt)*100,
-                        (m_interval_15_20/m_gesamt)*100,
-						(m_interval_20_25/m_gesamt)*100,
-						(m_interval_25_30/m_gesamt)*100,
-						(m_interval_30_35/m_gesamt)*100,
-						(m_interval_35_40/m_gesamt)*100,
-						(m_interval_40_45/m_gesamt)*100,
-						(m_interval_45_50/m_gesamt)*100,
-						(m_interval_50_55/m_gesamt)*100,
-						(m_interval_55_60/m_gesamt)*100,
-						(m_interval_60_65/m_gesamt)*100,
-						(m_interval_65_70/m_gesamt)*100,
-						(m_interval_70_75/m_gesamt)*100,
-						(m_interval_75_80/m_gesamt)*100,
-						(m_interval_gr_80/m_gesamt)*100
+                        (m_interval_0_5/m_total)*100,
+                        (m_interval_5_10/m_total)*100,
+                        (m_interval_10_15/m_total)*100,
+                        (m_interval_15_20/m_total)*100,
+						(m_interval_20_25/m_total)*100,
+						(m_interval_25_30/m_total)*100,
+						(m_interval_30_35/m_total)*100,
+						(m_interval_35_40/m_total)*100,
+						(m_interval_40_45/m_total)*100,
+						(m_interval_45_50/m_total)*100,
+						(m_interval_50_55/m_total)*100,
+						(m_interval_55_60/m_total)*100,
+						(m_interval_60_65/m_total)*100,
+						(m_interval_65_70/m_total)*100,
+						(m_interval_70_75/m_total)*100,
+						(m_interval_75_80/m_total)*100,
+						(m_interval_gr_80/m_total)*100
 						);
 					
 var maxResult_MAF = Math.max(result_MAF[0],
@@ -846,23 +872,23 @@ $(function () {
             },
             series: [{
                 name: 'MAF [l/s]',
-                data: [ (m_interval_0_5/m_gesamt)*100,
-						(m_interval_5_10/m_gesamt)*100,
-						(m_interval_10_15/m_gesamt)*100,
-						(m_interval_15_20/m_gesamt)*100,
-						(m_interval_20_25/m_gesamt)*100,
-						(m_interval_25_30/m_gesamt)*100,
-						(m_interval_30_35/m_gesamt)*100,
-						(m_interval_35_40/m_gesamt)*100,
-						(m_interval_40_45/m_gesamt)*100,
-						(m_interval_45_50/m_gesamt)*100,
-						(m_interval_50_55/m_gesamt)*100,
-						(m_interval_55_60/m_gesamt)*100,
-						(m_interval_60_65/m_gesamt)*100,
-						(m_interval_65_70/m_gesamt)*100,
-						(m_interval_70_75/m_gesamt)*100,
-						(m_interval_75_80/m_gesamt)*100,
-						(m_interval_gr_80/m_gesamt)*100
+                data: [ (m_interval_0_5/m_total)*100,
+						(m_interval_5_10/m_total)*100,
+						(m_interval_10_15/m_total)*100,
+						(m_interval_15_20/m_total)*100,
+						(m_interval_20_25/m_total)*100,
+						(m_interval_25_30/m_total)*100,
+						(m_interval_30_35/m_total)*100,
+						(m_interval_35_40/m_total)*100,
+						(m_interval_40_45/m_total)*100,
+						(m_interval_45_50/m_total)*100,
+						(m_interval_50_55/m_total)*100,
+						(m_interval_55_60/m_total)*100,
+						(m_interval_60_65/m_total)*100,
+						(m_interval_65_70/m_total)*100,
+						(m_interval_70_75/m_total)*100,
+						(m_interval_75_80/m_total)*100,
+						(m_interval_gr_80/m_total)*100
 					],
 				color: '#167FC1'
             }]
@@ -870,7 +896,7 @@ $(function () {
     });
 }
 else {
-	fehlermeldung();
+	errorMessage();
 }
 }
 
@@ -898,14 +924,14 @@ else {
 
 
 
-/***********************************************
-	7. Fehlermeldung 
-***********************************************/
-function fehlermeldung(){
-	var fehlertext = document.getElementById("container");
-	fehlertext.style.fontSize = "20px";
-	fehlertext.style.color = '#B22222';
-	fehlertext.style.textAlign = "center";
-	fehlertext.innerHTML = "Diagramm konnte nicht erstellt werden, da keine Werte vorliegen.";
+/***********************************************************************
+	7. errorMessage, if there are no values for drawing a diagram
+***********************************************************************/
+function errorMessage(){
+	var errorText = document.getElementById("container");
+	errorText.style.fontSize = "12pt";
+	errorText.style.color = '#B22222';
+	errorText.style.textAlign = "center";
+	errorText.innerHTML = "<br><br><br><br><br><br><br><br><br><br>Diagramm konnte nicht erstellt werden, da keine Werte vorliegen.";
 }
 
