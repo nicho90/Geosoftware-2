@@ -130,6 +130,7 @@ function drawMap() {
         //Since we enter DTK10's and DTK10_panchromatic's bounds again, the osm layer
         //can be removed
         //Note: DTK10 and DTK10_panchromatic disappear if zoom level is below 14
+        //OpenTopomap works within zoom level 5 to 15 only
         if(map.hasLayer(osm)){
             
             if(map.getZoom()>=14&&(map.hasLayer(DTK10) ||   map.hasLayer(DTK10_panchromatic))){
@@ -968,7 +969,7 @@ function clearSelection(){
 }
 
 function showMeasurementDetails() {
-    $('#measurementDetails').html(updatedList);   
+    alert ('Hier kommt die Detailtabelle');
 }
 
 //Draw a polygon
