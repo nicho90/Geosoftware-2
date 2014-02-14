@@ -29,13 +29,23 @@ var manufacturerNames = new Array();
 var manufacturerFrequency = new Array();
 
 
+
 //If true user adds points to selection by clicking on them
 var singlePointSelection = false;
+
+//If true user search for tracks and select them
+var trackSelection = false;
+
+//If true user search for tracks and select them
+var polygonSelection = false;
+
 
 //Buttons
 var button1 = false;
 var button2 = false;
 var button3 = false;
+
+
 
 // Polyline of currently selected track
 var trackLine;
@@ -490,17 +500,177 @@ function drawMeasurements() {
     }});
 }
 
-// Choose Single Point-Selection in Sidebar
-// Description: User wants to add measurement for analysis by clicking on single points
-// Author: René Unrau
+
+
+/**********************************************
+
+    Selectionoptions in Sidebar
+    
+    1) chooseSinglePointSelection
+    2) chooseTrackSelection
+    3) choosePolygonSelection
+    3.1) Draw a polygon
+    3.2) Delete a polygon
+    3.3) Confirm the polygon selection
+    
+**********************************************/
+
+// 1) Single Point-Selection 
+// Description: User wants to add measurement for analysis by clicking on a single point on the map
+// Authors: René Unrau & Nicho
 function chooseSingleSelection(id) {
-	if(singlePointSelection){
-		singlePointSelection = false;
+    
+    // check if trackSelection or polygonSelection
+    if(trackSelection || polygonSelection){
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dies zuerst.");
     }
+    
+    // if no other Selcetionmode is active, then continue with singlePointSelection
     else {
-		singlePointSelection = true;
-    } 
+        if(singlePointSelection){
+		    singlePointSelection = false;
+            colorize('chooseSinglePoint');   
+        }
+        else {
+            singlePointSelection = true;
+            colorize('chooseSinglePoint');
+        } 
+    }	
 }
+
+
+
+// 2) Track Selection
+// Description: A user can search for a track-ID and select this track and visualize this track on the map
+// Authors: René Unrau & Nicho
+function chooseTrackSelection() {
+    
+    // check if singlePointSelection or polygonSelection is active
+    if(singlePointSelection || polygonSelection){
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dies zuerst.");
+    }
+    
+    // if no other selcetionmode is active, then continue with singlePointSelection
+    else {
+        if(trackSelection){
+            trackSelection = false;
+            colorize('chooseTrack');
+            toggle_visibility('selectTrack');
+        }
+        else {
+            trackSelection = true;
+            colorize('chooseTrack');
+            toggle_visibility('selectTrack');
+            var trackID = document.getElementById('Track_ID').value;
+            visualizeTrack(trackID);
+        }
+    }
+}
+
+
+
+// 3) Polygon Selection 
+// Description: User wants to add measurements by drawing a polygon on the map
+// Authors: René Unrau, Johanna, Oli K. & Nicho
+function choosePolygonSelection() {
+    
+    // check if singlePointSelection or trackSelection is active
+    if(singlePointSelection || trackSelection){
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dies zuerst.");
+    }
+    
+    // if no other selcetionmode is active, then continue with polygonSelection
+    else {
+        if(polygonSelection){
+            polygonSelection = false;
+            colorize('choosePolygon');
+            toggle_visibility('drawingPolygon');
+            polygon.disable();
+            mainMap.removeLayer(polygonLayer);
+        }
+        else {
+            polygonSelection = true;
+            colorize('choosePolygon');
+            toggle_visibility('drawingPolygon');
+            drawPolygon();
+        }
+    }
+}
+
+// 3.1) Draw a polygon
+// Description: function to draw a polygon on the map for selecting points insinde of the borders
+// Author: ?? 
+function drawPolygon(){
+    
+        if(mainMap.hasLayer(polygonLayer)){
+            mainMap.removeLayer(polygonLayer);
+        }
+        polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
+        polygon.enable();
+}
+
+
+// 3.2) Delete a polygon
+// Author: ?? 
+function deletePolygon(){
+    mainMap.removeLayer(polygonLayer);
+}
+
+
+// 3.3) Confirm the Polygon Selection
+// Author: ?? 
+function confirmPolygon(){
+	var polygonCorners = polygonLayer.getLatLngs();
+    polygon.disable;
+	//For each measurement in current map-bounds
+	for(var i = 0; i < currentMeasurements.length; i++){
+	
+		//Check if it is in Polygon
+		var oddNodes = false;
+		k = polygonCorners.length - 1;
+		for(var j = 0; j < polygonCorners.length; j++){
+		
+			if(polygonCorners[j].lat < currentMeasurements[i].geometry.coordinates[1] && polygonCorners[k].lat >= currentMeasurements[i].geometry.coordinates[1] ||
+				polygonCorners[k].lat < currentMeasurements[i].geometry.coordinates[1] && polygonCorners[j].lat >= currentMeasurements[i].geometry.coordinates[1]){
+				if(polygonCorners[j].lng + (currentMeasurements[i].geometry.coordinates[1] - polygonCorners[j].lat) / (polygonCorners[k].lat - polygonCorners[j].lat) * (polygonCorners[k].lng - polygonCorners[j].lng) < currentMeasurements[i].geometry.coordinates[0]){
+					if(oddNodes){oddNodes = false;}
+					else{oddNodes = true;}
+				}
+			}
+		
+		k = j;
+		}
+		if(oddNodes){
+			addSinglePoint(currentMeasurements[i]);
+		}
+	
+	}
+	centerPolygon(polygonCorners);
+	//Open and Close info-popup
+	//Author: Nicho and Johanna	
+		$('#infodialog').html('Punkte wurden hinzugefügt.');
+		$('#infodialog').dialog({ 
+		height: 100,
+		width: 300,
+		autoOpen: true,   
+		modal: true, 
+		open: function(event, ui) { 
+			setTimeout(function(){ 
+			$('#infodialog').dialog('close'); }, 500); 
+            } 
+        });
+    
+        mainMap.removeLayer(polygonLayer);
+        
+        polygonSelection = false;
+        colorize('choosePolygon');
+        toggle_visibility('drawingPolygon');
+        
+}
+
+
+
+
 
 
 
@@ -574,8 +744,8 @@ function addSinglePoint(measurement){
 		visualizeSelection();
 
 	
-//Open and Close info-popup
-//Author: Nicho and Johanna	
+        //Open and Close info-popup
+        //Authors: Nicho and Johanna	
 		$('#infodialog').html('Punkt wurde hinzugefügt.');
 		$('#infodialog').dialog({ 
 		height: 100,
@@ -585,7 +755,8 @@ function addSinglePoint(measurement){
 		open: function(event, ui) { 
 			setTimeout(function(){ 
 			$('#infodialog').dialog('close'); }, 1000); } });
-	}else{
+    }
+    else{
 		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
@@ -1041,62 +1212,7 @@ function showMeasurementDetails() {
         });
 }
 
-//Draw a polygon
-function drawPolygon(){
-    if(mainMap.hasLayer(polygonLayer)){
-        mainMap.removeLayer(polygonLayer);
-    }
-    polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
-    polygon.enable();
-}
 
-//Delete polygon
-function deletePolygon(){
-    polygon.disable();
-    mainMap.removeLayer(polygonLayer);
-}
-
-//Confirm selected Polygon
-function confirmPolygon(){
-	var polygonCorners = polygonLayer.getLatLngs();
-    polygon.disable;
-	//For each measurement in current map-bounds
-	for(var i = 0; i < currentMeasurements.length; i++){
-	
-		//Check if it is in Polygon
-		var oddNodes = false;
-		k = polygonCorners.length - 1;
-		for(var j = 0; j < polygonCorners.length; j++){
-		
-			if(polygonCorners[j].lat < currentMeasurements[i].geometry.coordinates[1] && polygonCorners[k].lat >= currentMeasurements[i].geometry.coordinates[1] ||
-				polygonCorners[k].lat < currentMeasurements[i].geometry.coordinates[1] && polygonCorners[j].lat >= currentMeasurements[i].geometry.coordinates[1]){
-				if(polygonCorners[j].lng + (currentMeasurements[i].geometry.coordinates[1] - polygonCorners[j].lat) / (polygonCorners[k].lat - polygonCorners[j].lat) * (polygonCorners[k].lng - polygonCorners[j].lng) < currentMeasurements[i].geometry.coordinates[0]){
-					if(oddNodes){oddNodes = false;}
-					else{oddNodes = true;}
-				}
-			}
-		
-		k = j;
-		}
-		if(oddNodes){
-			addSinglePoint(currentMeasurements[i]);
-		}
-	
-	}
-	centerPolygon(polygonCorners);
-	//Open and Close info-popup
-	//Author: Nicho and Johanna	
-		$('#infodialog').html('Punkte wurden hinzugefügt.');
-		$('#infodialog').dialog({ 
-		height: 100,
-		width: 300,
-		autoOpen: true,   
-		modal: true, 
-		open: function(event, ui) { 
-			setTimeout(function(){ 
-			$('#infodialog').dialog('close'); }, 500); } });
-	mainMap.removeLayer(polygonLayer);
-}
 
 //Reset the filter to update the measurements
 function resetFilter() {
@@ -1584,14 +1700,6 @@ function refreshManufacturers(){
 	return getMax('Manufacturer');
 }
 
-// Choose Track for Selection
-// Description: Gets trackID from userinput and visualizes track
-// Author: René Unrau
-function chooseTrackSelection(){
-	var trackID = document.getElementById('Track_ID').value;
-	
-	visualizeTrack(trackID);
-}
 
 // Visualize Track
 // Description: Visualizes track on map and deletes other measurements

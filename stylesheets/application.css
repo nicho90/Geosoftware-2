@@ -1,4 +1,4 @@
-﻿/***********************************************
+/***********************************************
     Allgemeine Dokumenteigenschaften
 ***********************************************/
 html {
@@ -435,6 +435,7 @@ h3 {
 #selection {
     width:auto;
     text-align:left;
+    padding-bottom:1px;
 }
 
 #chooser {
@@ -518,7 +519,7 @@ h3 {
 
 #drawingPolygon, #selectTrack {
     display:none;
-    margin-top:20px;
+    margin-bottom:3px;
 }
 
 .drawingElementTitle, .selectTrackTitle {
@@ -608,8 +609,6 @@ h3 {
 
 #pointTable table{
     border:0px;
-    margin-left:auto; 
-    margin-right:auto;
     margin-top:0;
     margin-bottom:10px;
 }
