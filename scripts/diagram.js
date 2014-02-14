@@ -901,7 +901,7 @@ else {
 }
 
 /***********************************************
-	6. Diagram for Fahrzeugtypen 
+6. Diagram for Fahrzeugtypen
 ***********************************************/
 
 function diagramCarType() {
@@ -917,13 +917,16 @@ function diagramCarType() {
         },
         xAxis: {
             categories: manufacturerNames
-		},
-		yAxis: {
+},
+yAxis: {
             min: 0,
 			max: manufacturerSelection[getMax('Manufacturer')],
             title: {
-                text: 'Haeufigkeit'
-            }
+                text: 'absolute Haeufigkeit'
+            },
+			labels: {
+                    overflow: 'justify'
+                }
         },
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -934,20 +937,34 @@ function diagramCarType() {
             useHTML: true
         },
         plotOptions: {
-            column: {
-                pointPadding: 0.1,
-                borderWidth: 0
-            }
+        bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
         },
-		series: [{
-			name: 'Anzahl',
-			data: manufacturerFrequency,
-			color: '#167FC1'
-		}]
-	});
+		legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+	series: [{
+	name: 'Anzahl',
+	data: manufacturerFrequency,
+	color: '#483D8B'
+}]
+});
 };
-
-
+	
 /***********************************************************************
 	7. errorMessage, if there are no values for drawing a diagram
 ***********************************************************************/
