@@ -226,20 +226,16 @@ function drawMap() {
 	
 	document.getElementById('locateMe').onclick = function() {
        function handler(locateme){
-	   var longitude = locateme.coords.longitude;
-	   var latitude = locateme.coords.latitude;
-	   map.panTo(new L.LatLng(latitude, longitude));
-	   var markerIcon = L.icon(
-			{
-			iconUrl: 'images/marker/marker.png', 
-			iconSize:[50, 50]
-			}
-		);
-	   L.marker(new L.LatLng(latitude, longitude), {icon: markerIcon}).addTo(map).bindPopup("Ihre Position: " + longitude + ", " + latitude);
-	   }
-       navigator.geolocation.getCurrentPosition(handler); 
+           var longitude = locateme.coords.longitude;
+           var latitude = locateme.coords.latitude;
+           map.panTo(new L.LatLng(latitude, longitude));
+           var markerIcon = L.divIcon({ className: 'locationIcon',
+                                        html: '<div class=pin bounce></div><div class=pulse></div>'
+                                      });
+           var location = L.marker([latitude, longitude],{icon: markerIcon}).addTo(map).bindPopup("Ihre Position: " + longitude + ", " + latitude);
+       }
+           navigator.geolocation.getCurrentPosition(handler); 
 	};
-	
 	L.control.layers(layer).addTo(map);
     mainMap = map;
 }
