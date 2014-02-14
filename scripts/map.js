@@ -21,6 +21,9 @@ var drawControl;
 // Current Measurement Selection
 var selection = new Array();
 
+// Dialog-box for the table of the measurements
+var dialogTable;
+
 // Current Frequency of Manufacturer in Selection
 var manufacturerSelection = new Array();
 
@@ -1151,6 +1154,11 @@ function clearSelection(){
 	refreshManufacturers()
 	refreshAnalysis();
 	
+	if(dialogTable.dialog('isOpen')) {
+	dialogTable.dialog('close');
+	showMeasurementDetails();
+	}
+	
 }
 
 // Creates a more detailed list of selected points
@@ -1202,12 +1210,12 @@ function showMeasurementDetails() {
 	var table = $("<div>");
 	table.append(updatedList);
 	table.append("</div>");
+	table.css('font-size', 10);
 	
-    var dialog=$(table).dialog(
+    dialogTable=$(table).dialog(
         {
 		height: 500,
-		width: 600,
-		modal:true,
+		width: 800,
 		title: "Alle ausgewählten Messwerte"
         });
 }
