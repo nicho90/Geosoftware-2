@@ -649,6 +649,9 @@ function deletePolygon(){
 // Author: ?? 
 function confirmPolygon(){
 	var polygonCorners = polygonLayer.getLatLngs();
+	
+	duplicate = false;
+	
     polygon.disable;
 	//For each measurement in current map-bounds
 	for(var i = 0; i < currentMeasurements.length; i++){
@@ -669,15 +672,16 @@ function confirmPolygon(){
 		k = j;
 		}
 		if(oddNodes){
-			addSinglePoint(currentMeasurements[i]);
+			duplicate = addSinglePoint(currentMeasurements[i]);
 		}
 	
 	}
 	centerPolygon(polygonCorners);
+	
 	//Open and Close info-popup
 	//Author: Nicho and Johanna	
-		$('#infodialog').html('Punkte wurden hinzugefügt.');
-		$('#infodialog').dialog({ 
+	$('#infodialog').html('Punkte wurden hinzugefügt.');
+	$('#infodialog').dialog({ 
 		height: 100,
 		width: 300,
 		autoOpen: true,   
@@ -685,14 +689,43 @@ function confirmPolygon(){
 		open: function(event, ui) { 
 			setTimeout(function(){ 
 			$('#infodialog').dialog('close'); }, 500); 
-            } 
-        });
-    
-        mainMap.removeLayer(polygonLayer);
-        
-        polygonSelection = false;
-        colorize('choosePolygon');
-        toggle_visibility('drawingPolygon');
+        } 
+    });
+	
+	if(!duplicate){
+	
+		$('#infodialog').html('Punkte wurden hinzugefügt.');
+		$('#infodialog').dialog({ 
+			height: 100,
+			width: 300,
+			autoOpen: true,   
+			modal: true, 
+			open: function(event, ui) { 
+				setTimeout(function(){ 
+				$('#infodialog').dialog('close'); }, 500); 
+			} 
+		});
+		
+	}else{
+	
+		$('#infodialog').html('Die ausgewählten Punkte wurden hinzugefügt. Einige Punkte befinden sich bereits in der Auswahl und wurde deshalb nicht erneut hinzugefügt.');
+		$('#infodialog').dialog({ 
+			height: 160,
+			width: 400,
+			autoOpen: true,   
+			modal: true, 
+			open: function(event, ui) { 
+				setTimeout(function(){ 
+				$('#infodialog').dialog('close'); }, 5000); 
+			} 
+		});
+	}
+	
+     mainMap.removeLayer(polygonLayer);
+       
+    polygonSelection = false;
+    colorize('choosePolygon');
+    toggle_visibility('drawingPolygon');
         
 }
 
@@ -802,7 +835,7 @@ function addSinglePoint(measurement){
                     } 
                 });
                 
-				return;
+				return true;;
 			}
 		}
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
