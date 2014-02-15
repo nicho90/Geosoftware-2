@@ -53,6 +53,9 @@ var button3 = false;
 // Polyline of currently selected track
 var trackLine;
 
+// Marker-Array of interpolated points
+var interpolated;
+
 // Array of Line Segments between Measurements after Interpolation
 var interpolationLines = new Array();
 
@@ -1879,8 +1882,8 @@ function startInterpolation(){
 	}
 }
 
-// Reset Track Selection
-// Description: Deletes Track and draws standard measurements
+// IDW Interpolation
+// Description: Compute Interpolation, Draw Points and start Line visualization
 // Author: René Unrau
 function idwInterpolation(){
 
@@ -1894,6 +1897,7 @@ function idwInterpolation(){
 	interpolated.phenomenons.CO2 = new Array();
 	interpolated.phenomenons.MAF = new Array();
 	interpolated.phenomenons.Speed = new Array();
+	interpolated.marker = new Array();
 	
 	// Check which attributes are available for this track
 	var consumption = false;
@@ -1991,7 +1995,7 @@ function idwInterpolation(){
 		}
 		
 		// Add interpolations to map
-		marker = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: yellowDot});
+		interpolated.marker[i-1] = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: yellowDot});
 		
 		var container = $('<div/>');
 		
@@ -2004,8 +2008,10 @@ function idwInterpolation(){
 		// Insert the container into the popup
 		marker.bindPopup(container[0]);
 		
-		mainMap.addLayer(marker);
+		mainMap.addLayer(interpolated.marker[i-1]);
 	}
+	
+	
 	
 	var e = document.getElementById("interpolationAttrSelectionBox");
 	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
@@ -2202,3 +2208,38 @@ function colorize(button) {
         } 
     }
  }
+ 
+// switch interpolation line
+// Description: turn draw/remove interpolation-line-layer
+// Author: René Unrau
+function switchIntLine(){
+
+	for(var i = 0; i < interpolationLines.length; i++){
+	
+		mainMap.removeLayer(interpolationLines[i]);
+	}
+}
+
+
+// switch interpolation measurements
+// Description: turn draw/remove interpolation-measurements-layer
+// Author: René Unrau
+function switchIntMeasurements(){
+
+	for(var i = 0; i < markers.length; i++){
+	
+		mainMap.removeLayer(markers[i]);
+	}
+}
+
+
+// switch interpolated points
+// Description: turn draw/remove interpolated-points-layer
+// Author: René Unrau
+function switchIntPoints(){
+
+	for(var i = 0; i < interpolated.marker.length; i++){
+	
+		mainMap.removeLayer(interpolated.marker[i]);
+	}
+}
