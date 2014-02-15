@@ -122,11 +122,12 @@ function drawMap() {
 	  
 
 	var layer = {
-		"OSM": osm,
-		"Google": google,
-        "DTK10": DTK10,
-        "DTK10_pan": DTK10_panchromatic,
-        "OpenTopoMap":topo
+		"OpenStreetMap": osm,
+        "OpenTopoMap":topo,
+        "DTK10 (NRW)": DTK10,
+        "DTK10 (NRW) panchromatisch ": DTK10_panchromatic,
+        "Google Maps (Satellite)": google
+        
 	};
 	  
 	var map = L.map('map', {
@@ -204,7 +205,7 @@ function drawMap() {
 	// allows the user to pan with the give navigation elements
 	//Author: Johanna Möllmann
 	document.getElementById('left').onclick = function() {
-    		map.panBy([-300, 0]);;
+        map.panBy([-300, 0]);;
 	};
 
 	document.getElementById('right').onclick = function() {
@@ -219,11 +220,11 @@ function drawMap() {
     	map.panBy([0, -300]);
 	};
 	
-	// locate me - function 
+    
+    
+	// Locate me - function 
 	// map pans to current position of the user and sets a marker
-	// source of the marker-image: http://www.iconsdb.com/orange-icons/marker-icon.html
-	//Author: Johanna Möllmann
-	
+	// Author: Johanna Möllmann
 	document.getElementById('locateMe').onclick = function() {
        function handler(locateme){
            var longitude = locateme.coords.longitude;
@@ -239,6 +240,8 @@ function drawMap() {
 	L.control.layers(layer).addTo(map);
     mainMap = map;
 }
+
+
 
 // Draw Measurements
 // Description: Adds dots to the map and controls click events
