@@ -286,117 +286,77 @@ function drawMeasurements() {
 	currentMeasurements = new Array();
 	markers = new Array();
 	
-	jQuery.ajax({
-		async : false,
-		url: "https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat,
-		success: function(result){
+	for(var i = 0; i < 5; i++){
 	
-		currentMeasurements = result.features;
-		
-		$.each(currentMeasurements, function(i, measurement){
-		
-			var geometry = measurement.geometry;
-			var properties = measurement.properties;
-			var sensor = properties.sensor;
-			var phenomenons = properties.phenomenons;
-			
-			//Check if phenomenons are not defined -> add default value
-			if(phenomenons.Consumption == undefined) {
-				var Consumption = new Object();
-				Consumption.value = "-";
-				Consumption.unit = "l/s";
-				phenomenons.Consumption = Consumption;
-			}
-			if(phenomenons.CO2 == undefined) {
-				var CO2 = new Object();
-				CO2.value = "-";
-				CO2.unit = "g/s";
-				phenomenons.CO2 = CO2;
-			}
-			if(phenomenons.MAF == undefined) {
-				var MAF = new Object();
-				MAF.value = "-";
-				MAF.unit = "l/s";
-				phenomenons.MAF = MAF;
-			}
-			if(phenomenons.Speed == undefined) {
-				var Speed = new Object();
-				Speed.value = "-";
-				Speed.unit = "km/s";
-				phenomenons.Speed = Speed;
-			}
-			
-			var marker;
-			var found = false;
-			
-			//Check if Measurement is already in selection
-			for(var j = 0; j < selection.length; j++){
-			
-				// If measurement was already selected:
-				if(selection[j].properties.id == measurement.properties.id){
-					var propertiesID = selection[j].properties.id;
+		jQuery.ajax({
+			async : false,
+			url: "https://envirocar.org/api/stable/rest/measurements?bbox=" + swLng + "," + swLat + "," + neLng + "," + neLat + "&limit=100&page=" + i,
+			success: function(result){
 				
-					marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
-			
-					var container = $('<div/>');
-
-					container.on('click', '#centerPoint', function() {
-						doNotLoad = true;
-						mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
-					});
-				
-					container.on('click', '#showTrack', function() {
-						showTrack(propertiesID);
-					});
-
-					container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
-						'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
-						'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
-						'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
-						'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
-						'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' l/h</td></tr>' +
-						'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +
-						'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' l/s</td></tr>' +
-						'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
-						'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
-	
-					// Insert the container into the popup
-					marker.bindPopup(container[0]);
-			
-					//Do not load measurements if marker is clicked
-					marker.on('click', function(){
-						doNotLoad = true;
-						if(singlePointSelection) {
-							mainMap.closePopup();
-							var dialog = $('<p>Möchten sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
-								buttons: {
-									"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
-									"Nein":  function() {dialog.dialog('close');}
-								}
-							});	
-						}
-					});
-				
-				found = true;
+				for(var j = 0; j < result.features.length; j++){
+					currentMeasurements.push(result.features[j]);
 				}
 			}
-				
-			if(!found){
+		});
+	}
+	
+	alert('' + currentMeasurements.length);
 		
-				marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
+	$.each(currentMeasurements, function(i, measurement){
+	
+		var geometry = measurement.geometry;
+		var properties = measurement.properties;
+		var sensor = properties.sensor;
+		var phenomenons = properties.phenomenons;
+		
+		//Check if phenomenons are not defined -> add default value
+		if(phenomenons.Consumption == undefined) {
+			var Consumption = new Object();
+			Consumption.value = "-";
+			Consumption.unit = "l/s";
+			phenomenons.Consumption = Consumption;
+		}
+		if(phenomenons.CO2 == undefined) {
+			var CO2 = new Object();
+			CO2.value = "-";
+			CO2.unit = "g/s";
+			phenomenons.CO2 = CO2;
+		}
+		if(phenomenons.MAF == undefined) {
+			var MAF = new Object();
+			MAF.value = "-";
+			MAF.unit = "l/s";
+			phenomenons.MAF = MAF;
+		}
+		if(phenomenons.Speed == undefined) {
+			var Speed = new Object();
+			Speed.value = "-";
+			Speed.unit = "km/s";
+			phenomenons.Speed = Speed;
+		}
+		
+		var marker;
+		var found = false;
+		
+		//Check if Measurement is already in selection
+		for(var j = 0; j < selection.length; j++){
+		
+			// If measurement was already selected:
+			if(selection[j].properties.id == measurement.properties.id){
+				var propertiesID = selection[j].properties.id;
 			
+				marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
+		
 				var container = $('<div/>');
-
-				container.on('click', '#centerPoint', function() {
+					container.on('click', '#centerPoint', function() {
 					doNotLoad = true;
 					mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
 				});
-				
+			
 				container.on('click', '#showTrack', function() {
-					showTrack(properties.id);
+					showTrack(propertiesID);
 				});
-
-				container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+					container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 					'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 					'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 					'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
@@ -409,94 +369,163 @@ function drawMeasurements() {
 
 				// Insert the container into the popup
 				marker.bindPopup(container[0]);
-			
+		
 				//Do not load measurements if marker is clicked
 				marker.on('click', function(){
 					doNotLoad = true;
 					if(singlePointSelection) {
 						mainMap.closePopup();
-						addSinglePoint(measurement);
+						var dialog = $('<p>Möchten sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
+							buttons: {
+								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
+								"Nein":  function() {dialog.dialog('close');}
+							}
+						});	
 					}
 				});
+			
+			found = true;
 			}
-			
-			//add all points to the array 'markers'
-			markers.push(marker);
-			
-			//split the time into 'day', 'month', 'year'
-			var splitTime = properties.time.split("-");
-			var year = parseInt(splitTime[0]);
-			var month = parseInt(splitTime[1]);
-			var day = parseInt(splitTime[2].substring(0,2));
-
-            var cartype = sensor.properties.manufacturer + " " + sensor.properties.model;
-			
-            //If true the marker is already deleted. If false the marker is not deleted
-			var isDeleted = false;
-			//filter the points
-            if(filtStart != "" && isDeleted == false) {
-                //delete the points which not fit to the filter 'period of time'
-                if(year < filtStartYear) {
-					markers.pop();
-					isDeleted = true;
-				} else if(year > filtStartYear) {
-					
-				} else {
-					if(month < filtStartMonth) {
-						markers.pop();
-						isDeleted = true;
-					} else if(month > filtStartMonth) {
-
-					} else {
-						if(day < filtStartDay) {
-							markers.pop();
-							isDeleted = true;
-						}
-					}
-				}
-			}
-			if(filtEnde != "" && isDeleted == false) {	
-				if(year > filtEndYear) {
-					markers.pop();
-					isDeleted = true;
-				} else if(year < filtEndYear) {
-					
-				} else {
-					if(month > filtEndMonth) {
-						markers.pop();
-						isDeleted = true;
-					} else if(month < filtEndMonth) {
-
-					} else {
-						if(day > filtEndDay) {
-							markers.pop();
-							isDeleted = true;
-						}
-					}
-				}
-				
-            }
-            if(filtTyp != "" && isDeleted == false) {
-                //delete the points which not fit to the filter 'type'
-				if(cartype.toLowerCase().indexOf(filtTyp.toLowerCase()) == -1) {
-					markers.pop();
-					isDeleted = true;
-				}
-            }        		
-            if(filtSensor != "" && isDeleted == false) {
-                //delete the points which not fit to the filter 'sensor-id'
-                if(sensor.properties.id.indexOf(filtSensor) == -1) {
-                    markers.pop();
-					isDeleted = true;
-                }	
-            }
-			
-		} );
-		
-		for(var i = 0; i < markers.length; i++) {
-			mainMap.addLayer(markers[i]);
 		}
-    }});
+			
+		if(!found){
+	
+			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
+		
+			var container = $('<div/>');
+				container.on('click', '#centerPoint', function() {
+				doNotLoad = true;
+				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
+			});
+			
+			container.on('click', '#showTrack', function() {
+				showTrack(properties.id);
+			});
+			
+			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
+				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
+				'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
+				'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
+				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' l/h</td></tr>' +
+				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +
+				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' l/s</td></tr>' +
+				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
+				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+	
+			// Insert the container into the popup
+			marker.bindPopup(container[0]);
+			
+			//Do not load measurements if marker is clicked
+			marker.on('click', function(){
+				doNotLoad = true;
+				if(singlePointSelection) {
+					mainMap.closePopup();
+					addSinglePoint(measurement);
+				}
+			});
+		}
+		
+		//add all points to the array 'markers'
+		markers.push(marker);
+		
+		//split the time into 'day', 'month', 'year'
+		var splitTime = properties.time.split("-");
+		var year = parseInt(splitTime[0]);
+		var month = parseInt(splitTime[1]);
+		var day = parseInt(splitTime[2].substring(0,2));
+		var cartype = sensor.properties.manufacturer + " " + sensor.properties.model;
+		
+        //If true the marker is already deleted. If false the marker is not deleted
+		var isDeleted = false;
+		
+		//filter the points
+        if(filtStart != "" && isDeleted == false) {
+		
+            //delete the points which not fit to the filter 'period of time'
+            if(year < filtStartYear) {
+			
+				markers.pop();
+				isDeleted = true;
+				
+			}else if(year > filtStartYear) {
+				
+			}else {
+			
+				if(month < filtStartMonth) {
+				
+					markers.pop();
+					isDeleted = true;
+					
+				}else if(month > filtStartMonth) {
+				
+				} else {
+					
+					if(day < filtStartDay) {
+					
+						markers.pop();
+						isDeleted = true;
+						
+					}
+				}
+			}
+		}
+		
+		if(filtEnde != "" && isDeleted == false) {	
+		
+			if(year > filtEndYear) {
+			
+				markers.pop();
+				isDeleted = true;
+				
+			} else if(year < filtEndYear) {
+				
+			} else {
+			
+				if(month > filtEndMonth) {
+					markers.pop();
+					isDeleted = true;
+					
+				} else if(month < filtEndMonth) {
+				
+					} else {
+					
+					if(day > filtEndDay) {
+					
+						markers.pop();
+						isDeleted = true;
+						
+					}
+				}
+			}
+        }
+		
+        if(filtTyp != "" && isDeleted == false) {
+		
+            //delete the points which not fit to the filter 'type'
+			if(cartype.toLowerCase().indexOf(filtTyp.toLowerCase()) == -1) {
+			
+				markers.pop();
+				isDeleted = true;
+				
+			}
+        } 
+       		
+        if(filtSensor != "" && isDeleted == false) {
+			
+        //delete the points which not fit to the filter 'sensor-id'
+            if(sensor.properties.id.indexOf(filtSensor) == -1) {
+				
+                markers.pop();
+				isDeleted = true;
+            }	
+        }
+			
+	});
+		
+	for(var i = 0; i < markers.length; i++) {
+		mainMap.addLayer(markers[i]);
+	}
 }
 
 
