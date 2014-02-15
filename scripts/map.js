@@ -819,8 +819,11 @@ function addSinglePoint(measurement){
 		open: function(event, ui) { 
 			setTimeout(function(){ 
 			$('#infodialog').dialog('close'); }, 1000); } });
+        
     }
+    
     else{
+        
 		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
@@ -1003,6 +1006,8 @@ function addTrackToSelection(track){
 	refreshManufacturers();
 	refreshAnalysis();
 	visualizeSelection();
+    
+    
 	//Open and Close info-popup
 	//Author: Nicho and Johanna	
 	$('#infodialog').html('Punkte wurden hinzugefügt.');
@@ -1016,6 +1021,13 @@ function addTrackToSelection(track){
 			$('#infodialog').dialog('close'); }, 500); 
 		}
 	});
+    
+    
+    // If a track is selected, show the interpolationbox
+    var e = document.getElementById('interpolationBox');
+    e.style.display = 'block';
+    
+    
 }
 
 // Delete Single Measurement
@@ -1137,6 +1149,20 @@ function updateSelectionList() {
 	updatedList.append("</table>");
 	$('#pointTable').html(updatedList);
     measurementList=updatedList;
+    
+    
+    // If two points are selected and in the list, show the analysebox
+    if(selection.length>0) {
+        var e = document.getElementById('selectedPointsBox');
+        e.style.display = 'block';
+    }
+    
+    // If two points are selected and in the list, show the analysebox
+    if(selection.length>1) {
+        var e = document.getElementById('analyseBox');
+        e.style.display = 'block';
+    }
+    
 }
 
 // Delete measurements from selection
@@ -1846,7 +1872,8 @@ function startInterpolation(){
 	var e = document.getElementById("interpolationSelectionBox");
 	if(e.options[e.selectedIndex].text == 'IDW'){
 		idwInterpolation();
-	}else if(e.options[e.selectedIndex].text == 'Kriging'){
+	}
+    else if(e.options[e.selectedIndex].text == 'Kriging'){
 		alert('Not yet implemented');
 	}
 }

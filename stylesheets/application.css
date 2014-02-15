@@ -575,7 +575,7 @@ h3 {
     (standardmäßig eingeblendet)
 ***********************************************/
 #selectedPointsBox {
-    display:block;
+    display:none;
     font-size: 9pt;
 }
 
@@ -603,7 +603,7 @@ h3 {
     margin:0;
     padding:0;
     overflow: scroll;
-    max-height: 220px;
+    max-height: 130px;
 }
 
 #pointTable table{
@@ -680,7 +680,7 @@ display: table-row;
 #analyse {}
 
 #analyseBox {
-    display:block;
+    display:none;
     font-size:9pt;
 }
 
@@ -744,7 +744,7 @@ display: table-row;
 #interpolation {}
 
 #interpolationBox {
-    display:block;
+    display:none;
 }
 
 #interpolationBox ul {
