@@ -901,7 +901,7 @@ else {
 }
 
 /***********************************************
-6. Diagram for Fahrzeugtypen
+    6. Diagram for Fahrzeugtypen
 ***********************************************/
 
 function diagramCarType() {

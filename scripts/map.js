@@ -410,10 +410,10 @@ function drawMeasurements() {
 				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 				'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
 				'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
+                '<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
+                '<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +           
 				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' l/h</td></tr>' +
-				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' l/s</td></tr>' +
-				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
 				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
 	
 			// Insert the container into the popup
@@ -1066,10 +1066,9 @@ function visualizeSelection(){
 					'<tr><td><b>Zeitstempel</b></td><td>'  + selection[j].properties.time + '</td></tr>' +
 					'<tr><td><b>Sensor-ID</b></td><td>' + selection[j].properties.sensor.properties.id + '</td></tr>' +
 					'<tr><td><b>Fahrzeugtyp</b></td><td>' + selection[j].properties.sensor.properties.manufacturer + ' ' + selection[j].properties.sensor.properties.model + '</td></tr>' +
+                    '<tr><td><b>Geschwindigkeit</b></td><td>' + selection[j].properties.phenomenons.Speed.value + ' km/h</td></tr>' +                           '<tr><td><b>CO2-Ausstoß</b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' g/s</td></tr>' +
 					'<tr><td><b>Spritverbrauch</b></td><td>' + selection[j].properties.phenomenons.Consumption.value + ' l/h</td></tr>' +
-					'<tr><td><b>CO2-Ausstoß</b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' g/s</td></tr>' +
 					'<tr><td><b>MAF</b></td><td>' + selection[j].properties.phenomenons.MAF.value + ' l/s</td></tr>' +
-					'<tr><td><b>Geschwindigkeit</b></td><td>' + selection[j].properties.phenomenons.Speed.value + ' km/h</td></tr>' +
 					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
 
 				// Insert the container into the popup
@@ -1099,66 +1098,16 @@ function visualizeSelection(){
 	}
 }
 
-// Update Current Analysis
-// Description: Refreshes the currently selected Analysis
-// Author: René Unrau
 
 
 // Update Selection-List
 // Description: Refreshes the List of the selected Measurements
 // Author: René Unrau
 
-/* Alter Teil:
-function updateSelectionList() {
-	var updatedList = $("<table id='selectionTable'>" + 
-		"<tr><th></th>" + 
-		"<th>Punkt</th>" + 
-		"<th>ID</th>" + 
-		"<th>Koordinaten</th>" + 
-		"<th>Sensor-ID</th>" + 
-		"<th>Zeitpunkt</th>" + 
-		"<th>Fahrzeugmarke</th>" + 
-		"<th>Modell</th>" + 
-		"<th>Spritverbrauch</th>" + 
-		"<th>CO2-Ausstoß</th>" + 
-		"<th>Geschwindigkeit</th>" + 
-		"<th>MAF</th></tr>"
-	);
-
-	$.each(selection, function(i, measurement){
-		lat = selection[i].geometry.coordinates[1];
-        lon = selection[i].geometry.coordinates[0];
-        point = i + 1;
-        
-		var div = $("<tr>");
-        div.append("<td><input type='checkbox' class='chk' name='point_id' id='" + i + "'></td>");
-		div.append("<td>" + point + "</td>");
-		div.append("<td>" + measurement.properties.id + "</td>");
-		div.append("<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>");
-		div.append("<td>" + measurement.properties.sensor.properties.id + "</td>");
-		div.append("<td>" + measurement.properties.time + "</td>");
-		div.append("<td>" + measurement.properties.sensor.properties.manufacturer + "</td>");
-		div.append("<td>" + measurement.properties.sensor.properties.model + "</td>");
-		div.append("<td>" + measurement.properties.phenomenons.Consumption.value + "</td>");
-		div.append("<td>" + measurement.properties.phenomenons.CO2.value + "</td>");
-		div.append("<td>" + measurement.properties.phenomenons.Speed.value + "</td>");
-		div.append("<td>" + measurement.properties.phenomenons.MAF.value + "</td>");
-		div.append("</tr>");
-		div.find("a").click(function(){
-			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
-		});
-		updatedList.append(div);
-	});
-
-	updatedList.append("</table>");
-	$('#selectionTable').replaceWith(updatedList);
-}
-*/
-
-/* neuer Teil */
 var measurementList;
+
 function updateSelectionList() {
-        var updatedList = $("<table class=\"points\">" +
+        var updatedList = $("<table class=points>" +
         "<tr><th></th>" +
         "<th>Punkt</th>" + 
         "<th>Koordinaten</th></tr>");
@@ -1222,22 +1171,23 @@ function clearSelection(){
 	
 }
 
-// Creates a more detailed list of selected points
+// Show all measurementdetails of the selected Points
+// Description: Creates a more detailed list of selected points in a popup
+// Author: Christian & Oli K.
 function showMeasurementDetails() {
 
-    var updatedList = $("<table class='measurementDetails' border= 1>" + 
+    var updatedList = $("<table>" + 
 		 
-		"<th>Punkt</th>" + 
-		"<th>ID</th>" + 
+		"<th>Punkt</th>" +
 		"<th>Koordinaten</th>" + 
 		"<th>Sensor-ID</th>" + 
 		"<th>Zeitpunkt</th>" + 
 		"<th>Fahrzeugmarke</th>" + 
 		"<th>Modell</th>" + 
-		"<th>Spritverbrauch</th>" + 
-		"<th>CO2-Ausstoß</th>" + 
-		"<th>Geschwindigkeit</th>" + 
-		"<th>MAF</th></tr>"
+        "<th>Geschwindigkeit [km/h]</th>" + 
+		"<th>CO2-Ausstoß [g/s]</th>" + 
+		"<th>Spritverbrauch [l/h]</th>" + 
+		"<th>MAF [l/s]</th></tr>"
 	);
 
 	$.each(selection, function(i, measurement){
@@ -1248,15 +1198,14 @@ function showMeasurementDetails() {
 		var div = $("<tr>");
         
 		div.append("<td>" + point + "</td>");
-		div.append("<td>" + measurement.properties.id + "</td>");
 		div.append("<td><a href='#' class='link'>" + lat + ", " + lon + "</a></td>");
 		div.append("<td>" + measurement.properties.sensor.properties.id + "</td>");
 		div.append("<td>" + measurement.properties.time + "</td>");
 		div.append("<td>" + measurement.properties.sensor.properties.manufacturer + "</td>");
 		div.append("<td>" + measurement.properties.sensor.properties.model + "</td>");
-		div.append("<td>" + measurement.properties.phenomenons.Consumption.value + "</td>");
-		div.append("<td>" + measurement.properties.phenomenons.CO2.value + "</td>");
 		div.append("<td>" + measurement.properties.phenomenons.Speed.value + "</td>");
+		div.append("<td>" + measurement.properties.phenomenons.CO2.value + "</td>");
+        div.append("<td>" + measurement.properties.phenomenons.Consumption.value + "</td>");
 		div.append("<td>" + measurement.properties.phenomenons.MAF.value + "</td>");
 		div.append("</tr>");
 		div.find("a").click(function(){
@@ -1268,15 +1217,14 @@ function showMeasurementDetails() {
     updatedList.append("</table>");
 	//$('#selectionTable').replaceWith(updatedList);
 	
-	var table = $("<div>");
+	var table = $("<div id=measurementDetails>");
 	table.append(updatedList);
 	table.append("</div>");
-	table.css('font-size', 10);
 	
     dialogTable=$(table).dialog(
         {
-		height: 500,
-		width: 800,
+		height: 620,
+		width: 900,
 		title: "Alle ausgewählten Messwerte"
         });
 }
