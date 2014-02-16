@@ -31,8 +31,6 @@ var manufacturerSelection = new Array();
 var manufacturerNames = new Array();
 var manufacturerFrequency = new Array();
 
-
-
 //If true user adds points to selection by clicking on them
 var singlePointSelection = false;
 
@@ -42,13 +40,10 @@ var trackSelection = false;
 //If true user search for tracks and select them
 var polygonSelection = false;
 
-
 //Buttons
 var button1 = false;
 var button2 = false;
 var button3 = false;
-
-
 
 // Polyline of currently selected track
 var trackLine;
@@ -58,6 +53,11 @@ var interpolated;
 
 // Array of Line Segments between Measurements after Interpolation
 var interpolationLines = new Array();
+
+// Show Layer
+var showIntLines;
+var showIntMeasurements;
+var showIntPoints;
 
 //If true measurements are not loaded with next movement in map
 var doNotLoad = false;
@@ -1487,11 +1487,10 @@ function getMin(phenomenon){
 
 	var first = true;
 	var min;
+	var result = new Object();
 	
 	//For phenomenon "Speed"
 	if(phenomenon == 'Speed'){
-	
-		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
 		
@@ -1521,8 +1520,6 @@ function getMin(phenomenon){
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
 	
-		var result = new Object();
-	
 		for(var i = 0; i < selection.length; i++){
 		
 			// If first value, then take as minimum
@@ -1550,8 +1547,6 @@ function getMin(phenomenon){
 
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
-	
-		var result = new Object();
 	
 		for(var i = 0; i < selection.length; i++){
 		
@@ -1581,8 +1576,6 @@ function getMin(phenomenon){
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
 	
-		var result = new Object();
-	
 		for(var i = 0; i < selection.length; i++){
 		
 			// If first value, then take as minimum
@@ -1602,6 +1595,94 @@ function getMin(phenomenon){
 						result.lat = selection[i].geometry.coordinates[1];
 						result.lng = selection[i].geometry.coordinates[0];		
 					}
+				}
+			}
+		}
+		result.value = Math.round(min*100)/ 100;
+		return result;
+	
+	// For phenomenon "Interpolated Speed"
+	}else if(phenomenon == 'IntSpeed'){
+	
+		for(var i = 0; i < interpolated.phenomenons.Speed.length; i++){
+			// If first value, then take as minimum
+			if(first){
+				min = interpolated.phenomenons.Speed[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];
+				first = false;
+			}else{
+				//If current Value is smaller than current min
+				if(min > interpolated.phenomenons.Speed[i]){
+					min = interpolated.phenomenons.Speed[i];
+					result.lat = interpolated.latitude[i];
+					result.lng = interpolated.longitude[i];
+				}
+			}
+		}
+		result.value = Math.round(min*100)/ 100;
+		return result;
+	
+	// For phenomenon "Interpolated CO2"
+	}else if(phenomenon == 'IntCO2'){
+	
+		for(var i = 0; i < interpolated.phenomenons.CO2.length; i++){
+			// If first value, then take as minimum
+			if(first){
+				min = interpolated.phenomenons.CO2[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];
+				first = false;
+			}else{
+				//If current Value is smaller than current min
+				if(min > interpolated.phenomenons.CO2[i]){
+					min = interpolated.phenomenons.CO2[i];
+					result.lat = interpolated.latitude[i];
+					result.lng = interpolated.longitude[i];
+				}
+			}
+		}
+		result.value = Math.round(min*100)/ 100;
+		return result;
+	
+	// For phenomenon "Interpolated Consumption"
+	}else if(phenomenon == 'IntConsumption'){
+	
+		for(var i = 0; i < interpolated.phenomenons.Consumption.length; i++){
+			// If first value, then take as minimum
+			if(first){
+				min = interpolated.phenomenons.Consumption[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];
+				first = false;
+			}else{
+				//If current Value is smaller than current min
+				if(min > interpolated.phenomenons.Consumption[i]){
+					min = interpolated.phenomenons.Consumption[i];
+					result.lat = interpolated.latitude[i];
+					result.lng = interpolated.longitude[i];
+				}
+			}
+		}
+		result.value = Math.round(min*100)/ 100;
+		return result;
+	
+	// For phenomenon "Interpolated Consumption"
+	}else if(phenomenon == 'IntMAF'){
+	
+		for(var i = 0; i < interpolated.phenomenons.MAF.length; i++){
+			// If first value, then take as minimum
+			if(first){
+				min = interpolated.phenomenons.MAF[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];
+				first = false;
+			}else{
+				//If current Value is smaller than current min
+				if(min > interpolated.phenomenons.MAF[i]){
+					min = interpolated.phenomenons.MAF[i];
+					result.lat = interpolated.latitude[i];
+					result.lng = interpolated.longitude[i];
 				}
 			}
 		}
@@ -1705,6 +1786,62 @@ function getMax(phenomenon){
 			}
 		}
 		return maxkey;
+		
+	// For phenomenon "Interpolated Speed"
+	}else if(phenomenon == 'IntSpeed'){
+	
+		for(var i = 0; i < interpolated.phenomenons.Speed.length; i++){
+			//If current Value is bigger than current max
+			if(max < interpolated.phenomenons.Speed[i]){
+				max = interpolated.phenomenons.Speed[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];		
+			}
+		}
+		result.value = Math.round(max*100)/ 100;
+		return result;
+	
+	// For phenomenon "Interpolated CO2"
+	}else if(phenomenon == 'IntCO2'){
+	
+		for(var i = 0; i < interpolated.phenomenons.CO2.length; i++){
+			//If current Value is bigger than current max
+			if(max < interpolated.phenomenons.CO2[i]){
+				max = interpolated.phenomenons.CO2[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];		
+			}
+		}
+		result.value = Math.round(max*100)/ 100;
+		return result;
+	
+	// For phenomenon "Interpolated Consumption"
+	}else if(phenomenon == 'IntConsumption'){
+	
+		for(var i = 0; i < interpolated.phenomenons.Consumption.length; i++){
+			//If current Value is bigger than current max
+			if(max < interpolated.phenomenons.Consumption[i]){
+				max = interpolated.phenomenons.Consumption[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];		
+			}
+		}
+		result.value = Math.round(max*100)/ 100;
+		return result;
+	
+	// For phenomenon "Interpolated Consumption"
+	}else if(phenomenon == 'IntMAF'){
+	
+		for(var i = 0; i < interpolated.phenomenons.MAF.length; i++){
+			//If current Value is bigger than current max
+			if(max < interpolated.phenomenons.MAF[i]){
+				max = interpolated.phenomenons.MAF[i];
+				result.lat = interpolated.latitude[i];
+				result.lng = interpolated.longitude[i];		
+			}
+		}
+		result.value = Math.round(max*100)/ 100;
+		return result;
 	}
 }
 
@@ -2011,17 +2148,15 @@ function idwInterpolation(){
 		mainMap.addLayer(interpolated.marker[i-1]);
 	}
 	
-	
-	
 	var e = document.getElementById("interpolationAttrSelectionBox");
 	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
-		visualizeInterpolation('Speed');
+		visualizeInterpolation('IntSpeed');
 	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
-		visualizeInterpolation('CO2');
+		visualizeInterpolation('IntCO2');
 	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
-		visualizeInterpolation('Consumption');
+		visualizeInterpolation('IntConsumption');
 	}else if(e.options[e.selectedIndex].text == 'MAF'){
-		visualizeInterpolation('MAF');
+		visualizeInterpolation('IntMAF');
 	}
 }
 
@@ -2071,8 +2206,8 @@ function visualizeInterpolation(phenomenon){
 	}
 
 	// Compute steps for coloring
-	max = getMax(phenomenon);
-	min = getMin(phenomenon);
+	max = getMax(phenomenon).value;
+	min = getMin(phenomenon).value;
 	firstThird = min + ((max - min) * 0.33);
 	secondThird = min + ((max - min) * 0.66);
 	
@@ -2085,7 +2220,7 @@ function visualizeInterpolation(phenomenon){
 		var pointList = [pointA, pointB];
 	
 		// Choose phenomenon and draw line with corresponding color
-		if(phenomenon == 'Consumption'){
+		if(phenomenon == 'IntConsumption'){
 	
 			if(selection[i].properties.phenomenons.Consumption.value < firstThird){
 				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
@@ -2097,7 +2232,7 @@ function visualizeInterpolation(phenomenon){
 				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
 			}
 		
-		}else if(phenomenon == 'Speed'){
+		}else if(phenomenon == 'IntSpeed'){
 	
 			if(selection[i].properties.phenomenons.Speed.value < firstThird){
 				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
@@ -2109,7 +2244,7 @@ function visualizeInterpolation(phenomenon){
 				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
 			}
 		
-		}else if(phenomenon == 'CO2'){
+		}else if(phenomenon == 'IntCO2'){
 	
 			if(selection[i].properties.phenomenons.CO2.value < firstThird){
 				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
@@ -2121,7 +2256,7 @@ function visualizeInterpolation(phenomenon){
 				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
 			}
 		
-		}else if(phenomenon == 'MAF'){
+		}else if(phenomenon == 'IntMAF'){
 	
 			if(selection[i].properties.phenomenons.MAF.value < firstThird){
 				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
@@ -2134,6 +2269,11 @@ function visualizeInterpolation(phenomenon){
 			}
 		
 		}
+	}
+	
+	for(var i = 0; i < interpolationLines.length; i++){
+	
+		mainMap.addLayer(interpolationLines[i]);
 	}
 }
 
@@ -2214,9 +2354,18 @@ function colorize(button) {
 // Author: René Unrau
 function switchIntLine(){
 
-	for(var i = 0; i < interpolationLines.length; i++){
+	if(showIntLines){
+
+		for(var i = 0; i < interpolationLines.length; i++){
 	
-		mainMap.removeLayer(interpolationLines[i]);
+			mainMap.removeLayer(interpolationLines[i]);
+		}
+	}else{
+		
+		for(var i = 0; i < interpolationLines.length; i++){
+	
+			mainMap.addLayer(interpolationLines[i]);
+		}
 	}
 }
 
@@ -2226,9 +2375,18 @@ function switchIntLine(){
 // Author: René Unrau
 function switchIntMeasurements(){
 
-	for(var i = 0; i < markers.length; i++){
+	if(showIntLines){
+
+		for(var i = 0; i < markers.length; i++){
 	
-		mainMap.removeLayer(markers[i]);
+			mainMap.removeLayer(markers[i]);
+		}
+	}else{
+		
+		for(var i = 0; i < markers.length; i++){
+	
+			mainMap.addLayer(markers[i]);
+		}
 	}
 }
 
@@ -2238,8 +2396,17 @@ function switchIntMeasurements(){
 // Author: René Unrau
 function switchIntPoints(){
 
-	for(var i = 0; i < interpolated.marker.length; i++){
+	if(showIntPoints){
+
+		for(var i = 0; i < interpolated.length; i++){
 	
-		mainMap.removeLayer(interpolated.marker[i]);
+			mainMap.removeLayer(interpolated.marker[i]);
+		}
+	}else{
+		
+		for(var i = 0; i < interpolated.length; i++){
+	
+			mainMap.addLayer(interpolated.marker[i]);
+		}
 	}
 }
