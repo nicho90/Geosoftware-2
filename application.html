@@ -119,7 +119,15 @@
                                 <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
                                 <td>Sensor-ID:</td>
                                 <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                                <td> </td>
+                                <td>
+                                    <select id=measurementNumber>
+                                        <option onClick="">100 Messpunkte</option>
+                                        <option onClick="">200 Messpunkte</option>
+                                        <option onClick="">300 Messpunkte</option>
+                                        <option onClick="">400 Messpunkte</option>
+                                        <option onClick="">500 Messpunkte</option>
+                                    </select>
+                                </td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -169,12 +177,30 @@
         
         <!-- Karte mit Navigationselementen -->
         <div id=map> 
-            <div id="pan" class="leaflet-control">			
+            <div id=pan class=leaflet-control>			
                 <a id="left"     class="panelement"><img src="images/left.png" class="panLeft"></a> 
                 <a id="right"    class="panelement"><img src="images/right.png" class="panRight"></a>
                 <a id="down"     class="panelement"><img src="images/down.png" class="panDown"></a>
                 <a id="up"       class="panelement"><img src="images/up.png" class="panUp"></a>
                 <a id="locateMe" class="panelementMiddle"><img src="images/location.png" class="imageLocateMe"></a>
+            </div>
+            <div id=visualisation>
+                 <a id=resetVisualisation class=visualisationElement><img src="images/reset.png" class=imageVisualisation></a> 
+            </div>
+            <div id=legende>
+                <div class=center><b>Legende</b></div>
+                <hr>
+                <input type=checkbox id=measurementPoints name=measurements value=measurements> Messpunkte<br>
+                <input type=checkbox id=interpolatedPoints name=interpolatedPoints value=interpolatedPoints> Interpolierte Werte<br>
+                <input type=checkbox id=interpolatedPoints name=interpolatedPoints value=interpolatedPoints> Interpolierte Linien
+                <hr>
+                <div id=interpolationClasses>
+                    <table>
+                        <tr><td id=red>&nbsp;&nbsp;&nbsp;</td><td>Intervalwerte</td></tr>
+                        <tr><td id=yellow>&nbsp;&nbsp;&nbsp;</td><td>Intervalwerte</td></tr>
+                        <tr><td id=green>&nbsp;&nbsp;&nbsp;</td><td>Intervalwerte</td></tr>
+                    </table>
+                </div>
             </div>
         </div>
                 
