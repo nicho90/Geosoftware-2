@@ -5,6 +5,7 @@
     1. Diagram-loader
 ***********************************************/
 function diagrams() {
+	if(selection.length > 1){
     
     $('#diagram').html('<div id=diagramBar class=popuplinks>'+
                             '<ul>'+
@@ -23,6 +24,15 @@ function diagrams() {
     height: 620});
 
     diagramSpeed();
+	}
+	else {
+	var diagramDialog = $('<p>Für die Diagrammanzeige müssen sich mindestens zwei Punkte in der Wertetabelle befinden.<br>Bitte selektieren Sie Punkte.</p>').dialog({
+		buttons: {
+			"Okay": function() {diagramDialog.dialog('close');}
+		},
+		width: 600
+	});
+	}
 
 }
 
@@ -905,6 +915,8 @@ else {
 ***********************************************/
 
 function diagramCarType() {
+ if(manufacturerNames.length > 0){
+
     $('#container').highcharts({
         chart: {
             type: 'column'
@@ -963,6 +975,10 @@ yAxis: {
 	color: '#483D8B'
 }]
 });
+}
+else {
+	errorMessage();
+	}
 };
 	
 /***********************************************************************
