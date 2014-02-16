@@ -2309,6 +2309,14 @@ function visualizeInterpolation(phenomenon){
 	
 		mainMap.addLayer(interpolationLines[i]);
 	}
+	
+	document.getElementById("intMeasurements").checked = true;
+	document.getElementById("intPoints").checked = true;
+	document.getElementById("intLines").checked = true;
+	
+	showIntMeasurements = true;
+	showIntPoints = true;
+	showIntLines = true;
 }
 
 
@@ -2401,6 +2409,8 @@ function switchIntLine(){
 			mainMap.addLayer(interpolationLines[i]);
 		}
 	}
+	
+	showIntLines = !showIntLines;
 }
 
 
@@ -2422,6 +2432,8 @@ function switchIntMeasurements(){
 			mainMap.addLayer(markers[i]);
 		}
 	}
+	
+	showIntMeasurements = !showIntMeasurements;
 }
 
 
@@ -2443,4 +2455,6 @@ function switchIntPoints(){
 			mainMap.addLayer(interpolated.marker[i]);
 		}
 	}
+	
+	showIntPoints = !showIntPoints;
 }
