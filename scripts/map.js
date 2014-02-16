@@ -2402,15 +2402,15 @@ function switchIntLine(){
 	
 			mainMap.removeLayer(interpolationLines[i]);
 		}
+		showIntLines = false;
 	}else{
 		
 		for(var i = 0; i < interpolationLines.length; i++){
 	
 			mainMap.addLayer(interpolationLines[i]);
 		}
+		showIntLines = true;
 	}
-	
-	showIntLines = !showIntLines;
 }
 
 
@@ -2419,21 +2419,21 @@ function switchIntLine(){
 // Author: René Unrau
 function switchIntMeasurements(){
 
-	if(showIntLines){
+	if(showIntMeasurements){
 
 		for(var i = 0; i < markers.length; i++){
 	
 			mainMap.removeLayer(markers[i]);
 		}
+		showIntMeasurements = false;
 	}else{
 		
 		for(var i = 0; i < markers.length; i++){
 	
 			mainMap.addLayer(markers[i]);
 		}
+		showIntMeasurements = true;
 	}
-	
-	showIntMeasurements = !showIntMeasurements;
 }
 
 
@@ -2444,17 +2444,44 @@ function switchIntPoints(){
 
 	if(showIntPoints){
 
-		for(var i = 0; i < interpolated.length; i++){
+		for(var i = 0; i < interpolated.marker.length; i++){
 	
 			mainMap.removeLayer(interpolated.marker[i]);
 		}
+		showIntPoints = false;
 	}else{
 		
-		for(var i = 0; i < interpolated.length; i++){
+		for(var i = 0; i < interpolated.marker.length; i++){
 	
 			mainMap.addLayer(interpolated.marker[i]);
 		}
+		showIntPoints = true;
+	}
+}
+
+// Reset all Visualizations
+// Description: Resets all visualizations and return to normal mode
+// Author: René Unrau
+function resetVisualization(){
+	
+	if(showIntLines){
+		for(var i = 0; i < interpolationLines.length; i++){
+			mainMap.removeLayer(interpolationLines[i]);
+		}
 	}
 	
-	showIntPoints = !showIntPoints;
+	if(showIntMeasurements){
+		for(var i = 0; i < markers.length; i++){
+			mainMap.removeLayer(markers[i]);
+		}
+	}
+	
+	if(showIntPoints){
+		for(var i = 0; i < interpolated.marker.length; i++){
+			mainMap.removeLayer(interpolated.marker[i]);
+		}
+	}
+	
+	resetTrackSelection();
+	drawMeasurements();
 }
