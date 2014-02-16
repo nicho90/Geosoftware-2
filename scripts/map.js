@@ -146,7 +146,10 @@ function drawMap() {
     map.on('zoomend', onZoomend);
     
     function onZoomend(){
-        //if osm-layer is selected check, whether a DTK10 or DTK10_panchromatic
+        
+        //old code:
+        
+      /*  //if osm-layer is selected check, whether a DTK10 or DTK10_panchromatic
         //is selected as well. Is this the case, the map zoomed out too far
         //for these two and the osm-layer has been displayed instead.
         //Since we enter DTK10's and DTK10_panchromatic's bounds again, the osm layer
@@ -166,8 +169,39 @@ function drawMap() {
             if(map.getZoom()<14&&(map.hasLayer(DTK10) ||   map.hasLayer(DTK10_panchromatic))){
                 map.addLayer(osm);
             }
+        }*/
+        if(map.hasLayer(topo)) {
+            if(map.getZoom()<=5) 
+                map.setZoom(5);
+            if(map.getZoom()>=15)
+                map.setZoom(15);
         }
-    };
+        
+        if(map.hasLayer(DTK10)||map.hasLayer(DTK10_panchromatic)){
+            if(map.getZoom()<14)
+                map.setZoom(14);
+        
+    }
+    }
+    
+    //adds listener being fired while baselayer is changed
+    //ensures that if DTK10, DTK10_panchromatic or openTopoMap are chosen the maps are not out of zoom bounds
+    //and thus can be displayed
+    map.on('baselayerchange', onBaseLayerChange);
+    
+    function onBaseLayerChange(){
+        if(map.hasLayer(topo)) {
+            if(map.getZoom()<=5)
+                map.setZoom(5);
+            if(map.getZoom>=15)
+                map.setZoom(15);
+        }
+        
+        if(map.hasLayer(DTK10)||map.hasLayer(DTK10_panchromatic)){
+            if(map.getZoom()<14)
+                map.setZoom(14);
+    }
+    }
     
     //create a new FeatureGroup to store drawn items
     drawnItems = new L.FeatureGroup();
