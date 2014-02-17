@@ -426,17 +426,27 @@ header {
     padding-bottom:2px;
 }
 
-#red {
-    background-color: red;
+#interpolationClasses_red {
+    background-color: rgb(255,0,0);
 }
 
-#yellow {
-    background-color: yellow;
+#interpolationClasses_orange {
+    background-color: rgb(255,165,0);
 }
 
-#green {
-    background-color: green;
+#interpolationClasses_yellow {
+    background-color: rgb(255,255,0);
 }
+
+#interpolationClasses_green {
+    background-color: rgb(140,188,62);
+}
+
+#interpolationClasses_dark_green {
+    background-color: rgb(34,139,34);
+}
+
+
 
 /***********************************************
     Visualisation-Button 
