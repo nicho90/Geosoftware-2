@@ -395,6 +395,8 @@ function drawMeasurements() {
 				});
 			
 				container.on('click', '#showTrack', function() {
+					doNotLoad = true;
+					mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
 					showTrack(propertiesID);
 				});
 					container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
@@ -440,6 +442,7 @@ function drawMeasurements() {
 			});
 			
 			container.on('click', '#showTrack', function() {
+			    mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
 				showTrack(properties.id);
 			});
 			
@@ -780,7 +783,7 @@ function confirmPolygon(){
 // Description: Searches for TrackID for a given Measurement in the current BoundingBox
 // Author: René Unrau
 function showTrack(pointID) {
-	
+		
 	//Get all Tracks in current BBox
 	var bounds = mainMap.getBounds();
 	
@@ -1104,10 +1107,11 @@ function visualizeSelection(){
 
 				container.on('click', '#centerPoint', function() {
 					doNotLoad = true;
-					mainMap.setView([selection[j].geometry.coordinates[1], selection[j].geometry.coordinates[0]],18);
+					mainMap.setView([selection[j].geometry.coordinates[1], selection[j].geometry.coordinates[1]],18);
 				} );
-				
 				container.on('click', '#showTrack', function() {
+					doNotLoad = true;
+					mainMap.setView([selection[j].geometry.coordinates[1], selection[j].geometry.coordinates[1]],18);
 					showTrack(selection[j].properties.id);
 				} );
 
@@ -2568,3 +2572,4 @@ function setMaxMeas(){
 	}
 	//drawMeasurements();
 }
+
