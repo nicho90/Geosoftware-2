@@ -3,6 +3,9 @@
 ***********************/
 var mainMap;
 
+// Maximum amount of measurements drawn at once (Counted in Pages of 100 measurements)
+var maxMeas;
+
 var markers = new Array();
 var currentMeasurements = new Array();
 
@@ -76,10 +79,10 @@ var yellowDot = L.icon({iconUrl: 'images/dots/yellowDot.png'});
 	Event register
 ***********************/
 window.onload = function() {
-  drawMap();
-  drawMeasurements();
-  mainMap.on('moveend', drawMeasurements);
-  
+	setMaxMeas();
+	drawMap();
+	drawMeasurements();
+	mainMap.on('moveend', drawMeasurements);
 }
 
 
@@ -326,7 +329,7 @@ function drawMeasurements() {
 	currentMeasurements = new Array();
 	markers = new Array();
 	
-	for(var i = 0; i < 5; i++){
+	for(var i = 0; i < maxMeas; i++){
 	
 		jQuery.ajax({
 			async : false,
@@ -339,8 +342,6 @@ function drawMeasurements() {
 			}
 		});
 	}
-	
-	alert('' + currentMeasurements.length);
 		
 	$.each(currentMeasurements, function(i, measurement){
 	
@@ -2546,4 +2547,24 @@ function resetVisualization(){
 	
 	resetTrackSelection();
 	drawMeasurements();
+}
+
+// Set Maximum Measurements
+// Description: Sets the maximum amount of measurements drawn at once
+// Author: René Unrau
+function setMaxMeas(){
+
+	var e = document.getElementById("measurementNumber");
+	if(e.options[e.selectedIndex].text == '100 Messpunkte'){
+		maxMeas = 1;
+	}else if(e.options[e.selectedIndex].text == '200 Messpunkte'){
+		maxMeas = 2;
+	}else if(e.options[e.selectedIndex].text == '300 Messpunkte'){
+		maxMeas = 3;
+	}else if(e.options[e.selectedIndex].text == '400 Messpunkte'){
+		maxMeas = 4;
+	}else if(e.options[e.selectedIndex].text == '500 Messpunkte'){
+		maxMeas = 5;
+	}
+	//drawMeasurements();
 }
