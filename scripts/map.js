@@ -2058,6 +2058,14 @@ function startInterpolation(){
 // Author: René Unrau
 function idwInterpolation(){
 
+	// Check if there has been already an interpolation and if yes: remove old interpolated-points from map
+	if(interpolated != undefined){
+		for(var i = 0; i < interpolated.marker.length; i++){
+		
+			mainMap.removeLayer(interpolated.marker[i]);
+		}
+	}
+
 	mainMap.removeLayer(trackLine);
 
 	interpolated = new Object();
@@ -2242,8 +2250,38 @@ function visualizeInterpolation(phenomenon){
 	// Compute steps for coloring
 	max = getMax(phenomenon).value;
 	min = getMin(phenomenon).value;
-	firstThird = min + ((max - min) * 0.33);
-	secondThird = min + ((max - min) * 0.66);
+	firstFifth = min + ((max - min) * 0.20);
+	secondFifth = min + ((max - min) * 0.40);
+	thirdFifth = min + ((max - min) * 0.60);
+	fourthFifth = min + ((max - min) * 0.80);
+	
+	
+	// Prepare Legend on map
+	if(phenomenon == 'IntConsumption'){
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' l/h';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' l/h';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' l/h';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' l/h';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' l/h';
+	}else if(phenomenon == 'IntSpeed'){
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' km/h';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' km/h';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' km/h';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' km/h';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' km/h';
+	}else if(phenomenon == 'IntCO2'){
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' g/s';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' g/s';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' g/s';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' g/s';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' g/s';
+	}else if(phenomenon == 'IntMAF'){
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' l/s';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' l/s';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' l/s';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' l/s';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' l/s';
+	}
 	
 	//Start drawing lines
 	for(var i = 0; i < (selection.length-1); i++){
@@ -2256,50 +2294,74 @@ function visualizeInterpolation(phenomenon){
 		// Choose phenomenon and draw line with corresponding color
 		if(phenomenon == 'IntConsumption'){
 	
-			if(selection[i].properties.phenomenons.Consumption.value < firstThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+			if(selection[i].properties.phenomenons.Consumption.value < firstFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#228b22'}).addTo(mainMap);
 				
-			}else if(selection[i].properties.phenomenons.Consumption.value < secondThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+			}else if(selection[i].properties.phenomenons.Consumption.value < secondFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#8cbc3e'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.Consumption.value < thirdFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffff00'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.Consumption.value < fourthFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffa500'}).addTo(mainMap);
 				
 			}else{
-				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+				interpolationLines[i] = L.polyline(pointList, {color: '#ff0000'}).addTo(mainMap);
 			}
 		
 		}else if(phenomenon == 'IntSpeed'){
 	
-			if(selection[i].properties.phenomenons.Speed.value < firstThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+			if(selection[i].properties.phenomenons.Speed.value < firstFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#228b22'}).addTo(mainMap);
 				
-			}else if(selection[i].properties.phenomenons.Speed.value < secondThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+			}else if(selection[i].properties.phenomenons.Speed.value < secondFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#8cbc3e'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.Speed.value < thirdFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffff00'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.Speed.value < fourthFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffa500'}).addTo(mainMap);
 				
 			}else{
-				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+				interpolationLines[i] = L.polyline(pointList, {color: '#ff0000'}).addTo(mainMap);
 			}
 		
 		}else if(phenomenon == 'IntCO2'){
 	
-			if(selection[i].properties.phenomenons.CO2.value < firstThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+			if(selection[i].properties.phenomenons.CO2.value < firstFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#228b22'}).addTo(mainMap);
 				
-			}else if(selection[i].properties.phenomenons.CO2.value < secondThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+			}else if(selection[i].properties.phenomenons.CO2.value < secondFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#8cbc3e'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.CO2.value < thirdFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffff00'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.CO2.value < fourthFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffa500'}).addTo(mainMap);
 				
 			}else{
-				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+				interpolationLines[i] = L.polyline(pointList, {color: '#ff0000'}).addTo(mainMap);
 			}
 		
-		}else if(phenomenon == 'IntMAF'){
+		}else if(phenomenon == 'IntMAF'){s
 	
-			if(selection[i].properties.phenomenons.MAF.value < firstThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'green'}).addTo(mainMap);
+			if(selection[i].properties.phenomenons.MAF.value < firstFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#228b22'}).addTo(mainMap);
 				
-			}else if(selection[i].properties.phenomenons.MAF.value < secondThird){
-				interpolationLines[i] = L.polyline(pointList, {color: 'yellow'}).addTo(mainMap);
+			}else if(selection[i].properties.phenomenons.MAF.value < secondFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#8cbc3e'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.MAF.value < thirdFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffff00'}).addTo(mainMap);
+				
+			}else if(selection[i].properties.phenomenons.MAF.value < fourthFifth){
+				interpolationLines[i] = L.polyline(pointList, {color: '#ffa500'}).addTo(mainMap);
 				
 			}else{
-				interpolationLines[i] = L.polyline(pointList, {color: 'red'}).addTo(mainMap);
+				interpolationLines[i] = L.polyline(pointList, {color: '#ff0000'}).addTo(mainMap);
 			}
 		
 		}
