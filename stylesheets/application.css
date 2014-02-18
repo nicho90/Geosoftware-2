@@ -405,7 +405,7 @@ header {
     background-color: rgb(255,255,255);
     border-radius: 4px;
     box-shadow: 0px 1px 5px rgba(0,0,0,0.4);
-    display:block;
+    display:none;
     font-size: 8pt;
     padding: 5px;  
     background-position: 50% 50%;
@@ -458,7 +458,7 @@ header {
     top: 60px;
     right: 10px;
     z-index: 999;
-    display:block;
+    display:none;
     /*border-radius: 4px;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.65);*/
     width:36px;

@@ -43,10 +43,16 @@ var trackSelection = false;
 //If true user search for tracks and select them
 var polygonSelection = false;
 
-//Buttons
+// Activity of the selectionsbuttons 
 var button1 = false;
 var button2 = false;
 var button3 = false;
+
+// Activity of the visualisation button
+var button4 = false;
+
+// Activity of the legende
+var legend = false;
 
 // Polyline of currently selected track
 var trackLine;
@@ -254,7 +260,7 @@ function drawMap() {
 	// allows the user to pan with the give navigation elements
 	//Author: Johanna Möllmann
 	document.getElementById('left').onclick = function() {
-        map.panBy([-300, 0]);;
+        map.panBy([-300, 0]);
 	};
 
 	document.getElementById('right').onclick = function() {
@@ -599,12 +605,12 @@ function drawMeasurements() {
 
 // 1) Single Point-Selection 
 // Description: User wants to add measurement for analysis by clicking on a single point on the map
-// Authors: René Unrau & Nicho
+// Authors: René Unrau & Nicholas Schiestel
 function chooseSingleSelection(id) {
     
     // check if trackSelection or polygonSelection
     if(trackSelection || polygonSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dies zuerst.");
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.");
     }
     
     // if no other Selcetionmode is active, then continue with singlePointSelection
@@ -624,12 +630,12 @@ function chooseSingleSelection(id) {
 
 // 2) Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
-// Authors: René Unrau & Nicho
+// Authors: René Unrau & Nicholas Schiestel
 function chooseTrackSelection() {
     
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dies zuerst.");
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.");
     }
     
     // if no other selcetionmode is active, then continue with singlePointSelection
@@ -653,12 +659,12 @@ function chooseTrackSelection() {
 
 // 3) Polygon Selection 
 // Description: User wants to add measurements by drawing a polygon on the map
-// Authors: René Unrau, Johanna, Oli K. & Nicho
+// Authors: René Unrau, Johanna, Oli K. & Nicholas Schiestel
 function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
     if(singlePointSelection || trackSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dies zuerst.");
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.");
     }
     
     // if no other selcetionmode is active, then continue with polygonSelection
@@ -734,7 +740,7 @@ function confirmPolygon(){
 	centerPolygon(polygonCorners);
 	
 	//Open and Close info-popup
-	//Author: Nicho and Johanna	
+	//Authors: Nicholas Schiestel and Johanna Möllmann	
 	$('#infodialog').html('Punkte wurden hinzugefügt.');
 	$('#infodialog').dialog({ 
 		height: 100,
@@ -893,7 +899,7 @@ function addSinglePoint(measurement){
 
 	
         //Open and Close info-popup
-        //Authors: Nicho and Johanna	
+        //Authors: Nicholas Schiestel and Johanna Möllmann
 		$('#infodialog').html('Punkt wurde hinzugefügt.');
 		$('#infodialog').dialog({ 
 		height: 100,
@@ -935,7 +941,7 @@ function addSinglePoint(measurement){
 		refreshAnalysis();
 		visualizeSelection();
 		//Open and Close info-popup
-		//Author: Nicho and Johanna	
+		//Authors: Nicholas Schiestel and Johanna Möllmann	
 		$('#infodialog').html('Punkt wurde hinzugefügt.');
 		$('#infodialog').dialog({ 
 		height: 100,
@@ -1093,7 +1099,7 @@ function addTrackToSelection(track){
     
     
 	//Open and Close info-popup
-	//Author: Nicho and Johanna	
+	//Authors: Nicholas Schiestel and Johanna Möllmann	
 	$('#infodialog').html('Punkte wurden hinzugefügt.');
 	$('#infodialog').dialog({ 
 		height: 100,
@@ -1110,7 +1116,6 @@ function addTrackToSelection(track){
     // If a track is selected, show the interpolationbox
     var e = document.getElementById('interpolationBox');
     e.style.display = 'block';
-    
     
 }
 
@@ -2071,13 +2076,17 @@ function visualizeTrack(trackID){
 		
 		// Set bounds of map to track
 		mainMap.fitBounds(trackLine.getBounds());
-		
+        
+        //show visualisation button on the map
+        toggle_visibility('visualisation');
+		button4 = true;
+        
 	});
 }
 
 // Reset Track Selection
 // Description: Deletes Track and draws standard measurements
-// Author: René Unrau
+// Authors: René Unrau & Nicholas Schiestel
 function resetTrackSelection(){
 	mainMap.removeLayer(trackLine);
 	for(var i = 0; i < markers.length; i++) {
@@ -2086,11 +2095,29 @@ function resetTrackSelection(){
 	drawMeasurements();
 	document.getElementById('Track_ID').value = '';
 	mainMap.on('moveend', drawMeasurements);
+    
+    
+    //reset and hide visualisation button on the map
+    toggle_visibility('visualisation');
+    button4 = false;
+    
+    //reset and hide the legend, if it is active
+    if(legend==true){
+        toggle_visibility('legende');
+        legend = false;
+    }
+    else{
+        toggle_visibility('legende');
+        legend = false;
+        toggle_visibility('legende');   
+    }
+    
+    
 }
 
 // Start Interpolation
 // Description: Checks which interpolation is choosed and starts it
-// Author René Unrau
+// Author: René Unrau
 function startInterpolation(){
 	var e = document.getElementById("interpolationSelectionBox");
 	if(e.options[e.selectedIndex].text == 'IDW'){
@@ -2226,6 +2253,29 @@ function idwInterpolation(){
 		interpolated.marker[i-1].bindPopup(container[0]);
 		
 		mainMap.addLayer(interpolated.marker[i-1]);
+        
+        // show legende on the map
+        if(legend!=true){
+            toggle_visibility('legende');
+            legend = true;
+        }
+        else{
+            toggle_visibility('legende');
+            legend = true;
+            toggle_visibility('legende');
+        }
+        
+        
+        //show visualisation button on the map (only when it isn't already active)
+        if(button4 != true){
+            toggle_visibility('visualisation');
+            button4 = true;
+        }
+        else {
+            toggle_visibility('visualisation');
+            toggle_visibility('visualisation');
+            button4 = true;
+        }
 	}
 	
 	var e = document.getElementById("interpolationAttrSelectionBox");
@@ -2238,6 +2288,8 @@ function idwInterpolation(){
 	}else if(e.options[e.selectedIndex].text == 'MAF'){
 		visualizeInterpolation('IntMAF');
 	}
+    
+    
 }
 
 
@@ -2387,6 +2439,30 @@ function krigingInterpolation(){
 		interpolated.marker[i-1].bindPopup(container[0]);
 		
 		mainMap.addLayer(interpolated.marker[i-1]);
+        
+        
+        // show legende on the map
+        if(legend!=true){
+            toggle_visibility('legende');
+            legend = true;
+        }
+        else{
+            toggle_visibility('legende');
+            legend = true;
+            toggle_visibility('legende');
+        }
+        
+        
+        //show visualisation button on the map (only when it isn't already active)
+        if(button4 != true){
+            toggle_visibility('visualisation');
+            button4 = true;
+        }
+        else {
+            toggle_visibility('visualisation');
+            toggle_visibility('visualisation');
+            button4 = true;
+        }
 	}
 	
 	var e = document.getElementById("interpolationAttrSelectionBox");
@@ -2403,8 +2479,8 @@ function krigingInterpolation(){
 
 
 // Visualize Interpolation
-// Author: René Unrau
 // Description Draws colored line between measurements, based on selected attributes
+// Author: René Unrau
 function visualizeInterpolation(phenomenon){
 	
 	// Remove old InterpolationLines from Map
@@ -2551,7 +2627,6 @@ function visualizeInterpolation(phenomenon){
 // Compute new coordinates for Interpolation
 // Description: Compute Coordinates between selected measurements
 // Author: René Unrau
-
 function computeCoords(){
 
 	for(var i = 1; i < selection.length; i++){
@@ -2572,7 +2647,7 @@ function computeCoords(){
 
 // Selectionsbuttons
 // Selectionsbuttons change their color from green to orange, if they are active
-// Author: Nicho
+// Author: Nicholas Schiestel
 function colorize(button) {
     // for singlePointSelection
     if(button == 'chooseSinglePoint'){
