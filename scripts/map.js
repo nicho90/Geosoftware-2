@@ -2054,7 +2054,7 @@ function startInterpolation(){
 		idwInterpolation();
 	}
     else if(e.options[e.selectedIndex].text == 'Kriging'){
-		alert('Not yet implemented');
+		krigingInterpolation();
 	}
 }
 
@@ -2351,7 +2351,7 @@ function visualizeInterpolation(phenomenon){
 				interpolationLines[i] = L.polyline(pointList, {color: '#ff0000'}).addTo(mainMap);
 			}
 		
-		}else if(phenomenon == 'IntMAF'){s
+		}else if(phenomenon == 'IntMAF'){
 	
 			if(selection[i].properties.phenomenons.MAF.value < firstFifth){
 				interpolationLines[i] = L.polyline(pointList, {color: '#228b22'}).addTo(mainMap);
@@ -2573,3 +2573,174 @@ function setMaxMeas(){
 	//drawMeasurements();
 }
 
+// Kriging Interpolation
+// Description: Compute Interpolation, Draw Points and start Line visualization
+// Author: René Unrau
+function krigingInterpolation(){
+
+	// Check if there has been already an interpolation and if yes: remove old interpolated-points from map
+	if(interpolated != undefined){
+		for(var i = 0; i < interpolated.marker.length; i++){
+		
+			mainMap.removeLayer(interpolated.marker[i]);
+		}
+	}
+
+	mainMap.removeLayer(trackLine);
+
+	interpolated = new Object();
+	interpolated.latitude = new Array();
+	interpolated.longitude = new Array();
+	interpolated.phenomenons = new Object();
+	interpolated.phenomenons.Consumption = new Array();
+	interpolated.phenomenons.CO2 = new Array();
+	interpolated.phenomenons.MAF = new Array();
+	interpolated.phenomenons.Speed = new Array();
+	interpolated.marker = new Array();
+	
+	// Check which attributes are available for this track
+	var consumption = false;
+	var co2 = false;
+	var maf = false;
+	var speed = false;
+	if(selection[0].properties.phenomenons.Consumption.value != '-'){consumption = true;}
+	if(selection[0].properties.phenomenons.CO2.value != '-'){co2 = true;}
+	if(selection[0].properties.phenomenons.MAF.value != '-'){maf = true;}
+	if(selection[0].properties.phenomenons.Speed.value != '-'){speed = true;}
+	
+	// Create coordinates of new interpolated locations
+	for(var i = 1; i < selection.length; i++){
+	
+		halfDifference = Math.abs(selection[i].geometry.coordinates[1] - selection[i-1].geometry.coordinates[1]) / 2;
+		minimum = Math.min(selection[i].geometry.coordinates[1],selection[i-1].geometry.coordinates[1]);
+	
+		interpolated.latitude[i-1] = halfDifference + minimum;
+		
+		halfDifference = Math.abs(selection[i].geometry.coordinates[0] - selection[i-1].geometry.coordinates[0]) / 2;
+		minimum = Math.min(selection[i].geometry.coordinates[0],selection[i-1].geometry.coordinates[0]);
+	
+		interpolated.longitude[i-1] = halfDifference + minimum;
+	}
+	
+	// Kriging parameters, independent of target variables
+	var model = "gaussian";
+	var sigma2 = 5;
+	var alpha = 80;
+	var x = new Array();
+	var y = new Array();
+	
+	
+	// Create new Array from coordinates of selected Measurements
+	for(var i = 0; i < selection.length; i++){
+		x.push(selection[i].geometry.coordinates[1]);
+		y.push(selection[i].geometry.coordinates[0]);
+	}
+	
+	// Create empty variograms for kriging-interpolation
+	var consumptionVariogram;
+	var co2Variogram;
+	var mafVariogram;
+	var speeVariogram;
+	
+	
+	// Define Kriging Parameters for all available target variables
+	if(consumption){
+		var consumptionValues = new Array();
+		for(var i = 0; i < selection.length; i++){
+			consumptionValues.push(selection[i].properties.phenomenons.Consumption.value);
+		}
+		consumptionVariogram = kriging.train(consumptionValues, x, y, model, sigma2, alpha);
+	}
+	
+	if(co2){
+		var co2Values = new Array();
+		for(var i = 0; i < selection.length; i++){
+			co2Values.push(selection[i].properties.phenomenons.CO2.value);
+		}
+		co2Variogram = kriging.train(co2Values, x, y, model, sigma2, alpha);
+	}
+	
+	if(maf){
+		var mafValues = new Array();
+		for(var i = 0; i < selection.length; i++){
+			mafValues.push(selection[i].properties.phenomenons.MAF.value);
+		}
+		mafVariogram = kriging.train(mafValues, x, y, model, sigma2, alpha);
+	}
+	
+	if(speed){
+		var speedValues = new Array();
+		for(var i = 0; i < selection.length; i++){
+			speedValues.push(selection[i].properties.phenomenons.Speed.value);
+		}
+		speedVariogram = kriging.train(speedValues, x, y, model, sigma2, alpha);
+	}
+
+	
+	
+	for(var i = 1; i < selection.length; i++){
+		
+		//Interpolate Consumption
+		if(consumption){
+			
+			interpolated.phenomenons.Consumption[i-1] = kriging.predict(interpolated.latitude[i-1], interpolated.longitude[i-1], consumptionVariogram);
+			
+		}else{
+			interpolated.phenomenons.Consumption[i-1] = '-';
+		}
+		
+		//Interpolate CO2
+		if(co2){
+			
+			interpolated.phenomenons.CO2[i-1] = kriging.predict(interpolated.latitude[i-1], interpolated.longitude[i-1], co2Variogram);
+			
+		}else{
+			interpolated.phenomenons.CO2[i-1] = '-';
+		}
+		
+		//Interpolate MAF
+		if(maf){
+			
+			interpolated.phenomenons.MAF[i-1] = kriging.predict(interpolated.latitude[i-1], interpolated.longitude[i-1], mafVariogram);
+			
+		}else{
+			interpolated.phenomenons.MAF[i-1] = '-';
+		}
+		
+		//Interpolate Speed
+		if(speed){
+			
+			interpolated.phenomenons.Speed[i-1] = kriging.predict(interpolated.latitude[i-1], interpolated.longitude[i-1], speedVariogram);
+			
+		}else{
+			interpolated.phenomenons.Speed[i-1] = '-';
+		}
+		
+		// Add interpolations to map
+		interpolated.marker[i-1] = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: yellowDot});
+		
+		var container = $('<div/>');
+		
+		container.html('<html><table><tr><td>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
+			'<tr><td>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
+			'<tr><td>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
+			'<tr><td>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+			'</table></html>');
+			
+		// Insert the container into the popup
+		marker.bindPopup(container[0]);
+		
+		mainMap.addLayer(interpolated.marker[i-1]);
+	}
+	
+	var e = document.getElementById("interpolationAttrSelectionBox");
+	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
+		visualizeInterpolation('IntSpeed');
+	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
+		visualizeInterpolation('IntCO2');
+	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
+		visualizeInterpolation('IntConsumption');
+	}else if(e.options[e.selectedIndex].text == 'MAF'){
+		visualizeInterpolation('IntMAF');
+	}
+}
