@@ -4,8 +4,8 @@ Geosoftware-2
 **University of Muenster**<br/>
 **Course: Geosoftware 2**<br/>
 **WiSe13/14**<br/>
-**Group D**
-**Link to our project: http://giv-geosoft2d.uni-muenster.de/ourproject/
+**Group D** <br/>
+**Link to our project: http://giv-geosoft2d.uni-muenster.de/ourproject/ ** <br/>
 
 ***
 
