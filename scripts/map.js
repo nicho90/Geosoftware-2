@@ -2216,14 +2216,14 @@ function idwInterpolation(){
 		
 		var container = $('<div/>');
 		
-		container.html('<html><table><tr><td>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
-			'<tr><td>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
-			'<tr><td>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
-			'<tr><td>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+		container.html('<html><table><tr><td><b>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+			'<tr><td><b>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
+			'<tr><td><b>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
+			'<tr><td><b>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
 			'</table></html>');
 			
 		// Insert the container into the popup
-		marker.bindPopup(container[0]);
+		interpolated.marker[i-1].bindPopup(container[0]);
 		
 		mainMap.addLayer(interpolated.marker[i-1]);
 	}
@@ -2377,14 +2377,14 @@ function krigingInterpolation(){
 		
 		var container = $('<div/>');
 		
-		container.html('<html><table><tr><td>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
-			'<tr><td>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
-			'<tr><td>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
-			'<tr><td>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+		container.html('<html><table><tr><td><b>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+			'<tr><td><b>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
+			'<tr><td><b>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
+			'<tr><td><b>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
 			'</table></html>');
 			
 		// Insert the container into the popup
-		marker.bindPopup(container[0]);
+		interpolated.marker[i-1].bindPopup(container[0]);
 		
 		mainMap.addLayer(interpolated.marker[i-1]);
 	}
