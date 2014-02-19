@@ -2153,10 +2153,24 @@ function resetTrackSelection(){
 // Description: Checks which interpolation is choosed and starts it
 // Author: René Unrau
 function startInterpolation(){
+	
+	if(selection.length == 0){
+		alert('Es befindet sich keine Track in ihrer Auswahl');
+		return
+	}
+	
+	// Check which attributes are available for this track
+	var consumption = false;
+	var co2 = false;
+	var maf = false;
+	var speed = false;
+	if(selection[0].properties.phenomenons.Consumption.value != '-'){consumption = true;}
+	if(selection[0].properties.phenomenons.CO2.value != '-'){co2 = true;}
+	if(selection[0].properties.phenomenons.MAF.value != '-'){maf = true;}
+	if(selection[0].properties.phenomenons.Speed.value != '-'){speed = true;}
 
-	// Cancel if there are measurements in selection from more than one track
-	if(!onlyOneTrack){
-		alert('Bitte wählen sie für eine Interpolation genau einen Track aus.');
+	// Check if Interpolation is allowed
+	if(!checkIntRequirements(consumption, co2, maf, speed)){
 		return;
 	}
 
@@ -2164,13 +2178,13 @@ function startInterpolation(){
     
     if(e.options[e.selectedIndex].value == 'IDW'){
         //alert("Started IDW");
-        idwInterpolation();
+        idwInterpolation(consumption, co2, maf, speed);
         
     }
     
     else if(e.options[e.selectedIndex].value == 'KRIGING') {
         //alert("Started KRIGING");
-        krigingInterpolation();
+        krigingInterpolation(consumption, co2, maf, speed);
        
     }
 }
@@ -2178,7 +2192,7 @@ function startInterpolation(){
 // IDW Interpolation
 // Description: Compute Interpolation, Draw Points and start Line visualization
 // Author: René Unrau
-function idwInterpolation(){
+function idwInterpolation(consumption, co2, maf, speed){
 
 	// Check if there has been already an interpolation and if yes: remove old interpolated-points from map
 	if(interpolated != undefined){
@@ -2200,16 +2214,6 @@ function idwInterpolation(){
 	interpolated.phenomenons.Speed = new Array();
 	interpolated.marker = new Array();
 	
-	// Check which attributes are available for this track
-	var consumption = false;
-	var co2 = false;
-	var maf = false;
-	var speed = false;
-	if(selection[0].properties.phenomenons.Consumption.value != '-'){consumption = true;}
-	if(selection[0].properties.phenomenons.CO2.value != '-'){co2 = true;}
-	if(selection[0].properties.phenomenons.MAF.value != '-'){maf = true;}
-	if(selection[0].properties.phenomenons.Speed.value != '-'){speed = true;}
-
 	computeCoords();
 		
 	for(var i = 1; i < selection.length; i++){
@@ -2343,7 +2347,7 @@ function idwInterpolation(){
 // Kriging Interpolation
 // Description: Compute Interpolation, Draw Points and start Line visualization
 // Author: René Unrau
-function krigingInterpolation(){
+function krigingInterpolation(consumption, co2, maf, speed){
 
 	// Check if there has been already an interpolation and if yes: remove old interpolated-points from map
 	if(interpolated != undefined){
@@ -2364,16 +2368,6 @@ function krigingInterpolation(){
 	interpolated.phenomenons.MAF = new Array();
 	interpolated.phenomenons.Speed = new Array();
 	interpolated.marker = new Array();
-	
-	// Check which attributes are available for this track
-	var consumption = false;
-	var co2 = false;
-	var maf = false;
-	var speed = false;
-	if(selection[0].properties.phenomenons.Consumption.value != '-'){consumption = true;}
-	if(selection[0].properties.phenomenons.CO2.value != '-'){co2 = true;}
-	if(selection[0].properties.phenomenons.MAF.value != '-'){maf = true;}
-	if(selection[0].properties.phenomenons.Speed.value != '-'){speed = true;}
 	
 	computeCoords();
 	
@@ -2689,6 +2683,26 @@ function computeCoords(){
 	
 		interpolated.longitude[i-1] = halfDifference + minimum;
 	}
+}
+
+
+// Check Interpolation-Requirements
+// This function checks if a interpolation is allowed
+// Author: René Unrau
+function checkIntRequirements(consumption, co2, maf, speed){
+	
+	// Cancel if there are measurements in selection from more than one track
+	if(!onlyOneTrack){
+		alert('Bitte wählen sie für eine Interpolation genau einen Track aus.');
+		return false;
+	}
+	
+	if(!consumption && !co2 && !maf && !speed){
+		alert('Der ausgewählte Track enthält keine Attribute die Interpoliert werden können');
+		return false;
+	}
+
+	return true;
 }
 
 
