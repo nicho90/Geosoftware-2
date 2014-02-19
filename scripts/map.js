@@ -1363,38 +1363,62 @@ function refreshAnalysis(){
 	if(e.options[e.selectedIndex].value == 'Geschwindigkeit'){
 		var min = getMin('Speed');
 		var max = getMax('Speed');
+		
+		if(isNaN(min.value)){
+		
+			result.append("Sie haben noch keine Messpunkte selektiert oder diese enthalten das Attribut \"Geschwindigkeit\" nicht.</table>");
+		}else{
 
-		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
-		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
-		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>km/h</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>km/h</td></tr></table>");
+			result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
+			result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
+			result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>km/h</td></tr>");
+			result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>km/h</td></tr></table>");
+		}
 	
 	}else if(e.options[e.selectedIndex].value == 'CO2'){
 		var min = getMin('CO2');
 		var max = getMax('CO2');
+		
+		if(isNaN(min.value)){
+		
+			result.append("Sie haben noch keine Messpunkte selektiert oder diese enthalten das Attribut \"CO2\" nicht.</table>");
+		}else{
 	
-		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
-		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
-		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>g/s</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>g/s</td></tr></table>");
+			result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
+			result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
+			result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>g/s</td></tr>");
+			result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>g/s</td></tr></table>");
+		}
 	
 	}else if(e.options[e.selectedIndex].value == 'Spritverbrauch'){
 		var min = getMin('Consumption');
 		var max = getMax('Consumption');
+		
+		if(isNaN(min.value)){
+		
+			result.append("Sie haben noch keine Messpunkte selektiert oder diese enthalten das Attribut \"Spritverbrauch\" nicht.</table>");
+		}else{
 	
-		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('Consumption') + "</td><td>l/h</td></tr>");
-		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('Consumption') + "</td><td>l/h</td></tr>");
-		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/h</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/h</td></tr></table>");
+			result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('Consumption') + "</td><td>l/h</td></tr>");
+			result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('Consumption') + "</td><td>l/h</td></tr>");
+			result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/h</td></tr>");
+			result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/h</td></tr></table>");
+		}
 	
 	}else if(e.options[e.selectedIndex].value == 'MAF'){
 		var min = getMin('MAF');
 		var max = getMax('MAF');
+		
+		if(isNaN(min.value)){
+		
+			result.append("Sie haben noch keine Messpunkte selektiert oder diese enthalten das Attribut \"MAF\" nicht.</table>");
+		}else{
 	
-		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
-		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/s</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/s</td></tr></table>");
+			result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
+			result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
+			result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/s</td></tr>");
+			result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/s</td></tr></table>");
+		}
 	
 	}else if(e.options[e.selectedIndex].value == 'Fahrzeugtyp'){
 	
