@@ -917,7 +917,8 @@ else {
 ***********************************************/
 
 function diagramCarType() {
- if(manufacturerNames.length > 0){
+
+if(manufacturerNames.length > 0){
 
     $('#container').highcharts({
         chart: {
@@ -930,9 +931,9 @@ function diagramCarType() {
             text: ''
         },
         xAxis: {
-            categories: manufacturerNames
-},
-yAxis: {
+            categories: manufacturerNames,
+		},
+		yAxis: {
             min: 0,
 			max: manufacturerSelection[getMax('Manufacturer')],
             title: {

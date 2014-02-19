@@ -88,8 +88,8 @@ var yellowDot = L.icon({iconUrl: 'images/dots/yellowDot.png'});
 	Event register
 ***********************/
 window.onload = function() {
-	setMaxMeas();
 	drawMap();
+	setMaxMeas();
 	drawMeasurements();
 	mainMap.on('moveend', drawMeasurements);
 }
@@ -2687,7 +2687,7 @@ function computeCoords(){
 
 
 // Check Interpolation-Requirements
-// This function checks if a interpolation is allowed
+// Description: This function checks if a interpolation is allowed
 // Author: René Unrau
 function checkIntRequirements(consumption, co2, maf, speed){
 	
@@ -2892,5 +2892,5 @@ function setMaxMeas(){
 		maxMeas = 5;
 	}
 	
-    //drawMeasurements();
+    drawMeasurements();
 }
