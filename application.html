@@ -111,26 +111,18 @@
             <div id=banner>
                 <a href="index.html"><img src="images/envirocar_analyser_logo_mini.png" class=logoImage alt="enviroCar-Analyser"></a>
 			</div>
-            <!-- Hinweis auf das Portal -->
+            
             <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
             <div id=filter>
-                   <div id=filter_2>
-                        <form id=filterFormular name="filterFormular">
+                <div id=filter_2>
+                    <form id=filterFormular name="filterFormular">
                         <table>
                             <tr>
                                 <td>Anfangsdatum:</td>
                                 <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
                                 <td>Sensor-ID:</td>
                                 <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                                <td>
-                                    <select id=measurementNumber>
-                                        <option onClick="setMaxMeas()">100 Messpunkte</option>
-                                        <option onClick="setMaxMeas()">200 Messpunkte</option>
-                                        <option onClick="setMaxMeas()">300 Messpunkte</option>
-                                        <option onClick="setMaxMeas()">400 Messpunkte</option>
-                                        <option onClick="setMaxMeas()">500 Messpunkte</option>
-                                    </select>
-                                </td>
+                                <td></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -173,6 +165,29 @@
                         </form>
                     </div>
                     <div id=filter_1>Filteroptionen</div>
+            </div>
+            
+            <!-- Anzahl der Messpunkte, je höher der Wert, desto mehr Punkte werden von der enviroCar-Datenbank abgefragt
+                 Aber mit steigender Anzahl kommt es zu Performanceproblemen
+                 Standardmäßig sind 100 Messpunkte eingestellt -->
+            <div id=maxOfMeasurements>
+                <div id=maxOfMeasurements_2>
+                    <ul>
+                        <li id="maxOfMeasurementsInfo" original-title="Wenn Sie nicht alle Punkte angezeigt bekommen, erhöhen Sie die Anzahl der Messpunkte. Achtung: Je mehr Punkte aus der Datenbank entnommen werden, desto schlechter ist die Performance der Applikation!">
+                             <a onclick="" class=info>i</a>
+                        </li>
+                        <li>
+                            <select id=measurementNumber onChange="setMaxMeas();">
+                                <option value="100" onClick="setMaxMeas()">100</option>
+                                <option value="200" onClick="setMaxMeas()">200</option>
+                                <option value="300" onClick="setMaxMeas()">300</option>
+                                <option value="400" onClick="setMaxMeas()">400</option>
+                                <option value="500" onClick="setMaxMeas()">500</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div id=maxOfMeasurements_1>Anzahl der<br>Messpunkte</div>
             </div>
         </header>
         <div id=clear></div>
@@ -281,7 +296,7 @@
             </div>
             <!-- Analysebox (standardmäßig ausgeblendet) -->
             <div id=analyse class=sidebarElement>
-                <a href="#" onclick="toggle_visibility('analyseBox'); toggle_visibility('textualResults');" class=link><h2>Analysefunktionen</h2></a>
+                <a href="#" onclick="toggle_visibility('analyseBox'); toggle_visibility('textualResults');" class=link>     <h2>Analysefunktionen</h2></a>
                 <div id=analyseBox class=sidebarSubElement>
                     <ul>
                         <li>Berechnungen von</li>

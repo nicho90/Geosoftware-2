@@ -51,7 +51,7 @@ header {
 
 #banner {
     float: left;
-    width:19%;
+    width:auto;
     border:0px;
 	margin-left:1%;
     margin-top:1%;
@@ -63,6 +63,59 @@ header {
     border:0px;
 }
 
+/***********************************************
+    Anzahl der Messpunkte
+***********************************************/
+#maxOfMeasurements {
+    float: right;
+    width: auto;
+    background-color:rgb(255,255,255);
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    margin-top:1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+#maxOfMeasurements_1 {
+    float:right;
+    margin-left:5px;
+    margin-right:5px;
+    text-align:left;
+    font-size:12pt;
+    font-weight:bold;
+    color:rgb(22,127,193);
+    padding-left:15px;
+    padding-right:20px;
+    padding-top:15px;
+    height:60px;
+    border-right:2px dotted rgb(22,127,193);
+}
+
+#maxOfMeasurements_2 {
+    float:right;
+    margin-left:10px;
+    margin-top:25px;
+    padding-right:10px;
+}
+
+#maxOfMeasurements_2 ul {
+    list-style-type: none;
+    display: inline;
+    margin-top:0px;
+    margin-left:0px;
+    margin-bottom:0px;
+    margin-right:0px;
+    padding:0px;
+}
+
+#maxOfMeasurements_2 li {
+    display: table-cell;
+    padding-left:3px;
+    font-weight:bold;
+    font-family:Lucida Console;
+}
 
 
 /***********************************************
@@ -71,7 +124,6 @@ header {
 #filter {
     float: right;
     width: auto;
-	margin-left: 1%;
     margin-right: 1%;
     margin-top:1%;
     height:auto;
@@ -94,6 +146,7 @@ header {
     padding-top:15px;
     height:60px;
     border-right:2px dotted rgb(22,127,193);
+    width:auto;
 }
 
 #filter_2 {
@@ -428,22 +481,27 @@ header {
 
 #interpolationClasses_red {
     background-color: rgb(255,0,0);
+    width:25px;
 }
 
 #interpolationClasses_orange {
     background-color: rgb(255,165,0);
+    width:25px;
 }
 
 #interpolationClasses_yellow {
     background-color: rgb(255,255,0);
+    width:25px;
 }
 
 #interpolationClasses_green {
     background-color: rgb(140,188,62);
+    width:25px;
 }
 
 #interpolationClasses_dark_green {
     background-color: rgb(34,139,34);
+    width:25px;
 }
 
 
@@ -896,7 +954,7 @@ display: table-row;
     color: rgb(0,0,0);
     font-weight:bold;
     border-radius: 18px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border: 1px solid rgb(204,204,204);
 }
 
 .info:hover {
@@ -909,7 +967,7 @@ display: table-row;
     color: rgb(0,0,0);
     font-weight:bold;
     border-radius: 18px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border: 1px solid rgb(204,204,204);
 }
 
 
