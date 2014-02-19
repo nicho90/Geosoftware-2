@@ -1373,47 +1373,47 @@ function startFilter() {
 // Description: Refreshes the current Analysis
 // Author: René Unrau
 function refreshAnalysis(){
-	var e = document.getElementById("analysisSelectionBox");
+	var e = document.getElementById('analysisSelectionBox');
 	
 	var result = $("<table>");
 
-	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
+	if(e.options[e.selectedIndex].value == 'Geschwindigkeit'){
 		var min = getMin('Speed');
 		var max = getMax('Speed');
 
 		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('Speed') + "</td><td>km/h</td></tr>");
 		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('Speed') + "</td><td>km/h</td></tr>");
 		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>km/h</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>km/h</td></tr></table></div>");
+		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>km/h</td></tr></table>");
 	
-	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
+	}else if(e.options[e.selectedIndex].value == 'CO2'){
 		var min = getMin('CO2');
 		var max = getMax('CO2');
 	
 		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('CO2') + "</td><td>g/s</td></tr>");
 		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('CO2') + "</td><td>g/s</td></tr>");
 		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>g/s</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>g/s</td></tr></table></div>");
+		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>g/s</td></tr></table>");
 	
-	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
+	}else if(e.options[e.selectedIndex].value == 'Spritverbrauch'){
 		var min = getMin('Consumption');
 		var max = getMax('Consumption');
 	
 		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('Consumption') + "</td><td>l/h</td></tr>");
 		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('Consumption') + "</td><td>l/h</td></tr>");
 		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/h</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/h</td></tr></table></div>");
+		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/h</td></tr></table>");
 	
-	}else if(e.options[e.selectedIndex].text == 'MAF'){
+	}else if(e.options[e.selectedIndex].value == 'MAF'){
 		var min = getMin('MAF');
 		var max = getMax('MAF');
 	
 		result.append("<tr><td><td><b>Mittelwert</b></td><td>" + getMean('MAF') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td><b>Standardabweichung</b></td><td>" + getSD('MAF') + "</td><td>l/s</td></tr>");
 		result.append("<tr><td><td><b>Minimum</b></td><td><a id='centerMin' class='link'>" + min.value + "</a></td><td>l/s</td></tr>");
-		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/s</td></tr></table></div>");
+		result.append("<tr><td><td><b>Maximum</b></td><td><a id='centerMax' class='link'>" + max.value + "</a></td><td>l/s</td></tr></table>");
 	
-	}else if(e.options[e.selectedIndex].text == 'Fahrzeugtyp'){
+	}else if(e.options[e.selectedIndex].value == 'Fahrzeugtyp'){
 	
 		var mostFreqManu = getMostFreqManu();
 		result.append("<tr><td><td><b>Häufigster Fahrzeugtyp</b></td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
@@ -1439,8 +1439,9 @@ function refreshAnalysis(){
 			}
 		}
 	});
-	
-	$("#textualresults").html(result);
+    
+    $("#textualresults").empty();
+    $("#textualresults").append(result);
 }
 
 
@@ -2120,12 +2121,18 @@ function resetTrackSelection(){
 // Author: René Unrau
 function startInterpolation(){
 	var e = document.getElementById("interpolationSelectionBox");
-	if(e.options[e.selectedIndex].text == 'IDW'){
-		idwInterpolation();
-	}
-    else if(e.options[e.selectedIndex].text == 'Kriging'){
-		krigingInterpolation();
-	}
+    
+    if(e.options[e.selectedIndex].value == 'IDW'){
+        //alert("Started IDW");
+        idwInterpolation();
+        
+    }
+    
+    else if(e.options[e.selectedIndex].value == 'KRIGING') {
+        //alert("Started KRIGING");
+        krigingInterpolation();
+       
+    }
 }
 
 // IDW Interpolation

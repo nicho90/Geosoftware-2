@@ -286,12 +286,12 @@
                     <ul>
                         <li>Berechnungen von</li>
                         <li>
-                            <select id="analysisSelectionBox">
-                                <option onClick="refreshAnalysis()">Geschwindigkeit</option>
-                                <option onClick="refreshAnalysis()">CO2-Ausstoß</option>
-                                <option onClick="refreshAnalysis()">Spritverbrauch</option>
-                                <option onClick="refreshAnalysis()">MAF</option>
-                                <option onClick="refreshAnalysis()">Fahrzeugtyp</option>
+                            <select id="analysisSelectionBox" onChange="refreshAnalysis();">
+                                <option value="Geschwindigkeit">Geschwindigkeit</option>
+                                <option value="CO2">CO2-Ausstoß</option>
+                                <option value="Spritverbrauch">Spritverbrauch</option>
+                                <option value="MAF">MAF</option>
+                                <option value="Fahrzeugtyp">Fahrzeugtyp</option>
                             </select>
                         </li>
                     </ul>
@@ -320,9 +320,9 @@
                             Wählen Sie eine Methode aus
                         </li>
                         <li>
-                            <select id="interpolationSelectionBox">
-                                <option>IDW</option>
-                                <option>Kriging</option>
+                            <select id="interpolationSelectionBox" name="interpolationChooserDropdown">
+                                <option value="IDW">IDW</option>
+                                <option value="KRIGING">Kriging</option>
                             </select>
                         </li>
 					</ul>
@@ -331,19 +331,19 @@
                         <table>
                             <tr>
                                 <td>Lag Size</td>
-                                <td><input type=text name=LagSize placeholder="Lag Size"></td>
+                                <td><input type=text name=LagSize placeholder="Lag Size" class=filterButton></td>
                             </tr>
                             <tr>
                                 <td>Major range</td>
-                                <td><input type=text name=MajorRange, placeholder="Major range"></td>
+                                <td><input type=text name=MajorRange, placeholder="Major range" class=filterButton></td>
                             </tr>
                             <tr>
                                 <td>Partial Sill</td>
-                                <td><input type=text name=PartialSill placeholder="Partial sill"></td>
+                                <td><input type=text name=PartialSill placeholder="Partial sill" class=filterButton></td>
                             </tr>
                             <tr>
                                 <td>Nugget</td>
-                                <td><input type=text name=PartialSill placeholder="Nugget"></td>
+                                <td><input type=text name=PartialSill placeholder="Nugget" class=filterButton></td>
                             </tr>
                         </table>
                         <hr>
