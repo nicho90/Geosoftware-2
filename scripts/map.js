@@ -34,14 +34,17 @@ var manufacturerSelection = new Array();
 var manufacturerNames = new Array();
 var manufacturerFrequency = new Array();
 
-//If true user adds points to selection by clicking on them
+//If true, user adds points to selection by clicking on them
 var singlePointSelection = false;
 
-//If true user search for tracks and select them
+//If true, user searches for tracks and select them
 var trackSelection = false;
 
-//If true user search for tracks and select them
+//If true, user searches for tracks and select them
 var polygonSelection = false;
+
+// If true: Selection contains measurements of exact one track
+var onlyOneTrack = false;
 
 // Activity of the selectionsbuttons 
 var button1 = false;
@@ -884,6 +887,8 @@ function addSinglePoint(measurement){
 		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
+		
+		onlyOneTrack = false;
 
 	
         //Open and Close info-popup
@@ -924,10 +929,14 @@ function addSinglePoint(measurement){
 		}
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
+		
 		updateSelectionList();
 		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
+		
+		onlyOneTrack = false;
+		
 		//Open and Close info-popup
 		//Authors: Nicholas Schiestel and Johanna Möllmann	
 		$('#infodialog').html('Punkt wurde hinzugefügt.');
@@ -994,10 +1003,13 @@ function addSinglePointFromTrack(trackMeasurement, track){
 	// If selection is empty, add to selection, update-sidebar-selection-list and current-analysis
 	if(selection.length == 0){
 		selection.push(measurement);
+		
 		updateSelectionList();
 		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
+		
+		onlyOneTrack = false;
 	}else{
 		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
 		for(var i = 0; i < selection.length; i++){
@@ -1021,10 +1033,13 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		}
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
+		
 		updateSelectionList();
 		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
+		
+		onlyOneTrack = false;
 	}	
 }
 
@@ -1034,6 +1049,11 @@ function addSinglePointFromTrack(trackMeasurement, track){
 // Author: René Unrau
 function addTrackToSelection(track){
 	var measurements = track.features
+	
+	// If selection is empty before adding track -> now there is only one track in selection
+	if(selection.length == 0){
+		onlyOneTrack = true;
+	}
 	
 	for(var i = 0; i < measurements.length; i++){
 		var measurement = new Object();
@@ -1422,8 +1442,14 @@ function refreshAnalysis(){
 	
 	}else if(e.options[e.selectedIndex].value == 'Fahrzeugtyp'){
 	
-		var mostFreqManu = getMostFreqManu();
-		result.append("<tr><td><td><b>Häufigster Fahrzeugtyp</b></td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
+		if(selection.length == 0){
+			
+			result.append("Bitte wählen Sie zuerst einige Messpunkte aus.</table>");
+		}else{
+	
+			var mostFreqManu = getMostFreqManu();
+			result.append("<tr><td><td><b>Häufigster Fahrzeugtyp</b></td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
+		}
 	}
 	
 	result.on('click', '#centerMin', function(){
@@ -2127,6 +2153,13 @@ function resetTrackSelection(){
 // Description: Checks which interpolation is choosed and starts it
 // Author: René Unrau
 function startInterpolation(){
+
+	// Cancel if there are measurements in selection from more than one track
+	if(!onlyOneTrack){
+		alert('Bitte wählen sie für eine Interpolation genau einen Track aus.');
+		return;
+	}
+
 	var e = document.getElementById("interpolationSelectionBox");
     
     if(e.options[e.selectedIndex].value == 'IDW'){
