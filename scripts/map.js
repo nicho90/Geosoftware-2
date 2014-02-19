@@ -740,19 +740,7 @@ function confirmPolygon(){
 	centerPolygon(polygonCorners);
 	
 	//Open and Close info-popup
-	//Authors: Nicholas Schiestel and Johanna Möllmann	
-	$('#infodialog').html('Punkte wurden hinzugefügt.');
-	$('#infodialog').dialog({ 
-		height: 100,
-		width: 300,
-		autoOpen: true,   
-		modal: true, 
-		open: function(event, ui) { 
-			setTimeout(function(){ 
-			$('#infodialog').dialog('close'); }, 500); 
-        } 
-    });
-	
+	//Authors: Nicholas Schiestel and Johanna Möllmann
 	if(!duplicate){
 	
 		$('#infodialog').html('Punkte wurden hinzugefügt.');
@@ -1206,9 +1194,6 @@ function visualizeSelection(){
 // Update Selection-List
 // Description: Refreshes the List of the selected Measurements
 // Author: René Unrau
-
-var measurementList;
-
 function updateSelectionList() {
         var updatedList = $("<table class=points>" +
         "<tr><th></th>" +
@@ -1238,9 +1223,7 @@ function updateSelectionList() {
 		updatedList.append(div);
 	});
 	updatedList.append("</table>");
-	$('#pointTable').html(updatedList);
-    measurementList=updatedList;
-    
+	$('#pointTable').html(updatedList);    
     
     // If two points are selected and in the list, show the analysebox
     if(selection.length>0) {
