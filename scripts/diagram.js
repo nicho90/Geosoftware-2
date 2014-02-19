@@ -1,5 +1,5 @@
 // Visualize the diagram for the analysis
-// authors: Nicho and Johanna
+// authors: Nicholas Schiestel and Johanna Möllmann
 
 /***********************************************
     1. Diagram-loader
@@ -23,7 +23,9 @@ function diagrams() {
     width: 900,
     height: 620});
 
+    // Standarddiagram
     diagramSpeed();
+        
 	}
 	else {
 	var diagramDialog = $('<p>Für die Diagrammanzeige müssen sich mindestens zwei Punkte in der Wertetabelle befinden.<br>Bitte selektieren Sie Punkte.</p>').dialog({

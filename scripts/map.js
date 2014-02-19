@@ -2355,7 +2355,7 @@ function krigingInterpolation(){
 	var consumptionVariogram;
 	var co2Variogram;
 	var mafVariogram;
-	var speeVariogram;
+	var speedVariogram;
 	
 	
 	// Define Kriging Parameters for all available target variables
@@ -2818,22 +2818,25 @@ function resetVisualization(){
 	drawMeasurements();
 }
 
+
+
 // Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
 // Author: René Unrau
 function setMaxMeas(){
 
 	var e = document.getElementById("measurementNumber");
-	if(e.options[e.selectedIndex].text == '100 Messpunkte'){
+	if(e.options[e.selectedIndex].value == '100'){
 		maxMeas = 1;
-	}else if(e.options[e.selectedIndex].text == '200 Messpunkte'){
+	}else if(e.options[e.selectedIndex].value == '200'){
 		maxMeas = 2;
-	}else if(e.options[e.selectedIndex].text == '300 Messpunkte'){
+	}else if(e.options[e.selectedIndex].value == '300'){
 		maxMeas = 3;
-	}else if(e.options[e.selectedIndex].text == '400 Messpunkte'){
+	}else if(e.options[e.selectedIndex].value == '400'){
 		maxMeas = 4;
-	}else if(e.options[e.selectedIndex].text == '500 Messpunkte'){
+	}else if(e.options[e.selectedIndex].value == '500'){
 		maxMeas = 5;
 	}
-	//drawMeasurements();
+	
+    //drawMeasurements();
 }
