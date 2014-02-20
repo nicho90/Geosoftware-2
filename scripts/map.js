@@ -69,11 +69,6 @@ var interpolated;
 // Array of Line Segments between Measurements after Interpolation
 var interpolationLines = new Array();
 
-// Show Layer
-var showIntLines;
-var showIntMeasurements;
-var showIntPoints;
-
 //If true measurements are not loaded with next movement in map
 var doNotLoad = false;
 
@@ -2212,6 +2207,12 @@ function idwInterpolation(consumption, co2, maf, speed){
 			mainMap.removeLayer(interpolated.marker[i]);
 		}
 	}
+	
+	// Delete sected measurements from map
+	for(var i = 0; i < markers.length; i++){
+		
+		mainMap.removeLayer(markers[i]);
+	}
 
 	mainMap.removeLayer(trackLine);
 
@@ -2313,8 +2314,6 @@ function idwInterpolation(consumption, co2, maf, speed){
 			
 		// Insert the container into the popup
 		interpolated.marker[i-1].bindPopup(container[0]);
-		
-		mainMap.addLayer(interpolated.marker[i-1]);
         
         // show legende on the map
         if(legend!=true){
@@ -2350,18 +2349,8 @@ function idwInterpolation(consumption, co2, maf, speed){
         }
 	}
 	
-	var e = document.getElementById("interpolationAttrSelectionBox");
-	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
-		visualizeInterpolation('IntSpeed');
-	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
-		visualizeInterpolation('IntCO2');
-	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
-		visualizeInterpolation('IntConsumption');
-	}else if(e.options[e.selectedIndex].text == 'MAF'){
-		visualizeInterpolation('IntMAF');
-	}
-    
-    
+	document.legendAttributs.interpolationAttribut[0].checked = true;
+	checkVisualizationAttr();    
 }
 
 
@@ -2376,6 +2365,12 @@ function krigingInterpolation(consumption, co2, maf, speed){
 		
 			mainMap.removeLayer(interpolated.marker[i]);
 		}
+	}
+	
+	// Delete sected measurements from map
+	for(var i = 0; i < markers.length; i++){
+		
+		mainMap.removeLayer(markers[i]);
 	}
 
 	mainMap.removeLayer(trackLine);
@@ -2499,9 +2494,6 @@ function krigingInterpolation(consumption, co2, maf, speed){
 			
 		// Insert the container into the popup
 		interpolated.marker[i-1].bindPopup(container[0]);
-		
-		mainMap.addLayer(interpolated.marker[i-1]);
-        
         
         // show legende on the map
         if(legend!=true){
@@ -2538,15 +2530,59 @@ function krigingInterpolation(consumption, co2, maf, speed){
         }
 	}
 	
-	var e = document.getElementById("interpolationAttrSelectionBox");
-	if(e.options[e.selectedIndex].text == 'Geschwindigkeit'){
-		visualizeInterpolation('IntSpeed');
-	}else if(e.options[e.selectedIndex].text == 'CO2-Ausstoß'){
-		visualizeInterpolation('IntCO2');
-	}else if(e.options[e.selectedIndex].text == 'Spritverbrauch'){
-		visualizeInterpolation('IntConsumption');
-	}else if(e.options[e.selectedIndex].text == 'MAF'){
-		visualizeInterpolation('IntMAF');
+	document.legendAttributs.interpolationAttribut[0].checked = true;
+	checkVisualizationAttr();
+}
+
+
+// Check visualization-attribute
+// Looks for checkboxes and chooses Attribute to visualize
+// Author: Nicho, René
+function checkVisualizationAttr(){
+
+	var attribut = document.getElementsByName('legendAttributs').value;
+
+	if(document.legendAttributs.interpolationAttribut[0].checked){
+	
+		if(!isNaN(interpolated.phenomenons.Speed[0])){
+		
+			visualizeInterpolation('IntSpeed');
+		}else{
+		
+			alert('Dieser Track hat dieses Attribut nicht');
+			document.legendAttributs.interpolationAttribut[0].checked = true;
+			checkVisualizationAttr();
+		}
+	}else if(document.legendAttributs.interpolationAttribut[1].checked){
+		if(!isNaN(interpolated.phenomenons.CO2[0])){
+		
+			visualizeInterpolation('IntCO2');
+		}else{
+		
+			alert('Dieser Track hat dieses Attribut nicht');
+			document.legendAttributs.interpolationAttribut[0].checked = true;
+			checkVisualizationAttr();
+		}
+	}else if(document.legendAttributs.interpolationAttribut[2].checked){
+		if(!isNaN(interpolated.phenomenons.Consumption[0])){
+		
+			visualizeInterpolation('IntConsumption');
+		}else{
+		
+			alert('Dieser Track hat dieses Attribut nicht');
+			document.legendAttributs.interpolationAttribut[0].checked = true;
+			checkVisualizationAttr();
+		}
+	}else if(document.legendAttributs.interpolationAttribut[3].checked){
+		if(!isNaN(interpolated.phenomenons.MAF[0])){
+		
+			visualizeInterpolation('IntMAF');
+		}else{
+		
+			alert('Dieser Track hat dieses Attribut nicht');
+			document.legendAttributs.interpolationAttribut[0].checked = true;
+			checkVisualizationAttr();
+		}
 	}
 }
 
@@ -2688,13 +2724,9 @@ function visualizeInterpolation(phenomenon){
 		mainMap.addLayer(interpolationLines[i]);
 	}
 	
-	document.getElementById("intMeasurements").checked = true;
-	document.getElementById("intPoints").checked = true;
+	document.getElementById("intMeasurements").checked = false;
+	document.getElementById("intPoints").checked = false;
 	document.getElementById("intLines").checked = true;
-	
-	showIntMeasurements = true;
-	showIntPoints = true;
-	showIntLines = true;
 }
 
 // Compute new coordinates for Interpolation
@@ -2814,20 +2846,18 @@ function colorize(button) {
 // Author: René Unrau
 function switchIntLine(){
 
-	if(showIntLines){
+	if(!document.getElementById("intLines").checked){
 
 		for(var i = 0; i < interpolationLines.length; i++){
 	
 			mainMap.removeLayer(interpolationLines[i]);
 		}
-		showIntLines = false;
 	}else{
 		
 		for(var i = 0; i < interpolationLines.length; i++){
 	
 			mainMap.addLayer(interpolationLines[i]);
 		}
-		showIntLines = true;
 	}
 }
 
@@ -2837,20 +2867,18 @@ function switchIntLine(){
 // Author: René Unrau
 function switchIntMeasurements(){
 
-	if(showIntMeasurements){
+	if(!document.getElementById("intMeasurements").checked){
 
 		for(var i = 0; i < markers.length; i++){
 	
 			mainMap.removeLayer(markers[i]);
 		}
-		showIntMeasurements = false;
 	}else{
 		
 		for(var i = 0; i < markers.length; i++){
 	
 			mainMap.addLayer(markers[i]);
 		}
-		showIntMeasurements = true;
 	}
 }
 
@@ -2860,20 +2888,18 @@ function switchIntMeasurements(){
 // Author: René Unrau
 function switchIntPoints(){
 
-	if(showIntPoints){
+	if(!document.getElementById("intPoints").checked){
 
 		for(var i = 0; i < interpolated.marker.length; i++){
 	
 			mainMap.removeLayer(interpolated.marker[i]);
 		}
-		showIntPoints = false;
 	}else{
 		
 		for(var i = 0; i < interpolated.marker.length; i++){
 	
 			mainMap.addLayer(interpolated.marker[i]);
 		}
-		showIntPoints = true;
 	}
 }
 
