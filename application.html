@@ -333,20 +333,22 @@
             <div id=interpolation class=sidebarElement>
                 <a href="#" onclick="toggle_visibility('interpolationBox');" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
-                    <form>
+                    <form name="interpolation">
                     <h3>Wählen Sie eine Methode aus</h3>
-                    <input type="radio" name="Interpolation" value="IDW" onclick="showhidediv(this);">&nbsp;&nbsp;Inverse Distanzwichtung<br>
-                    <input type="radio" name="Interpolation" value="KRIGING" onclick="showhidediv(this);">&nbsp;&nbsp;Kriging<br>
+                    <form name="interpolation">
+                        <input type="radio" name="interpolationMethod" value="0" onclick="showhidediv(this);" checked="checked" >&nbsp;&nbsp;Inverse Distanzwichtung<br>
+                        <input type="radio" name="interpolationMethod" value="1" onclick="showhidediv(this);">&nbsp;&nbsp;Kriging<br>
+                    </form>
                     <div id=idwBox></div>
                     <div id=krigingBox>
                         <table>
                             <tr>
                                 <td>Model</td>
                                 <td>
-                                    <select id="krigingModell" name="krigingModell">
-                                        <option name="Interpolation" value="GAUSSIAN">Gaussian </option>
-                                        <option name="Interpolation" value="EXPONETIAL">Exponential</option>
-                                        <option name="Interpolation" value="SPHERICAL">Spherical</option>
+                                    <select id="krigingModel">
+                                        <option name="krigingModel" value="GAUSSIAN">Gaussian </option>
+                                        <option name="krigingModel" value="EXPONETIAL">Exponential</option>
+                                        <option name="krigingModel" value="SPHERICAL">Spherical</option>
                                     </select>
                                 </td>
                                 <td></td>
@@ -366,7 +368,6 @@
                     <div class=right>
                         <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
                     </div>
-                    </form>
                 </div>
             </div>
             

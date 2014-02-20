@@ -2155,8 +2155,8 @@ function resetTrackSelection(){
 function startInterpolation(){
 	
 	if(selection.length == 0){
-		alert('Es befindet sich keine Track in ihrer Auswahl');
-		return
+		alert('Es befindet sich keine Track in Ihrer Auswahl');
+		return;
 	}
 	
 	// Check which attributes are available for this track
@@ -2174,18 +2174,15 @@ function startInterpolation(){
 		return;
 	}
 
-	var e = document.getElementById("interpolationSelectionBox");
-    
-    if(e.options[e.selectedIndex].value == 'IDW'){
-        //alert("Started IDW");
+	
+    if(document.interpolation.interpolationMethod[0].checked?"0":"1" == '0') {
+        alert("Started IDW");
         idwInterpolation(consumption, co2, maf, speed);
-        
     }
     
-    else if(e.options[e.selectedIndex].value == 'KRIGING') {
-        //alert("Started KRIGING");
+    else if(document.interpolation.interpolationMethod[1].checked?"0":"1" == '1') {
+        alert("Started KRIGING");
         krigingInterpolation(consumption, co2, maf, speed);
-       
     }
 }
 
