@@ -205,10 +205,12 @@
             <div id=legende>
                 <div class=center><b>Legende</b></div>
                 <hr>
-                <input type="radio" name="interpolationAttribute" value="speed" onclick="alert('not yet implemented')">&nbsp;&nbsp;Geschwindigkeit<br>
-                <input type="radio" name="interpolationAttribute" value="co2" onclick="alert('not yet implemented')">&nbsp;&nbsp;CO2-Ausstoß<br>
-                <input type="radio" name="interpolationAttribute" value="consumption" onclick="alert('not yet implemented')">&nbsp;&nbsp;Spritverbrauch<br>
-                <input type="radio" name="interpolationAttribute" value="maf" onclick="alert('not yet implemented')">&nbsp;&nbsp;MAF<br>
+                <form name=legendAttributs>
+                    <input type="radio" name="interpolationAttribut" value="0" onclick="alert('not yet implemented')"  checked="checked">&nbsp;&nbsp;Geschwindigkeit<br>
+                    <input type="radio" name="interpolationAttribut" value="1" onclick="alert('not yet implemented')">&nbsp;&nbsp;CO2-Ausstoß<br>
+                    <input type="radio" name="interpolationAttribut" value="2" onclick="alert('not yet implemented')">&nbsp;&nbsp;Spritverbrauch<br>
+                    <input type="radio" name="interpolationAttribut" value="3" onclick="alert('not yet implemented')">&nbsp;&nbsp;MAF<br>
+                </form>
                 <hr>
                 <input type=checkbox id=intMeasurements name=measurements value=measurements onClick="switchIntMeasurements()"> Messpunkte<br>
                 <input type=checkbox id=intPoints name=interpolatedPoints value=interpolatedPoints onClick="switchIntPoints()"> Interpolierte Werte<br>
@@ -333,7 +335,6 @@
             <div id=interpolation class=sidebarElement>
                 <a href="#" onclick="toggle_visibility('interpolationBox');" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
-                    <form name="interpolation">
                     <h3>Wählen Sie eine Methode aus</h3>
                     <form name="interpolation">
                         <input type="radio" name="interpolationMethod" value="0" onclick="showhidediv(this);" checked="checked" >&nbsp;&nbsp;Inverse Distanzwichtung<br>
