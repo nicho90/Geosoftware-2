@@ -26,7 +26,6 @@ header, footer, map {
     clear:both;
 }
 
-
 hr {
     background-color: rgb(204,204,204);
     height:1px;
@@ -69,6 +68,7 @@ header {
 #maxOfMeasurements {
     float: right;
     width: auto;
+    height:50px;
     background-color:rgb(255,255,255);
     -moz-box-shadow: 0 0 5px #888;
     -webkit-box-shadow: 0 0 5px#888;
@@ -76,31 +76,15 @@ header {
     margin-top:1%;
     margin-left: 1%;
     margin-right: 1%;
-}
-
-#maxOfMeasurements_1 {
-    float:right;
-    margin-left:5px;
-    margin-right:5px;
-    text-align:left;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:25px;
     font-size:12pt;
     font-weight:bold;
     color:rgb(22,127,193);
-    padding-left:15px;
-    padding-right:20px;
-    padding-top:15px;
-    height:60px;
-    border-right:2px dotted rgb(22,127,193);
 }
 
-#maxOfMeasurements_2 {
-    float:right;
-    margin-left:10px;
-    margin-top:25px;
-    padding-right:10px;
-}
-
-#maxOfMeasurements_2 ul {
+#maxOfMeasurements ul {
     list-style-type: none;
     display: inline;
     margin-top:0px;
@@ -110,9 +94,9 @@ header {
     padding:0px;
 }
 
-#maxOfMeasurements_2 li {
+#maxOfMeasurements li {
     display: table-cell;
-    padding-left:3px;
+    padding-left:5px;
     font-weight:bold;
     font-family:Lucida Console;
 }
@@ -273,6 +257,7 @@ header {
     box-shadow: 0 0 5px #888;
     z-index: 9;
     position:relative;
+    
 }
 
 
@@ -700,6 +685,7 @@ h3 {
     z-index: 3;
 }
 
+
 #drawingPolygon, #selectTrack {
     display:none;
     margin-bottom:3px;
@@ -765,18 +751,26 @@ h3 {
 .deleteOptions  {
     margin:0px;
 	padding:0px;
-    display:inline;
+    list-style-type: none;
+    display: inline;
 }
 
 .deleteOptions li  {
-    float:left;
-    margin-top:0px;
-    margin-bottom:0px;
-    margin-left:3px;
-    margin-right:10px;
-	padding:0px;
-    list-style-type:none;
+    margin:0px;
+    padding-right:5px;
+    padding-left:2px;
+    display: table-cell;
+    
 }
+
+.downloadButton {
+    width:10px;
+    height:13px;
+    text-decoration: none;
+    border:1px solid rgb(255,255,255);
+    padding:1px;
+}
+
 
 /***********************************************
     Punkttabelle 
@@ -812,7 +806,6 @@ h3 {
     text-align: left;
 }
 
-
 /***********************************************
     Messdatendetailtabelle
 ***********************************************/
@@ -833,11 +826,11 @@ h3 {
 }
 
 #measurementDetails table tr {
-margin: 0;
-padding: 0;
-outline: 0;
-border: 0;
-display: table-row;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    display: table-row;
 }
 
 #measurementDetails table th {
@@ -928,6 +921,7 @@ display: table-row;
 
 #interpolationBox {
     display:none;
+    font-size:10pt;
 }
 
 #interpolationBox ul {
@@ -944,6 +938,26 @@ display: table-row;
     font-weight:bold;
 }
 
+#idwBox, #krigingBox {
+    display: none;
+}
+
+#krigingBox table {
+    font-size:10pt;
+    border-bottom: 1px solid rgb(204,204,204);
+    width:100%;
+}
+
+.right {
+    text-align: right;
+    padding-right:10px;
+    padding-bottom: 10px;
+    padding-top: 3px;
+}
+
+/***********************************************
+    Infobuttons (i-Buttons)
+***********************************************/
 .info {
     background:rgb(255,255,255);
     padding-left: 10px;
@@ -953,8 +967,10 @@ display: table-row;
     text-decoration: none;
     color: rgb(0,0,0);
     font-weight:bold;
+    text-align: center;
     border-radius: 18px;
     border: 1px solid rgb(204,204,204);
+    
 }
 
 .info:hover {
@@ -966,6 +982,7 @@ display: table-row;
     text-decoration: none;
     color: rgb(0,0,0);
     font-weight:bold;
+    text-align: center;
     border-radius: 18px;
     border: 1px solid rgb(204,204,204);
 }
@@ -978,13 +995,16 @@ display: table-row;
 ***********************************************/
 footer {
     background-color:rgb(22,127,193);
-    position:absolute;
+    position:relative;
     bottom:0px;
+    height:auto;
+    clear:both;
     margin-left:0%;
     margin-right:0%;
     width: 100%;
     color: rgb(255,255,255);
 }
+
 
 #footerLine_1 {
     background-color:rgb(140,188,62);
@@ -1108,7 +1128,7 @@ footer {
 }
 
 #diagram_zeichnung {
-text-align: center;
+    text-align: center;
 }
 
 

@@ -100,13 +100,14 @@
     
     <!-- Beginn der Seite -->
     <body>
+        
 		<!-- Infopopups (standarmäßig ausgeblendet) -->
 		<div id="infodialog" style="display:none;"></div>
 
 		<!-- Digramm-Popup (standardmäßig ausgeblendet) -->
 		<div id=diagram style="margin: 0 auto; display:none;" title="Diagramme"></div>
 		
-		
+    
 	 <header role="banner">
             <div id=banner>
                 <a href="index.html"><img src="images/envirocar_analyser_logo_mini.png" class=logoImage alt="enviroCar-Analyser"></a>
@@ -171,7 +172,6 @@
                  Aber mit steigender Anzahl kommt es zu Performanceproblemen
                  Standardmäßig sind 100 Messpunkte eingestellt -->
             <div id=maxOfMeasurements>
-                <div id=maxOfMeasurements_2>
                     <ul>
                         <li id="maxOfMeasurementsInfo" original-title="Wenn Sie nicht alle Punkte angezeigt bekommen, erhöhen Sie die Anzahl der Messpunkte. Achtung: Je mehr Punkte aus der Datenbank entnommen werden, desto schlechter ist die Performance der Applikation!">
                              <a onclick="" class=info>i</a>
@@ -186,12 +186,9 @@
                             </select>
                         </li>
                     </ul>
-                </div>
-                <div id=maxOfMeasurements_1>Anzahl der<br>Messpunkte</div>
             </div>
         </header>
         <div id=clear></div>
-        
         
         <!-- Karte mit Navigationselementen -->
         <div id=map> 
@@ -223,7 +220,8 @@
                 </div>
             </div>
         </div>
-                
+        
+               
         
         <!-- rechte Sidebar -->
         <div id=sidebar>
@@ -274,7 +272,6 @@
             <div id=selectedPoints class=sidebarElement>
                     <a href="#" onclick="toggle_visibility('selectedPointsBox');" class=link><h2>Selektierte Punkte</h2></a>
                     <div id=selectedPointsBox class=sidebarSubElement>
-                    <br>
                         <ul class=deleteOptions>
                             <li style="margin-top:-3px;">
                                 <input type="checkbox" id="checkAll" name="track_id" value="track_id"> (Alle auswählen)
@@ -284,6 +281,9 @@
                             </li>
                             <li>
                                 <a href="#" class="link" onClick="showMeasurementDetails()">Alle Messwerte</a>
+                            </li>
+                            <li>
+                                <a href="#" class="link" onClick="alert('not yet implemented')"><img src="images/download_2.png" alt="Alle Werte downloaden" class="downloadButton"></a>
                             </li>
                         </ul>
                         <div id=clear></div>
@@ -328,41 +328,41 @@
             <div id=interpolation class=sidebarElement>
                 <a href="#" onclick="toggle_visibility('interpolationBox');" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
-                    <ul>
-                        <!--<li id="interpolationInfo" original-title="Interpolationen können nur über einen Track berechnet werden">                                       <a onclick="" class=info>i</a>
-                        </li>-->
-                        <li>
-                            Wählen Sie eine Methode aus
-                        </li>
-                        <li>
-                            <select id="interpolationSelectionBox" name="interpolationChooserDropdown">
-                                <option value="IDW">IDW</option>
-                                <option value="KRIGING">Kriging</option>
-                            </select>
-                        </li>
-					</ul>
-                    <br>
-                    <div id=krigingBox class="">
+                    <form>
+                    <h3>Wählen Sie eine Methode aus</h3>
+                    <input type="radio" name="Interpolation" value="IDW" onclick="showhidediv(this);">&nbsp;&nbsp;Inverse Distanzwichtung<br>
+                    <input type="radio" name="Interpolation" value="KRIGING" onclick="showhidediv(this);">&nbsp;&nbsp;Kriging<br>
+                    <div id=idwBox></div>
+                    <div id=krigingBox>
                         <table>
                             <tr>
-                                <td>Lag Size</td>
-                                <td><input type=text name=LagSize placeholder="Lag Size" class=filterButton></td>
+                                <td>Model</td>
+                                <td>
+                                    <select id="krigingModell" name="krigingModell">
+                                        <option name="Interpolation" value="GAUSSIAN">Gaussian </option>
+                                        <option name="Interpolation" value="EXPONETIAL">Exponential</option>
+                                        <option name="Interpolation" value="SPHERICAL">Spherical</option>
+                                    </select>
+                                </td>
+                                <td></td>
                             </tr>
                             <tr>
-                                <td>Major range</td>
-                                <td><input type=text name=MajorRange, placeholder="Major range" class=filterButton></td>
+                                <td>Sigma2</td>
+                                <td><input type=text name=Sigma2 placeholder="Sigma2" class=filterButton></td>
+                                <td></td>
                             </tr>
                             <tr>
-                                <td>Partial Sill</td>
-                                <td><input type=text name=PartialSill placeholder="Partial sill" class=filterButton></td>
-                            </tr>
-                            <tr>
-                                <td>Nugget</td>
-                                <td><input type=text name=PartialSill placeholder="Nugget" class=filterButton></td>
+                                <td>Alpha</td>
+                                <td><input type=text name=Alpha placeholder="Alpha" class=filterButton></td>
+                                <td></td>
                             </tr>
                         </table>
-                        <hr>
                     </div>
+                    <div class=right>
+                        <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
+                    </div>
+                    </form>
+                        <!--
                     <ul>
                         <li>
                             Wählen Sie ein Attribut aus
@@ -374,12 +374,8 @@
                                 <option>Spritverbrauch</option>
                                 <option>MAF</option>
                             </select>
-                        </li>
-                        <li>
-                            <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
-                        </li>
-					</ul>
-                    <br>
+                        </li>-->
+                   
                 </div>
             </div>
             
@@ -389,14 +385,12 @@
         <!-- Ende der Sidebar-->    
         
         
-       
-        <!--
         <footer>
             <div id="footerLine_1"></div>
             <div id="footerLine_2"></div>
             <div id="footerText">
                 <small>
-                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a> &middot; Design by Johanna Möllmann &amp; Nicholas Schiestel<br>
+                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a>
                 </small>
             </div>
             <div id="footerShortLinks">
@@ -411,7 +405,6 @@
                 </small>
             </div>
         </footer>
-    -->
     </body>
 </html>
 
