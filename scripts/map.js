@@ -54,6 +54,9 @@ var button3 = false;
 // Activity of the visualisation button
 var button4 = false;
 
+// Activity of the download button
+var button5 = false;
+
 // Activity of the legende
 var legend = false;
 
@@ -2135,6 +2138,17 @@ function resetTrackSelection(){
     toggle_visibility('visualisation');
     button4 = false;
     
+    //reset and hide the download button, if it is active
+    if(button5==true){
+        toggle_visibility('interpolationDownload');
+        button5 = false;
+    }
+    else{
+        toggle_visibility('interpolationDownload');
+        button5 = false;
+        toggle_visibility('interpolationDownload');   
+    }
+    
     //reset and hide the legend, if it is active
     if(legend==true){
         toggle_visibility('legende');
@@ -2313,7 +2327,6 @@ function idwInterpolation(consumption, co2, maf, speed){
             toggle_visibility('legende');
         }
         
-        
         //show visualisation button on the map (only when it isn't already active)
         if(button4 != true){
             toggle_visibility('visualisation');
@@ -2321,8 +2334,19 @@ function idwInterpolation(consumption, co2, maf, speed){
         }
         else {
             toggle_visibility('visualisation');
-            toggle_visibility('visualisation');
             button4 = true;
+            toggle_visibility('visualisation');
+        }
+        
+        //show downloadbutton for the result of the interpolation on the map (only when it isn't already active)
+        if(button5 != true){
+            toggle_visibility('interpolationDownload');
+            button5 = true;
+        }
+        else {
+            toggle_visibility('interpolationDownload');
+            button5 = true;
+            toggle_visibility('interpolationDownload');
         }
 	}
 	
@@ -2498,8 +2522,19 @@ function krigingInterpolation(consumption, co2, maf, speed){
         }
         else {
             toggle_visibility('visualisation');
-            toggle_visibility('visualisation');
             button4 = true;
+            toggle_visibility('visualisation');
+        }
+        
+        //show downloadbutton for the result of the interpolation on the map (only when it isn't already active)
+        if(button5 != true){
+            toggle_visibility('interpolationDownload');
+            button5 = true;
+        }
+        else {
+            toggle_visibility('interpolationDownload');
+            button5 = true;
+            toggle_visibility('interpolationDownload');
         }
 	}
 	

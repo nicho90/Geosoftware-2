@@ -498,14 +498,12 @@ header {
 ***********************************************/
 #visualisation {
     position: absolute;
-    top: 60px;
+    top: 53px;
     right: 10px;
     z-index: 999;
-    display:none;
-    /*border-radius: 4px;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.65);*/
     width:36px;
     height:36px;
+    display:none;
 }
 
 .imageVisualisation {
@@ -553,6 +551,26 @@ header {
     box-shadow: 0px 1px 5px rgba(0,0,0,0.4);
 }
 
+/***********************************************
+    Download-Button für Interpolationsergebnisse
+    (standardmäßig ausgeblendet;
+    erscheint nur bei Interpolationen)
+***********************************************/
+#interpolationDownload {
+    position: absolute;
+    top: 96px;
+    right: 10px;
+    z-index: 999;
+    display:none;
+    width:36px;
+    height:36px;
+}
+
+.download_2 {
+    height:26px;
+    width:26px;
+    margin-top:5px;
+}
 
 
 /***********************************************

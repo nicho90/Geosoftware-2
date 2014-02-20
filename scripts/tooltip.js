@@ -6,4 +6,6 @@
                 $('#choosePolygon').tipsy({fade:false, gravity: 'n'}); 
                 $('#interpolationInfo').tipsy({fade:false, gravity: 'e'});
                 $('#maxOfMeasurementsInfo').tipsy({fade:false, gravity: 'n'});
+                $('#visualisation').tipsy({fade:false, gravity: 'e'});
+                $('#interpolationDownload').tipsy({fade:false, gravity: 'e'});
 });
