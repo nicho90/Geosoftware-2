@@ -2545,12 +2545,12 @@ function checkVisualizationAttr(){
 
 	if(document.legendAttributs.interpolationAttribut[0].checked){
 	
-		if(!isNaN(interpolated.phenomenons.Speed[5])){
+		if(!isNaN(interpolated.phenomenons.Speed[0])){
 		
 			visualizeInterpolation('IntSpeed');
 		}else{
 		
-			alert('Dieser Track hat dieses Attribut nicht' + interpolated.phenomenons.Speed[0]);
+			alert('Dieser Track hat dieses Attribut nicht');
 			return;
 		}
 	}else if(document.legendAttributs.interpolationAttribut[1].checked){
