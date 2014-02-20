@@ -205,6 +205,11 @@
             <div id=legende>
                 <div class=center><b>Legende</b></div>
                 <hr>
+                <input type="radio" name="interpolationAttribute" value="speed" onclick="alert('not yet implemented')">&nbsp;&nbsp;Geschwindigkeit<br>
+                <input type="radio" name="interpolationAttribute" value="co2" onclick="alert('not yet implemented')">&nbsp;&nbsp;CO2-Ausstoß<br>
+                <input type="radio" name="interpolationAttribute" value="consumption" onclick="alert('not yet implemented')">&nbsp;&nbsp;Spritverbrauch<br>
+                <input type="radio" name="interpolationAttribute" value="maf" onclick="alert('not yet implemented')">&nbsp;&nbsp;MAF<br>
+                <hr>
                 <input type=checkbox id=intMeasurements name=measurements value=measurements onClick="switchIntMeasurements()"> Messpunkte<br>
                 <input type=checkbox id=intPoints name=interpolatedPoints value=interpolatedPoints onClick="switchIntPoints()"> Interpolierte Werte<br>
                 <input type=checkbox id=intLines name=interpolatedPoints value=interpolatedPoints onClick="switchIntLine()"> Interpolierte Linien
@@ -362,20 +367,6 @@
                         <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
                     </div>
                     </form>
-                        <!--
-                    <ul>
-                        <li>
-                            Wählen Sie ein Attribut aus
-                        </li>
-                        <li>
-                            <select id="interpolationAttrSelectionBox">
-                                <option>Geschwindigkeit</option>
-                                <option>CO2-Ausstoß</option>
-                                <option>Spritverbrauch</option>
-                                <option>MAF</option>
-                            </select>
-                        </li>-->
-                   
                 </div>
             </div>
             
