@@ -86,6 +86,8 @@ var yellowDot = L.icon({iconUrl: 'images/dots/yellowDot.png'});
 	Event register
 ***********************/
 window.onload = function() {
+	document.getElementById('interpolationMethod')[0].checked = true;
+	document.legendAttributs.interpolationAttribut[0].checked = true;
 	drawMap();
 	setMaxMeas();
 	drawMeasurements();
@@ -2185,12 +2187,10 @@ function startInterpolation(){
 
 	
     if(document.interpolation.interpolationMethod[0].checked?"0":"1" == '0') {
-        alert("Started IDW");
         idwInterpolation(consumption, co2, maf, speed);
     }
     
     else if(document.interpolation.interpolationMethod[1].checked?"0":"1" == '1') {
-        alert("Started KRIGING");
         krigingInterpolation(consumption, co2, maf, speed);
     }
 }
@@ -2388,9 +2388,10 @@ function krigingInterpolation(consumption, co2, maf, speed){
 	computeCoords();
 	
 	// Kriging parameters, independent of target variables
-	var model = "gaussian";
-	var sigma2 = 5;
-	var alpha = 80;
+	var model =  document.krigingParameters.krigingModel.value;	//'gaussian', 'exponential', 'spherical'
+	var sigma2 =  parseInt(document.krigingParameters.SigmaTwo.value);		// 5
+	var alpha =  document.krigingParameters.Alpha.value;					// 90
+	
 	var x = new Array();
 	var y = new Array();
 	
@@ -2544,14 +2545,13 @@ function checkVisualizationAttr(){
 
 	if(document.legendAttributs.interpolationAttribut[0].checked){
 	
-		if(!isNaN(interpolated.phenomenons.Speed[0])){
+		if(!isNaN(interpolated.phenomenons.Speed[5])){
 		
 			visualizeInterpolation('IntSpeed');
 		}else{
 		
-			alert('Dieser Track hat dieses Attribut nicht');
-			document.legendAttributs.interpolationAttribut[0].checked = true;
-			checkVisualizationAttr();
+			alert('Dieser Track hat dieses Attribut nicht' + interpolated.phenomenons.Speed[0]);
+			return;
 		}
 	}else if(document.legendAttributs.interpolationAttribut[1].checked){
 		if(!isNaN(interpolated.phenomenons.CO2[0])){
@@ -2908,19 +2908,19 @@ function switchIntPoints(){
 // Author: René Unrau
 function resetVisualization(){
 	
-	if(showIntLines){
+	if(document.getElementById("intLines").checked){
 		for(var i = 0; i < interpolationLines.length; i++){
 			mainMap.removeLayer(interpolationLines[i]);
 		}
 	}
 	
-	if(showIntMeasurements){
+	if(document.getElementById("intMeasurements").checked){
 		for(var i = 0; i < markers.length; i++){
 			mainMap.removeLayer(markers[i]);
 		}
 	}
 	
-	if(showIntPoints){
+	if(document.getElementById("intPoints").checked){
 		for(var i = 0; i < interpolated.marker.length; i++){
 			mainMap.removeLayer(interpolated.marker[i]);
 		}

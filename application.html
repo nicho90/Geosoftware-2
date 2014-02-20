@@ -339,35 +339,37 @@
                 <a href="#" onclick="toggle_visibility('interpolationBox');" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
                     <h3>Wählen Sie eine Methode aus</h3>
-                    <form name="interpolation">
+                    <form id="interpolationMethod" name="interpolation">
                         <input type="radio" name="interpolationMethod" value="0" onclick="showhidediv(this);" checked="checked" >&nbsp;&nbsp;Inverse Distanzwichtung<br>
                         <input type="radio" name="interpolationMethod" value="1" onclick="showhidediv(this);">&nbsp;&nbsp;Kriging<br>
                     </form>
                     <div id=idwBox></div>
                     <div id=krigingBox>
-                        <table>
-                            <tr>
-                                <td>Model</td>
-                                <td>
-                                    <select id="krigingModel">
-                                        <option name="krigingModel" value="GAUSSIAN">Gaussian </option>
-                                        <option name="krigingModel" value="EXPONETIAL">Exponential</option>
-                                        <option name="krigingModel" value="SPHERICAL">Spherical</option>
-                                    </select>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Sigma2</td>
-                                <td><input type=text name=Sigma2 placeholder="Sigma2" class=filterButton></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Alpha</td>
-                                <td><input type=text name=Alpha placeholder="Alpha" class=filterButton></td>
-                                <td></td>
-                            </tr>
-                        </table>
+						<form name="krigingParameters">
+							<table>
+								<tr>
+									<td>Model</td>
+									<td>
+										<select name="krigingModel">
+											<option value="gaussian">Gaussian </option>
+											<option value="exponential">Exponential</option>
+											<option value="spherical">Spherical</option>
+										</select>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Sigma2</td>
+									<td><input type="text" id="sigmatwo" name="SigmaTwo" placeholder="5" class=filterButton></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Alpha</td>
+									<td><input type="text" id="alpha" name="Alpha" placeholder="90" class=filterButton></td>
+									<td></td>
+								</tr>
+							</table>
+						</form>
                     </div>
                     <div class=right>
                         <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
