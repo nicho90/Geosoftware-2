@@ -124,18 +124,14 @@ function drawMap() {
     var DTK10 = L.tileLayer.wms('http://www.wms.nrw.de/geobasis/wms_nw_dtk10', {
      attribution: '| &copy Geobasis NRW 2013',
 	layers: 'nw_dtk10_pan,nw_dtk10_res,NW_DTK10_col,WMS_NW_DTK10',
-    format: 'image/png',
-    transparent: true,
-    opacity:0.4
+    format: 'image/png'
 });
     
     //add DTK10, panchromatic
     var DTK10_panchromatic=L.tileLayer.wms('http://www.wms.nrw.de/geobasis/wms_nw_dtk10',{
    attribution: '| &copy Geobasis NRW 2013',
 	layers: 'NW_DTK10_pan',
-    format: 'image/png',
-    transparent: true,
-	opacity:0.4
+    format: 'image/png'
 });
     
     var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -701,7 +697,7 @@ function drawPolygon(){
 }
 
 
-// 3.2) Delete a polygon
+// 3.2) Delete a polygon layer
 // Author: ?? 
 function deletePolygon(){
     mainMap.removeLayer(polygonLayer);
@@ -710,7 +706,7 @@ function deletePolygon(){
 
 // 3.3) Confirm the Polygon Selection
 // Confirm Polygon and check for measurements
-// Author: Oliver Kosky
+// Author: Rene Unrau, Oliver Kosky
 function confirmPolygon(){
 	var polygonCorners = polygonLayer.getLatLngs();
 	
