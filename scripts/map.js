@@ -90,7 +90,6 @@ window.onload = function() {
 	document.legendAttributs.interpolationAttribut[0].checked = true;
 	drawMap();
 	setMaxMeas();
-	drawMeasurements();
 	mainMap.on('moveend', drawMeasurements);
 }
 
