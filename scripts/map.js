@@ -207,9 +207,9 @@ function drawMap() {
     
     function onBaseLayerChange(){
         if(map.hasLayer(topo)) {
-            if(map.getZoom()<=5)
+            if(map.getZoom()<=5) 
                 map.setZoom(5);
-            if(map.getZoom>=15)
+            if(map.getZoom()>=15)
                 map.setZoom(15);
         }
         
