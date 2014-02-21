@@ -708,6 +708,13 @@ function deletePolygon(){
 // Confirm Polygon and check for measurements
 // Author: Rene Unrau, Oliver Kosky
 function confirmPolygon(){
+
+	// Check if Polygon is closed
+	if(polygonLayer == undefined){
+		alert('Bitte zeichnen sie zuerst ein geschlossenes Polygon');
+		return;
+	}
+	
 	var polygonCorners = polygonLayer.getLatLngs();
 	
 	duplicate = false;
