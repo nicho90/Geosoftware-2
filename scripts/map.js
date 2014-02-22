@@ -1105,8 +1105,7 @@ function addTrackToSelection(track){
 	updateSelectionList();
 	refreshManufacturers();
 	refreshAnalysis();
-	visualizeSelection();
-    
+	visualizeSelection();    
     
 	//Open and Close info-popup
 	//Authors: Nicholas Schiestel and Johanna Möllmann	
@@ -2188,38 +2187,32 @@ function startInterpolation(){
 	if(!checkIntRequirements(consumption, co2, maf, speed)){
 		return;
 	}
-
 	
-    if(document.interpolation.interpolationMethod[0].checked?"0":"1" == '0') {
-        idwInterpolation(consumption, co2, maf, speed);
-    }
-    
-    else if(document.interpolation.interpolationMethod[1].checked?"0":"1" == '1') {
-        krigingInterpolation(consumption, co2, maf, speed);
-    }
-}
-
-// IDW Interpolation
-// Description: Compute Interpolation, Draw Points and start Line visualization
-// Author: René Unrau
-function idwInterpolation(consumption, co2, maf, speed){
-
+	// Remove old markers
+	for(var i=0; i < markers.length; i++) {
+		mainMap.removeLayer(markers[i]);
+	}
+	
+	// Clear old array from markers
+	markers = new Array();
+	
 	// Check if there has been already an interpolation and if yes: remove old interpolated-points from map
 	if(interpolated != undefined){
 		for(var i = 0; i < interpolated.marker.length; i++){
 		
 			mainMap.removeLayer(interpolated.marker[i]);
 		}
+	}	
+	
+	// Delete Track visualization if there was one
+	if(trackLine != undefined){
+		mainMap.removeLayer(trackLine);
 	}
 	
-	// Delete sected measurements from map
-	for(var i = 0; i < markers.length; i++){
-		
-		mainMap.removeLayer(markers[i]);
-	}
-
-	mainMap.removeLayer(trackLine);
-
+	// Map should not draw measurements but keep this interpolation
+	mainMap.off('moveend', drawMeasurements);
+	
+	// Define interpolation Object
 	interpolated = new Object();
 	interpolated.latitude = new Array();
 	interpolated.longitude = new Array();
@@ -2230,7 +2223,63 @@ function idwInterpolation(consumption, co2, maf, speed){
 	interpolated.phenomenons.Speed = new Array();
 	interpolated.marker = new Array();
 	
+	//Compute Coords if interpolated values
 	computeCoords();
+	
+	// Add all markers from array to map
+	for(var i = 0; i < selection.length; i++) {
+		markers.push(L.marker([selection[i].geometry.coordinates[1], selection[i].geometry.coordinates[0]], {icon: blueDot}));
+	}
+	
+	// Choose interpolaton
+    if(document.interpolation.interpolationMethod[0].checked?"0":"1" == '0') {
+        idwInterpolation(consumption, co2, maf, speed);
+    }
+    
+    else if(document.interpolation.interpolationMethod[1].checked?"0":"1" == '1') {
+        krigingInterpolation(consumption, co2, maf, speed);
+    }
+	
+	// show legende on the map
+    if(legend!=true){
+        toggle_visibility('legende');
+        legend = true;
+    }
+    else{
+        toggle_visibility('legende');
+        legend = true;
+        toggle_visibility('legende');
+    }
+        
+        
+    //show visualisation button on the map (only when it isn't already active)
+    if(button4 != true){
+         toggle_visibility('visualisation');
+        button4 = true;
+    }else{
+        toggle_visibility('visualisation');
+        button4 = true;
+        toggle_visibility('visualisation');
+    }
+        
+    //show downloadbutton for the result of the interpolation on the map (only when it isn't already active)
+    if(button5 != true){
+        toggle_visibility('interpolationDownload');
+        button5 = true;
+    }else{
+        toggle_visibility('interpolationDownload');
+        button5 = true;
+        toggle_visibility('interpolationDownload');
+    }
+	
+	document.legendAttributs.interpolationAttribut[0].checked = true;
+	checkVisualizationAttr();
+}
+
+// IDW Interpolation
+// Description: Compute Interpolation, Draw Points and start Line visualization
+// Author: René Unrau
+function idwInterpolation(consumption, co2, maf, speed){
 		
 	for(var i = 1; i < selection.length; i++){
 		//Interpolate Consumption
@@ -2318,43 +2367,7 @@ function idwInterpolation(consumption, co2, maf, speed){
 			
 		// Insert the container into the popup
 		interpolated.marker[i-1].bindPopup(container[0]);
-        
-        // show legende on the map
-        if(legend!=true){
-            toggle_visibility('legende');
-            legend = true;
-        }
-        else{
-            toggle_visibility('legende');
-            legend = true;
-            toggle_visibility('legende');
-        }
-        
-        //show visualisation button on the map (only when it isn't already active)
-        if(button4 != true){
-            toggle_visibility('visualisation');
-            button4 = true;
-        }
-        else {
-            toggle_visibility('visualisation');
-            button4 = true;
-            toggle_visibility('visualisation');
-        }
-        
-        //show downloadbutton for the result of the interpolation on the map (only when it isn't already active)
-        if(button5 != true){
-            toggle_visibility('interpolationDownload');
-            button5 = true;
-        }
-        else {
-            toggle_visibility('interpolationDownload');
-            button5 = true;
-            toggle_visibility('interpolationDownload');
-        }
 	}
-	
-	document.legendAttributs.interpolationAttribut[0].checked = true;
-	checkVisualizationAttr();    
 }
 
 
@@ -2362,34 +2375,6 @@ function idwInterpolation(consumption, co2, maf, speed){
 // Description: Compute Interpolation, Draw Points and start Line visualization
 // Author: René Unrau
 function krigingInterpolation(consumption, co2, maf, speed){
-
-	// Check if there has been already an interpolation and if yes: remove old interpolated-points from map
-	if(interpolated != undefined){
-		for(var i = 0; i < interpolated.marker.length; i++){
-		
-			mainMap.removeLayer(interpolated.marker[i]);
-		}
-	}
-	
-	// Delete sected measurements from map
-	for(var i = 0; i < markers.length; i++){
-		
-		mainMap.removeLayer(markers[i]);
-	}
-
-	mainMap.removeLayer(trackLine);
-
-	interpolated = new Object();
-	interpolated.latitude = new Array();
-	interpolated.longitude = new Array();
-	interpolated.phenomenons = new Object();
-	interpolated.phenomenons.Consumption = new Array();
-	interpolated.phenomenons.CO2 = new Array();
-	interpolated.phenomenons.MAF = new Array();
-	interpolated.phenomenons.Speed = new Array();
-	interpolated.marker = new Array();
-	
-	computeCoords();
 	
 	// Kriging parameters, independent of target variables
 	var model =  document.krigingParameters.krigingModel.value;	//'gaussian', 'exponential', 'spherical'
@@ -2500,43 +2485,8 @@ function krigingInterpolation(consumption, co2, maf, speed){
 		// Insert the container into the popup
 		interpolated.marker[i-1].bindPopup(container[0]);
         
-        // show legende on the map
-        if(legend!=true){
-            toggle_visibility('legende');
-            legend = true;
-        }
-        else{
-            toggle_visibility('legende');
-            legend = true;
-            toggle_visibility('legende');
-        }
-        
-        
-        //show visualisation button on the map (only when it isn't already active)
-        if(button4 != true){
-            toggle_visibility('visualisation');
-            button4 = true;
-        }
-        else {
-            toggle_visibility('visualisation');
-            button4 = true;
-            toggle_visibility('visualisation');
-        }
-        
-        //show downloadbutton for the result of the interpolation on the map (only when it isn't already active)
-        if(button5 != true){
-            toggle_visibility('interpolationDownload');
-            button5 = true;
-        }
-        else {
-            toggle_visibility('interpolationDownload');
-            button5 = true;
-            toggle_visibility('interpolationDownload');
-        }
+       
 	}
-	
-	document.legendAttributs.interpolationAttribut[0].checked = true;
-	checkVisualizationAttr();
 }
 
 
@@ -2933,8 +2883,6 @@ function resetVisualization(){
 	resetTrackSelection();
 	drawMeasurements();
 }
-
-
 
 // Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
