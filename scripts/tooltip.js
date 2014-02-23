@@ -8,4 +8,9 @@
                 $('#maxOfMeasurementsInfo').tipsy({fade:false, gravity: 'n'});
                 $('#visualisation').tipsy({fade:false, gravity: 'e'});
                 $('#interpolationDownload').tipsy({fade:false, gravity: 'e'});
+                $('#trackSelectingInfo').tipsy({fade:false, gravity: 'e'});
+                $('#polygonSelectingInfo').tipsy({fade:false, gravity: 'e'});
+                $('#krigingModelInfo').tipsy({fade:false, gravity: 'e'});
+                $('#SimgaInfo').tipsy({fade:false, gravity: 'e'});
+                $('#alphaInfo').tipsy({fade:false, gravity: 'e'});
 });

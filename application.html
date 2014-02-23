@@ -122,8 +122,9 @@
                                 <td>Anfangsdatum:</td>
                                 <td><input type="text" id="Start" name="Start" placeholder="z.B. 01/01/2014" class=filterButton></td>
                                 <td>Sensor-ID:</td>
-                                <td><input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton></td>
-                                <td></td>
+                                <td colspan="2">
+                                    <input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
+                                </td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -259,10 +260,23 @@
                         <font class=selectTrackTitle>Track finden &amp; auswählen</font>
                     </div>
                     <div class=selectTrackContent>
-                        <p>
-                            <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
-                            &nbsp;&nbsp;<input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton onClick="chooseTrackSelection()">
-                        </p>
+                        <br>
+                        <table>
+                            <tr>
+                                <td align="left" valign="top">
+                                     <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
+                                </td>
+                                <td align="right" valign="middle">
+                                    <a onclick="" class=info id="trackSelectingInfo" original-title="Wählen Sie einen Track aus">i</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top">
+                                    <input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton onClick="chooseTrackSelection()">
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 
@@ -272,8 +286,19 @@
                     </div>
                     <div class=drawingElementContent>
                         <br>
-                        <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton onclick="confirmPolygon()">
-                        <input type="reset" id="resetPolygon" name="resetPolygon" value="Reset" class=resetButton onclick="deletePolygon(); drawPolygon()">
+                        <table>
+                            <tr>
+                                <td align="left" valign="top" width="30px">
+                                    <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton onclick="confirmPolygon()">
+                                </td>
+                                <td align="left" valign="top">
+                                    <input type="reset" id="resetPolygon" name="resetPolygon" value="Reset" class=resetButton onclick="deletePolygon(); drawPolygon()"> 
+                                </td>
+                                <td align="right" valign="middle">
+                                    <a onclick="" class=info id="polygonSelectingInfo" original-title="Das Auswählen eines Polygons kann gegebenenfalls etwas länger dauern.">i</a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -348,25 +373,41 @@
 						<form name="krigingParameters">
 							<table>
 								<tr>
-									<td>Model</td>
-									<td>
+									<td align="left" valign="middle">
+                                        Model
+                                    </td>
+									<td align="left" valign="middle">
 										<select name="krigingModel">
 											<option value="gaussian">Gaussian </option>
 											<option value="exponential">Exponential</option>
 											<option value="spherical">Spherical</option>
 										</select>
 									</td>
-									<td></td>
+									<td align="right" valign="middle">
+                                        <a onclick="" class=info id="krigingModelInfo" original-title="Bitte wählen Sie eine geeignete Methode aus.">i</a>
+                                    </td>
 								</tr>
 								<tr>
-									<td>Sigma2</td>
-									<td><input type="text" id="sigmatwo" name="SigmaTwo" placeholder="5" class=filterButton></td>
-									<td></td>
+									<td align="left" valign="middle">
+                                        Sigma2
+                                    </td>
+									<td align="left" valign="top">
+                                        <input type="text" id="sigmatwo" name="SigmaTwo" placeholder="5" class=filterButton>
+                                    </td>
+									<td align="right" valign="middle">
+                                         <a onclick="" class=info id="SimgaInfo" original-title="Bitte tragen Sie einen Wert zwischen ?? und ?? ein.">i</a>
+                                    </td>
 								</tr>
 								<tr>
-									<td>Alpha</td>
-									<td><input type="text" id="alpha" name="Alpha" placeholder="90" class=filterButton></td>
-									<td></td>
+									<td>
+                                        Alpha
+                                    </td>
+									<td align="left" valign="top">
+                                        <input type="text" id="alpha" name="Alpha" placeholder="90" class=filterButton>
+                                    </td>
+									<td align="right" valign="middle">
+                                        <a onclick="" class=info id="alphaInfo" original-title="Bitte tragen Sie einen Wert zwischen ?? und ?? ein.">i</a>
+                                    </td>
 								</tr>
 							</table>
 						</form>
