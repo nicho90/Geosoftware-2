@@ -1,3 +1,6 @@
+/***********************************************
+    Allgemeine Dokumenteigenschaften
+***********************************************/
 html, body {
     background-color:rgb(252,252,252);
     margin:0px;
@@ -7,7 +10,6 @@ html, body {
     height:100%;
 }
 
-/* Header */
 header, nav, footer, article {
     display:block;
 }
@@ -17,6 +19,9 @@ header, nav, footer, article {
     position:relative;
 }
 
+/***********************************************
+    Kopfbereich
+***********************************************/
 header {
     margin-left:10%;
     margin-right:10%;
@@ -33,8 +38,9 @@ header {
     border:0px;
 }
 
-
-/* Navigationsbereich */
+/***********************************************
+    Navigationsbereich im Kopfbereich
+***********************************************/
 nav {
     text-align:center;
     margin-top: 20px;
@@ -92,10 +98,20 @@ nav ul a:hover{
 
 
 
-/* Seiteninhalt */
-
+/***********************************************
+    Seiteninhalt
+***********************************************/
 #content {
     padding-bottom: 230px;
+}
+
+#contentDocu{
+    font-size: 11pt;
+    font-weight: none;
+}
+
+#contentDocu li, #contentHelp li {
+    margin-bottom:10px;
 }
 
 article {
@@ -112,104 +128,33 @@ article {
     text-align:justify
 }
 
-/*
-    Bilder und Screenshots mit Bildunterschriften
-*/
-.image {
-    border-left: 15px solid rgb(140,188,62);
-    -moz-box-shadow: 0 0 5px #888;
-    -webkit-box-shadow: 0 0 5px#888;
-    box-shadow: 0 0 5px #888;
-    color:rgb(0,0,0);
-    text-align:center;
-    font-size:10pt;
-}
 
-.imageBoxLeft {
-    float:left;
-    margin-right: 60px;
-    text-align:center;
-}
-
-.imageBoxRight {
-    float:right;
-    margin-left: 60px;
-    text-align:center;
-}
-
-.imageCaption{
-    margin-top:3px;
-    padding-top:3px;
-}
-
-/* 
-    Links unter Bilder & Screenshots
-*/
-.imagelink, .imagelink:hover, .imagelink:active{
-    color:rgb(22,127,193);
-    text-decoration:none;
-}
-
-
-#next {
-    text-align:right;
-    padding-top:10px;
-}
-
-#next a {
-    font-size:9pt;
+/***********************************************
+    Links
+    (vor allem benutzt in den Inhaltverzeichnissen)
+***********************************************/
+#content li a {
     text-decoration:none;
     color:rgb(22,127,193);
 }
 
-#next a:hover {
-    font-size:9pt;
+#content li a:hover {
     text-decoration:underline;
     color:rgb(22,127,193);
 }
 
-hr {
-    background-color:#888;
-}
 
+/***********************************************
+    Clear Float 
+***********************************************/
 #clear {
     clear:both;
 }
 
-/* Impressum - Teammitglieder */
-.teamMembers {
-    list-style-type: none;
-}
 
-.teamMembers li {
-    display: block;
-    font-size:16pt;
-}
-
-.teamImages {
-    border-radius:70px;
-    border: 5px solid rgb(140,188,62);
-    float:left;
-    margin-top:-20px;
-    margin-right: 60px;
-    width: 80px;
-    height: 80px;
-}
-
-.teamMembers a{
-    color:rgb(22,127,193);
-    text-decoration:none;
-    font-size:13pt;
-}
-
-.teamMembers a:hover{
-    color:rgb(22,127,193);
-    text-decoration:underline;
-    font-size:13pt;
-}
-
-
-/* Fußzeile */
+/***********************************************
+    Fußbereich
+***********************************************/
 footer {
     background-color:rgb(22,127,193);
     margin-left:0%;
@@ -251,6 +196,9 @@ footer {
     background-color:rgb(22,127,193);
 }
 
+/***********************************************
+    Links im Fußbereich
+***********************************************/
 #footerShortLinks {
     height: 80px;
     padding-left:0%;
@@ -294,4 +242,241 @@ footer {
     color:rgb(255,255,255);
     text-decoration:underline;
     font-weight:bold;
+}
+
+/***********************************************
+    Bilder und Screenshots mit Bildunterschriften
+***********************************************/
+.image {
+    border-left: 15px solid rgb(140,188,62);
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    color:rgb(0,0,0);
+    text-align:center;
+    font-size:10pt;
+}
+
+.imageBoxLeft {
+    float:left;
+    margin-right: 60px;
+    text-align:center;
+}
+
+.imageBoxRight {
+    float:right;
+    margin-left: 60px;
+    text-align:center;
+}
+
+.imageCaption{
+    margin-top:3px;
+    padding-top:3px;
+}
+
+/***********************************************
+    Links unter Bilder und Screenshots 
+    (ohne Hovereffekt; auf der Startseite)
+***********************************************/
+.imagelink, .imagelink:hover, .imagelink:active{
+    color:rgb(22,127,193);
+    text-decoration:none;
+}
+
+/***********************************************
+    Subnavigation unter Kapitel
+    (in der Benutzerhilfe und in der Dokumentation)
+***********************************************/
+#next {
+    text-align:right;
+    padding-top:10px;
+}
+
+#next a {
+    font-size:8pt;
+    text-decoration:none;
+    color:rgb(22,127,193);
+}
+
+#next a:hover {
+    font-size:8pt;
+    text-decoration:underline;
+    color:rgb(22,127,193);
+}
+
+
+/***********************************************
+    Trennlinien
+***********************************************/
+hr {
+    background-color: rgb(204,204,204);
+    height:1px;
+    border:0px;
+}
+
+
+/***********************************************
+    Teammitglieder
+    (im Impressum)
+***********************************************/
+.teamMembers {
+    list-style-type: none;
+}
+
+.teamMembers li {
+    display: block;
+    font-size:16pt;
+}
+
+.teamImages {
+    border-radius:70px;
+    border: 5px solid rgb(140,188,62);
+    float:left;
+    margin-top:-20px;
+    margin-right: 60px;
+    width: 80px;
+    height: 80px;
+}
+
+.teamMembers a{
+    color:rgb(22,127,193);
+    text-decoration:none;
+    font-size:13pt;
+}
+
+.teamMembers a:hover{
+    color:rgb(22,127,193);
+    text-decoration:underline;
+    font-size:13pt;
+}
+
+/***********************************************
+    verschachtelte Listen mit Nummerierung
+    (in der Benutzerhilfe und in der Dokmentation)
+***********************************************/
+ol.firstLevel {
+	counter-reset:listenpunkt_ebene1;
+	list-style-type:none;
+}
+ol.firstLevel li:before {
+	content: counter(listenpunkt_ebene1) ". ";
+	counter-increment:listenpunkt_ebene1;
+}
+ol.secondLevel {
+	counter-reset:listenpunkt_ebene2;
+	list-style-type:none;
+    margin-left:-25px;
+}
+ol.secondLevel li:before {
+	content: counter(listenpunkt_ebene1)"."counter(listenpunkt_ebene2,decimal) ". ";
+	counter-increment:listenpunkt_ebene2;
+}
+
+
+/***********************************************
+    Überschriften
+***********************************************/
+h1 {
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+/***********************************************
+    Bilder (Dokumentation)
+***********************************************/
+.imageUbuntu {
+    height: 90px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:50px;
+    margin-top:-30px;
+}
+
+.imageApache {
+    height: 60px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:50px;
+    margin-top:-20px;
+}
+
+.imageProftpd {
+    height: 80px;
+    float:right;
+    margin-left:20px;
+    margin-top:-20px;
+}
+
+.imageWebstandards {
+    width: ;
+    height: 130px;
+    float:right;
+    margin-left:20px;
+    margin-top:-30px;
+}
+
+.imageLeaflet {
+    width: ;
+    height: 80px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:20px;
+}
+
+.imageHighcharts {
+    background-color:rgb(100,100,100);
+    padding:10px;
+    border-radius:4px;
+    height: 70px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:20px;
+}
+
+.imageJQuery {
+    background-color:rgb(7,105,173);
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:14px;
+    padding-right:15px;
+    border-radius:4px;
+    width: ;
+    height: 60px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:20px;
+}
+
+.imageJQueryUI {
+    background-color: rgb(178,73,38);
+    padding:10px;
+    border-radius:4px;
+    width: ;
+    height: 60px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:20px;
+}
+
+.imageEnviroCar {
+    width: ;
+    height: 60px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:20px;
 }
