@@ -143,6 +143,20 @@ article {
     color:rgb(22,127,193);
 }
 
+/***********************************************
+    Links
+    (vor allem benutzt im normalen Seiteninhalt)
+***********************************************/
+.link {
+    text-decoration:none;
+    color:rgb(22,127,193);
+}
+
+.link:hover {
+    text-decoration:underline;
+    color:rgb(22,127,193);
+}
+
 
 /***********************************************
     Clear Float 
@@ -466,7 +480,6 @@ h4 {
     background-color: rgb(178,73,38);
     padding:10px;
     border-radius:4px;
-    width: ;
     height: 60px;
     float:right;
     margin-left:20px;
@@ -474,9 +487,19 @@ h4 {
 }
 
 .imageEnviroCar {
-    width: ;
     height: 60px;
     float:right;
     margin-left:20px;
     margin-bottom:20px;
 }
+
+.imageMean {
+    float:right;
+    margin-left:20px;
+}
+
+.imageSTD {
+    float:right;
+    margin-left:20px;
+}
+
