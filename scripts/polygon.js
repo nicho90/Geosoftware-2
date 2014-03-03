@@ -1,4 +1,4 @@
-/********************************************************************************************
+ï»¿/********************************************************************************************
 		Polygon
 		
 This file contains all functions needed for drawing, confirming and deleting a polygon
@@ -65,6 +65,7 @@ function confirmPolygon(){
 	duplicate = false;
 	
     polygon.disable;
+	centerPolygon(polygonCorners);
 	//For each measurement in current map-bounds
 	for(var i = 0; i < currentMeasurements.length; i++){
 	
@@ -88,13 +89,12 @@ function confirmPolygon(){
 		}
 	
 	}
-	centerPolygon(polygonCorners);
 	
 	//Open and Close info-popup
-	//Authors: Nicholas Schiestel and Johanna Möllmann
+	//Authors: Nicholas Schiestel and Johanna MÃ¶llmann
 	if(!duplicate){
 	
-		$('#infodialog').html('Punkte wurden hinzugefügt.');
+		$('#infodialog').html('Punkte wurden hinzugefÃ¼gt.');
 		$('#infodialog').dialog({ 
 			height: 100,
 			width: 300,
@@ -108,7 +108,7 @@ function confirmPolygon(){
 		
 	}else{
 	
-		$('#infodialog').html('Die ausgewählten Punkte wurden hinzugefügt. Einige Punkte befinden sich bereits in der Auswahl und wurde deshalb nicht erneut hinzugefügt.');
+		$('#infodialog').html('Die ausgewÃ¤hlten Punkte wurden hinzugefÃ¼gt. Einige Punkte befinden sich bereits in der Auswahl und wurde deshalb nicht erneut hinzugefÃ¶gt.');
 		$('#infodialog').dialog({ 
 			height: 160,
 			width: 400,
@@ -121,12 +121,11 @@ function confirmPolygon(){
 		});
 	}
 	
-     mainMap.removeLayer(polygonLayer);
+    mainMap.removeLayer(polygonLayer);
        
     polygonSelection = false;
     colorize('choosePolygon');
     toggle_visibility('drawingPolygon');
-        
 }
 
 /***********************
