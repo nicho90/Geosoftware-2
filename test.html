@@ -17,21 +17,23 @@
 	<body onload="load();">
 		<h1>Downloadify Example</h1>
 		<p>More info available at the <a href="http://github.com/dcneiner/Downloadify">Github Project Page</a></p>
-		<form>
+		<form action="" name="myform">
 			<p>
 				<label for="filename">Filename</label><br />
 				<input type="text" name="filename" value="testfile.txt" id="filename" />
 			</p>
 			<p>
 				<label for="data">File Contents</label><br />
-<textarea cols="60" rows="10" name="data" id="data">
-Whatever you put in this text box will be downloaded and saved in the file. If you leave it blank, no file will be downloaded</textarea>
+<textarea cols="60" rows="10" name="data" id="data">${text}</textarea>
+		<script type="text/javascript">
+			//document.getElementById('data').innerHTML = "a\nb";
+			document.getElementById('data').innerHTML = window.opener.converttxt(); // geht so leider nicht...
+		</script>
 			</p>
 			<p id="downloadify">
 				You must have Flash 10 installed to download this file.
 			</p>
 		</form>
-
 		<script type="text/javascript">
 			function load(){
 				Downloadify.create('downloadify',{

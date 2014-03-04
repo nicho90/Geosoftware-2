@@ -662,3 +662,20 @@ function switchIntPoints(){
 		}
 	}
 }
+
+// Author: Leon Vogel
+function converttxt(){
+	var table = "Latitude;Longitude;Consumption;CO2;MAF;Speed;\n";
+	var testtt = selection.length;
+	var tableLine = "";
+	 for(var i = 0; i < selection.length; ++i) {
+		tableLine += selection[i].geometry.coordinates[1].toString() + ";";
+		tableLine += selection[i].geometry.coordinates[0].toString() + ";";
+		tableLine += selection[i].properties.phenomenons.MAF.value.toString() + ";";
+		tableLine += selection[i].properties.phenomenons.Speed.value.toString() + ";\n";
+   
+		table += tableLine;
+		tableLine = "";
+	} 
+	return table;
+}

@@ -595,3 +595,7 @@ function drawMeasurements() {
 		mainMap.addLayer(markers[i]);
 	}
 }
+
+function downloadsite(){
+	window.open('test.html');
+}
