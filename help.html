@@ -20,6 +20,11 @@
             document.createElement('footer');
         </script>
         
+        <!-- Shadowbox for showing pictures/screenshots by clicking on a thumbnail-->
+        <link rel="stylesheet" type="text/css" href="scripts/externe/Shadowbox/shadowbox.css">
+        <script type="text/javascript" src="scripts/externe/Shadowbox/shadowbox.js"></script>
+        <script type="text/javascript">Shadowbox.init();</script>
+        
     </head>
     <body>
         <div id="main">
@@ -35,52 +40,230 @@
             </ul>
         </nav>
         <div id="content">
-        <article class=content role="article">
+            <article class=content role="article">
             <h1>Benutzerhilfe</h1>
-            <small>Stand: <time datetime=2013-12-27 pubdate=2013-12-25>27. Dezember 2013</time></small><br>
-                <h3>Überblick</h3>
-                <ol>
-                    <li><a href="#help-1">Die Applikation</a></li>
-                    <li><a href="#help-2">Das Menü</a></li>
-                    <li><a href="#help-3">Die Karte</a></li>
-                    <li><a href="#help-4">Der Filter</a></li>
-                </ol>
-                <br>
-                <div id=next>
-                    <a href="#top">nach oben</a>
-                    <hr>
-                </div>
-                <h4 id=help-1>Schritt 1</h4>
-                <div class="imageBoxRight">
-                             <a href="#"><img src="images/map.png" alt="Hier gehts zur Applikation & Karte" class=image width=300px height=200px></a>
-                            <div class="imageCaption">
-                                Bildunterschrift
-                            </div>
-                        </div>
-                <p>TEXT</p>
-                <br>
-                <br>
+            <small>Stand: <time datetime=2014-03-05 pubdate=2013-12-25>05. März 2014</time></small><br>
+            <h3>Überblick</h3>
+            <ol class=firstLevel>
+                <li><a href="#help-1">Einleitung</a></li>
+                <li><a href="#help-2">Der Aufbau der Applikation</a></li>
+                <li><a href="#help-3">Die Messpunkte</a>
+                    <ol class=secondLevel>
+                        <li><a href="#help-3-1">Verfügbare Werte</a></li>
+                        <li><a href="#help-3-2">Die Anzahl der Messpunkte</a></li>
+                    </ol>
+                </li>
+                <li><a href="#help-4">Die Karte</a>
+                    <ol class=secondLevel>
+                        <li><a href="#help-4-1">Die Navigationselemente</a></li>
+                        <li><a href="#help-4-2">Die Ortungsfunktion</a></li>
+                        <li><a href="#help-4-3">Verfügbares Kartenmaterial</a></li>
+                        <li><a href="#help-4-4">Die Messpunkte auf der Karte</a></li>
+                        <li><a href="#help-4-5">Visualisierungen zurücksetzten</a></li>
+                    </ol>
+                </li>
+                <li><a href="#help-5">Die Filteroptionen</a>
+                    <ol class=secondLevel>
+                        <li><a href="#help-5-1">Filtern nach der Zeit</a></li>
+                        <li><a href="#help-5-2">Filtern mit einer Sensor-ID</a></li>
+                        <li><a href="#help-5-3">Filtern über einen Autotyp</a></li>
+                        <li><a href="#help-5-4">Filtern mit einer Track-ID</a></li>
+                    </ol>
+                </li>
+                <li><a href="#help-6">Die Selektionswerkzeuge</a>
+                    <ol class=secondLevel>
+                        <li><a href="#help-6-1">Auswählen eines Messpunktes (bySinglePoint)</a></li>
+                        <li><a href="#help-6-2">Suchen &amp; Auswählen eines Tracks (byTrack)</a></li>
+                        <li><a href="#help-6-3">Auswählen über einen Raumausschnitt (byPolygon)</a></li>
+                    </ol>
+                </li>
+                <li><a href="#help-7">Die Selektierten Punkte</a>
+                    <ol class=secondLevel>
+                        <li><a href="#help-7-1">Punkte aus der Selektionstabelle löschen</a></li>
+                        <li><a href="#help-7-2">Alle Messwerte anzeigen</a></li>
+                        <li><a href="#help-7-3">Alle Messwerte downloaden</a></li>
+                    </ol>
+                </li>
+                <li><a href="#help-8">Die Analysefunktionen</a></li>
+                <li><a href="#help-9">Die Diagramme</a></li>
+                <li><a href="#help-10">Die Interpolationen</a>
+                    <ol class=secondLevel>
+                        <li><a href="#help-10-1">Interpolation mit inverser Distanzgewichtung</a></li>
+                        <li><a href="#help-10-2">Interpolation mit Kriging</a></li>
+                        <li><a href="#help-10-3">Die Legende</a></li>
+                        <li><a href="#help-10-4">Downloaden eines Interpolationsergebnisses</a></li>
+                        <li><a href="#help-10-5">Zurücksetzten einer Visualisierung</a></li>
+                    </ol>
+                </li>
+                <li><a href="#help-11">Fehlermeldungen &amp; Probleme</a></li>
+            </ol>
+            <div id=next>
+                <a href="#top">nach oben</a>&nbsp;&nbsp;
+                <hr>
+            </div>
+            
+            <div id=contentDocu>
+                <h3 id=help-1>1. Einleitung</h3>
+                Im Folgenden werden alle Programmier- und Markupsprachen, sowie eingeladene Frameworks gezeigt, die in diesem Projekt benutzt wurden. Viele der Technologien sind Open Source Software, bzw. dürfen in nicht kommerziellen Projekten kostenlos benutzt werden. Alle Internetseiten des Projekts basieren auf den derzeitigen Webstandards.
+                
                 <div id=clear></div>
-                 <div id=next>
-                    <a href="#top">nach oben</a>
+                <div id=next>
+                    <a href="#help-1">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
                     <hr>
                 </div>
-                <h4 id=help_2>Schritt 2</h4>
+                
+                
+                <h3 id=help-2>2. Der Aufbau der Applikation</h3>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-2">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+                
+                <h3 id=help-3>3. Die Messpunkte</h3>
+                
+                <h4 id=help-3-1>3.1 Verfügbare Werte</h4>
+
+                <h4 id=help-3-2>3.2 Die Anzahl der Messpunkte</h4>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-3">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+
+
+                <h3 id=help-4>4. Die Karte</h3>
+                
+                <h4 id=help-4-1>4.1 Die Navigationselemente</h4>
+
+                <h4 id=help-4-2>4.2 Die Ortungsfunktion</h4>
+                
+                <h4 id=help-4-3>4.3 Verfügbares Kartenmaterial</h4>
+
+                <h4 id=help-4-4>4.4 Die Messpunkte auf der Karte</h4>
+                
+                <h4 id=help-4-5>4.5 Visualisierungen zurücksetzten</h4>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-4">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+                
+                <h3 id=help-5>5. Die Filteroptionen</h3>
+                
+                <h4 id=help-5-1>5.1 Filtern nach der Zeit</h4>
+
+                <h4 id=help-5-2>5.2 Filtern mit einer Sensor-ID</h4>
+                
+                <h4 id=help-5-3>5.3 Filtern über einen Autotyp</h4>
+                
+                <h4 id=help-5-4>5.4 Filtern mit einer Track-ID</h4>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-5">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+
+                
+                <h3 id=help-6>6. Die Selektionswerkzeuge</h3>
+                
+                <h4 id=help-6-1>6.1 Auswählen eines Messpunktes (bySinglePoint)</h4>
+
+                <h4 id=help-6-2>6.2 Suchen &amp; Auswählen eines Tracks (byTrack)</h4>
+                
+                <h4 id=help-6-3>6.3 Auswählen über einen Raumausschnitt (byPolygon)</h4>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-6">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+                
+                <h3 id=help-7>7. Die Selektierten Punkte</h3>
+                
+                <h4 id=help-7-1>7.1 Punkte aus der Selektionstabelle löschen</h4>
+
+                <h4 id=help-7-2>7.2 Alle Messwerte anzeigen</h4>
+                
+                <h4 id=help-7-3>7.3 Alle Messwerte downloaden</h4>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-7">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+                
+                <h3 id=help-8>8. Die Analysefunktionen</h3>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-8">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+                
+                <h3 id=help-9>9. Die Diagramme</h3>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-9">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+                
+                <h3 id=help-10>10. Die Interpolationen</h3>
+                
+                <h4 id=help-10-1>10.1 Interpolation mit inverser Distanzgewichtung</h4>
+
+                <h4 id=help-10-2>10.2 Interpolation mit Kriging</h4>
+                
+                <h4 id=help-10-3>10.3 Die Legende</h4>
+                
+                <h4 id=help-10-4>10.4 Downloaden eines Interpolationsergebnisses</h4>
+                
+                <h4 id=help-10-5>10.5 Zurücksetzten einer Visualisierung</h4>
+                
                 <div class="imageBoxLeft">
-                             <a href="#"><img src="images/map.png" alt="Hier gehts zur Applikation & Karte" class=image width=300px height=200px></a>
-                            <div class="imageCaption">
-                                Bildunterschrift
-                            </div>
-                        </div>
+                    <a href="images/envirocar_analyser_logo_original.png" rel="shadowbox"><img src="images/map.png" alt="Hier gehts zur Applikation & Karte" class=image width=300px height=200px></a>
+                    <div class="imageCaption">
+                        Bildunterschrift
+                    </div>
+                </div>
                 <p>TEXT</p>
-                <br>
-                <br>
                 <div id=clear></div>
                 <div id=next>
-                    <a href="#top">nach oben</a>
-                    <!-- <hr> -->
+                    <a href="#help-10">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
                 </div>
-        </article>
+                
+                
+                <h3 id=help-11>11. Fehlermeldungen &amp; Probleme</h3>
+                
+                <div class="imageBoxRight">
+                    <a href="images/help/docu_11_s1.png" rel="shadowbox"><img src="images/map.png" alt="Hier gehts zur Applikation & Karte" class=image width=300px height=200px></a>
+                    <div class="imageCaption">
+                        Bildunterschrift
+                    </div>
+                </div>
+                <p>TEXT</p>
+                
+                <div id=clear></div>
+                <div id=next>
+                    <a href="#help-11">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+        
+            </article>
+        </div>
         <footer>
             <div id="footerLine_1"></div>
             <div id="footerLine_2"></div>
