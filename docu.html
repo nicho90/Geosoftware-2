@@ -20,6 +20,11 @@
             document.createElement('footer');
         </script>
         
+        <!-- Shadowbox for showing pictures/screenshots by clicking on a thumbnail-->
+        <link rel="stylesheet" type="text/css" href="scripts/externe/Shadowbox/shadowbox.css">
+        <script type="text/javascript" src="scripts/externe/Shadowbox/shadowbox.js"></script>
+        <script type="text/javascript">Shadowbox.init();</script>
+        
     </head>
     <body>
         <div id="main">
@@ -37,7 +42,7 @@
         <div id=content>
         <article class=content role="article">
             <h1>Dokumentation</h1>
-            <small>Stand: <time datetime=2014-02-23 pubdate=2013-12-25>23. Februar 2014</time></small><br>
+            <small>Stand: <time datetime=2014-03-05 pubdate=2013-12-25>05. März 2014</time></small><br>
             <h3>Überblick</h3>
             <ol class=firstLevel>
                 <li><a href="#docu-1">Technische Architektur</a>
@@ -124,6 +129,9 @@
                 <li>
                     <a href="http://www.w3.org/standards/webdesign/htmlcss" target="_blank">CSS3</a>
                 </li>
+                <li>
+                    <a href="http://www.w3schools.com/js" target="_blank">JavaScript</a> (wird im Framework Shadowbox benutzt)
+                </li>
                 <div id=clear></div>
                 <h4 id=docu-1-3>1.3 Die Applikation</h4>
                 <li>
@@ -134,7 +142,7 @@
                     <a href="http://www.w3.org/standards/webdesign/htmlcss" target="_blank">CSS3</a>
                 </li>
                 <li>
-                    <a href="http://www.w3schools.com/js" target="_blank">JavaScript</a> (sämtliche Funktionen der Applikation wurden mit JavaScript umgesetzt)
+                    <a href="http://www.w3schools.com/js" target="_blank">JavaScript</a> (sämtliche Funktionen der Applikation wurden mit JavaScript umgesetzt; desweiteren verwenden alle aufgelisteten Frameworks JavaScript)
                 </li>
                 <div id=clear></div>
                 <h4 id=docu-1-4>1.4 Benutzte Frameworks</h4>
@@ -145,7 +153,7 @@
                 <div id=clear></div>
                 <li>
                     <img src="images/docu/highcharts.png" class=imageHighcharts>
-                    <a href="http://www.highcharts.com" target="_blank">Highcharts</a> wurde benutzt, um dem Nutzer eine Diagrammdarstellung der ausgewählten Punkte zu bieten. Das Framework ist in JavaScript geschrieben.
+                    <a href="http://www.highcharts.com" target="_blank">Highcharts JS</a> wurde benutzt, um dem Nutzer eine Diagrammdarstellung der ausgewählten Punkte zu bieten. Das Framework ist in JavaScript geschrieben.
                 </li>
                 <div id=clear></div>
                 <li>
@@ -156,6 +164,11 @@
                 <li>
                     <img src="images/docu/jquery-ui.png" class=imageJQueryUI>
                     <a href="http://jqueryui.com" target="_blank">JQuery User</a> Interface wurde bentuzt, um Popups, wie bei der Trackauswahl zu zeigen. Desweiteren bietet es die Möglichkeit einer Kalenderansicht, sowie es in den Filteroptionen mit Startdatum und Enddatum eingesetzt wurde. Das Framework ist in JavaScript geschrieben.
+                </li>
+                <div id=clear></div>
+                <li>
+                    <img src="images/docu/shadowbox.gif" class=imageShadowbox>
+                    <a href="http://www.shadowbox-js.com/" target="_blank">Shadowbox.js</a> ermöglicht die Bilder, bzw. Screenshots in der Benutzerhilfe und der Dokumentation zunächst als Thumbnails zu zeigen und anschließend bei einem Klick vergrößert darzustellen. Das Framework ist in JavaScript geschrieben.
                 </li>
                 <div id=clear></div>
                 <div id=next>

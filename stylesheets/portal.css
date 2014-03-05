@@ -486,6 +486,15 @@ h4 {
     margin-bottom:20px;
 }
 
+.imageShadowbox {
+    background-color: rgb(48,48,48);
+    padding:10px;
+    border-radius:4px;
+    float:right;
+    margin-left:20px;
+    margin-bottom:20px;
+}
+
 .imageEnviroCar {
     height: 60px;
     float:right;
