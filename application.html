@@ -248,13 +248,13 @@
                 <h2>Selektierwerkzeuge</h2>        
                 <div id=chooser>
                     <ul>
-                        <li id="chooseSinglePoint" original-title="Verwende dieses Werkzeug um Punkte nach einander auf der Karte per Klick zu selektieren">
+                        <li id="chooseSinglePoint" original-title="Verwenden Sie dieses Werkzeug um Punkte nach einander auf der Karte per Mausklick zu selektieren">
                             <a onclick="chooseSingleSelection('chooseSinglePoint');"></a>
                         </li>
-                        <li id="chooseTrack" original-title="Die Auswahl eines ganzen Tracks ist nur über das Popup eines Messpunktes möglich: Klicke einfach auf der Karte auf einen beliebigen Punkt, um das Popup zu öffnen">
+                        <li id="chooseTrack" original-title="Verwenden Sie dieses Werkzeug um einen ganzen Track zu suchen und hinzuzufügen. Die Auswahl eines ganzen Tracks ist auch über das Popup eines Messpunktes möglich: Klicken Sie einfach auf der Karte auf einen beliebigen Messpunkt, um das Popup zu öffnen.">
                             <a onclick="chooseTrackSelection();"></a>
                         </li>
-                        <li id="choosePolygon"  original-title="Verwende dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren. Klicke dazu auf der Karte nacheinander um den Raumauschnitt zu wählen. Wenn Du fertig bist, bestätige um die Punkte zu selektieren">
+                        <li id="choosePolygon"  original-title="Verwenden Sie dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren.">
                             <a onclick="choosePolygonSelection();"></a>
                         </li>
                     </ul>
@@ -273,7 +273,7 @@
                                      <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
                                 </td>
                                 <td align="right" valign="middle">
-                                    <a onclick="" class=info id="trackSelectingInfo" original-title="Wählen Sie einen Track aus">i</a>
+                                    <a onclick="" class=info id="trackSelectingInfo" original-title="Wenn Sie eine Track-ID haben, können Sie hier den Track suchen und alle Messpunkte direkt zur Auswahl hinzufügen.">i</a>
                                 </td>
                             </tr>
                             <tr>
@@ -301,7 +301,7 @@
                                     <input type="reset" id="resetPolygon" name="resetPolygon" value="Reset" class=resetButton onclick="deletePolygon(); drawPolygon()"> 
                                 </td>
                                 <td align="right" valign="middle">
-                                    <a onclick="" class=info id="polygonSelectingInfo" original-title="Das Auswählen eines Polygons kann gegebenenfalls etwas länger dauern.">i</a>
+                                    <a onclick="" class=info id="polygonSelectingInfo" original-title="Klicken Sie auf der Karte nacheinander um einen Raumauschnitt zu definieren. Um den Raumausschnitt abzuschließen muss der Anfangspunkt gleich dem Endpunkt sein. Wenn Sie fertig sind, bestätigen Sie mit OK um die Messpunkte zu selektieren. Mit RESET können Sie den gezeichneten Raumausschnitt zurücksetzen und erneut definieren. Das Auswählen eines Polygons kann gegebenenfalls etwas länger dauern.">i</a>
                                 </td>
                             </tr>
                         </table>
@@ -380,7 +380,7 @@
 							<table>
 								<tr>
 									<td align="left" valign="middle">
-                                        Model
+                                        Modell
                                     </td>
 									<td align="left" valign="middle">
 										<select name="krigingModel">
@@ -390,29 +390,29 @@
 										</select>
 									</td>
 									<td align="right" valign="middle">
-                                        <a onclick="" class=info id="krigingModelInfo" original-title="Bitte wählen Sie eine geeignete Methode aus.">i</a>
+                                        <a onclick="" class=info id="krigingModelInfo" original-title="Bitte wählen Sie ein geeignetes Modell aus. Mit den vorgegebenen Werten &#x3C3;&sup2; = 5 und &#x3B1; = 90 lässt sich ein gutes Ergebnis erzielen.">i</a>
                                     </td>
 								</tr>
 								<tr>
 									<td align="left" valign="middle">
-                                        Sigma2
+                                        &#x3C3;<sup>2</sup>
                                     </td>
 									<td align="left" valign="top">
                                         <input type="text" id="sigmatwo" name="SigmaTwo" placeholder="5" class=filterButton>
                                     </td>
 									<td align="right" valign="middle">
-                                         <a onclick="" class=info id="SimgaInfo" original-title="Bitte tragen Sie einen Wert zwischen ?? und ?? ein.">i</a>
+                                         <a onclick="" class=info id="SimgaInfo" original-title="Bitte tragen Sie einen Wert zwischen 1 und 100 ein.">i</a>
                                     </td>
 								</tr>
 								<tr>
 									<td>
-                                        Alpha
+                                        &#x3B1;
                                     </td>
 									<td align="left" valign="top">
                                         <input type="text" id="alpha" name="Alpha" placeholder="90" class=filterButton>
                                     </td>
 									<td align="right" valign="middle">
-                                        <a onclick="" class=info id="alphaInfo" original-title="Bitte tragen Sie einen Wert zwischen ?? und ?? ein.">i</a>
+                                        <a onclick="" class=info id="alphaInfo" original-title="Bitte tragen Sie einen Wert zwischen 1 und 100 ein.">i</a>
                                     </td>
 								</tr>
 							</table>
