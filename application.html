@@ -99,6 +99,11 @@
 		
 		<!-- Skript für Kriging -->
 		<script src="scripts/externe/kriging.js"></script>
+		
+				
+				
+		<!-- Skript der Downloadfunktion der Messpunkte aus der Selektionstabelle -->
+		<script type="text/javascript" src="scripts/download_messpunkte.js"></script>
         
     
     </head>
@@ -112,6 +117,9 @@
 
 		<!-- Digramm-Popup (standardmäßig ausgeblendet) -->
 		<div id=diagram style="margin: 0 auto; display:none;" title="Diagramme"></div>
+		
+		<!-- Download-Popup (standardmäßig ausgeblendet) -->
+		<div id="downloadMpDialog" style="margin: 0 auto; display:none;"></div>
 		
     
 	 <header role="banner">
@@ -324,8 +332,10 @@
                                 <a href="#" class="link" onClick="showMeasurementDetails()">Alle Messwerte</a>
                             </li>
                             <li>
-                                <a href="#" class="link" onClick="alert('not yet implemented')"><img src="images/download_2.png" alt="Alle Werte downloaden" class="downloadButton"></a>
-                            </li>
+                                <a href="#" class="link" onClick=download_sel_pkte();>
+									<img src="images/download_2.png" alt="Alle Werte downloaden" class="downloadButton">
+								</a>
+							</li>
                         </ul>
                         <div id=clear></div>
                         <br>
