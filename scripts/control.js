@@ -89,8 +89,6 @@ function chooseTrackSelection() {
             trackSelection = true;
             colorize('chooseTrack');
             toggle_visibility('selectTrack');
-            var trackID = document.getElementById('Track_ID').value;
-            visualizeTrack(trackID);
         }
     }
 }
