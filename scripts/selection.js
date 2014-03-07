@@ -256,9 +256,9 @@ function addTrackToSelection(track){
 				Consumption.unit = "l/s";
 				measurements[i].properties.phenomenons.Consumption = Consumption;
 				
-			}else if(measurements.properties.phenomenons.Consumption.unit == 'l/s'){
-				measurements.properties.phenomenons.Consumption.value = measurements.properties.phenomenons.Consumption.value * 3600;
-				measurements.properties.phenomenons.Consumption.unit = 'l/h';
+			}else if(measurements[i].properties.phenomenons.Consumption.unit == 'l/s'){
+				measurements[i].properties.phenomenons.Consumption.value = measurements[i].properties.phenomenons.Consumption.value * 3600;
+				measurements[i].properties.phenomenons.Consumption.unit = 'l/h';
 			}
 			
 			if(measurements[i].properties.phenomenons.CO2 == undefined) {
@@ -267,9 +267,9 @@ function addTrackToSelection(track){
 				CO2.unit = "g/s";
 				measurements[i].properties.phenomenons.CO2 = CO2;
 				
-			}else if(measurements.properties.phenomenons.CO2.unit == 'kg/h'){
-				measurements.properties.phenomenons.CO2.value = measurements.properties.phenomenons.CO2.value / 3.6;
-				measurements.properties.phenomenons.CO2.unit = 'g/s';
+			}else if(measurements[i].properties.phenomenons.CO2.unit == 'kg/h'){
+				measurements[i].properties.phenomenons.CO2.value = measurements[i].properties.phenomenons.CO2.value / 3.6;
+				measurements[i].properties.phenomenons.CO2.unit = 'g/s';
 			}
 			
 			if(measurements[i].properties.phenomenons.MAF == undefined) {

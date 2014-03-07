@@ -238,13 +238,29 @@
                 
                 <h3 id=help-10>10. Die Interpolationen</h3>
 				
+				<div class="imageBoxRight">
+                    <a href="images/help/docu_10_s1.png" rel="shadowbox"><img src="images/help/docu_10_s1.png" alt="Interpolationswerkzeuge" class=image width=300px height=200px></a>
+                    <div class="imageCaption">
+                        Interpolationswerkzeuge
+                    </div>
+                </div>
+				
 				Interpolationen sind in unserer Applikation generell nur für exakt einen vollständigen Track möglich. Grund dafür ist, dass Interpolationen zwischen unterschiedlichen Fahrten, zu unterschiedlichen Jahres-, Tages- und Uhrzeiten, sowie mit unterschiedlichen Fahrzeugen generell wenig Sinn machen. Versucht ein Benutzer dennoch eine Interpolation mit ungültigen Werten durchzuführen, so ist dies nicht möglich und eine entsprechende Fehlermeldung wird angezeigt.
 
 				Es werden nur Interpolation der Attribute Geschwindigkeit, Spritverbrauch, CO2-Ausstoß und MAF angeboten. Diese Werte sind am häufigsten vertreten und bieten sich besonders für Interpolationen an. Es ist daher nicht möglich über einen Track zu interpolieren, der keines dieser Attribute enthält.
 
 				Sind diese Vorraussetzungen erfüllt, kann der Nutzer die Interpolation durch setzen der Parameter in der Interpolationsbox (Sidebar) starten. Dazu muss zwischen einer der beiden Methoden gewählt werden und gegenfalls weitere Parameter ergänzt werden. Im Anschluss kann die Interpolation über “OK” gestartet werden.
 
-				Nach Abschluss der Berechnungen, werden die Ergebnisse visuell auf der Karte dargestellt. Standardmäßig bekommt der Nutzer nur den Verlauf der Fahrt farbig interpoliert für das Attribut Geschwindigkeit auf der Karte dargestellt. Es besteht aber die Möglichkeit die interpolierten Werte, ursprünglichen Messpunkte und die Linie über die Legende in der unteren linken Ecke der Karte ein- und auszublenden. 
+				Nach Abschluss der Berechnungen, werden die Ergebnisse visuell auf der Karte dargestellt. 
+				
+				<div class="imageBoxLeft">
+                    <a href="images/help/docu_10_s2.png" rel="shadowbox"><img src="images/help/docu_10_s2.png" alt="Legende zur Interpolation" class=image width=300px height=200px></a>
+                    <div class="imageCaption">
+                        Legende zur Interpolation
+                    </div>
+                </div>
+				
+				Standardmäßig bekommt der Nutzer nur den Verlauf der Fahrt farbig interpoliert für das Attribut Geschwindigkeit auf der Karte dargestellt. Es besteht aber die Möglichkeit die interpolierten Werte, ursprünglichen Messpunkte und die Linie über die Legende in der unteren linken Ecke der Karte ein- und auszublenden. 
 
 				Hier kann der Nutzer auch das Attribut auswählen, dass er als farbige Linie auf der Karte abgebildet haben möchte. Auch hier besteht nur eine Auswahl zwischen den oben genannten Attributen. Ist ein Attribut im Track nicht vorhanden, so kann dieses auch nicht für die Visualisierung ausgewählt werden. Eine Hinweismeldung erscheint und die Visualisation wird standardmäßig auf Geschwindigkeit gesetzt.
 
