@@ -147,10 +147,10 @@ function visualizeTrack(trackID){
 				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 				'<tr><td><b>Sensor-ID</b></td><td>' + track.properties.sensor.properties.id + '</td></tr>' +
 				'<tr><td><b>Fahrzeugtyp</b></td><td>' + track.properties.sensor.properties.manufacturer + ' ' + track.properties.sensor.properties.model + '</td></tr>' +
-				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' km/h</td></tr>' +
-				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' g/s</td></tr>' +
-				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' l/h</td></tr>' +
-				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' l/s</td></tr>' +
+				'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
+				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
+				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
 				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="addToSelection" class="link">Track zur Auswahl hinzufügen</a></td></tr></table></html>');
 
 			// Insert the container into the popup

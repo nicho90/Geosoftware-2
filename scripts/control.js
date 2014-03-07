@@ -1,4 +1,4 @@
-/********************************************************************************************
+Ôªø/********************************************************************************************
 		Control
 		
 This file contains all functions needed for interaction with our provided tools.
@@ -33,12 +33,12 @@ Content
 
 // 1.1 Single Point-Selection 
 // Description: User wants to add measurement for analysis by clicking on a single point on the map
-// Authors: RenÈ Unrau & Nicholas Schiestel
+// Authors: Ren√© Unrau & Nicholas Schiestel
 function chooseSingleSelection(id) {
     
     // check if trackSelection or polygonSelection
     if(trackSelection || polygonSelection){
-		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.</p>').dialog({
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie√üen Sie dieses zuerst.</p>').dialog({
 			modal: true,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
@@ -64,12 +64,12 @@ function chooseSingleSelection(id) {
 
 // 1.2 Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
-// Authors: RenÈ Unrau & Nicholas Schiestel
+// Authors: Ren√© Unrau & Nicholas Schiestel
 function chooseTrackSelection() {
     
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
-		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.</p>').dialog({
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie√üen Sie dieses zuerst.</p>').dialog({
 			modal: true,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
@@ -100,7 +100,7 @@ function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
     if(singlePointSelection || trackSelection){
-		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.</p>').dialog({
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie√üen Sie dieses zuerst.</p>').dialog({
 			modal: true,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
@@ -240,7 +240,7 @@ function resetFilter() {
 
 // 3.1 Reset Track Visualization
 // Description: Deletes Track and draws standard measurements
-// Authors: RenÈ Unrau & Nicholas Schiestel
+// Authors: Ren√© Unrau & Nicholas Schiestel
 function resetTrackSelection(){
 	mainMap.removeLayer(trackLine);
 	for(var i = 0; i < markers.length; i++) {
@@ -282,7 +282,7 @@ function resetTrackSelection(){
 
 // 3.2 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
-// Author: RenÈ Unrau
+// Author: Ren√© Unrau
 function resetVisualization(){
 	
 	if(document.getElementById("intLines").checked){
@@ -313,7 +313,7 @@ function resetVisualization(){
 
 // 4 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
-// Author: RenÈ Unrau
+// Author: Ren√© Unrau
 function setMaxMeas(){
 
 	var e = document.getElementById("measurementNumber");
