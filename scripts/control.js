@@ -38,7 +38,13 @@ function chooseSingleSelection(id) {
     
     // check if trackSelection or polygonSelection
     if(trackSelection || polygonSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.");
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+        
     }
     
     // if no other Selcetionmode is active, then continue with singlePointSelection
@@ -63,7 +69,13 @@ function chooseTrackSelection() {
     
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.");
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+        
     }
     
     // if no other selcetionmode is active, then continue with singlePointSelection
@@ -90,7 +102,13 @@ function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
     if(singlePointSelection || trackSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.");
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlieﬂen Sie dieses zuerst.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+
     }
     
     // if no other selcetionmode is active, then continue with polygonSelection
@@ -176,7 +194,12 @@ function colorize(button) {
                 }
             }
             else {
-                alert("Error");
+				var dialog = $('<p>Error! Es ist kein Auswahlwerkzeug aktiv.</p>').dialog({
+					modal: true,
+					buttons: {
+						"OK":  function() {dialog.dialog('close');}
+					}
+				});
             }
         } 
     }
