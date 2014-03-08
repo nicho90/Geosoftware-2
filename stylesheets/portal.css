@@ -1,5 +1,47 @@
+/********************************************************************************************
+		Stylesheet for the portal webpages
+		
+Description: This file contains all layout and design styles to format the webpages: 
+    - index.html
+    - help.html
+    - docu.html
+    - impressum.html
+Authors: Nicholas Schiestel and Johanna Moellmann
+
+********************************************************************************************
+Content
+
+1. General document properties
+
+2. Header
+    2.1 General settings
+    2.1 Navigation in header
+
+3. Content area
+	3.1 General settings
+	3.2 Links in content area (used in tables of content)
+    3.3 Links in content area (used in normal conent)
+    3.4 Text float clearing
+
+4. Footer
+    4.1 General settings
+    4.2 Links in Footer area
+
+5.  Special settings for page formatting 
+    5.1 Thumbnail-pictures to preview screenshots with captions
+    5.2 Thumbnail on the home page with a link to the application
+    5.3 Subnavigation under chapter to navigate faster in the user help and documentation
+    5.4 Dividing lines
+    5.5 Team-member-pictures in the impressum page
+    5.6 nested lists with numbering in the  user help and in the dokmentation
+    5.7 Headings
+    5.8 Pictures in the documentation
+
+*********************************************************************************************/
+
+
 /***********************************************
-    Allgemeine Dokumenteigenschaften
+    1. General document properties
 ***********************************************/
 html, body {
     background-color:rgb(252,252,252);
@@ -19,8 +61,11 @@ header, nav, footer, article {
     position:relative;
 }
 
+
 /***********************************************
-    Kopfbereich
+    2. Header
+
+    2.1 General settings
 ***********************************************/
 header {
     margin-left:10%;
@@ -39,7 +84,7 @@ header {
 }
 
 /***********************************************
-    Navigationsbereich im Kopfbereich
+    2.2 Navigation in header
 ***********************************************/
 nav {
     text-align:center;
@@ -57,8 +102,6 @@ nav {
 
 nav ul {
     list-style-type: none;
-    
-    
 }
 
 nav li {
@@ -99,7 +142,9 @@ nav ul a:hover{
 
 
 /***********************************************
-    Seiteninhalt
+    3. Content area
+    
+    3.1 General settings
 ***********************************************/
 #content {
     padding-bottom: 230px;
@@ -130,8 +175,8 @@ article {
 
 
 /***********************************************
-    Links
-    (vor allem benutzt in den Inhaltverzeichnissen)
+     3.2 Links in content area 
+         (used in tables of content)
 ***********************************************/
 #content li a {
     text-decoration:none;
@@ -144,8 +189,8 @@ article {
 }
 
 /***********************************************
-    Links
-    (vor allem benutzt im normalen Seiteninhalt)
+    3.3 Links in content area
+        (used in normal conent)
 ***********************************************/
 .link {
     text-decoration:none;
@@ -159,7 +204,7 @@ article {
 
 
 /***********************************************
-    Clear Float 
+   3.4 Text float clearing
 ***********************************************/
 #clear {
     clear:both;
@@ -167,7 +212,9 @@ article {
 
 
 /***********************************************
-    Fußbereich
+    4. Footer
+    
+    4.1 General settings
 ***********************************************/
 footer {
     background-color:rgb(22,127,193);
@@ -211,7 +258,7 @@ footer {
 }
 
 /***********************************************
-    Links im Fußbereich
+     4.2 Links in Footer area
 ***********************************************/
 #footerShortLinks {
     height: 80px;
@@ -258,8 +305,12 @@ footer {
     font-weight:bold;
 }
 
+
 /***********************************************
-    Bilder und Screenshots mit Bildunterschriften
+    5.  Special settings for page formatting
+
+    5.1 Thumbnail-pictures to preview  
+        screenshots with captions
 ***********************************************/
 .image {
     border-left: 15px solid rgb(140,188,62);
@@ -273,14 +324,18 @@ footer {
 
 .imageBoxLeft {
     float:left;
-    margin-right: 60px;
+    margin-right: 40px;
     text-align:center;
+    margin-bottom: 15px;
+    margin-top: 30px;
 }
 
 .imageBoxRight {
     float:right;
-    margin-left: 60px;
+    margin-left: 40px;
     text-align:center;
+    margin-bottom: 15px;
+    margin-top: 30px;
 }
 
 .imageCaption{
@@ -289,17 +344,23 @@ footer {
 }
 
 /***********************************************
-    Links unter Bilder und Screenshots 
-    (ohne Hovereffekt; auf der Startseite)
+    5.2 Thumbnail on the home page
+        with a link to the application
 ***********************************************/
+.imageBoxRightStart {
+    float:right;
+    margin-left: 60px;
+    text-align:center;
+}
+
 .imagelink, .imagelink:hover, .imagelink:active{
     color:rgb(22,127,193);
     text-decoration:none;
 }
 
 /***********************************************
-    Subnavigation unter Kapitel
-    (in der Benutzerhilfe und in der Dokumentation)
+    5.3 Subnavigation under chapter to navigate
+        faster in the user help and documentation
 ***********************************************/
 #next {
     text-align:right;
@@ -320,7 +381,7 @@ footer {
 
 
 /***********************************************
-    Trennlinien
+    5.4 Dividing lines
 ***********************************************/
 hr {
     background-color: rgb(204,204,204);
@@ -330,8 +391,7 @@ hr {
 
 
 /***********************************************
-    Teammitglieder
-    (im Impressum)
+    5.5 Team-member-pictures in the impressum page
 ***********************************************/
 .teamMembers {
     list-style-type: none;
@@ -365,8 +425,8 @@ hr {
 }
 
 /***********************************************
-    verschachtelte Listen mit Nummerierung
-    (in der Benutzerhilfe und in der Dokmentation)
+    5.6 nested lists with numbering in the 
+        user help and in the dokmentation
 ***********************************************/
 ol.firstLevel {
 	counter-reset:listenpunkt_ebene1;
@@ -388,7 +448,7 @@ ol.secondLevel li:before {
 
 
 /***********************************************
-    Überschriften
+    5.7 Headings
 ***********************************************/
 h1 {
     font-size: 20pt;
@@ -411,7 +471,7 @@ h4 {
 }
 
 /***********************************************
-    Bilder (Dokumentation)
+    5.8 Pictures in the documentation
 ***********************************************/
 .imageUbuntu {
     height: 90px;
