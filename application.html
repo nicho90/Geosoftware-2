@@ -1,7 +1,39 @@
 <!doctype html>
 <html lang=de>
+    
+<!-- 
+********************************************************************************************
+
+Content
+
+1. Metadata
+2. Stylesheets
+3. JavaScripts
+4. Application
+5. Header
+    5.1 Filter area
+    5.2 Area for number of measurement points
+6. Map
+7. Sidebar
+    7.1 Area of the selection tools
+        7.1.1 Addition areas for the function SelectByTrack
+        7.1.2 Addition areas for the function SelectByPolygon
+    7.2 Area of the selected points
+        7.2.1 List of the selected points 
+    7.3 Area of the Analysis
+        7.3.1 Textual results
+        7.3.2 Preview for diagrams
+    7.4 Area of the interpolation
+        7.4 Addition area for kriging parameters
+8. Footer
+
+********************************************************************************************
+-->    
+    
+    
     <head>
-        <!-- Metadaten -->
+        
+<!-- 1. Metadata -->
         <title>enviroCar-Analyser</title>
         <meta charset=utf-8>
         <meta name="description" content="Internet-Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten">
@@ -10,16 +42,15 @@
         <meta name="author" content="Nicholas Schiestel">
         <meta name="author" content="Johanna Möllmann">
         
-        
-        <!-- Stylesheets -->
+
+<!-- 2. Stylesheet -->
         <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    
         
-        <!--Stylesheet für leaflet.draw -->
-        <link rel="stylesheet" type="text/css" href="scripts/leaflet.draw.css">
+<!-- 3. JavaScripts -->
         
-        
-        <!-- Script für HTML5 im Microsoft IE -->
+        <!-- HTML5 for the Microsoft IE -->
         <script>
             document.createElement('header');
             document.createElement('nav');
@@ -28,7 +59,7 @@
         </script>
         
         
-        <!-- Skripte für das Kartenframework -->
+        <!-- Scripts for the map -->
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
         <script src="scripts/externe/leaflet.js"></script>
         <script type="text/javascript" src="scripts/map.js"></script>
@@ -38,98 +69,98 @@
 		<script type="text/javascript" src="scripts/selection.js"></script>
 		<script type="text/javascript" src="scripts/analysis.js"></script>
 		<script type="text/javascript" src="scripts/interpolation.js"></script>
-        <!-- original
-            <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
-         -->
         
-        <!-- Needed for GoogleSatellite Layer -->
+        
+        <!-- Google Maps Satellite Layer
+                original
+                    <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+                    <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+        -->
         <script src="scripts/externe/js.js"></script>
         <script src="scripts/externe/leaflet-google.js"></script>
-        <!-- original
-            <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-            <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
-        -->
         
-        <!-- Needed for RESTful-Request -->
+        
+        <!-- Scripts for RESTful-Requests 
+                original:
+                    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+                    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        -->
         <script src="scripts/externe/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <!-- original
-            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        -->
+        
 
-        <!-- Skript zum Ein- und Ausblenden der selektierten Punkte -->
+        <!-- Script for showing and hiding elements -->
         <script type="text/javascript" src="scripts/toggle.js"></script>
         
         
-        <!-- Skripts für die Tooltips in den Selektierwerkzeugen 
-            Source: http://onehackoranother.com/projects/jquery/tipsy/ -->
+        <!-- Scripts for tooltips
+                original:
+                    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        -->
         <script type='text/javascript' src='scripts/jquery.tipsy.js'></script>
         <link rel="stylesheet" href="stylesheets/tipsy.css" type="text/css" />
         <script type='text/javascript' src='scripts/tooltip.js'></script>
-        <!-- original
-             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        
+        
+        <!-- Scripts for selecting all checkboxes with one checkbox
+                original:
+                    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         -->
-        
-        
-        <!-- Skripts um alle Checkboxen der selektierten Punkte auf einmal auszuwählen 
-            Source: http://jsfiddle.net/7BXJF/1/ -->
         <script type='text/javascript' src='scripts/forcheckboxes.js'></script>
         <script src="scripts/jquery.validate.js"></script>
-        <!-- original 
-            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        -->
        
         
-        <!-- Skripte für Kalenderauswahl im Filterbereich -->
+        <!-- Scripts for calender
+                original:
+                    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+                    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        -->
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <script type="text/javascript" src="scripts/calender.js"></script>
-        <!-- original
-            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        -->
         
         
-        <!-- Skript zum Zeichnen eines Polygons -->
+        <!-- Script to draw a polygon -->
         <script type="text/javascript" src="scripts/leaflet.draw.js"></script>
+        <link rel="stylesheet" type="text/css" href="scripts/leaflet.draw.css">
 		
-		<!-- Skripte für Diagramme -->
+        
+		<!-- Scripts for genertating diagrams -->
 		<script src="http://code.highcharts.com/highcharts.js"></script>
 		<script src="scripts/diagram.js"></script>
 		
-		<!-- Skript für Kriging -->
+        
+		<!-- Script for kriging -->
 		<script src="scripts/externe/kriging.js"></script>
-		
-				
-				
-		<!-- Skript der Downloadfunktion der Messpunkte aus der Selektionstabelle -->
+			
+        
+		<!-- Script for downloading all selected measurement points -->
 		<script type="text/javascript" src="scripts/download_messpunkte.js"></script>
         
-        <!-- Skript um die Eingaben des Users zu überprüfen -->
+        
+        <!-- Script to check the inputs of a user -->
 		<script type="text/javascript" src="scripts/checkinput.js"></script>
     
     </head>
     
-    
-    <!-- Beginn der Seite -->
+ <!-- 4. Application -->   
     <body>
         
-		<!-- Infopopups (standarmäßig ausgeblendet) -->
+		<!-- Info popups (standarmäßig ausgeblendet) -->
 		<div id="infodialog" style="display:none;"></div>
 
-		<!-- Digramm-Popup (standardmäßig ausgeblendet) -->
+		<!-- Digram popup (standardmäßig ausgeblendet) -->
 		<div id=diagram style="margin: 0 auto; display:none;" title="Diagramme"></div>
 		
-		<!-- Download-Popup (standardmäßig ausgeblendet) -->
+		<!-- Download popup (standardmäßig ausgeblendet) -->
 		<div id="downloadMpDialog" style="margin: 0 auto; display:none;"></div>
 		
-    
+<!-- 5. Header -->    
 	 <header role="banner">
             <div id=banner>
                 <a href="index.html"><img src="images/envirocar_analyser_logo_mini.png" class=logoImage alt="enviroCar-Analyser"></a>
 			</div>
             
-            <!-- Filter um Messpunkte vom enviroCar-Server abzufragen -->
+<!-- 5.1 Filter area -->
             <div id=filter>
                 <div id=filter_2>
                     <form id=filterFormular name="filterFormular">
@@ -185,9 +216,7 @@
                     <div id=filter_1>Filteroptionen</div>
             </div>
             
-            <!-- Anzahl der Messpunkte, je höher der Wert, desto mehr Punkte werden von der enviroCar-Datenbank abgefragt
-                 Aber mit steigender Anzahl kommt es zu Performanceproblemen
-                 Standardmäßig sind 100 Messpunkte eingestellt -->
+<!-- 5.2 Area for number of measurement points -->
             <div id=maxOfMeasurements>
                     <ul>
                         <li id="maxOfMeasurementsInfo" original-title="Wenn Sie nicht alle Punkte angezeigt bekommen, erhöhen Sie die Anzahl der Messpunkte. Achtung: Je mehr Punkte aus der Datenbank entnommen werden, desto schlechter ist die Performance der Applikation!">
@@ -214,7 +243,7 @@
         </header>
         <div id=clear></div>
         
-        <!-- Karte mit Navigationselementen -->
+<!-- 6. Map -->
         <div id=map> 
             <div id=pan class=leaflet-control>			
                 <a id="left"     class="panelement"><img src="images/left.png" class="panLeft"></a> 
@@ -257,10 +286,10 @@
         
                
         
-        <!-- rechte Sidebar -->
+<!-- 7. Sidebar -->
         <div id=sidebar>
             
-            <!-- Auswahlwerkzeuge um Messpunkte auszuwählen -->
+<!-- 7.1 Area of the selection tools -->
             <div id=selection class=sidebarElement>
                 <h2>Selektierwerkzeuge</h2>        
                 <div id=chooser>
@@ -277,7 +306,8 @@
                     </ul>
                 </div>
                 <div id=clear></div>
-                <!-- Werkzeuge für Trackauswahl (standardmäßig ausgeblendet, wird eingeblendet sobald "chooseTrack" gewählt wurde) -->
+
+<!-- 7.1.1 Addition areas for the function SelectByTrack -->
                 <div id=selectTrack>
                     <div class=center>
                         <font class=selectTrackTitle>Track finden &amp; auswählen</font>
@@ -303,6 +333,7 @@
                     </div>
                 </div>
                 
+<!-- 7.1.2 Addition areas for the function SelectByPolygon -->             
                 <div id=drawingPolygon>
                     <div class=center>
                         <font class=drawingElementTitle>Raumausschnitt zeichnen</font>
@@ -326,7 +357,7 @@
                 </div>
             </div>
             
-            <!-- Liste der selektierten Punkte (standardmäßig eingeblendet) -->
+<!-- 7.2 Area of the selected points (default setting: hidden) -->
             <div id=selectedPoints class=sidebarElement>
                     <a href="#" onclick="toggle_visibility('selectedPointsBox')" class=link><h2>Selektierte Punkte</h2></a>
                     <div id=selectedPointsBox class=sidebarSubElement>
@@ -348,13 +379,13 @@
                         </ul>
                         <div id=clear></div>
                         <br>
-                        <!-- Liste erscheint mit erstem ausgewählten Punkt-->
+<!-- 7.2.1 List of the selected points -->
                         <div id=pointTable>
                             <br>
                         </div>    
                     </div>
             </div>
-            <!-- Analysebox (standardmäßig ausgeblendet) -->
+<!-- 7.3. Area of the Analysis (default setting: hidden) -->
             <div id=analyse class=sidebarElement>
                 <a href="#" onclick="toggle_visibility('analyseBox')" class=link><h2>Analysefunktionen</h2></a>
                 <div id=analyseBox class=sidebarSubElement>
@@ -370,9 +401,10 @@
                             </select>
                         </li>
                     </ul>
+<!-- 7.3.1 Textual results -->                 
                     <div id=textualresults class=sidebarSubElement></div>
                     <hr>
-                    <!-- Diagrammvorschau -->
+<!-- 7.3.2 Preview for diagram -->
                     <div id=diagramm class=sidebarSubElement>
                         <h3>Diagramme</h3>
                         <div id="diagrammPreview" class="analyseElement">
@@ -384,7 +416,7 @@
                 </div> 
             </div>
             
-            <!-- Interpolationsbox -->
+<!-- 7.4 Area of the interpolation (default setting: hidden) -->
             <div id=interpolation class=sidebarElement>
                 <a href="#" onclick="toggle_visibility('interpolationBox')" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
@@ -394,6 +426,7 @@
                         <input type="radio" name="interpolationMethod" value="1" onclick="showhidediv(this)">&nbsp;&nbsp;Kriging<br>
                     </form>
                     <div id=idwBox></div>
+<!-- 7.4.1 Addition area for kriging parameters --> 
                     <div id=krigingBox>
 						<form name="krigingParameters">
 							<table>
@@ -445,10 +478,9 @@
             
             <div id=clear> </div>
         </div>
-        <div id=clear> </div>
-        <!-- Ende der Sidebar-->    
+        <div id=clear> </div>  
         
-        
+<!-- 8. Footer -->        
         <footer>
             <div id="footerLine_1"></div>
             <div id="footerLine_2"></div>

@@ -1,4 +1,12 @@
- $(function() {
+/********************************************************************************************
+		Tooltips
+
+Description: To show little tooltips with notes and hints for the user.
+Source: http://onehackoranother.com/projects/jquery/tipsy/ 
+
+********************************************************************************************/ 
+
+$(function() {
 	            // Ursprügnliche Einstellung:
                 // $('a[rel=tipsy]').tipsy({fade: true, gravity: 'w'}); // nw | n | ne | w | e | sw | s | se
                 $('#chooseSinglePoint').tipsy({fade:false, gravity: 'n'});
