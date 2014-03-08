@@ -128,6 +128,15 @@ function drawMap() {
     var osm = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	});
+    
+    var osm_cm = new L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+        key: '2a08ced180ac4d00a9d92267b347b6be',
+        styleId: 997,
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+
+    });
+    
 	var google = new L.Google('SATELLITE');
    
     //add DTK10, a topographic map of NRW, coloured
@@ -135,14 +144,14 @@ function drawMap() {
      attribution: '| &copy Geobasis NRW 2013',
 	layers: 'nw_dtk10_pan,nw_dtk10_res,NW_DTK10_col,WMS_NW_DTK10',
     format: 'image/png'
-});
+    });
     
     //add DTK10, panchromatic
     var DTK10_panchromatic=L.tileLayer.wms('http://www.wms.nrw.de/geobasis/wms_nw_dtk10',{
-   attribution: '| &copy Geobasis NRW 2013',
+    attribution: '| &copy Geobasis NRW 2013',
 	layers: 'NW_DTK10_pan',
     format: 'image/png'
-});
+    });
     
     var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
         attribution: 'Kartendaten: &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, <a href="http://viewfinderpanoramas.org">SRTM</a> | Kartendarstellung: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
@@ -153,6 +162,7 @@ function drawMap() {
 
 	var layer = {
 		"OpenStreetMap": osm,
+        "OpenStreetMap (Cloudmade)": osm_cm,
         "OpenTopoMap":topo,
         "DTK10 (NRW)": DTK10,
         "DTK10 (NRW) panchromatisch ": DTK10_panchromatic,
