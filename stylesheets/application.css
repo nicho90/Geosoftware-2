@@ -1,5 +1,64 @@
+/********************************************************************************************
+		Stylesheet for the application webpage
+		
+Description: This file contains all layout and design styles to format the webpage application.html
+Authors: Nicholas Schiestel and Johanna Moellmann
+
+********************************************************************************************
+Content
+
+1. General document properties
+
+2. Header
+    2.1 Logo
+    2.2 Area for number of measurement points
+    2.3 Filter area
+        2.3.1 Additions to the calendar selection
+        2.3.2 Input fields
+
+3. Map
+    3.1 Navigation elements
+    3.2 Size of the navigation element pictures
+    3.3 Localization element
+    3.4 Leaflet map-layer
+    3.5 Legend
+    3.6 Visualisation button
+    3.7 Download button for interpolation results
+
+4. Sidebar
+    4.1 Selection tools
+    4.2 Buttons of the selection tools
+    4.3 Addition areas for the functions byTrack or byPolygon
+    4.4 Selected points area
+    4.5 Selected points table 
+    4.6 Analyse area
+        4.6.1 Textual results
+        4.6.2 Diagram preview picture
+    4.7 Interpolation area
+
+5. Footer
+    5.1 Footer text on the left side
+    5.2 Footer links on the right side
+
+6. Special settings for page formatting
+    6.1 Float clearing 
+    6.2 Headings
+    6.3 Dividing lines
+    6.4 Buttons
+        6.4.1 Green submit-button
+        6.4.2 Red reset-button
+        6.4.3 Info-buttons
+    6.5 Blue links
+    6.6 Loading picture in popups 
+    6.7 Measurement data details table
+    6.8 Diagram popup
+    6.9 Pulsing location-marker
+
+*********************************************************************************************/
+
+
 /***********************************************
-    Allgemeine Dokumenteigenschaften
+    1. General document properties
 ***********************************************/
 html {
     position: relative;
@@ -22,22 +81,8 @@ header, footer, map {
     display:block;
 }
 
-#clear {
-    clear:both;
-}
-
-hr {
-    background-color: rgb(204,204,204);
-    height:1px;
-    border:0px;
-}
-
-
 /***********************************************
-    Header
-
-    - auf der linken Seite befindet sich das Logo
-    - auf der rechten Seite befindet sich der Filterbereich
+    2. Header
 ***********************************************/
 header {
     margin-top: 0px;
@@ -48,6 +93,9 @@ header {
     font-size:10pt;
 }
 
+/***********************************************
+    2.1 Logo
+***********************************************/
 #banner {
     float: left;
     width:auto;
@@ -63,7 +111,7 @@ header {
 }
 
 /***********************************************
-    Anzahl der Messpunkte
+    2.2 Area for number of measurement points
 ***********************************************/
 #maxOfMeasurements {
     float: right;
@@ -99,7 +147,7 @@ header {
 
 
 /***********************************************
-    Filterbereich
+    2.3 Filter area
 ***********************************************/
 #filter {
     float: right;
@@ -140,7 +188,7 @@ header {
 
 
 /***********************************************
-    Ergänzungen zur Kalenderauswahl
+    2.3.1 Additions to the calendar selection
 ***********************************************/
 .ui-datepicker {
 	 z-index: 9999999999 !important;
@@ -149,7 +197,7 @@ header {
 
 
 /***********************************************
-    Inputfelder im Filterbereich
+    2.3.2 Input fields
 ***********************************************/
 .filterButton{
     border: 2px solid rgb(22,127,193);
@@ -170,79 +218,8 @@ header {
 }
 
 
-
 /***********************************************
-    Links (blau), genutzt im
-    - Filterbereich
-    - Seletierten Punkte
-    - Popups
-***********************************************/
-.link {
-    color:rgb(22,127,193);
-    text-decoration:none;
-    cursor:pointer;
-}
-
-.link:hover {
-    color:rgb(22,127,193);
-    text-decoration:underline;
-    cursor:pointer;
-}
-
-
-
-/***********************************************
-    Auswahlbuttons im Filterbereich
-***********************************************/
-.selectButton {
-    width:50px;
-    height:50px;
-    background-color:transparent;
-    cursor: pointer;
-    border:0px;
-}
-
-.selectButton:hover {
-    width:50px;
-    height:50px;
-    background-color:transparent;
-    cursor: pointer;
-    border:0px;
-}
-
-
-/***********************************************
-    Bestätigungsbuttons (grün), genutzt
-    - im Filterbereich
-    - in der Trackauswahl
-    - im der Polygonselektion
-    - im Interpolationsbereich
-***********************************************/
-.submitButton {
-    border: 2px solid rgb(140,188,62);
-    padding:5px;
-    border-radius:15px;
-    background-color:rgb(140,188,62);
-    color:rgb(255,255,255);
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.submitButton:hover, .submitButton:active{
-    border: 2px solid rgb(140,188,62);
-    padding:5px;
-    border-radius:15px;
-    background-color:rgb(140,188,62);
-    color:rgb(255,255,255);
-    font-weight:bold;
-    text-decoration:underline;
-    cursor:pointer;
-}
-
-
-
-/***********************************************
-    Karte
+    3. Map
 ***********************************************/
 #map {
     float: left;
@@ -262,7 +239,7 @@ header {
 
 
 /***********************************************
-    Navigationselemente der Karte
+    3.1 Navigation elements
 ***********************************************/
 #pan {
     position: absolute;
@@ -290,8 +267,6 @@ header {
     background-repeat: no-repeat;
     display: block;
 }
-
-
 .panelement:hover {
     background:rgb(244,244,244);
     top: 0;
@@ -310,7 +285,6 @@ header {
     background-repeat: no-repeat;
     display: block;
 }
-
 
 
 #pan .panelement#left {    
@@ -344,8 +318,9 @@ header {
     border-top-right-radius: 4px;
     box-shadow: 0 -1px 5px rgba(0,0,0,0.4);
 }
+
 /***********************************************
-    Größen der Bilder
+    3.2 Size of the navigation element pictures
 ***********************************************/
 .panLeft, .panRight{
     width:12px;
@@ -371,7 +346,7 @@ header {
 }
 
 /***********************************************
-    Lokalisierungselement
+    3.3 Localization element
 ***********************************************/
 .panelementMiddle {
     background:rgb(255,255,255);
@@ -418,7 +393,7 @@ header {
 
 
 /***********************************************
-    Leaflet-Kartenlayer
+    3.4 Leaflet map-layer
 ***********************************************/
 .leaflet-map-pane {
     z-index: 2 !important;
@@ -429,11 +404,11 @@ header {
 }
 
 /***********************************************
-    Legende 
-        (standardmäßig ausgeblendet; wird
-        bei IDW und Kriging eingeblendet)
+    3.5 Legend 
+        (default setting: hidden;
+         is shown when IDW or kriging was executed)
 ***********************************************/
-#legende{
+#legende {
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -492,9 +467,10 @@ header {
 
 
 /***********************************************
-    Visualisation-Button 
-        (standardmäßig ausgeblendet;
-        erscheint bei Visualisierungen)
+    3.6 Visualisation button
+        (default setting: hidden;
+         is shown when a visualisation was executed;
+         is shown when IDW or kriging was executed)
 ***********************************************/
 #visualisation {
     position: absolute;
@@ -552,9 +528,9 @@ header {
 }
 
 /***********************************************
-    Download-Button für Interpolationsergebnisse
-    (standardmäßig ausgeblendet;
-    erscheint nur bei Interpolationen)
+    3.7 Download button for interpolation results
+        (default setting: hidden;
+         is shown when IDW or kriging was executed)
 ***********************************************/
 #interpolationDownload {
     position: absolute;
@@ -574,10 +550,7 @@ header {
 
 
 /***********************************************
-    Sidebar, bestehend aus 
-    - Selektion
-    - Analyse
-    - Interpolation
+   4. Sidebar
 ***********************************************/
 #sidebar{
     width:24%;
@@ -599,24 +572,8 @@ header {
     padding-right:5px;
 }
 
-
 /***********************************************
-    Überschriften in der Sidebar
-***********************************************/
-h2 {
-    font-size:12pt;
-    color:rgb(22,127,193);
-    border-bottom:2px dotted rgb(22,127,193);
-    padding:10px;
-}
-
-h3 {
-    font-size:11pt;
-}
-
-
-/***********************************************
-    Selektionswerkzeuge
+    4.1 Selection tools
 ***********************************************/
 #selection {
     width:auto;
@@ -655,7 +612,7 @@ h3 {
 
 
 /***********************************************
-    Buttons der Selektionsmethoden
+    4.2 Buttons of the selection tools 
 ***********************************************/
 #chooseSinglePoint a {
     display: block;
@@ -692,10 +649,11 @@ h3 {
 
 
 /***********************************************
-    Bereich
-    - für Tracksuche 
-    - Raumausschnitt zeichnen
-    (standardmäßig ausgeblendet)
+    4.3 Addition areas for the functions 
+        byTrack or byPolygon
+        (default setting: hidden;
+        is shown when selection tool byTrack or byPolygon 
+        is active)
 ***********************************************/
 .center {
     text-align: center;
@@ -741,31 +699,11 @@ h3 {
     z-index: 1;
 }
 
-/***********************************************
-    Reset-Button (rot) beim Polygon zeichnen
-***********************************************/
-.resetButton {
-    border: 2px solid rgb(255,0,0);
-    padding:5px;
-    border-radius:15px;
-    background-color: rgb(255,0,0);
-    color:rgb(255,255,255);
-    font-weight:bold; 
-}
-
-.resetButton:hover, .resetButton:active{
-    border: 2px solid rgb(255,0,0);
-    padding:5px;
-    border-radius:15px;
-    background-color: rgb(255,0,0);
-    color:rgb(255,255,255);
-    font-weight:bold;
-    text-decoration:underline;
-}
 
 /***********************************************
-    Bereich und Tabelle der selektierten Punkte
-    (standardmäßig eingeblendet)
+    4.4 Selected points area
+        (default setting: hidden;
+        is shown when at least one points is selected)
 ***********************************************/
 #selectedPointsBox {
     display:none;
@@ -797,8 +735,9 @@ h3 {
 
 
 /***********************************************
-    Punkttabelle 
-    (füllt sich, sobald Punkte selektiert werden)
+    4.5 Selected points table 
+        (default setting: hidden;
+        is shown when at least one points is selected)
 ***********************************************/
 #pointTable {
     margin:0;
@@ -830,56 +769,14 @@ h3 {
     text-align: left;
 }
 
-/***********************************************
-    Messdatendetailtabelle
-***********************************************/
-#measurementDetails {
-    font-size: 8pt;
-    overflow: scroll;
-    padding-left:2px;
-    padding-right:15px;
-}
-
-#measurementDetails table {
-    border-top:1px solid rgb(0,0,0);
-    border-bottom:1px solid rgb(0,0,0);
-    border-left:1px solid rgb(0,0,0);
-    border-right:1px solid rgb(0,0,0);
-    margin:0 auto;
-    width:100%;
-    display: table;
-    border-collapse: collapse;
-}
-
-#measurementDetails table tr {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    border: 0;
-    display: table-row;
-}
-
-#measurementDetails table th {
-    border-bottom:1px solid rgb(0,0,0);
-    padding:2px;
-    margin: 0;
-    outline: 0;
-    text-align: left;
-}
-
-#measurementDetails table td {
-    border-bottom:1px solid rgb(0,0,0);
-    padding:2px;
-    margin: 0;
-    outline: 0;
-    text-align: left;
-}
 
 /***********************************************
-    Analysebereich
-    (standardmäßig ausgeblendet)
+    4.6 Analyse area
+    (default setting: hidden)
 ***********************************************/
-#analyse {}
+#analyse {
+
+}
 
 #analyseBox {
     display:none;
@@ -903,10 +800,7 @@ h3 {
 
 
 /***********************************************
-    Tabelle der allgemeinen Analysen:
-    - MEAN
-    - STD
-    - usw.
+    4.6.1 Textual results
 ***********************************************/
 #textualresults table{
     border:0px;
@@ -917,7 +811,7 @@ h3 {
 
 
 /***********************************************
-    Vorschaubild der Diagramme im Analysebereich
+    4.6.2 Diagram preview picture
 ***********************************************/
 #diagrammPreview {
     text-align:center;
@@ -938,10 +832,12 @@ h3 {
 
 
 /***********************************************
-    Interpolationen
-    (standardmäßig ausgeblendet)
+    4.7 Interpolation area
+    (default setting: hidden)
 ***********************************************/
-#interpolation {}
+#interpolation {
+
+}
 
 #interpolationBox {
     display:none;
@@ -983,48 +879,10 @@ h3 {
     padding-top: 3px;
 }
 
-/***********************************************
-    Infobuttons (i-Buttons)
-***********************************************/
-.info {
-    background:rgb(255,255,255);
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    text-decoration: none;
-    color: rgb(0,0,0);
-    font-weight:bold;
-    text-align: center;
-    border-radius: 12pt;
-    border: 1px solid rgb(204,204,204);
-    font-weight:bold;
-    font-family:Lucida Console;
-    font-size: 12pt;
-}
-
-.info:hover {
-    background:rgb(244,244,244);
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    text-decoration: none;
-    color: rgb(0,0,0);
-    font-weight:bold;
-    text-align: center;
-    border-radius: 12pt;
-    border: 1px solid rgb(204,204,204);
-    font-weight:bold;
-    font-family:Lucida Console;
-    font-size: 12pt;
-}
-
-
 
 
 /***********************************************
-    Fußzeile (momentan nicht benutzt)
+    5. Footer
 ***********************************************/
 footer {
     background-color:rgb(22,127,193);
@@ -1056,6 +914,9 @@ footer {
     width:100%;
 }
 
+/***********************************************
+    5.1 Footer text on the left side
+***********************************************/
 #footerText {
     height: 30px;
     padding-left:1%;
@@ -1070,7 +931,7 @@ footer {
 
 
 /***********************************************
-    Links auf der rechten Seite des Footers
+    5.2 Footer links on the right side
 ***********************************************/
 #footerShortLinks {
     height: 30px;
@@ -1117,10 +978,147 @@ footer {
 }
 
 
+/***********************************************
+    6. Special settings for page formatting 
+
+    6.1 Float clearing 
+***********************************************/
+#clear {
+    clear:both;
+}
 
 
 /***********************************************
-    Ladebild bei Popups 
+    6.2 Headings
+***********************************************/
+h2 {
+    font-size:12pt;
+    color:rgb(22,127,193);
+    border-bottom:2px dotted rgb(22,127,193);
+    padding:10px;
+}
+
+h3 {
+    font-size:11pt;
+}
+
+
+/***********************************************
+    6.3 Dividing lines
+***********************************************/
+hr {
+    background-color: rgb(204,204,204);
+    height:1px;
+    border:0px;
+}
+
+
+/***********************************************
+    6.4 Buttons
+
+    6.4.1 Green submit-button
+***********************************************/
+.submitButton {
+    border: 2px solid rgb(140,188,62);
+    padding:5px;
+    border-radius:15px;
+    background-color:rgb(140,188,62);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submitButton:hover, .submitButton:active{
+    border: 2px solid rgb(140,188,62);
+    padding:5px;
+    border-radius:15px;
+    background-color:rgb(140,188,62);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+
+/***********************************************
+    6.4.2 Red reset-button (drawing a polygon)
+***********************************************/
+.resetButton {
+    border: 2px solid rgb(255,0,0);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(255,0,0);
+    color:rgb(255,255,255);
+    font-weight:bold; 
+}
+
+.resetButton:hover, .resetButton:active{
+    border: 2px solid rgb(255,0,0);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(255,0,0);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+
+/***********************************************
+    6.6 Info-buttons (i-buttons for tooltips)
+***********************************************/
+.info {
+    background:rgb(255,255,255);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-decoration: none;
+    color: rgb(0,0,0);
+    font-weight:bold;
+    text-align: center;
+    border-radius: 12pt;
+    border: 1px solid rgb(204,204,204);
+    font-weight:bold;
+    font-family:Lucida Console;
+    font-size: 12pt;
+}
+
+.info:hover {
+    background:rgb(244,244,244);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-decoration: none;
+    color: rgb(0,0,0);
+    font-weight:bold;
+    text-align: center;
+    border-radius: 12pt;
+    border: 1px solid rgb(204,204,204);
+    font-weight:bold;
+    font-family:Lucida Console;
+    font-size: 12pt;
+}
+
+
+/***********************************************
+    6.5 Blue links
+***********************************************/
+.link {
+    color:rgb(22,127,193);
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.link:hover {
+    color:rgb(22,127,193);
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+
+/***********************************************
+    6.6 Loading picture in popups 
 ***********************************************/
 .loading_box{
     text-align:center;
@@ -1133,9 +1131,54 @@ footer {
 }
 
 
+/***********************************************
+    6.7 Measurement data details table
+***********************************************/
+#measurementDetails {
+    font-size: 8pt;
+    overflow: scroll;
+    padding-left:2px;
+    padding-right:15px;
+}
+
+#measurementDetails table {
+    border-top:1px solid rgb(0,0,0);
+    border-bottom:1px solid rgb(0,0,0);
+    border-left:1px solid rgb(0,0,0);
+    border-right:1px solid rgb(0,0,0);
+    margin:0 auto;
+    width:100%;
+    display: table;
+    border-collapse: collapse;
+}
+
+#measurementDetails table tr {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    display: table-row;
+}
+
+#measurementDetails table th {
+    border-bottom:1px solid rgb(0,0,0);
+    padding:2px;
+    margin: 0;
+    outline: 0;
+    text-align: left;
+}
+
+#measurementDetails table td {
+    border-bottom:1px solid rgb(0,0,0);
+    padding:2px;
+    margin: 0;
+    outline: 0;
+    text-align: left;
+}
+
 
 /***********************************************
-    Diagramm Popup
+    6.8 Diagram popup
 ***********************************************/
 #diagramBar {
     margin: 0 auto;
@@ -1165,9 +1208,8 @@ footer {
 }
 
 
-
 /***********************************************
-    Pulsing Location-Marker
+    6.9 Pulsing location-marker
 ***********************************************/
 .locationIcon {
 }
