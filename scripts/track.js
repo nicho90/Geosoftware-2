@@ -187,6 +187,7 @@ function visualizeTrack(trackID){
 		button4 = true;
 		
 		return track;
+<<<<<<< HEAD
 	});
 }
 
@@ -204,8 +205,31 @@ function trackFilter(){
 	
 		addTrackToSelection(track);
 	});
+=======
+	});
+}
+
+
+// Filter map for track
+// Description: Search Track by ID and adds it to selection
+// Author: René Unrau
+function trackFilter(){
+	
+    var trackID = document.getElementById('Track_ID').value;
+	
+    visualizeTrack(trackID);
+	
+	$.getJSON("https://envirocar.org/api/stable/rest/tracks/" + trackID,function(track){
+	
+		addTrackToSelection(track);
+	});
+>>>>>>> FETCH_HEAD
 	
 	// Close Track-Selection Tool
 	chooseTrackSelection();
 }
+<<<<<<< HEAD
 	
+=======
+	
+>>>>>>> FETCH_HEAD

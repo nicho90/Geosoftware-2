@@ -34,7 +34,11 @@ Content
 // 1.1 Single Point-Selection 
 // Description: User wants to add measurement for analysis by clicking on a single point on the map
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
+=======
+// Authors: René Unrau & Nicholas Schiestel
+>>>>>>> FETCH_HEAD
 =======
 // Authors: René Unrau & Nicholas Schiestel
 >>>>>>> FETCH_HEAD
@@ -43,8 +47,11 @@ function chooseSingleSelection(id) {
     // check if trackSelection or polygonSelection
     if(trackSelection || polygonSelection){
 <<<<<<< HEAD
+<<<<<<< HEAD
         alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
 =======
+=======
+>>>>>>> FETCH_HEAD
 		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
 			modal: true,
 			buttons: {
@@ -52,6 +59,9 @@ function chooseSingleSelection(id) {
 			}
 		});
         
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
     }
     
@@ -73,7 +83,11 @@ function chooseSingleSelection(id) {
 // 1.2 Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
+=======
+// Authors: René Unrau & Nicholas Schiestel
+>>>>>>> FETCH_HEAD
 =======
 // Authors: René Unrau & Nicholas Schiestel
 >>>>>>> FETCH_HEAD
@@ -82,8 +96,11 @@ function chooseTrackSelection() {
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
 <<<<<<< HEAD
+<<<<<<< HEAD
         alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
 =======
+=======
+>>>>>>> FETCH_HEAD
 		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
 			modal: true,
 			buttons: {
@@ -91,6 +108,9 @@ function chooseTrackSelection() {
 			}
 		});
         
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
     }
     
@@ -117,8 +137,11 @@ function choosePolygonSelection() {
     // check if singlePointSelection or trackSelection is active
     if(singlePointSelection || trackSelection){
 <<<<<<< HEAD
+<<<<<<< HEAD
         alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
 =======
+=======
+>>>>>>> FETCH_HEAD
 		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
 			modal: true,
 			buttons: {
@@ -126,6 +149,9 @@ function choosePolygonSelection() {
 			}
 		});
 
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
     }
     
@@ -261,7 +287,11 @@ function resetFilter() {
 // 3.1 Reset Track Visualization
 // Description: Deletes Track and draws standard measurements
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
+=======
+// Authors: René Unrau & Nicholas Schiestel
+>>>>>>> FETCH_HEAD
 =======
 // Authors: René Unrau & Nicholas Schiestel
 >>>>>>> FETCH_HEAD
@@ -307,7 +337,11 @@ function resetTrackSelection(){
 // 3.2 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Author: Rene Unrau
+=======
+// Author: René Unrau
+>>>>>>> FETCH_HEAD
 =======
 // Author: René Unrau
 >>>>>>> FETCH_HEAD
@@ -342,7 +376,11 @@ function resetVisualization(){
 // 4 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Author: Rene Unrau
+=======
+// Author: René Unrau
+>>>>>>> FETCH_HEAD
 =======
 // Author: René Unrau
 >>>>>>> FETCH_HEAD

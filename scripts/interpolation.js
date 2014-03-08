@@ -520,28 +520,40 @@ function checkIntRequirements(consumption, co2, maf, speed){
 	// Cancel if there are measurements in selection from more than one track
 	if(!onlyOneTrack){
 <<<<<<< HEAD
+<<<<<<< HEAD
 		alert('Bitte w&auml;hlen sie f&uuml;r eine Interpolation genau einen Track aus.');
 =======
+=======
+>>>>>>> FETCH_HEAD
 		var dialog = $('<p>Bitte wählen sie für eine Interpolation genau einen Track aus.</p>').dialog({
 			modal: true,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 		return false;
 	}
 	
 	if(!consumption && !co2 && !maf && !speed){
 <<<<<<< HEAD
+<<<<<<< HEAD
 		alert('Der ausgew&auml;hlte Track enth&auml;lt keine Attribute die Interpoliert werden k&ouml;nnen');
 =======
+=======
+>>>>>>> FETCH_HEAD
 		var dialog = $('<p>Der ausgewählte Track enthält keine Attribute die Interpoliert werden können.</p>').dialog({
 			modal: true,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 		return false;
 	}
