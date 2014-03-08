@@ -33,12 +33,12 @@ Content
 
 // 1.1 Single Point-Selection 
 // Description: User wants to add measurement for analysis by clicking on a single point on the map
-// Authors: René Unrau & Nicholas Schiestel
+// Authors: Rene Unrau & Nicholas Schiestel
 function chooseSingleSelection(id) {
     
     // check if trackSelection or polygonSelection
     if(trackSelection || polygonSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.");
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlieï¿½en Sie dieses zuerst.");
     }
     
     // if no other Selcetionmode is active, then continue with singlePointSelection
@@ -58,12 +58,12 @@ function chooseSingleSelection(id) {
 
 // 1.2 Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
-// Authors: René Unrau & Nicholas Schiestel
+// Authors: Rene Unrau & Nicholas Schiestel
 function chooseTrackSelection() {
     
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.");
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlieï¿½en Sie dieses zuerst.");
     }
     
     // if no other selcetionmode is active, then continue with singlePointSelection
@@ -85,12 +85,12 @@ function chooseTrackSelection() {
 
 // 1.3 Polygon Selection 
 // Description: User wants to add measurements by drawing a polygon on the map
-// Authors: René Unrau, Johanna, Oli K. & Nicholas Schiestel
+// Authors: Rene Unrau, Johanna, Oli K. & Nicholas Schiestel
 function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
     if(singlePointSelection || trackSelection){
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.");
+        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlieï¿½en Sie dieses zuerst.");
     }
     
     // if no other selcetionmode is active, then continue with polygonSelection
@@ -219,7 +219,7 @@ function resetFilter() {
 
 // 3.1 Reset Track Visualization
 // Description: Deletes Track and draws standard measurements
-// Authors: René Unrau & Nicholas Schiestel
+// Authors: Rene Unrau & Nicholas Schiestel
 function resetTrackSelection(){
 	mainMap.removeLayer(trackLine);
 	for(var i = 0; i < markers.length; i++) {
@@ -261,7 +261,7 @@ function resetTrackSelection(){
 
 // 3.2 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
-// Author: René Unrau
+// Author: Rene Unrau
 function resetVisualization(){
 	
 	if(document.getElementById("intLines").checked){
@@ -292,7 +292,7 @@ function resetVisualization(){
 
 // 4 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
-// Author: René Unrau
+// Author: Rene Unrau
 function setMaxMeas(){
 
 	var e = document.getElementById("measurementNumber");

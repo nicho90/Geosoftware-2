@@ -33,7 +33,7 @@ Content
 
 // 1.1 Start Interpolation
 // Description: Checks which interpolation is choosed and starts it
-// Author: René Unrau
+// Author: Rene Unrau
 function startInterpolation(){
 	
 	if(selection.length == 0){
@@ -146,7 +146,7 @@ function startInterpolation(){
 
 // 1.2 IDW Interpolation
 // Description: Compute Interpolation, Draw Points and start Line visualization
-// Author: René Unrau
+// Author: Rene Unrau
 function idwInterpolation(consumption, co2, maf, speed){
 		
 	for(var i = 1; i < selection.length; i++){
@@ -241,7 +241,7 @@ function idwInterpolation(consumption, co2, maf, speed){
 
 // 1.3 Kriging Interpolation
 // Description: Compute Interpolation, Draw Points and start Line visualization
-// Author: René Unrau
+// Author: Rene Unrau
 function krigingInterpolation(consumption, co2, maf, speed){
 	
 	// Kriging parameters, independent of target variables
@@ -363,7 +363,7 @@ function krigingInterpolation(consumption, co2, maf, speed){
 
 // 2 Visualize Interpolation
 // Description Draws colored line between measurements, based on selected attributes
-// Author: René Unrau
+// Author: Rene Unrau
 function visualizeInterpolation(phenomenon){
 	
 	// Remove old InterpolationLines from Map
@@ -509,17 +509,17 @@ function visualizeInterpolation(phenomenon){
 
 // 3.1 Check Interpolation-Requirements
 // Description: This function checks if a interpolation is allowed
-// Author: René Unrau
+// Author: Rene Unrau
 function checkIntRequirements(consumption, co2, maf, speed){
 	
 	// Cancel if there are measurements in selection from more than one track
 	if(!onlyOneTrack){
-		alert('Bitte wählen sie für eine Interpolation genau einen Track aus.');
+		alert('Bitte w&auml;hlen sie f&uuml;r eine Interpolation genau einen Track aus.');
 		return false;
 	}
 	
 	if(!consumption && !co2 && !maf && !speed){
-		alert('Der ausgewählte Track enthält keine Attribute die Interpoliert werden können');
+		alert('Der ausgew&auml;hlte Track enth&auml;lt keine Attribute die Interpoliert werden k&ouml;nnen');
 		return false;
 	}
 
@@ -528,7 +528,7 @@ function checkIntRequirements(consumption, co2, maf, speed){
 
 // 3.2 Check visualization-attribute
 // Looks for checkboxes and chooses Attribute to visualize
-// Author: René Unrau
+// Author: Rene Unrau
 function checkVisualizationAttr(){
 
 	var attribut = document.getElementsByName('legendAttributs').value;
@@ -579,7 +579,7 @@ function checkVisualizationAttr(){
 
 // 3.3 Compute coordinates for Interpolation
 // Description: Compute Coordinates between selected measurements
-// Author: René Unrau
+// Author: Rene Unrau
 function computeCoords(){
 
 	for(var i = 1; i < selection.length; i++){
@@ -603,7 +603,7 @@ function computeCoords(){
 
 // 4.1 Switch interpolation line
 // Description: turn draw/remove interpolation-line-layer
-// Author: René Unrau
+// Author: Rene Unrau
 function switchIntLine(){
 
 	if(!document.getElementById("intLines").checked){
@@ -624,7 +624,7 @@ function switchIntLine(){
 
 // 4.2 Switch interpolation measurements
 // Description: turn draw/remove interpolation-measurements-layer
-// Author: René Unrau
+// Author: Rene Unrau
 function switchIntMeasurements(){
 
 	if(!document.getElementById("intMeasurements").checked){
@@ -645,7 +645,7 @@ function switchIntMeasurements(){
 
 // 4.3 Switch interpolated points
 // Description: turn draw/remove interpolated-points-layer
-// Author: René Unrau
+// Author: Rene Unrau
 function switchIntPoints(){
 
 	if(!document.getElementById("intPoints").checked){

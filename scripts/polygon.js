@@ -1,4 +1,4 @@
-﻿/********************************************************************************************
+/********************************************************************************************
 		Polygon
 		
 This file contains all functions needed for drawing, confirming and deleting a polygon
@@ -91,7 +91,7 @@ function confirmPolygon(){
 	}
 	
 	//Open and Close info-popup
-	//Authors: Nicholas Schiestel and Johanna Möllmann
+	//Authors: Nicholas Schiestel and Johanna Moellmann
 	if(!duplicate){
 	
 		$('#infodialog').html('Punkte wurden hinzugefügt.');
@@ -108,7 +108,7 @@ function confirmPolygon(){
 		
 	}else{
 	
-		$('#infodialog').html('Die ausgewählten Punkte wurden hinzugefügt. Einige Punkte befinden sich bereits in der Auswahl und wurde deshalb nicht erneut hinzugefögt.');
+		$('#infodialog').html('Die ausgewählten Punkte wurden hinzugefügt. Einige Punkte befinden sich bereits in der Auswahl und wurde deshalb nicht erneut hinzugefügt.');
 		$('#infodialog').dialog({ 
 			height: 160,
 			width: 400,
@@ -134,7 +134,7 @@ function confirmPolygon(){
 
 // 4 Center Polygon
 // Description: Center map-view on polygon
-// Author: Johanna M�llmann
+// Author: Johanna Moellmann
 function centerPolygon(polygonCorners){
 	var xmin = polygonCorners[0].lat;
 	var xmax = polygonCorners[0].lat;

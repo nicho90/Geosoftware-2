@@ -27,7 +27,7 @@ Content
 
 // Update Analysis
 // Description: Refreshes the current Analysis
-// Author: René Unrau
+// Author: Rene Unrau
 function refreshAnalysis(){
 	var e = document.getElementById('analysisSelectionBox');
 	
@@ -97,11 +97,11 @@ function refreshAnalysis(){
 	
 		if(selection.length == 0){
 			
-			result.append("Bitte wählen Sie zuerst einige Messpunkte aus.</table>");
+			result.append("Bitte wï¿½hlen Sie zuerst einige Messpunkte aus.</table>");
 		}else{
 	
 			var mostFreqManu = getMostFreqManu();
-			result.append("<tr><td><td><b>Häufigster Fahrzeugtyp</b></td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
+			result.append("<tr><td><td><b>Hï¿½ufigster Fahrzeugtyp</b></td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
 		}
 	}
 	
@@ -137,7 +137,7 @@ function refreshAnalysis(){
 
 // 2.1 Get Mean Value
 // Description: Returns mean for a given phenomenon
-// Author: René Unrau
+// Author: Rene Unrau
 function getMean(phenomenon){
 
 	var sum = 0;
@@ -193,7 +193,7 @@ function getMean(phenomenon){
 
 // 2.2 Get StandardDeviation
 // Description: Returns standard deviation for a given phenomenon
-// Author: René Unrau
+// Author: Rene Unrau
 function getSD(phenomenon){
 
 	var pre = 0;
@@ -260,7 +260,7 @@ function getSD(phenomenon){
 
 // 2.3 Get Minimum
 // Description: Returns minimum for a given phenomenon
-// Author: René Unrau
+// Author: Rene Unrau
 function getMin(phenomenon){
 
 	var first = true;
@@ -471,7 +471,7 @@ function getMin(phenomenon){
 
 // 2.4 Get Maximum
 // Description: Returns maximum for a given phenomenon
-// Author: René Unrau
+// Author: Rene Unrau
 function getMax(phenomenon){
 
 	var max = 0;
@@ -625,7 +625,7 @@ function getMax(phenomenon){
 
 // 2.5 Get Most Frequent Manufacturer
 // Description: Returns manufactures which is most frequent in selection
-// Author: René Unrau
+// Author: Rene Unrau
 function getMostFreqManu(){
 
 	return getMax('Manufacturer');
@@ -635,7 +635,7 @@ function getMostFreqManu(){
 
 // 2.6 Refresh Manufacturers
 // Description: Refresh Manufacturers Arrays
-// Author: René Unrau
+// Author: Rene Unrau
 function refreshManufacturers(){
 	manufacturerSelection = new Array();
 

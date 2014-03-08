@@ -1,4 +1,4 @@
-﻿/********************************************************************************************
+/********************************************************************************************
 		Track
 		
 This file contains all functions needed for searching and displaying a track.
@@ -52,9 +52,9 @@ function showTrack(pointID) {
 					//If measurement matches with searched pointID
 					if(measurements.features[i].properties.id == pointID){
 						   dialog.dialog('close');
-                                dialog = $('<p>Dieser Punkt ist Teil des Tracks: ' + track.id + '. <br> Möchten sie diesen Track:</p>').dialog(
+                                dialog = $('<p>Dieser Punkt ist Teil des Tracks: <b>' + track.id + '</b><br><br>Möchten Sie diesen Track:</p>').dialog(
 							{
-	 								height: 220,
+	 								height: 260,
 	 								width: 600,
 	 								modal: true,
 	 								buttons: {

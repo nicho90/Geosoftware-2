@@ -15,7 +15,7 @@ if(selection.length > 0){
 
 	var jsonResultFile = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResult + ")")));
 
-	$('#downloadMpDialog').html('Die ausgew&auml;hlten Messpunkte werden als .json-Datei heruntergeladen.<br>');
+	$('#downloadMpDialog').html('M&ouml;chten Sie die ausgew&auml;hlten Messpunkte als .json-Datei herunterladen?<br>');
 					
 		$('#downloadMpDialog').dialog({ 
 			height: 150,
@@ -25,7 +25,7 @@ if(selection.length > 0){
 		});	
 
 	var name = new Date();
-	$('<a href="data:' + jsonResultFile + '" download="' + name.getTime() + '.json"><div style="text-align: right;"><input type="button" name="confirmDownload" value="Okay"></div></a>').appendTo('#downloadMpDialog');
+	$('<a href="data:' + jsonResultFile + '" download="' + name.getTime() + '.json"><div style="text-align: right;"><input type="button" name="confirmDownload" value="Herunterladen"></div></a>').appendTo('#downloadMpDialog');
 	//$('#downloadMpDialog').dialog('close');	
 	}
 else{

@@ -1,6 +1,6 @@
 function toggle_visibility(id) {
                 var e = document.getElementById(id);
-                if (e.style.display != 'block') {
+                if (e.style.display != 'block' || e.style.display == null || e.style.display == undefined) {
                         e.style.display = 'block';
                 }
                 else {
