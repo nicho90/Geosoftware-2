@@ -37,7 +37,12 @@ Content
 function startInterpolation(){
 	
 	if(selection.length == 0){
-		alert('Es befindet sich keine Track in Ihrer Auswahl');
+		var dialog = $('<p>Es befindet sich keine Track in Ihrer Auswahl.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
 		return;
 	}
 	
@@ -514,12 +519,30 @@ function checkIntRequirements(consumption, co2, maf, speed){
 	
 	// Cancel if there are measurements in selection from more than one track
 	if(!onlyOneTrack){
+<<<<<<< HEAD
 		alert('Bitte w&auml;hlen sie f&uuml;r eine Interpolation genau einen Track aus.');
+=======
+		var dialog = $('<p>Bitte wählen sie für eine Interpolation genau einen Track aus.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+>>>>>>> FETCH_HEAD
 		return false;
 	}
 	
 	if(!consumption && !co2 && !maf && !speed){
+<<<<<<< HEAD
 		alert('Der ausgew&auml;hlte Track enth&auml;lt keine Attribute die Interpoliert werden k&ouml;nnen');
+=======
+		var dialog = $('<p>Der ausgewählte Track enthält keine Attribute die Interpoliert werden können.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+>>>>>>> FETCH_HEAD
 		return false;
 	}
 
@@ -539,8 +562,12 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntSpeed');
 		}else{
-		
-			alert('Dieser Track hat dieses Attribut nicht');
+			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+				modal: true,
+				buttons: {
+					"OK":  function() {dialog.dialog('close');}
+				}
+			});
 			return;
 		}
 	}else if(document.legendAttributs.interpolationAttribut[1].checked){
@@ -548,8 +575,12 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntCO2');
 		}else{
-		
-			alert('Dieser Track hat dieses Attribut nicht');
+			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+				modal: true,
+				buttons: {
+					"OK":  function() {dialog.dialog('close');}
+				}
+			});
 			document.legendAttributs.interpolationAttribut[0].checked = true;
 			checkVisualizationAttr();
 		}
@@ -558,8 +589,12 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntConsumption');
 		}else{
-		
-			alert('Dieser Track hat dieses Attribut nicht');
+			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+				modal: true,
+				buttons: {
+					"OK":  function() {dialog.dialog('close');}
+				}
+			});
 			document.legendAttributs.interpolationAttribut[0].checked = true;
 			checkVisualizationAttr();
 		}
@@ -568,8 +603,12 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntMAF');
 		}else{
-		
-			alert('Dieser Track hat dieses Attribut nicht');
+			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+				modal: true,
+				buttons: {
+					"OK":  function() {dialog.dialog('close');}
+				}
+			});
 			document.legendAttributs.interpolationAttribut[0].checked = true;
 			checkVisualizationAttr();
 		}

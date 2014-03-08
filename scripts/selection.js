@@ -33,6 +33,19 @@ Content
 // Description: Adds a single measurement to the selection
 // Author: René Unrau
 function addSinglePoint(measurement){
+
+	//Transform CO2 kg/h to g/s and Consumption l/s to l/h
+	if(measurement.properties.phenomenons.Consumption.unit == 'l/s'){
+		measurement.properties.phenomenons.Consumption.value = measurement.properties.phenomenons.Consumption.value * 3600;
+		measurement.properties.phenomenons.Consumption.unit = 'l/h';
+	}
+	
+	if(measurement.properties.phenomenons.CO2.unit == 'kg/h'){
+		measurement.properties.phenomenons.CO2.value = measurement.properties.phenomenons.CO2.value / 3.6;
+		measurement.properties.phenomenons.CO2.unit = 'g/s';
+	}
+	
+	
 	// If selection is empty, add to selection, update-sidebar-selection-list and current-analysis
 	if(selection.length == 0){
 		selection.push(measurement);
@@ -128,22 +141,32 @@ function addSinglePointFromTrack(trackMeasurement, track){
 	measurement.geometry.coordinates[1] = trackMeasurement.geometry.coordinates[1];
 	
 	//Check if phenomenons are not defined -> add default value
+	//Transform CO2 kg/h to g/s and Consumption l/s to l/h
 		if(trackMeasurement.properties.phenomenons.Consumption == undefined) {
 			var Consumption = new Object();
 			Consumption.value = "-";
 			Consumption.unit = "l/s";
 			trackMeasurement.properties.phenomenons.Consumption = Consumption;
+			
+		}else if(trackMeasurement.properties.phenomenons.Consumption.unit == 'l/s'){
+			trackMeasurement.properties.phenomenons.Consumption.value = trackMeasurement.properties.phenomenons.Consumption.value * 3600;
+			trackMeasurement.properties.phenomenons.Consumption.unit = 'l/h';
 		}
+		
 		if(trackMeasurement.properties.phenomenons.CO2 == undefined) {
 			var CO2 = new Object();
 			CO2.value = "-";
 			CO2.unit = "g/s";
 			trackMeasurement.properties.phenomenons.CO2 = CO2;
+			
+		}else if(trackMeasurement.properties.phenomenons.CO2.unit == 'kg/h'){
+			trackMeasurement.properties.phenomenons.CO2.value = trackMeasurement.properties.phenomenons.CO2.value / 3.6;
+			trackMeasurement.properties.phenomenons.CO2.unit = 'g/s';
 		}
 		if(trackMeasurement.properties.phenomenons.MAF == undefined) {
 			var MAF = new Object();
 			MAF.value = "-";
-			MAF.unit = "l/s";
+			MAF.unit = "l/h";
 			trackMeasurement.properties.phenomenons.MAF = MAF;
 		}
 		if(trackMeasurement.properties.phenomenons.Speed == undefined) {
@@ -226,30 +249,43 @@ function addTrackToSelection(track){
 		measurement.geometry.coordinates[1] = measurements[i].geometry.coordinates[1];
 		
 		//Check if phenomenons are not defined -> add default value
+		//Transform CO2 kg/h to g/s and Consumption l/s to l/h
 			if(measurements[i].properties.phenomenons.Consumption == undefined) {
 				var Consumption = new Object();
 				Consumption.value = "-";
 				Consumption.unit = "l/s";
 				measurements[i].properties.phenomenons.Consumption = Consumption;
+				
+			}else if(measurements[i].properties.phenomenons.Consumption.unit == 'l/s'){
+				measurements[i].properties.phenomenons.Consumption.value = measurements[i].properties.phenomenons.Consumption.value * 3600;
+				measurements[i].properties.phenomenons.Consumption.unit = 'l/h';
 			}
+			
 			if(measurements[i].properties.phenomenons.CO2 == undefined) {
 				var CO2 = new Object();
 				CO2.value = "-";
 				CO2.unit = "g/s";
 				measurements[i].properties.phenomenons.CO2 = CO2;
+				
+			}else if(measurements[i].properties.phenomenons.CO2.unit == 'kg/h'){
+				measurements[i].properties.phenomenons.CO2.value = measurements[i].properties.phenomenons.CO2.value / 3.6;
+				measurements[i].properties.phenomenons.CO2.unit = 'g/s';
 			}
+			
 			if(measurements[i].properties.phenomenons.MAF == undefined) {
 				var MAF = new Object();
 				MAF.value = "-";
 				MAF.unit = "l/s";
 				measurements[i].properties.phenomenons.MAF = MAF;
 			}
+			
 			if(measurements[i].properties.phenomenons.Speed == undefined) {
 				var Speed = new Object();
 				Speed.value = "-";
 				Speed.unit = "km/s";
 				measurements[i].properties.phenomenons.Speed = Speed;
 			}
+			
 		measurement.properties.phenomenons = measurements[i].properties.phenomenons;
 		
 		selection.push(measurement);
@@ -372,7 +408,7 @@ function visualizeSelection(){
 					'<tr><td><b>Sensor-ID</b></td><td>' + selection[j].properties.sensor.properties.id + '</td></tr>' +
 					'<tr><td><b>Fahrzeugtyp</b></td><td>' + selection[j].properties.sensor.properties.manufacturer + ' ' + selection[j].properties.sensor.properties.model + '</td></tr>' +
                     '<tr><td><b>Geschwindigkeit</b></td><td>' + selection[j].properties.phenomenons.Speed.value + ' ' + selection[j].properties.phenomenons.Speed.unit + '</td></tr>' +
-					'<tr><td><b>CO2-Ausstoß/b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' ' + selection[j].properties.phenomenons.CO2.unit + '</td></tr>' +
+					'<tr><td><b>CO2-Ausstoß</b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' ' + selection[j].properties.phenomenons.CO2.unit + '</td></tr>' +
 					'<tr><td><b>Spritverbrauch</b></td><td>' + selection[j].properties.phenomenons.Consumption.value + ' ' + selection[j].properties.phenomenons.Consumption.unit + '</td></tr>' +
 					'<tr><td><b>MAF</b></td><td>' + selection[j].properties.phenomenons.MAF.value + ' ' + selection[j].properties.phenomenons.MAF.unit + '</td></tr>' +
 					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');

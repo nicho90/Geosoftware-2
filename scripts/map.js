@@ -388,7 +388,7 @@ function drawMeasurements() {
 		if(phenomenons.Consumption == undefined) {
 			var Consumption = new Object();
 			Consumption.value = "-";
-			Consumption.unit = "l/s";
+			Consumption.unit = "l/h";
 			phenomenons.Consumption = Consumption;
 		}
 		if(phenomenons.CO2 == undefined) {

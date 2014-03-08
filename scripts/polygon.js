@@ -56,7 +56,12 @@ function confirmPolygon(){
 
 	// Check if Polygon is closed
 	if(polygonLayer == undefined){
-		alert('Bitte zeichnen sie zuerst ein geschlossenes Polygon');
+		var dialog = $('<p>Bitte zeichnen Sie zuerst ein geschlossenes Polygon.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
 		return;
 	}
 	

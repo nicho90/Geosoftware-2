@@ -1,4 +1,4 @@
-/********************************************************************************************
+﻿/********************************************************************************************
 		Control
 		
 This file contains all functions needed for interaction with our provided tools.
@@ -33,12 +33,26 @@ Content
 
 // 1.1 Single Point-Selection 
 // Description: User wants to add measurement for analysis by clicking on a single point on the map
+<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
+=======
+// Authors: René Unrau & Nicholas Schiestel
+>>>>>>> FETCH_HEAD
 function chooseSingleSelection(id) {
     
     // check if trackSelection or polygonSelection
     if(trackSelection || polygonSelection){
+<<<<<<< HEAD
         alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
+=======
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+        
+>>>>>>> FETCH_HEAD
     }
     
     // if no other Selcetionmode is active, then continue with singlePointSelection
@@ -58,12 +72,26 @@ function chooseSingleSelection(id) {
 
 // 1.2 Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
+<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
+=======
+// Authors: René Unrau & Nicholas Schiestel
+>>>>>>> FETCH_HEAD
 function chooseTrackSelection() {
     
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
+<<<<<<< HEAD
         alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
+=======
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+        
+>>>>>>> FETCH_HEAD
     }
     
     // if no other selcetionmode is active, then continue with singlePointSelection
@@ -77,8 +105,6 @@ function chooseTrackSelection() {
             trackSelection = true;
             colorize('chooseTrack');
             toggle_visibility('selectTrack');
-            var trackID = document.getElementById('Track_ID').value;
-            visualizeTrack(trackID);
         }
     }
 }
@@ -90,7 +116,17 @@ function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
     if(singlePointSelection || trackSelection){
+<<<<<<< HEAD
         alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
+=======
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
+			modal: true,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
+			}
+		});
+
+>>>>>>> FETCH_HEAD
     }
     
     // if no other selcetionmode is active, then continue with polygonSelection
@@ -176,7 +212,12 @@ function colorize(button) {
                 }
             }
             else {
-                alert("Error");
+				var dialog = $('<p>Error! Es ist kein Auswahlwerkzeug aktiv.</p>').dialog({
+					modal: true,
+					buttons: {
+						"OK":  function() {dialog.dialog('close');}
+					}
+				});
             }
         } 
     }
@@ -219,7 +260,11 @@ function resetFilter() {
 
 // 3.1 Reset Track Visualization
 // Description: Deletes Track and draws standard measurements
+<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
+=======
+// Authors: René Unrau & Nicholas Schiestel
+>>>>>>> FETCH_HEAD
 function resetTrackSelection(){
 	mainMap.removeLayer(trackLine);
 	for(var i = 0; i < markers.length; i++) {
@@ -261,7 +306,11 @@ function resetTrackSelection(){
 
 // 3.2 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
+<<<<<<< HEAD
 // Author: Rene Unrau
+=======
+// Author: René Unrau
+>>>>>>> FETCH_HEAD
 function resetVisualization(){
 	
 	if(document.getElementById("intLines").checked){
@@ -292,7 +341,11 @@ function resetVisualization(){
 
 // 4 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
+<<<<<<< HEAD
 // Author: Rene Unrau
+=======
+// Author: René Unrau
+>>>>>>> FETCH_HEAD
 function setMaxMeas(){
 
 	var e = document.getElementById("measurementNumber");
