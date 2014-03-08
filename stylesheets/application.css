@@ -183,7 +183,7 @@ header {
     cursor:pointer;
 }
 
-.link:hover, .link:active {
+.link:hover {
     color:rgb(22,127,193);
     text-decoration:underline;
     cursor:pointer;

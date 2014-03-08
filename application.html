@@ -105,6 +105,8 @@
 		<!-- Skript der Downloadfunktion der Messpunkte aus der Selektionstabelle -->
 		<script type="text/javascript" src="scripts/download_messpunkte.js"></script>
         
+        <!-- Skript um die Eingaben des Users zu überprüfen -->
+		<script type="text/javascript" src="scripts/checkinput.js"></script>
     
     </head>
     
@@ -192,12 +194,17 @@
                              <a onclick="" class=info>i</a>
                         </li>
                         <li>
-                            <select id=measurementNumber onChange="setMaxMeas();">
+                            <select id=measurementNumber onChange="setMaxMeas()">
                                 <option value="100" onClick="setMaxMeas()">100</option>
                                 <option value="200" onClick="setMaxMeas()">200</option>
                                 <option value="300" onClick="setMaxMeas()">300</option>
                                 <option value="400" onClick="setMaxMeas()">400</option>
                                 <option value="500" onClick="setMaxMeas()">500</option>
+                                <option value="600" onClick="setMaxMeas()">600</option>
+                                <option value="700" onClick="setMaxMeas()">700</option>
+                                <option value="800" onClick="setMaxMeas()">800</option>
+                                <option value="900" onClick="setMaxMeas()">900</option>
+                                <option value="1000" onClick="setMaxMeas()">1000</option>
                             </select>
                         </li>
                     </ul>
@@ -257,13 +264,13 @@
                 <div id=chooser>
                     <ul>
                         <li id="chooseSinglePoint" original-title="Verwenden Sie dieses Werkzeug um Punkte nach einander auf der Karte per Mausklick zu selektieren">
-                            <a onclick="chooseSingleSelection('chooseSinglePoint');"></a>
+                            <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
                         </li>
                         <li id="chooseTrack" original-title="Verwenden Sie dieses Werkzeug um einen ganzen Track zu suchen und hinzuzufügen. Die Auswahl eines ganzen Tracks ist auch über das Popup eines Messpunktes möglich: Klicken Sie einfach auf der Karte auf einen beliebigen Messpunkt, um das Popup zu öffnen.">
-                            <a onclick="chooseTrackSelection();"></a>
+                            <a onclick="chooseTrackSelection()"></a>
                         </li>
                         <li id="choosePolygon"  original-title="Verwenden Sie dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren.">
-                            <a onclick="choosePolygonSelection();"></a>
+                            <a onclick="choosePolygonSelection()"></a>
                         </li>
                     </ul>
                 </div>
@@ -319,7 +326,7 @@
             
             <!-- Liste der selektierten Punkte (standardmäßig eingeblendet) -->
             <div id=selectedPoints class=sidebarElement>
-                    <a href="#" onclick="toggle_visibility('selectedPointsBox');" class=link><h2>Selektierte Punkte</h2></a>
+                    <a href="#" onclick="toggle_visibility('selectedPointsBox')" class=link><h2>Selektierte Punkte</h2></a>
                     <div id=selectedPointsBox class=sidebarSubElement>
                         <ul class=deleteOptions>
                             <li style="margin-top:-3px;">
@@ -332,7 +339,7 @@
                                 <a href="#" class="link" onClick="showMeasurementDetails()">Alle Messwerte</a>
                             </li>
                             <li>
-                                <a href="#" class="link" onClick="download_sel_pkte();">
+                                <a href="#" onClick="download_sel_pkte()">
 									<img src="images/download_2.png" alt="Alle Werte downloaden" class="downloadButton">
 								</a>
 							</li>
@@ -347,12 +354,12 @@
             </div>
             <!-- Analysebox (standardmäßig ausgeblendet) -->
             <div id=analyse class=sidebarElement>
-                <a href="#" onclick="toggle_visibility('analyseBox'); toggle_visibility('textualResults');" class=link>     <h2>Analysefunktionen</h2></a>
+                <a href="#" onclick="toggle_visibility('analyseBox')" class=link><h2>Analysefunktionen</h2></a>
                 <div id=analyseBox class=sidebarSubElement>
                     <ul>
                         <li>Berechnungen von</li>
                         <li>
-                            <select id="analysisSelectionBox" onChange="refreshAnalysis();">
+                            <select id="analysisSelectionBox" onChange="refreshAnalysis()">
                                 <option value="Geschwindigkeit">Geschwindigkeit</option>
                                 <option value="CO2">CO2-Ausstoß</option>
                                 <option value="Spritverbrauch">Spritverbrauch</option>
@@ -377,12 +384,12 @@
             
             <!-- Interpolationsbox -->
             <div id=interpolation class=sidebarElement>
-                <a href="#" onclick="toggle_visibility('interpolationBox');" class=link><h2>Interpolation</h2></a>
+                <a href="#" onclick="toggle_visibility('interpolationBox')" class=link><h2>Interpolation</h2></a>
                 <div id=interpolationBox class=sidebarSubElement>
                     <h3>Wählen Sie eine Methode aus</h3>
                     <form id="interpolationMethod" name="interpolation">
-                        <input type="radio" name="interpolationMethod" value="0" onclick="showhidediv(this);" checked="checked" >&nbsp;&nbsp;Inverse Distanzwichtung<br>
-                        <input type="radio" name="interpolationMethod" value="1" onclick="showhidediv(this);">&nbsp;&nbsp;Kriging<br>
+                        <input type="radio" name="interpolationMethod" value="0" onclick="showhidediv(this)" checked="checked" >&nbsp;&nbsp;Inverse Distanzwichtung<br>
+                        <input type="radio" name="interpolationMethod" value="1" onclick="showhidediv(this)">&nbsp;&nbsp;Kriging<br>
                     </form>
                     <div id=idwBox></div>
                     <div id=krigingBox>
@@ -405,10 +412,10 @@
 								</tr>
 								<tr>
 									<td align="left" valign="middle">
-                                        &#x3C3;<sup>2</sup>
+                                        &#x3C3;<sup>2</sup> (Sigma)
                                     </td>
 									<td align="left" valign="top">
-                                        <input type="text" id="sigmatwo" name="SigmaTwo" placeholder="5" class=filterButton>
+                                        <input type=number id="sigmatwo" name="SigmaTwo" value="5" class=filterButton min="1" max="100">
                                     </td>
 									<td align="right" valign="middle">
                                          <a onclick="" class=info id="SimgaInfo" original-title="Bitte tragen Sie einen Wert zwischen 1 und 100 ein.">i</a>
@@ -416,10 +423,10 @@
 								</tr>
 								<tr>
 									<td>
-                                        &#x3B1;
+                                        &#x3B1; (Alpha)
                                     </td>
 									<td align="left" valign="top">
-                                        <input type="text" id="alpha" name="Alpha" placeholder="90" class=filterButton>
+                                        <input type=number id="alpha" name="Alpha" value="90" class=filterButton min="1" max="100">
                                     </td>
 									<td align="right" valign="middle">
                                         <a onclick="" class=info id="alphaInfo" original-title="Bitte tragen Sie einen Wert zwischen 1 und 100 ein.">i</a>
@@ -429,8 +436,7 @@
 						</form>
                     </div>
                     <div class=right>
-                        <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="startInterpolation()">
-                        <input type="submit" id="acceptFilter" name="acceptFilter" value="Download" class=submitButton onClick="downloadsite()">
+                        <input type="submit" id="acceptFilter" name="acceptFilter" value="OK" class=submitButton onClick="checkUserInput()">
                     </div>
                 </div>
             </div>
