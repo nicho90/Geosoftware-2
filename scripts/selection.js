@@ -1,4 +1,4 @@
-﻿/********************************************************************************************
+/********************************************************************************************
 		Selection
 		
 This file contains all functions needed for adding and deleting measurement to/from the selection.
@@ -59,8 +59,8 @@ function addSinglePoint(measurement){
 
 	
         //Open and Close info-popup
-        //Authors: Nicholas Schiestel and Johanna Möllmann
-		$('#infodialog').html('Punkt wurde hinzugefügt.');
+        //Authors: Nicholas Schiestel and Johanna Moellmann
+		$('#infodialog').html('Punkt wurde hinzugef&uuml;gt.');
 		$('#infodialog').dialog({ 
 		height: 100,
 		width: 300,
@@ -78,7 +78,7 @@ function addSinglePoint(measurement){
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
 			if(measurement.properties.id == selection[i].properties.id){
-                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in Ihrer Auswahl');
                 $('#infodialog').dialog({ 
                     height: 100,
                     width: 300,
@@ -105,8 +105,8 @@ function addSinglePoint(measurement){
 		onlyOneTrack = false;
 		
 		//Open and Close info-popup
-		//Authors: Nicholas Schiestel and Johanna Möllmann	
-		$('#infodialog').html('Punkt wurde hinzugefügt.');
+		//Authors: Nicholas Schiestel and Johanna Moellmann	
+		$('#infodialog').html('Punkt wurde hinzugef&uuml;gt.');
 		$('#infodialog').dialog({ 
 		height: 100,
 		width: 300,
@@ -192,7 +192,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
 			if(measurement.properties.id == selection[i].properties.id){
-                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in ihrer Auswahl');
+                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in Ihrer Auswahl');
                 $('#infodialog').dialog({ 
                     height: 100,
                     width: 300,
@@ -296,8 +296,8 @@ function addTrackToSelection(track){
 	visualizeSelection();    
     
 	//Open and Close info-popup
-	//Authors: Nicholas Schiestel and Johanna Möllmann	
-	$('#infodialog').html('Punkte wurden hinzugefügt.');
+	//Authors: Nicholas Schiestel and Johanna Moellmann	
+	$('#infodialog').html('Punkte wurden hinzugef&uuml;gt.');
 	$('#infodialog').dialog({ 
 		height: 100,
 		width: 300,
@@ -423,7 +423,9 @@ function visualizeSelection(){
 					doNotLoad = true;
 					if(singlePointSelection) {
 						mainMap.closePopup();
-						var dialog = $('<p>Möchten sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
+						var dialog = $('<p>M&ouml;chten Sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
+                            height:200,
+                            width:600,
 							buttons: {
 								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
 								"Nein":  function() {dialog.dialog('close');}
@@ -550,6 +552,6 @@ function showMeasurementDetails() {
         {
 		height: 620,
 		width: 900,
-		title: "Alle ausgewählten Messwerte"
+		title: "Alle ausgew&auml;hlten Messwerte"
         });
 }

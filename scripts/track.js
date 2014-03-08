@@ -52,7 +52,7 @@ function showTrack(pointID) {
 					//If measurement matches with searched pointID
 					if(measurements.features[i].properties.id == pointID){
 						   dialog.dialog('close');
-                                dialog = $('<p>Dieser Punkt ist Teil des Tracks: <b>' + track.id + '</b><br><br>Möchten Sie diesen Track:</p>').dialog(
+                                dialog = $('<p>Dieser Punkt ist Teil des Tracks: <b>' + track.id + '</b><br><br>M&ouml;chten Sie diesen Track:</p>').dialog(
 							{
 	 								height: 260,
 	 								width: 600,
@@ -187,7 +187,6 @@ function visualizeTrack(trackID){
 		button4 = true;
 		
 		return track;
-<<<<<<< HEAD
 	});
 }
 
@@ -205,8 +204,6 @@ function trackFilter(){
 	
 		addTrackToSelection(track);
 	});
-=======
-	});
 }
 
 
@@ -223,13 +220,7 @@ function trackFilter(){
 	
 		addTrackToSelection(track);
 	});
->>>>>>> FETCH_HEAD
 	
 	// Close Track-Selection Tool
 	chooseTrackSelection();
 }
-<<<<<<< HEAD
-	
-=======
-	
->>>>>>> FETCH_HEAD

@@ -28,9 +28,9 @@ function diagrams() {
         
 	}
 	else {
-	var diagramDialog = $('<p>Für die Diagrammanzeige müssen sich mindestens zwei Punkte in der Wertetabelle befinden.<br>Bitte selektieren Sie Punkte.</p>').dialog({
+	var diagramDialog = $('<p>F&uuml;r die Diagrammberechnungen m&uuml;ssen sich mindestens zwei Punkte in Ihrer Auswahl befinden. <br>Bitte selektieren Sie Punkte.</p>').dialog({
 		buttons: {
-			"Okay": function() {diagramDialog.dialog('close');}
+			"OK": function() {diagramDialog.dialog('close');}
 		},
 		width: 600
 	});

@@ -39,6 +39,8 @@ function startInterpolation(){
 	if(selection.length == 0){
 		var dialog = $('<p>Es befindet sich keine Track in Ihrer Auswahl.</p>').dialog({
 			modal: true,
+            height:200,
+            width:600,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
@@ -519,42 +521,28 @@ function checkIntRequirements(consumption, co2, maf, speed){
 	
 	// Cancel if there are measurements in selection from more than one track
 	if(!onlyOneTrack){
-<<<<<<< HEAD
-<<<<<<< HEAD
-		alert('Bitte w&auml;hlen sie f&uuml;r eine Interpolation genau einen Track aus.');
-=======
-=======
->>>>>>> FETCH_HEAD
-		var dialog = $('<p>Bitte wählen sie für eine Interpolation genau einen Track aus.</p>').dialog({
+		var dialog = $('<p>Bitte w&auml;hlen sie f&uuml;r eine Interpolation genau einen Track aus.</p>').dialog({
 			modal: true,
+            width:600,
+            height:200,
+            title: "Error",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
 		return false;
 	}
 	
 	if(!consumption && !co2 && !maf && !speed){
-<<<<<<< HEAD
-<<<<<<< HEAD
-		alert('Der ausgew&auml;hlte Track enth&auml;lt keine Attribute die Interpoliert werden k&ouml;nnen');
-=======
-=======
->>>>>>> FETCH_HEAD
-		var dialog = $('<p>Der ausgewählte Track enthält keine Attribute die Interpoliert werden können.</p>').dialog({
+
+		var dialog = $('<p>Der ausgew&auml;hlte Track enth&auml;lt keine Attribute die Interpoliert werden k&ouml;nnen.</p>').dialog({
 			modal: true,
+            width:600,
+            height:200,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
 		return false;
 	}
 
@@ -574,8 +562,10 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntSpeed');
 		}else{
-			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
 				modal: true,
+                width:600,
+                height:200,
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -587,8 +577,10 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntCO2');
 		}else{
-			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
 				modal: true,
+                width:600,
+                height:200,
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -601,8 +593,10 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntConsumption');
 		}else{
-			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
 				modal: true,
+                width:600,
+                height:200,
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -615,8 +609,10 @@ function checkVisualizationAttr(){
 		
 			visualizeInterpolation('IntMAF');
 		}else{
-			var dialog = $('<p>Dieser Track hat dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
 				modal: true,
+                width:600,
+                height:200,
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}

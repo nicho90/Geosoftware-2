@@ -18,7 +18,7 @@ if(selection.length > 0){
 	$('#downloadMpDialog').html('M&ouml;chten Sie die ausgew&auml;hlten Messpunkte als .json-Datei herunterladen?<br>');
 					
 		$('#downloadMpDialog').dialog({ 
-			height: 150,
+			height:220,
 			width: 600,
 			autoOpen: true,   
 			modal: true,
@@ -29,11 +29,12 @@ if(selection.length > 0){
 	//$('#downloadMpDialog').dialog('close');	
 	}
 else{
-	var downloadmpDialog = $('<p>Um die Downloadfunktion nutzen zu k&ouml;nnen, muss sich mindestens ein Punkt in der Wertetabelle befinden.<br>Bitte selektieren Sie einen oder mehrere Punkte.</p>').dialog({
+	var downloadmpDialog = $('<p>Um die Downloadfunktion nutzen zu k&ouml;nnen, muss sich mindestens ein Punkt in Ihrer Auswahl befinden.<br>Bitte selektieren Sie einen oder mehrere Punkte.</p>').dialog({
 			buttons: {
-				"Okay": function() {downloadmpDialog.dialog('close');}
+				"OK": function() {downloadmpDialog.dialog('close');}
 			},
-			width: 600
+			width: 600,
+            height:220
 		});
 	}
 

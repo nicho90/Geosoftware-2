@@ -277,7 +277,7 @@ function drawMap() {
     
     // navigation elements
 	// allows the user to pan with the give navigation elements
-	//Author: Johanna Möllmann
+	//Author: Johanna Moellmann
 	document.getElementById('left').onclick = function() {
         map.panBy([-300, 0]);
 	};
@@ -298,7 +298,7 @@ function drawMap() {
     
 	// Locate me - function 
 	// map pans to current position of the user and sets a marker
-	// Author: Johanna Möllmann
+	// Author: Johanna Moellmann
 	document.getElementById('locateMe').onclick = function() {
        function handler(locateme){
            var longitude = locateme.coords.longitude;
@@ -442,7 +442,7 @@ function drawMeasurements() {
 					'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 					'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 					'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugeh&ouml;rigen Track anzeigen</a></td></tr></table></html>');
 
 				// Insert the container into the popup
 				marker.bindPopup(container[0]);
@@ -452,7 +452,7 @@ function drawMeasurements() {
 					doNotLoad = true;
 					if(singlePointSelection) {
 						mainMap.closePopup();
-						var dialog = $('<p>Möchten sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
+						var dialog = $('<p>M&ouml;chten Sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
 							buttons: {
 								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
 								"Nein":  function() {dialog.dialog('close');}
@@ -489,7 +489,7 @@ function drawMeasurements() {
 				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugeh&ouml;rigen Track anzeigen</a></td></tr></table></html>');
 	
 			// Insert the container into the popup
 			marker.bindPopup(container[0]);

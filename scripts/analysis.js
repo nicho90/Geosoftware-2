@@ -97,11 +97,11 @@ function refreshAnalysis(){
 	
 		if(selection.length == 0){
 			
-			result.append("Bitte w�hlen Sie zuerst einige Messpunkte aus.</table>");
+			result.append("Bitte w&auml;hlen Sie zuerst einige Messpunkte aus.</table>");
 		}else{
 	
 			var mostFreqManu = getMostFreqManu();
-			result.append("<tr><td><td><b>H�ufigster Fahrzeugtyp</b></td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
+			result.append("<tr><td><td><b>H&auml;ufigster Fahrzeugtyp</b></td><td>" + mostFreqManu + "(" + manufacturerSelection[mostFreqManu] + ")</td></tr></table>");
 		}
 	}
 	

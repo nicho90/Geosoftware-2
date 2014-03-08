@@ -58,6 +58,8 @@ function confirmPolygon(){
 	if(polygonLayer == undefined){
 		var dialog = $('<p>Bitte zeichnen Sie zuerst ein geschlossenes Polygon.</p>').dialog({
 			modal: true,
+            height:200,
+            width:600,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
@@ -99,7 +101,7 @@ function confirmPolygon(){
 	//Authors: Nicholas Schiestel and Johanna Moellmann
 	if(!duplicate){
 	
-		$('#infodialog').html('Punkte wurden hinzugefügt.');
+		$('#infodialog').html('Punkte wurden hinzugef&uuml;gt.');
 		$('#infodialog').dialog({ 
 			height: 100,
 			width: 300,
@@ -113,7 +115,7 @@ function confirmPolygon(){
 		
 	}else{
 	
-		$('#infodialog').html('Die ausgewählten Punkte wurden hinzugefügt. Einige Punkte befinden sich bereits in der Auswahl und wurde deshalb nicht erneut hinzugefügt.');
+		$('#infodialog').html('Die ausgew&auml;hlten Punkte wurden hinzugef&uuml;gt. Einige Punkte befinden sich bereits in Ihrer Auswahl und wurde deshalb nicht erneut hinzugef&uuml;gt.');
 		$('#infodialog').dialog({ 
 			height: 160,
 			width: 400,

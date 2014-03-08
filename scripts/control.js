@@ -1,4 +1,4 @@
-﻿/********************************************************************************************
+/********************************************************************************************
 		Control
 		
 This file contains all functions needed for interaction with our provided tools.
@@ -33,36 +33,21 @@ Content
 
 // 1.1 Single Point-Selection 
 // Description: User wants to add measurement for analysis by clicking on a single point on the map
-<<<<<<< HEAD
-<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
-=======
-// Authors: René Unrau & Nicholas Schiestel
->>>>>>> FETCH_HEAD
-=======
-// Authors: René Unrau & Nicholas Schiestel
->>>>>>> FETCH_HEAD
+
 function chooseSingleSelection(id) {
     
     // check if trackSelection or polygonSelection
     if(trackSelection || polygonSelection){
-<<<<<<< HEAD
-<<<<<<< HEAD
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
-=======
-=======
->>>>>>> FETCH_HEAD
-		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie&szlig;en Sie dieses zuerst.</p>').dialog({
 			modal: true,
+            height:220,
+            width:600,
+            title: "Error",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
-        
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
     }
     
     // if no other Selcetionmode is active, then continue with singlePointSelection
@@ -82,37 +67,21 @@ function chooseSingleSelection(id) {
 
 // 1.2 Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
-<<<<<<< HEAD
-<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
-=======
-// Authors: René Unrau & Nicholas Schiestel
->>>>>>> FETCH_HEAD
-=======
-// Authors: René Unrau & Nicholas Schiestel
->>>>>>> FETCH_HEAD
-function chooseTrackSelection() {
-    
+
+function chooseTrackSelection() {  
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
-<<<<<<< HEAD
-<<<<<<< HEAD
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
-=======
-=======
->>>>>>> FETCH_HEAD
-		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie&szlig;en Sie dieses zuerst.</p>').dialog({
 			modal: true,
+            height:220,
+            width:600,
+            title: "Error",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
-        
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
-    }
+}
     
     // if no other selcetionmode is active, then continue with singlePointSelection
     else {
@@ -136,23 +105,15 @@ function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
     if(singlePointSelection || trackSelection){
-<<<<<<< HEAD
-<<<<<<< HEAD
-        alert("Es ist noch ein anderes Werkzeug aktiv, bitte schlie�en Sie dieses zuerst.");
-=======
-=======
->>>>>>> FETCH_HEAD
-		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schließen Sie dieses zuerst.</p>').dialog({
+		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie&szlig;en Sie dieses zuerst.</p>').dialog({
 			modal: true,
+            height:220,
+            width:600,
+            title: "Error",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
-
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
     }
     
     // if no other selcetionmode is active, then continue with polygonSelection
@@ -173,9 +134,11 @@ function choosePolygonSelection() {
     }
 }
 
+
 // 1.4 Selectionsbuttons Visualization
 // Selectionsbuttons change their color from green to orange, if they are active
 // Author: Nicholas Schiestel
+
 function colorize(button) {
     // for singlePointSelection
     if(button == 'chooseSinglePoint'){
@@ -286,15 +249,8 @@ function resetFilter() {
 
 // 3.1 Reset Track Visualization
 // Description: Deletes Track and draws standard measurements
-<<<<<<< HEAD
-<<<<<<< HEAD
 // Authors: Rene Unrau & Nicholas Schiestel
-=======
-// Authors: René Unrau & Nicholas Schiestel
->>>>>>> FETCH_HEAD
-=======
-// Authors: René Unrau & Nicholas Schiestel
->>>>>>> FETCH_HEAD
+
 function resetTrackSelection(){
 	mainMap.removeLayer(trackLine);
 	for(var i = 0; i < markers.length; i++) {
@@ -336,15 +292,8 @@ function resetTrackSelection(){
 
 // 3.2 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
-<<<<<<< HEAD
-<<<<<<< HEAD
 // Author: Rene Unrau
-=======
-// Author: René Unrau
->>>>>>> FETCH_HEAD
-=======
-// Author: René Unrau
->>>>>>> FETCH_HEAD
+
 function resetVisualization(){
 	
 	if(document.getElementById("intLines").checked){
@@ -375,15 +324,8 @@ function resetVisualization(){
 
 // 4 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
-<<<<<<< HEAD
-<<<<<<< HEAD
 // Author: Rene Unrau
-=======
-// Author: René Unrau
->>>>>>> FETCH_HEAD
-=======
-// Author: René Unrau
->>>>>>> FETCH_HEAD
+
 function setMaxMeas(){
 
 	var e = document.getElementById("measurementNumber");
@@ -397,6 +339,20 @@ function setMaxMeas(){
 		maxMeas = 4;
 	}else if(e.options[e.selectedIndex].value == '500'){
 		maxMeas = 5;
+	}else if(e.options[e.selectedIndex].value == '600'){
+		maxMeas = 6;
+	}else if(e.options[e.selectedIndex].value == '700'){
+		maxMeas = 7;
+	}else if(e.options[e.selectedIndex].value == '800'){
+		maxMeas = 8;
+	}else if(e.options[e.selectedIndex].value == '900'){
+		maxMeas = 9;
+	}else if(e.options[e.selectedIndex].value == '1000'){
+		maxMeas = 10;
+	}else if(e.options[e.selectedIndex].value == '2000'){
+		maxMeas = 20;
+	}else if(e.options[e.selectedIndex].value == '3000'){
+		maxMeas = 30;
 	}
 	
     drawMeasurements();
