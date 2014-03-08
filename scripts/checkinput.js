@@ -12,7 +12,6 @@ var secondParameter = false;
             var dialog = $('<p>Bitte tragen Sie für Alpha eine Zahl zwischen 1 und 100 ein.</p>').dialog({
                 width:600,
                 height:200,
-                modal: true,
                 buttons: {
                     "OK":  function() {dialog.dialog('close');}
  			    }
@@ -26,7 +25,6 @@ var secondParameter = false;
     else {  
             secondParameter = false;
             var dialog = $('<p>Bitte tragen Sie für Simga<sup>2</sup> eine Zahl zwischen 1 und 100 ein.</p>').dialog({
-                modal: true,
                 width:600,
                 height:200,
                 buttons: {
