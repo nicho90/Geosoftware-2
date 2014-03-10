@@ -183,30 +183,6 @@ function drawMap() {
     map.on('zoomend', onZoomend);
     
     function onZoomend(){
-        
-        //old code:
-        
-      /*  //if osm-layer is selected check, whether a DTK10 or DTK10_panchromatic
-        //is selected as well. Is this the case, the map zoomed out too far
-        //for these two and the osm-layer has been displayed instead.
-        //Since we enter DTK10's and DTK10_panchromatic's bounds again, the osm layer
-        //can be removed
-        //Note: DTK10 and DTK10_panchromatic disappear if zoom level is below 14
-        //OpenTopomap works within zoom level 5 to 15 only
-        if(map.hasLayer(osm)){
-            
-            if(map.getZoom()>=14&&(map.hasLayer(DTK10) ||   map.hasLayer(DTK10_panchromatic))){
-                map.removeLayer(osm);
-            }
-        }
-        
-        //maps has DTK10 or DTK10_panchromatic and is about to leave their bounds
-        //Thus, the osm-layer is selected and displayed instead.
-        else{           
-            if(map.getZoom()<14&&(map.hasLayer(DTK10) ||   map.hasLayer(DTK10_panchromatic))){
-                map.addLayer(osm);
-            }
-        }*/
         if(map.hasLayer(topo)) {
             if(map.getZoom()<=5) 
                 map.setZoom(5);
