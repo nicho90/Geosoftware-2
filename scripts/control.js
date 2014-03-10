@@ -43,7 +43,7 @@ function chooseSingleSelection(id) {
 			modal: true,
             height:220,
             width:600,
-            title: "Error",
+            title: "Error 201",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
@@ -76,7 +76,7 @@ function chooseTrackSelection() {
 			modal: true,
             height:220,
             width:600,
-            title: "Error",
+            title: "Error 201",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
@@ -109,7 +109,7 @@ function choosePolygonSelection() {
 			modal: true,
             height:220,
             width:600,
-            title: "Error",
+            title: "Error 201",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}

@@ -84,6 +84,7 @@ function addSinglePoint(measurement){
                     width: 300,
                     autoOpen: true,   
                     modal: true, 
+                    title: "Error 204",
                     open: function(event, ui) { 
                         setTimeout(function(){ 
                             $('#infodialog').dialog('close'); 
@@ -198,6 +199,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
                     width: 300,
                     autoOpen: true,   
                     modal: true, 
+                    title: "Error 205",
                     open: function(event, ui) { 
                         setTimeout(function(){ 
                             $('#infodialog').dialog('close'); 

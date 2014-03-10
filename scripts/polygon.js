@@ -60,6 +60,7 @@ function confirmPolygon(){
 			modal: true,
             height:200,
             width:600,
+            title: "Error 202",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
@@ -120,7 +121,8 @@ function confirmPolygon(){
 			height: 160,
 			width: 400,
 			autoOpen: true,   
-			modal: true, 
+			modal: true,
+            title: "Error 203",
 			open: function(event, ui) { 
 				setTimeout(function(){ 
 				$('#infodialog').dialog('close'); }, 5000); 

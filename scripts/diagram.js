@@ -29,11 +29,12 @@ function diagrams() {
 	}
 	else {
 	var diagramDialog = $('<p>F&uuml;r die Diagrammberechnungen m&uuml;ssen sich mindestens zwei Punkte in Ihrer Auswahl befinden. <br>Bitte selektieren Sie Punkte.</p>').dialog({
+        width: 600,
+        title: "Error 301",
 		buttons: {
 			"OK": function() {diagramDialog.dialog('close');}
 		},
-		width: 600
-	});
+    });
 	}
 
 }

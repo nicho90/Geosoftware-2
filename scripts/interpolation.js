@@ -37,8 +37,9 @@ Content
 function startInterpolation(){
 	
 	if(selection.length == 0){
-		var dialog = $('<p>Es befindet sich keine Track in Ihrer Auswahl.</p>').dialog({
+		var dialog = $('<p>Es befindet sich kein Track in Ihrer Auswahl.</p>').dialog({
 			modal: true,
+            title: "Error 601",
             height:200,
             width:600,
 			buttons: {
@@ -525,7 +526,7 @@ function checkIntRequirements(consumption, co2, maf, speed){
 			modal: true,
             width:600,
             height:200,
-            title: "Error",
+            title: "Error 602",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
@@ -539,6 +540,7 @@ function checkIntRequirements(consumption, co2, maf, speed){
 			modal: true,
             width:600,
             height:200,
+            title: "Error 603",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
 			}
@@ -566,6 +568,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
+                title: "Error 604",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -581,6 +584,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
+                title: "Error 604",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -597,6 +601,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
+                title: "Error 604",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -613,6 +618,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
+                title: "Error 604",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
