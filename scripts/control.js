@@ -216,6 +216,8 @@ function colorize(button) {
 /***********************
 	2. Filter
 ***********************/
+//Variable needed to check whether startFilter() is invoked by pressing 'OK' or 'Zuruecksetzen'
+var isFilterReset = false;
 
 // 2.1 Start Filter
 // Description: Start the filter if button 'OK' is pressed 
@@ -225,6 +227,33 @@ function startFilter() {
     endForm = document.filterFormular.Ende.value;
     typForm = document.filterFormular.Typ.value;
     sensorForm = document.filterFormular.Sensor_ID.value;
+    
+    if(isFilterReset==true) {
+        drawMeasurements();
+        isFilterReset = false;
+        return;
+    }
+    
+    //Check if filter criteria are entered.
+    
+    else if(isFilterReset==false){
+    if(startForm==null || startForm=="") {
+        if(endForm==null || endForm=="") {
+            if(typForm==null || typForm=="") {
+                if(sensorForm==null || sensorForm=="") {
+    var dialog=$('<p>Sie haben keine Filterkriterien angegeben. Bitte setzen Sie mindestens ein Kriterium.</p>').dialog({
+        width: 600,
+        title: 'Error 401',
+        buttons:{
+            "OK":function(){dialog.dialog('close');}
+        }
+    });
+                    return false;
+                }
+            }
+        }
+    }
+    }
     
     drawMeasurements();
 }
@@ -238,7 +267,7 @@ function resetFilter() {
     document.filterFormular.Ende.value = "";
     document.filterFormular.Typ.value = "";
     document.filterFormular.Sensor_ID.value = "";
-    
+    isFilterReset = true;
     startFilter();
 }
 

@@ -349,10 +349,22 @@ function drawMeasurements() {
 				for(var j = 0; j < result.features.length; j++){
 					currentMeasurements.push(result.features[j]);
 				}
+			},
+            error: function(jqXHR, textStatus, errorThrown){
+            var dialog = $('<p>Beim Abruf der Messpunkte ist folgender Fehler aufgetreten: '+errorThrown+' Bitte konsultieren Sie das Handbuch f&uuml;r weitere Informationen.</p>').dialog({
+			modal: true,
+            height:200,
+            width:600,
+            title: "Status Error "+errorThrown,
+			buttons: {
+				"OK":  function() {dialog.dialog('close');}
 			}
+        })
+                                                                                                                                                                                     }
 		});
-	}
-		
+                   
+        }
+	
 	$.each(currentMeasurements, function(i, measurement){
 	
 		var geometry = measurement.geometry;
