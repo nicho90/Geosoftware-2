@@ -364,6 +364,8 @@ function drawMeasurements() {
 		});
                    
         }
+    
+                                                                        
 	
 	$.each(currentMeasurements, function(i, measurement){
 	
@@ -494,6 +496,7 @@ function drawMeasurements() {
 		
 		//add all points to the array 'markers'
 		markers.push(marker);
+                                                                         
 		
 		//split the time into 'day', 'month', 'year'
 		var splitTime = properties.time.split("-");
@@ -588,6 +591,20 @@ function drawMeasurements() {
         }
 			
 	});
+    
+         
+           //if no measurements are returned
+    if(markers.length==0) {
+        var dialog = $('<p>Mit den gegenw&auml;rtig gew&auml;hlten Filtereinstellungen konnten keine Messpunkte gefunden werden. Bitte &auml;ndern Sie die Filtereinstellungen</p>').dialog({
+            modal:true,
+            width:600,
+            title: 'Error 402',
+            buttons: {
+                "OK": function() {dialog.dialog('close');}
+            }
+        })
+        return;
+    }      
 		
 	for(var i = 0; i < markers.length; i++) {
 		mainMap.addLayer(markers[i]);
