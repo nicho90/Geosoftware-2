@@ -337,6 +337,9 @@ function deleteSingleMeasurement(measurementID){
 			drawMeasurements();
 		}
 	}
+	
+	// redraw measurements, so that selected will be unselected on map
+	drawMeasurements();
 }
 
 // 2.2 Delete measurements from selection
