@@ -364,9 +364,16 @@ function clearSelection(){
 	refreshManufacturers()
 	refreshAnalysis();
 	
-	if(dialogTable.dialog('isOpen')) {
+	if(dialogTable != undefined && dialogTable.dialog('isOpen')) {
 	dialogTable.dialog('close');
 	showMeasurementDetails();
+	} else {
+		var dialog = $('<p>Es wurden noch keine Messpunkte selektiert.</p>').dialog({
+            width:600,
+			buttons: {
+				"OK": function() {dialog.dialog('close');},
+			}
+		});	
 	}
 }
 
@@ -425,7 +432,7 @@ function visualizeSelection(){
 					doNotLoad = true;
 					if(singlePointSelection) {
 						mainMap.closePopup();
-						var dialog = $('<p>M&ouml;chten Sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
+						var dialog = $('<p>Möchten Sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
                             width:600,
 							buttons: {
 								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
@@ -553,6 +560,6 @@ function showMeasurementDetails() {
         {
 		height: 620,
 		width: 900,
-		title: "Alle ausgew&auml;hlten Messwerte"
+		title: "Alle ausgewählten Messwerte"
         });
 }
