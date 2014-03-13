@@ -64,8 +64,13 @@
                     </ol>
                 </li>
                 <li><a href="#docu-3">Benutzeroberfläche der Applikation</a>
-                <li><a href="#docu-4">Selektionswerkzeuge</a>
-                <li><a href="#docu-5">Filtereinstellungen</a>
+                <li><a href="#docu-4">Filtereinstellungen</a>
+                <li><a href="#docu-5">Selektionswerkzeuge</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-5-1">Auswählen eines Messpunktes (bySinglePoint)</a></li>
+                        <li><a href="#docu-5-2">Suchen &amp; Auswählen eines Tracks (byTrack)</a></li>
+                        <li><a href="#docu-5-3">Auswählen über einen Raumausschnitt (byPolygon)</a></li>
+                    </ol>
                 <li><a href="#docu-6">Analysefunktionen</a>
                     <ol class=secondLevel>
                         <li><a href="#docu-6-1">Berechnung des Mittelwertes</a></li>
@@ -240,34 +245,8 @@
                     <hr>
                 </div>
 
-                <h3 id=docu-4>4. Selektionswerkzeuge</h3>
-				
-				<h4 id=docu-4-1>4.1 Auswahl eines einzelnen Punktes</h4>
-				
-				Über dieses Auswahlwerkzeug lassen sich einzelne Punkte von der Karte der Auswahl hinzufügen. Der Benutzer klickt einfach auf den gewünschten Messpunkt und erhält eine kurze Bestätigung in Form einer sich selbst schließenden Infobox. Außerdem wird der Messpunkt blau eingefärbt, nachdem er ausgewählt wurde.
-				Dieses Auswahlwerkzeug ist das einzige, dass auch das Entfernen von Messpunkten aus der Auswahl erlaubt. Dazu klickt der Nutzer einfach erneut auf einen bereits ausgewählten Punkt.
-
-				<h4 id=docu-4-2>4.2 Auswahl eines einzelnen Tracks</h4>
-				
-				Über dieses Auswahlwerkzeug lassen sich ganze Track über eine Track-ID der Auswahl hinzufügen. Der Benutzer gibt einfach die gewünschte Track-ID in das Textfeld ein und bestätigt seine Eingabe mit einem Klick auf den OK-Button. Anschließend wird der Kartenausschnitt auf den kompletten Track zentriert und alle Punkte des Tracks zur Auswahl hinzugefügt. Die Punkte sind anschließend blau markiert.
-				Beim bestätigen wird eine Anfrage zum enviroCar-Server gesendet, die alle Messpunkte zu dieser Track-ID erfragt. Anschließend werden die erhaltene Messpunkte in einer Schleife der Auswahl hinzugefügt. Dabei werden Punkte, die sich bereits in der Auswahl befinden, nicht erneut hinzugefügt und der Benutzer bekommt eine entsprechende Hinweismeldung.
-
-				<h4 id=docu-4-3>4.3 Auswahl von Messpunkten über ein Polygon</h4>
-				
-				Über dieses Auswahlwerkzeug lassen sich verschiedene Messpunkte von der Karte zur Auswahl hinzufügen, indem ein Polygon gezeichnet wird. Nach der Auswahl des Werkzeuges kann der Nutzer mit einfachen Klicks in der Kart ein beliebig großes Polygon zeichnen. Mit dem Klick auf den Startpunkt wird das Polygon geschlossen. Nicht geschlossene Polygone können nicht bestätigt werden. Das Zeichentool kann jederzeit mit einem Klick auf den “Reset” Button beendet werden.<br>
-
-				Wurde ein Polygon bestätigt, so wird der Kartenausschnitt zuerst auf das gezeichnete Polygon zentriert, bevor der Algorithmus gestartet wird. Der Grund dafür ist, dass für den Algorithmus alle Punkte aus dem aktuellen Kartenausschnitt miteinbezogen werden. Durch das Zentrieren werden nicht relevante Punkte ausgelassen und der Algorithmus beschleunigt (Es werden weniger Punkte iteriert und die Performance steigt).<br>
-
-				Werden bei der Polygonauswahl Messpunkte ausgewählt, die bereits in der Auswahl sind, so werden diese nicht erneut hinzugefügt und der Benutzer bekommen eine entsprechende Hinweismeldung.
-
-				
-                <div id=next>
-                    <a href="#docu-4">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
-                    <hr>
-                </div>
-
-
-                <h3 id=docu-5>5. Filtereinstellungen</h3>
+                
+                <h3 id=docu-4>4. Filtereinstellungen</h3>
 				Über eine Filterleiste im Kopfbereich der Applikation kann der Nutzer die Messpunkte nach Datum, SensorID und Fahrzeugtyp filtern, 
 				so dass ihm nur noch eine Auswahl der Messpunkte (die passenden Messpunkte) angezeigt wird. <br>
 				Hierbei ist zu beachten, dass es nur möglich ist, das Enddatum an den gleichen Tag, bzw. einen späteren Tag als das Anfangsdatum einzustellen.
@@ -277,6 +256,33 @@
 				Die Filterung der Messpunkte nach einem bestimmte Track findet im Bereich Selektionswerkzeuge statt. 
 				Dort hat der Nutzer die Möglichkeit, eine TrackID einzugeben und eine Filterung durchzuführen.<br>
 
+                <div id=next>
+                    <a href="#docu-4">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+                
+                <h3 id=docu-5>5. Selektionswerkzeuge</h3>
+				
+				<h4 id=docu-5-1>5.1 Auswählen eines Messpunktes (bySinglePoint)</h4>
+				
+				Über dieses Auswahlwerkzeug lassen sich einzelne Punkte von der Karte der Auswahl hinzufügen. Der Benutzer klickt einfach auf den gewünschten Messpunkt und erhält eine kurze Bestätigung in Form einer sich selbst schließenden Infobox. Außerdem wird der Messpunkt blau eingefärbt, nachdem er ausgewählt wurde.
+				Dieses Auswahlwerkzeug ist das einzige, dass auch das Entfernen von Messpunkten aus der Auswahl erlaubt. Dazu klickt der Nutzer einfach erneut auf einen bereits ausgewählten Punkt.
+
+				<h4 id=docu-5-2>5.2 Suchen &amp; Auswählen eines Tracks (byTrack)</h4>
+				
+				Über dieses Auswahlwerkzeug lassen sich ganze Tracks über eine Track-ID zur Auswahl hinzufügen. Der Benutzer gibt einfach die gewünschte Track-ID in das Textfeld ein und bestätigt seine Eingabe mit einem Klick auf den OK-Button. Anschließend wird der Kartenausschnitt auf den kompletten Track zentriert und alle Punkte des Tracks zur Auswahl hinzugefügt. Die Punkte sind anschließend blau markiert.
+				Beim Bestätigen wird eine Anfrage zum enviroCar-Server gesendet, die alle Messpunkte zu dieser Track-ID erfragt. Anschließend werden die zurückgelieferten Messpunkte in einer Schleife zur Auswahl hinzugefügt. Dabei werden Punkte, die sich bereits in der Auswahl befinden, nicht erneut hinzugefügt und der Benutzer bekommt eine entsprechende Hinweismeldung.
+
+				<h4 id=docu-5-3>5.3 Auswählen über einen Raumausschnitt (byPolygon)</h4>
+				
+				Über dieses Auswahlwerkzeug lassen sich verschiedene Messpunkte von der Karte zur Auswahl hinzufügen, indem ein Polygon gezeichnet wird. Nach der Auswahl des Werkzeuges kann der Nutzer mit einfachen Klicks in der Kart ein beliebig großes Polygon zeichnen. Mit dem Klick auf den Startpunkt wird das Polygon geschlossen. Nicht geschlossene Polygone können nicht bestätigt werden. Das Zeichentool kann jederzeit mit einem Klick auf den "Reset"-Button zurückgesetzt werden, um erneut ein Polygon zu zeichnen.<br>
+
+				Wurde ein Polygon bestätigt, so wird der Kartenausschnitt zuerst auf das gezeichnete Polygon zentriert, bevor der Algorithmus gestartet wird. Der Grund dafür ist, dass für den Algorithmus alle Punkte aus dem aktuellen Kartenausschnitt miteinbezogen werden. Durch das Zentrieren werden nicht relevante Punkte ausgelassen und der Algorithmus beschleunigt (Es werden weniger Punkte iteriert und die Performance steigt).<br>
+
+				Werden bei der Polygonauswahl Messpunkte ausgewählt, die sich bereits in der Auswahl befinden, so werden diese nicht erneut hinzugefügt und der Benutzer bekommen eine entsprechende Hinweismeldung.
+
+				
                 <div id=next>
                     <a href="#docu-5">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
                     <hr>
