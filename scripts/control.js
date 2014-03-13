@@ -41,7 +41,6 @@ function chooseSingleSelection(id) {
     if(trackSelection || polygonSelection){
 		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie&szlig;en Sie dieses zuerst.</p>').dialog({
 			modal: true,
-            height:220,
             width:600,
             title: "Error 201",
 			buttons: {
@@ -74,7 +73,6 @@ function chooseTrackSelection() {
     if(singlePointSelection || polygonSelection){
 		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie&szlig;en Sie dieses zuerst.</p>').dialog({
 			modal: true,
-            height:220,
             width:600,
             title: "Error 201",
 			buttons: {
@@ -107,7 +105,6 @@ function choosePolygonSelection() {
     if(singlePointSelection || trackSelection){
 		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie&szlig;en Sie dieses zuerst.</p>').dialog({
 			modal: true,
-            height:220,
             width:600,
             title: "Error 201",
 			buttons: {

@@ -426,7 +426,6 @@ function visualizeSelection(){
 					if(singlePointSelection) {
 						mainMap.closePopup();
 						var dialog = $('<p>M&ouml;chten Sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
-                            height:200,
                             width:600,
 							buttons: {
 								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},

@@ -58,7 +58,6 @@ function confirmPolygon(){
 	if(polygonLayer == undefined){
 		var dialog = $('<p>Bitte zeichnen Sie zuerst ein geschlossenes Polygon.</p>').dialog({
 			modal: true,
-            height:200,
             width:600,
             title: "Error 202",
 			buttons: {
@@ -118,8 +117,7 @@ function confirmPolygon(){
 	
 		$('#infodialog').html('Die ausgew&auml;hlten Punkte wurden hinzugef&uuml;gt. Einige Punkte befinden sich bereits in Ihrer Auswahl und wurde deshalb nicht erneut hinzugef&uuml;gt.');
 		$('#infodialog').dialog({ 
-			height: 160,
-			width: 400,
+			width: 600,
 			autoOpen: true,   
 			modal: true,
             title: "Error 203",

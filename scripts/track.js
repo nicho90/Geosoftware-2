@@ -31,7 +31,6 @@ function showTrack(pointID) {
     
     var dialog = $('<div class="loading_box"><img src=images/loading.gif class="loading_picture"></div>').dialog(
 	            {
-	                height: 220,
 	                width: 600,
 	                modal: true
 	            });
@@ -54,7 +53,6 @@ function showTrack(pointID) {
 						   dialog.dialog('close');
                                 dialog = $('<p>Dieser Punkt ist Teil des Tracks: <b>' + track.id + '</b><br><br>M&ouml;chten Sie diesen Track:</p>').dialog(
 							{
-	 								height: 260,
 	 								width: 600,
 	 								modal: true,
 	 								buttons: {
