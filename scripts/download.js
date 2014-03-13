@@ -1,4 +1,4 @@
-function download_sel_pkte(){
+function download_measurementPoints(){
 
 if(selection.length > 0){
 
@@ -18,7 +18,7 @@ if(selection.length > 0){
 	$('#downloadMpDialog').html('M&ouml;chten Sie die ausgew&auml;hlten Messpunkte als .json-Datei herunterladen?<br>');
 					
 		$('#downloadMpDialog').dialog({ 
-			height:220,
+			height:260,
 			width: 600,
 			autoOpen: true,   
 			modal: true,
@@ -26,7 +26,7 @@ if(selection.length > 0){
 
 	var name = new Date();
 	$('<a href="data:' + jsonResultFile + '" download="' + name.getTime() + '.json"><div style="text-align: right;"><input type="button" name="confirmDownload" value="Herunterladen"></div></a>').appendTo('#downloadMpDialog');
-	//$('#downloadMpDialog').dialog('close');	
+	
 	}
 else{
 	var downloadmpDialog = $('<p>Um die Downloadfunktion nutzen zu k&ouml;nnen, muss sich mindestens ein Punkt in Ihrer Auswahl befinden.<br>Bitte selektieren Sie einen oder mehrere Punkte.</p>').dialog({
@@ -38,4 +38,34 @@ else{
 		});
 	}
 
+}
+
+function downloadInterpolation(){
+
+var jsonStringInterpolation = '{"interpolated_values": [';
+
+for(var i = 1; i < interpolated.length; i++){
+	jsonStringInterpolation = jsonStringInterpolation +	'{"latitude":'+ interpolated.latitude[i-1]+ ' , ' + '"longitude":' + interpolated.longitude[i-1] + ' , ' + '"speed":'	+	interpolated.phenomenons.Speed[i-1] + ' , ' + '"CO2":' + interpolated.phenomenons.CO2[i-1] + ' , ' + '"consumption":' + interpolated.phenomenons.Consumption[i-1] + ' , ' + '"MAF":' + interpolated.phenomenons.MAF[i-1] + "}" + ",";             
+	}
+	var jsonStringFInterpolation = jsonStringInterpolation.substr(0, jsonStringInterpolation.length-1);
+	var jsonResultInterpolation = jsonStringFInterpolation + "] }";
+
+	var jsonResultFileInterpolation = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResultInterpolation + ")")));
+	
+	alert(jsonResultFileInterpolation);
+	
+	$('#downloadInterpolationDialog').html('M&ouml;chten Sie die berechneten Interpolationsergebnisse als .json-Datei herunterladen?<br>');
+					
+		$('#downloadInterpolationDialog').dialog({ 
+			height:260,
+			width: 600,
+			autoOpen: true,   
+			modal: true,
+		});	
+
+	//var nameI = new Date();
+	//$('<a href="data:' + jsonResultFileInterpolation + '" download="' + "interpolation" + '.json"><div style="text-align: right;"><input type="button" name="confirmDownload" value="Herunterladen"></div></a>').appendTo('#downloadInterpolationDialog');
+	
+	
+	
 }

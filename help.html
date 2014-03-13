@@ -119,6 +119,17 @@
                 
                 <div id=clear></div>
                 <h3 id=help-2>2. Der Aufbau der Applikation</h3>
+				<div class="imageBoxRight">
+                    <a href="images/help/docu_2_s1.png" rel="shadowbox"><img src="images/help/docu_2_s1.png" alt="Aufbau der Applikation" class=image width=300px height=200px></a>
+                    <div class="imageCaption">
+                        
+                    </div>
+                </div>
+								
+				Das Zentrum der Applikation wird von der Karte gebildet. Auf ihr werden bereits beim Starten der Applikation Punkte von EnviroCar dargestellt. Je nach dem, wie der Nutzer die Applikation nutzt, dient die Karte auch zur Darstellung von gefilterten Punkten, Analyseergebnissen, ausgewählten Tracks und Interpolationsergebnisse.
+				Die Applikation ist nach einer logischen Bedienreihenfolge aufgebaut. 
+				Diese ist an der neben stehenden Abbildung gut zu erkennen. Es ist dem Nutzer allerdings auch möglich, außerhalb der vorgesehenen Reihenfolge mit der Applikation zu interagieren. Die hier beschriebene Reihenfolge ist allerdings gerade bei der ersten Benutzung der Applikation zu empfehlen. Im ersten Schritt kann der Nutzer die angezeigten Punkte im Filterbereich im Header nach bestimmten Kriterien filtern, z.B. Datum oder Fahrzeugtyp. Es ist ihm auch möglich, über Selektierwerkzeuge die nun angezeigten, oder auch nicht vorhergefilterte Punkte zu selektieren, beispielsweise durch das anklicken eines Punktes, wenn das dazu bestimmte Selektierwerkzeug aktiviert ist. Die selektierten Punkte werden dem Nutzer nun in einer Tabelle angezeigt. Mit diesen Punkte gegebene mathematische Analysen durchführen und sich Diagramme für Häufigkeitsverteilungen der Attribute anschauen. Hat der Nutzer einen einzelnen Track in der Selektionstabelle, so kann er entlang dieses Tracks interpolieren.
+
                 
                 <div id=clear></div>
                 <div id=next>
@@ -128,13 +139,17 @@
                 
                 <div id=clear></div>
                 <h3 id=help-3>3. Die Messpunkte</h3>
-                
+				Dem Nutzer wird in der Applikation standardmäßig eine Auswahl der Messpunkte auf der Karte präsentiert.
                 <div id=clear></div>
                 <h4 id=help-3-1>3.1 Verfügbare Werte</h4>
-                
+                Die Messpunkte beziehen sich auf die Daten aus der enviroCar-Datenbank und beinhalten neben ihren Koordinaten Werte zu den Attributen 
+				SensorID, Zeit, Autohersteller, Automodel, Geschwindigkeit, CO2-Ausstoß, Verbrauch und MAF-Werte. 
+				Sie sind nur verfügbar, wenn der enviroCar-Server erreichbar ist. 
                 <div id=clear></div>
                 <h4 id=help-3-2>3.2 Die Anzahl der Messpunkte</h4>
-                
+                Der Nutzer kann die standardmäßige Anzahl an angezeigten Messpunkten 
+				über ein Auswahlbutton in der Kopfzeile der Applikation verändern. 
+				Das ändert auch die Performance der Anwendung.
                 <div id=clear></div>
                 <div id=next>
                     <a href="#help-3">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
@@ -153,6 +168,14 @@
 
                 <div id=clear></div>
                 <h4 id=help-4-1>4.1 Die Navigationselemente</h4>
+				<div class="imageBoxLeft">
+                    <a href="images/help/docu_4_s1.png" rel="shadowbox"><img src="images/help/docu_4_s1.png" alt="Navigationselemente" class=image width=100px height=80px></a>
+                    <div class="imageCaption">
+                    Navigationselemente  
+                    </div>
+                </div>
+				
+				
 				In der ober linken Ecke auf der Karte befinden sich die Navigationselemente, mit denen man mit der Karte interagieren kann.
 				Bei einem klick auf den Plus-, bzw. Minus-Button zoomt der Nutzer jeweils eine Zoomstufe in die Karte, bzw. aus der Karte heraus.
 				Mit einem Klick auf das jeweilige Pfeilsymbol ist es dem Nutzer möglich, den Karteausschnitt in die jeweilige Richtung zu verschieben.<br>
@@ -165,9 +188,32 @@
 				
                 <div id=clear></div>
                 <h4 id=help-4-2>4.2 Die Ortungsfunktion</h4>
+				
+				In der linken oberen Ecke der Karte befindet sich neben den Buttons für die Navigation in der Karte ein weiterer Button, 
+				dieser befindet sich in der Mitte zwischen den Panning-Buttons. Wenn der Nutzer auf diesen Button klickt, 
+				wird seine momentane Funktion bestimmt, 
+				der Kartenausschnitt wird auf diesen Punkt verschoben, die Sicht wird an den Punkt herangezoomt und es wird dort ein Marker gesetz
                 
                 <div id=clear></div>
                 <h4 id=help-4-3>4.3 Verfügbares Kartenmaterial</h4>
+				<div class="imageBoxRight">
+                    <a href="images/help/docu_4_s2.png" rel="shadowbox"><img src="images/help/docu_4_s2.png" alt="verfügbare Kartenelemente" class=image width=100px height=80px></a>
+                    <div class="imageCaption">
+                    Button zum Anwählen
+					
+                    </div>
+                </div>
+				In der oberen rechten Ecke der Karte befindet sich das Symbol des Werkzeugs zur Layerauswahl. Fährt der Nutzer mit der Maus über dieses Symbol, 
+				so werden ihm die verfügbaren Karten angezeigt. Mit einem Linksklick kann er einen Kartenlayer auswählen.<br>
+				Es stehen verschiedene Karten zur Verfügung: <br>
+				<br>
+				<li>Die OpenStreetMap</li>
+				<li>Die OpenStreetMap mit einer Cloudmade-Bearbeitung</li>
+				<li>Die OpenTopoMap, eine topographische Karte, basierend auf OpenStreetMap</li>
+				<li>Die DTK10, einer topographischen Karte von NRW </li>
+				<li>Die DTK10 panchromatisch, welche der DTK10 entspricht, allerdings schwarz-weiß ist</li>
+				<li>Und die Satellitenkarte von Google Maps</li>
+
 
                 <div id=clear></div>
                 <h4 id=help-4-4>4.4 Die Messpunkte auf der Karte</h4>

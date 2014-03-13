@@ -134,7 +134,7 @@ Content
 			
         
 		<!-- Script for downloading all selected measurement points -->
-		<script type="text/javascript" src="scripts/download_messpunkte.js"></script>
+		<script type="text/javascript" src="scripts/download.js"></script>
         
         
         <!-- Script to check the inputs of a user -->
@@ -151,8 +151,11 @@ Content
 		<!-- Digram popup (standardmäßig ausgeblendet) -->
 		<div id=diagram style="margin: 0 auto; display:none;" title="Diagramme"></div>
 		
-		<!-- Download popup (standardmäßig ausgeblendet) -->
+		<!-- Download popup für das Herunterladen der Messpunkte (standardmäßig ausgeblendet) -->
 		<div id="downloadMpDialog" style="margin: 0 auto; display:none;"></div>
+		
+		<!-- Download popup für das Herunterladen der Interpolationsergebnisse (standardmäßig ausgeblendet) -->
+		<div id="downloadInterpolationDialog" style="margin: 0 auto; display:none;"></div>
 		
 <!-- 5. Header -->    
 	 <header role="banner">
@@ -256,7 +259,8 @@ Content
                  <a id=resetVisualisation class=visualisationElement onClick="resetVisualization()"><img src="images/reset.png" class=imageVisualisation></a> 
             </div>
             <div id=interpolationDownload original-title="Interpolationsergebnis downloaden">
-                 <a id=downloadInterpolation class=visualisationElement onClick="alert('not yet implemented')"><img src="images/download_2.png" class=download_2></a> 
+			                        
+                 <a  id=downloadInterpolation class=visualisationElement onClick="downloadInterpolation()"><img src="images/download_2.png" class=download_2></a> 
             </div>
             <div id=legende>
                 <div class=center><b>Legende</b></div>
@@ -372,7 +376,7 @@ Content
                                 <a href="#" class="link" onClick="showMeasurementDetails()">Alle Messwerte</a>
                             </li>
                             <li>
-                                <a href="#" onClick="download_sel_pkte()">
+                                <a href="#" onClick="download_measurementPoints()">
 									<img src="images/download_2.png" alt="Alle Werte downloaden" class="downloadButton">
 								</a>
 							</li>
