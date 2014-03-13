@@ -1,3 +1,10 @@
+// Download the results of the user interaction with the application
+// author: Johanna Möllmann
+
+/***********************************************
+    1. download the selected measurement points
+***********************************************/
+
 function download_measurementPoints(){
 
 if(selection.length > 0){
@@ -39,6 +46,10 @@ else{
 	}
 
 }
+
+/***********************************************
+    2. download the interpolation result
+***********************************************/
 
 function downloadInterpolation(){
 
