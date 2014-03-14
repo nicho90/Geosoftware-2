@@ -59,21 +59,24 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 			var jsonStringInterpolationSpeed = '{"interpolated_speed_values": [';
 
 			for(var i = 1; i < selection.length; i++){
+				if( i < 100){
 				jsonStringInterpolationSpeed = jsonStringInterpolationSpeed +	'{"latitude":'+ interpolated.latitude[i-1]+ ' , ' + '"longitude":' + interpolated.longitude[i-1] + ' , ' + '"speed":'	+	interpolated.phenomenons.Speed[i-1] + "}" + ",";             
+			}
 			}
 				var jsonStringFInterpolationSp = jsonStringInterpolationSpeed.substr(0, jsonStringInterpolationSpeed.length-1);
 				var jsonResultInterpolationSp = jsonStringFInterpolationSp + "] }";
-
 				var jsonResultFileInterpolationSp = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResultInterpolationSp + ")")));
 	
-	downloadwindow(jsonResultInterpolationSp);
+	downloadwindow(jsonResultFileInterpolationSp);
 	}
 
 	else if(selectionBox.options[selectionBox.selectedIndex].value == 'CO2'){
 			var jsonStringInterpolationCO = '{"interpolated_co2_values": [';
 
-		for(var i = 1; i < interpolated.length; i++){
+		for(var i = 1; i < selection.length; i++){
+		if( i < 100){
 			jsonStringInterpolationCO = jsonStringInterpolationCO +	'{"latitude":'+ interpolated.latitude[i-1]+ ' , ' + '"longitude":' + interpolated.longitude[i-1] + ' , ' + '"CO2":' + interpolated.phenomenons.CO2[i-1] + "}" + ",";             
+		}
 		}
 			var jsonStringFInterpolationCO = jsonStringInterpolationCO.substr(0, jsonStringInterpolationCO.length-1);
 			var jsonResultInterpolationCO = jsonStringFInterpolationCO + "] }";
@@ -84,8 +87,10 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 	else if(selectionBox.options[selectionBox.selectedIndex].value == 'Spritverbrauch'){
 		var jsonStringInterpolationCon = '{"interpolated_consumption_values": [';
 
-		for(var i = 1; i < interpolated.length; i++){
+		for(var i = 1; i < selection.length; i++){
+		if( i < 100){
 			jsonStringInterpolationCon = jsonStringInterpolationCon +	'{"latitude":'+ interpolated.latitude[i-1]+ ' , ' + '"longitude":' + interpolated.longitude[i-1] + ' , ' + '"consumption":' + interpolated.phenomenons.Consumption[i-1] + "}" + ",";             
+		}
 		}
 			var jsonStringFInterpolationCon = jsonStringInterpolationCon.substr(0, jsonStringInterpolationCon.length-1);
 			var jsonResultInterpolationCon = jsonStringFInterpolationCon + "] }";
@@ -98,22 +103,29 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 		
 		var jsonStringInterpolationMAF = '{"interpolated_MAF_values": [';
 
-		for(var i = 1; i < interpolated.length; i++){
+		for(var i = 1; i < selection.length; i++){
+		if( i < 100){
 			jsonStringInterpolationMAF = jsonStringInterpolationMAF + '{"latitude":' + interpolated.latitude[i-1]+ ' , ' + '"longitude":' + interpolated.longitude[i-1] + ' , '  + '"MAF":' + interpolated.phenomenons.MAF[i-1] + "}" + ",";             
+		}
 		}
 			var jsonStringFInterpolationMAF = jsonStringInterpolationMAF.substr(0, jsonStringInterpolationMAF.length-1);
 			var jsonResultInterpolationMAF = jsonStringFInterpolationMAF + "] }";
 
 			var jsonResultFileInterpolationMAF = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResultInterpolationMAF + ")")));
-			downloadwindow(jsonResultFileInterpolationMAF);
+		downloadwindow(jsonResultFileInterpolationMAF);
 	}
 }
+
+
+//this function opens the window, which asks the user about the download
+//created by Johanna and Nicho
+
 function downloadwindow(resultData){
 	
 $('#downloadInterpolationDialog').html('M&ouml;chten Sie die berechneten Interpolationsergebnisse als .json-Datei herunterladen?<br>');
 					
 	$('#downloadInterpolationDialog').dialog({ 
-		height:260,
+		height:200,
 		width: 600,
 		autoOpen: true,   
 		modal: true,
