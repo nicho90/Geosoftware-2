@@ -1,5 +1,5 @@
 // Visualize the diagram for the analysis
-// authors: Nicholas Schiestel and Johanna Möllmann
+// Authors: Nicholas Schiestel and Johanna Möllmann
 
 /***********************************************
     1. Diagram-loader

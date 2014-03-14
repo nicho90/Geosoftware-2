@@ -30,7 +30,8 @@ function showTrack(pointID) {
 	var swLng = bounds.getSouthWest().lng;
     
     var dialog = $('<div class="loading_box"><img src=images/loading.gif class="loading_picture"></div>').dialog(
-	            {
+	            {  
+                    height: 220,
 	                width: 600,
 	                modal: true
 	            });

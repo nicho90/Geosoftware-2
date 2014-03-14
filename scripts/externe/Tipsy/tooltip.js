@@ -1,14 +1,13 @@
 /********************************************************************************************
 		Tooltips
-
-Description: To show little tooltips with notes and hints for the user.
+		
+Description: This function is used to show little tooltips with notes and hints for the user.
 Source: http://onehackoranother.com/projects/jquery/tipsy/ 
 
-********************************************************************************************/ 
+********************************************************************************************/
 
 $(function() {
-	            // Ursprügnliche Einstellung:
-                // $('a[rel=tipsy]').tipsy({fade: true, gravity: 'w'}); // nw | n | ne | w | e | sw | s | se
+                // $('a[rel=tipsy]').tipsy({fade: true, gravity: 'w'}); // nw | n | ne | w | e | sw | s | se  // default settings
                 $('#chooseSinglePoint').tipsy({fade:false, gravity: 'n'});
                 $('#chooseTrack').tipsy({fade:false, gravity: 'n'});
                 $('#choosePolygon').tipsy({fade:false, gravity: 'n'}); 

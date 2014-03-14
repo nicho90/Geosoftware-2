@@ -1,8 +1,8 @@
 // Download the results of the user interaction with the application
-// author: Johanna Möllmann
+// Author: Johanna Möllmann
 
 /***********************************************
-    1. download the selected measurement points
+    1. Download the selected measurement points
 ***********************************************/
 
 function download_measurementPoints(){
@@ -47,7 +47,7 @@ else{
 }
 
 /***********************************************
-    2. download the interpolation result
+    2. Download the interpolation result
 ***********************************************/
 
 function downloadInterpolation(){
@@ -117,21 +117,19 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 }
 
 
-//this function opens the window, which asks the user about the download
-//created by Johanna and Nicho
-
+//Description: this function opens the window, which asks the user about the download
+//Author: Johanna and Nicho
 function downloadwindow(resultData){
 	
 $('#downloadInterpolationDialog').html('M&ouml;chten Sie die berechneten Interpolationsergebnisse als .json-Datei herunterladen?<br>');
 					
 	$('#downloadInterpolationDialog').dialog({ 
-		height:200,
 		width: 600,
 		autoOpen: true,   
 		modal: true,
 	});	
 
 
-$('<a href="data:' + resultData + '" download="' + "interpolated_values" + '.json"><div style="text-align: right;"><input type="button" name="confirmDownload" value="Herunterladen"></div></a>').appendTo('#downloadInterpolationDialog');		
+$('<a href="data:' + resultData + '" download="' + "interpolated_values" + '.json"><div style="text-align: right;"><hr><input type="button" name="confirmDownload" value="Herunterladen" class="jQueryButton"></div></a>').appendTo('#downloadInterpolationDialog');		
 	
 }

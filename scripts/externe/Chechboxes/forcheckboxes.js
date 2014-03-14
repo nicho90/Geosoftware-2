@@ -1,4 +1,23 @@
-// für selektierte Punkte
+/********************************************************************************************
+		Forcheckboxes
+		
+These functions allows the user to selecet from a list, all checkboxes with selecting
+only one checkbox. It is used in the selected points list in the sidebar.
+
+********************************************************************************************
+Content
+
+1. for selected points
+
+2. for selected tracks
+
+*********************************************************************************************/
+
+
+
+/****************************
+	1. for selected points
+****************************/
 $(function(){
     $('#checkAll').change(function(){
         $('.chk').prop('checked',this.checked);
@@ -14,7 +33,10 @@ $(function(){
     });
 });
 
-// für selektierte Tracks
+
+/****************************
+	2. for selected tracks
+****************************/
 $(function(){
     $('#checkAll2').change(function(){
         $('.chk2').prop('checked',this.checked);
