@@ -154,7 +154,7 @@ nav ul a:hover{
 }
 
 #contentDocu{
-    font-size: 11pt;
+    font-size: 12pt;
     font-weight: none;
 }
 
@@ -184,11 +184,13 @@ article {
 #tableOfContent li a {
     text-decoration:none;
     color:rgb(22,127,193);
+    font-size: 12pt;
 }
 
 #tableOfContent li a:hover {
     text-decoration:underline;
     color:rgb(22,127,193);
+    font-size: 12pt;
 }
 
 /***********************************************
@@ -334,7 +336,14 @@ footer {
     box-shadow: 0 0 5px #888;
     color:rgb(0,0,0);
     text-align:center;
-    font-size:10pt;
+}
+
+.imageNoBorder{
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    color:rgb(0,0,0);
+    text-align:center;
 }
 
 .imageBoxLeft {
@@ -356,6 +365,7 @@ footer {
 .imageCaption{
     margin-top:3px;
     padding-top:3px;
+    font-size:10pt;
 }
 
 /***********************************************
@@ -647,6 +657,11 @@ h4 {
 
 #errorMessage{
     width:40%;
+    font-family:Droid Sans; 
+}
+
+#errorSolution{
+    font-family:Droid Sans; 
 }
 
 /***********************************************
@@ -657,6 +672,10 @@ h4 {
     font-weight: bold;
     text-align: left;
     vertical-align: middle;
+}
+
+#requirementsText {
+    font-family:Droid Sans; 
 }
 
 
@@ -713,3 +732,20 @@ h4 {
     height:auto;
     width:auto;
 }
+
+
+/***********************************************
+    5.12 Systemrequirementtable
+***********************************************/
+#structure {
+    font-size: 13pt;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#structureText {
+    font-family:Droid Sans; 
+}
+
+
