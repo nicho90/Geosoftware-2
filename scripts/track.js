@@ -6,17 +6,19 @@ This file contains all functions needed for searching and displaying a track.
 ********************************************************************************************
 Content
 
-1. Search/Show Track
+1. Show Track
 
 2. Visualize Track
+
+3. Search/Add Track
 
 *********************************************************************************************/
 
 /***********************
-	1. Search/Show Track
+	1. Show Track
 ***********************/
 
-// 1 Search/Show Track
+// 1 Show Track
 // Description: Searches for TrackID for a given Measurement in the current BoundingBox
 // Author: René Unrau
 function showTrack(pointID) {
@@ -189,31 +191,16 @@ function visualizeTrack(trackID){
 	});
 }
 
+/***********************
+	3. Search/Add Track
+***********************/
 
-// Filter map for track
+// 3 lter map for track
 // Description: Search Track by ID and adds it to selection
 // Author: René Unrau
 function trackFilter(){
 	
     var trackID = document.getElementById('Track_ID').value;
-	
-    visualizeTrack(trackID);
-	
-	$.getJSON("https://envirocar.org/api/stable/rest/tracks/" + trackID,function(track){
-	
-		addTrackToSelection(track);
-	});
-}
-
-
-// Filter map for track
-// Description: Search Track by ID and adds it to selection
-// Author: René Unrau
-function trackFilter(){
-	
-    var trackID = document.getElementById('Track_ID').value;
-	
-    visualizeTrack(trackID);
 	
 	$.getJSON("https://envirocar.org/api/stable/rest/tracks/" + trackID,function(track){
 	
