@@ -598,10 +598,8 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
 				
 				<p>Die enviroCar REST-API erlaubt leider nur maximal 100 Messpunkte pro Seite. In unserer Applikation werden immer nur die auf dem aktuellen Kartenausschnitt sichtbaren Messpunkte geladen. Wir benutzen dazu die Erweiterung</p> 
 
-				<p>
-                <pre>
-                    <code>https://envirocar.org/api/stable/measurements?bbox=swLng,swLat,neLng,neLat</code>
-                </pre>
+				<p style="text-align:center;">
+                <code>https://envirocar.org/api/stable/measurements?bbox=swLng,swLat,neLng,neLat</code>
                 </p>
  
 				bei der Abfrage.<br>
@@ -615,10 +613,8 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
 				
 				<p>Das Auswählen, die Visualisierung und die Interpolation einiger Tracks führt zu Einbrüchen der Performance. Nach näherer Betrachtung dieser Tracks haben wir festgestellt, dass hier teils alle Messpunkte mehrfach vorliegen. Hier ein Beispiel für solch einen Track:</p>
 
-				<p>
-                <pre>
+				<p style="text-align:center;">
                     <code>https://envirocar.org/api/stable/tracks/528349bee4b08cecc5a0b98d</code>
-                </pre>
                 </p>
 
 				Der Track enthält 1741 Messpunkte, von denen jedoch viele doppelt oder sogar dreifach vorliegen. Die Analyse solcher Tracks ist theoretisch dennoch möglich, kann jedoch auch zum Absturz der Applikation bzw. des Browsers führen. Außerdem führen die Duplikate natürlich zu verfälschten Ergebnissen.
@@ -627,10 +623,8 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
 				
 				<p>Die Messpunkte mancher Tracks enthalten teilweise Werte zu bestimmten Attributen, die jedoch nicht in jedem Messpunkt zu finden sind. Diese Tracks machen Analysen und Interpolation sehr schwierig, da für jeden Messpunkt überprüft werden muss, ob das Attribut belegt ist. Hier ein Beispiel für solch einen Track:</p>
 
-				<p>
-                <pre>
+				<p style="text-align:center;">
                     <code>https://envirocar.org/api/stable/tracks/52e39b02e4b0d8e8c22665c3</code>
-                </pre>
                 </p>
 
 				Natürlich sind diese Daten nicht fehlerhaft, jedoch erschweren sie unsere Analysen enorm. Unsere Applikation kann also nicht pauschal für einen Track festlegen, ob das Attribut vorhanden ist oder nicht. Für jeden einzelnen Messpunkt muss geprüft werden, ob auch hier das Attribut einen zugewiesenen Wert besitzt.
