@@ -174,8 +174,10 @@ Content
                                 <td>Sensor-ID:</td>
                                 <td colspan="2">
                                     <input type=text id="Sensor_ID" name="Sensor_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
+                                    <div id=filterActivity>
+                                         <a onclick="" id="filterActivityInfo" original-title="Sie haben bereits Messpunkte gefiltert. Sollten ggf. keine Messpunkte dargestellt werden, setzen Sie die Filtereinstellungen wieder zurück und wählen Sie eine andere Filtereinstellung.">!</a>    
+                                    </div>
                                 </td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>Enddatum:</td>
@@ -295,70 +297,72 @@ Content
             
 <!-- 7.1 Area of the selection tools -->
             <div id=selection class=sidebarElement>
-                <h2>Selektierwerkzeuge</h2>        
-                <div id=chooser>
-                    <ul>
-                        <li id="chooseSinglePoint" original-title="Verwenden Sie dieses Werkzeug um Punkte nach einander auf der Karte per Mausklick zu selektieren">
-                            <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
-                        </li>
-                        <li id="chooseTrack" original-title="Verwenden Sie dieses Werkzeug um einen ganzen Track zu suchen und hinzuzufügen. Die Auswahl eines ganzen Tracks ist auch über das Popup eines Messpunktes möglich: Klicken Sie einfach auf der Karte auf einen beliebigen Messpunkt, um das Popup zu öffnen.">
-                            <a onclick="chooseTrackSelection()"></a>
-                        </li>
-                        <li id="choosePolygon"  original-title="Verwenden Sie dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren.">
-                            <a onclick="choosePolygonSelection()"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div id=clear></div>
+                <a href="#" onclick="toggle_visibility('selectionContent')" class=link><h2>Selektierwerkzeuge</h2></a>
+                <div id=selectionContent>
+                    <div id=chooser>
+                        <ul>
+                            <li id="chooseSinglePoint" original-title="Verwenden Sie dieses Werkzeug um Punkte nach einander auf der Karte per Mausklick zu selektieren">
+                                <a onclick="chooseSingleSelection('chooseSinglePoint')"></a>
+                            </li>
+                            <li id="chooseTrack" original-title="Verwenden Sie dieses Werkzeug um einen ganzen Track zu suchen und hinzuzufügen. Die Auswahl eines ganzen Tracks ist auch über das Popup eines Messpunktes möglich: Klicken Sie einfach auf der Karte auf einen beliebigen Messpunkt, um das Popup zu öffnen.">
+                                <a onclick="chooseTrackSelection()"></a>
+                            </li>
+                            <li id="choosePolygon"  original-title="Verwenden Sie dieses Werkzeug um Punkte innerhalb eines Raumausschnitts zu selektieren.">
+                                <a onclick="choosePolygonSelection()"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id=clear></div>
 
-<!-- 7.1.1 Addition areas for the function SelectByTrack -->
-                <div id=selectTrack>
-                    <div class=center>
-                        <font class=selectTrackTitle>Track finden &amp; auswählen</font>
-                    </div>
-                    <div class=selectTrackContent>
-                        <br>
-                        <table>
-                            <tr>
-                                <td align="left" valign="top">
-                                     <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
-                                </td>
-                                <td align="right" valign="middle">
-                                    <a onclick="" class=info id="trackSelectingInfo" original-title="Wenn Sie eine Track-ID haben, können Sie hier den Track suchen und alle Messpunkte direkt zur Auswahl hinzufügen.">i</a>
-                                </td>
-                            </tr>
-                            </table>
+    <!-- 7.1.1 Addition areas for the function SelectByTrack -->
+                    <div id=selectTrack>
+                        <div class=center>
+                            <font class=selectTrackTitle>Track finden &amp; auswählen</font>
+                        </div>
+                        <div class=selectTrackContent>
+                            <br>
                             <table>
-                            <tr>
-                                <td align="left" valign="top">
-                                    <input type="submit" id="visualizeTrack" name="visualizeTrack" value="Visualisieren" class=blueButton onClick="visualizeTrackFromTool()">&nbsp;
-                                    <input type="submit" id="searchTrack" name="searchTrack" value="Auswählen" class=submitButton onClick="addTrack()">&nbsp;
-                                    <input type="reset" id="cancelTrack" name="cancelTrack" value="Abbrechen" class=cancelButton onClick="chooseTrackSelection()">
-                                </td>
-                            </tr>
-                        </table>
+                                <tr>
+                                    <td align="left" valign="top">
+                                         <input type=text id="Track_ID" name="Track_ID" placeholder="z.B. 51c97d05e4b0fe5a04e9e735" class=filterButton>
+                                    </td>
+                                    <td align="right" valign="middle">
+                                        <a onclick="" class=info id="trackSelectingInfo" original-title="Wenn Sie eine Track-ID haben, können Sie hier den Track suchen und alle Messpunkte direkt zur Auswahl hinzufügen.">i</a>
+                                    </td>
+                                </tr>
+                                </table>
+                                <table>
+                                <tr>
+                                    <td align="left" valign="top">
+                                        <input type="submit" id="visualizeTrack" name="visualizeTrack" value="Visualisieren" class=blueButton onClick="visualizeTrackFromTool()">&nbsp;
+                                        <input type="submit" id="searchTrack" name="searchTrack" value="Auswählen" class=submitButton onClick="addTrack()">&nbsp;
+                                        <input type="reset" id="cancelTrack" name="cancelTrack" value="Abbrechen" class=cancelButton onClick="chooseTrackSelection()">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                
-<!-- 7.1.2 Addition areas for the function SelectByPolygon -->             
-                <div id=drawingPolygon>
-                    <div class=center>
-                        <font class=drawingElementTitle>Raumausschnitt zeichnen</font>
-                    </div>
-                    <div class=drawingElementContent>
-                        <br>
-                        <table>
-                            <tr>
-                                <td align="left" valign="top">
-                                    <input type="reset" id="resetPolygon" name="resetPolygon" value="Reset" class=blueButton onclick="deletePolygon(); drawPolygon()">&nbsp;
-                                    <input type="submit" id="acceptPolygon" name="acceptPolygon" value="Auswählen" class=submitButton onclick="confirmPolygon()">&nbsp;
-                                    <input type="reset" id="cancelPolygon" name="cancelPolygon" value="Abbrechen" class=cancelButton onclick="choosePolygonSelection();">&nbsp;
-                                </td>
-                                <td align="right" valign="middle">
-                                    <a onclick="" class=info id="polygonSelectingInfo" original-title="Klicken Sie auf der Karte nacheinander um einen Raumauschnitt zu definieren. Um den Raumausschnitt abzuschließen muss der Anfangspunkt gleich dem Endpunkt sein. Wenn Sie fertig sind, bestätigen Sie mit OK um die Messpunkte zu selektieren. Mit RESET können Sie den gezeichneten Raumausschnitt zurücksetzen und erneut definieren. Das Auswählen eines Polygons kann gegebenenfalls etwas länger dauern.">i</a>
-                                </td>
-                            </tr>
-                        </table>
+
+    <!-- 7.1.2 Addition areas for the function SelectByPolygon -->             
+                    <div id=drawingPolygon>
+                        <div class=center>
+                            <font class=drawingElementTitle>Raumausschnitt zeichnen</font>
+                        </div>
+                        <div class=drawingElementContent>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td align="left" valign="top">
+                                        <input type="reset" id="resetPolygon" name="resetPolygon" value="Reset" class=blueButton onclick="deletePolygon(); drawPolygon()">&nbsp;
+                                        <input type="submit" id="acceptPolygon" name="acceptPolygon" value="Auswählen" class=submitButton onclick="confirmPolygon()">&nbsp;
+                                        <input type="reset" id="cancelPolygon" name="cancelPolygon" value="Abbrechen" class=cancelButton onclick="choosePolygonSelection();">&nbsp;
+                                    </td>
+                                    <td align="right" valign="middle">
+                                        <a onclick="" class=info id="polygonSelectingInfo" original-title="Klicken Sie auf der Karte nacheinander um einen Raumauschnitt zu definieren. Um den Raumausschnitt abzuschließen muss der Anfangspunkt gleich dem Endpunkt sein. Wenn Sie fertig sind, bestätigen Sie mit OK um die Messpunkte zu selektieren. Mit RESET können Sie den gezeichneten Raumausschnitt zurücksetzen und erneut definieren. Das Auswählen eines Polygons kann gegebenenfalls etwas länger dauern.">i</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

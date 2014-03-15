@@ -15,6 +15,7 @@ Content
     2.3 Filter area
         2.3.1 Additions to the calendar selection
         2.3.2 Input fields
+        2.3.3 Filter activity 
 
 3. Map
     3.1 Navigation elements
@@ -219,6 +220,50 @@ header {
     width:200px;
 }
 
+/***********************************************
+    2.3.3 Filter activity 
+         (default setting: hidden;
+         is shown when a filter was set)
+***********************************************/
+#filterActivity {
+    margin-top:7px;
+    float: right;
+    display: block;
+}
+
+#filterActivityInfo {
+    background:rgb(255,255,255);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-decoration: none;
+    color: rgb(255,165,0);
+    font-weight:bold;
+    text-align: center;
+    border-radius: 12pt;
+    border: 1px solid rgb(255,165,0);
+    font-weight:bold;
+    font-family:Lucida Console;
+    font-size: 12pt;
+}
+
+#filterActivityInfo:hover {
+    background:rgb(244,244,244);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-decoration: none;
+    color: rgb(255,165,0);
+    font-weight:bold;
+    text-align: center;
+    border-radius: 12pt;
+    border: 1px solid rgb(255,165,0);
+    font-weight:bold;
+    font-family:Lucida Console;
+    font-size: 12pt;
+}
 
 /***********************************************
     3. Map
@@ -424,7 +469,6 @@ header {
     font-size: 8pt;
     padding: 5px;  
     background-position: 50% 50%;
-    
 }
 
 #interpolationClasses table {
@@ -580,12 +624,18 @@ header {
 #selection {
     width:auto;
     text-align:left;
-    padding-bottom:1px;
+}
+
+#selectionContent {
+    width:auto;
+    height:auto;
+    padding-bottom:5px;
 }
 
 #chooser {
     text-align:center;
-    padding-right: 10%;
+    padding-right:14%;
+    padding-bottom:5px;
 }
 
 /* ul */
@@ -666,7 +716,9 @@ header {
 
 #drawingPolygon, #selectTrack {
     display:none;
-    margin-bottom:3px;
+    margin-left:2px;
+    margin-right:2px;
+    margin-top:-10px;
 }
 
 .drawingElementContent table, .drawingElementContent table tr,
@@ -695,7 +747,7 @@ header {
     margin-top:-10px;
     margin-left:3px;
     margin-right:3px;
-    border: 1.5px solid rgb(255,165,0);
+    border-top: 2px dotted rgb(255,165,0);/*rgb(22,127,193);*/
     background-color:rgb(255,255,255);
     height:auto;
     z-index: 1;
@@ -1052,7 +1104,8 @@ hr {
     border-radius:15px;
     background-color: rgb(255,0,0);
     color:rgb(255,255,255);
-    font-weight:bold; 
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .cancelButton:hover, .cancelButton:active{
@@ -1063,6 +1116,7 @@ hr {
     color:rgb(255,255,255);
     font-weight:bold;
     text-decoration:underline;
+    cursor:pointer;
 }
 
 
@@ -1075,7 +1129,8 @@ hr {
     border-radius:15px;
     background-color: rgb(22,127,193);
     color:rgb(255,255,255);
-    font-weight:bold; 
+    font-weight:bold;
+    cursor:pointer;
 }
 .blueButton:hover, .blueButton:active{
     border: 2px solid rgb(22,127,193);
@@ -1085,6 +1140,7 @@ hr {
     color:rgb(255,255,255);
     font-weight:bold;
     text-decoration:underline;
+    cursor:pointer;
 }
 
 /***********************************************

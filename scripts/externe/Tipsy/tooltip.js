@@ -20,4 +20,5 @@ $(function() {
                 $('#krigingModelInfo').tipsy({fade:false, gravity: 'e'});
                 $('#SimgaInfo').tipsy({fade:false, gravity: 'e'});
                 $('#alphaInfo').tipsy({fade:false, gravity: 'e'});
+                $('#filterActivityInfo').tipsy({fade:false, gravity: 'e'});
 });
