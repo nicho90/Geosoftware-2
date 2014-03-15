@@ -87,6 +87,7 @@ function chooseTrackSelection() {
             trackSelection = false;
             colorize('chooseTrack');
             toggle_visibility('selectTrack');
+			document.getElementById('Track_ID').value = '';
         }
         else {
             trackSelection = true;

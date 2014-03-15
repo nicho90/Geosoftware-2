@@ -206,6 +206,9 @@ function addTrack(){
 		async : false,
 		url: "https://envirocar.org/api/stable/rest/tracks/" + trackID,
 		success: function(track){
+			//Reset Visualization
+			resetVisualization();
+			//Add Track to selection
 			addTrackToSelection(track);
 			// Close Track-Selection Tool
 			chooseTrackSelection();
@@ -218,6 +221,7 @@ function addTrack(){
 					"OK":  function() {dialog.dialog('close');}
 	 			}
 	 		});	
+			document.getElementById('Track_ID').value = '';
         }    
     });
 }
