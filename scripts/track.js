@@ -192,21 +192,44 @@ function visualizeTrack(trackID){
 }
 
 /***********************
-	3. Search/Add Track
+	3. Track-Selection-Tool
 ***********************/
 
-// 3 lter map for track
+// 3.1 Search/Add Track
 // Description: Search Track by ID and adds it to selection
 // Author: René Unrau
-function trackFilter(){
+function addTrack(){
 	
     var trackID = document.getElementById('Track_ID').value;
 	
-	$.getJSON("https://envirocar.org/api/stable/rest/tracks/" + trackID,function(track){
-	
-		addTrackToSelection(track);
-	});
-	
-	// Close Track-Selection Tool
-	chooseTrackSelection();
+	jQuery.ajax({
+		async : false,
+		url: "https://envirocar.org/api/stable/rest/tracks/" + trackID,
+		success: function(track){
+			addTrackToSelection(track);
+			// Close Track-Selection Tool
+			chooseTrackSelection();
+		},
+        error: function(jqXHR, textStatus, errorThrown){
+			dialog = $('<p>Es wurde kein Track gefunden.<br>Bitte überprüfen sie ihre Eingabe</p>').dialog({
+				width: 600,
+				modal: true,
+				buttons: {
+					"OK":  function() {dialog.dialog('close');}
+	 			}
+	 		});	
+        }    
+    });
 }
+
+// 3.2 VisualizeTrack from Selection Tool
+// Description: Search Track by ID and adds it to selection
+// Author: René Unrau
+function visualizeTrackFromTool(){
+	
+    var trackID = document.getElementById('Track_ID').value;
+	
+	visualizeTrack(trackID);
+}
+
+
