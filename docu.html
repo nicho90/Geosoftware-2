@@ -46,6 +46,7 @@
             <h3>Überblick</h3>
             
             <!-- begin of the table of content -->
+<<<<<<< HEAD
             <div id=tableOfContent>
                 <ol class=firstLevel>
                     <li><a href="#docu-1">Technische Architektur</a>
@@ -107,6 +108,73 @@
                     </li>
                 </ol>
             </div>
+=======
+            <ol class=firstLevel>
+                <li><a href="#docu-1">Technische Architektur</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-1-1">Der Server</a></li>
+                        <li><a href="#docu-1-2">Das Portal</a></li>
+                        <li><a href="#docu-1-3">Die Applikation</a></li>
+                        <li><a href="#docu-1-4">Benutzte Frameworks</a></li>
+                    </ol>
+                </li>
+                <li><a href="#docu-2">enviroCar</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-2-1">API</a></li>
+                        <li><a href="#docu-2-2">Abfrage von Messpunkten</a></li>
+                        <li><a href="#docu-2-3">Ermittlung des zugehörigen Tracks für einen Messpunkt
+</a></li>
+                    </ol>
+                </li>
+                <li><a href="#docu-3">Benutzeroberfläche der Applikation</a>
+                <li><a href="#docu-4">Filtereinstellungen</a>
+                <li><a href="#docu-5">Selektionswerkzeuge</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-5-1">Auswählen eines Messpunktes (bySinglePoint)</a></li>
+                        <li><a href="#docu-5-2">Suchen &amp; Auswählen eines Tracks (byTrack)</a></li>
+                        <li><a href="#docu-5-3">Auswählen über einen Raumausschnitt (byPolygon)</a></li>
+                    </ol>
+                <li><a href="#docu-6">Analysefunktionen</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-6-1">Berechnung des Mittelwertes</a></li>
+                        <li><a href="#docu-6-2">Berechnung der Standardabweichung</a></li>
+                        <li><a href="#docu-6-3">Berechnung des Minumums</a></li>
+                        <li><a href="#docu-6-4">Berechnung des Maximums</a></li>
+                        <li><a href="#docu-6-5">Berechnung des häufigsten Fahrzeugtyps</a></li>
+                    </ol>
+                </li>
+                <li><a href="#docu-7">Diagramme</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-7-1">Berechnung der Geschwindigkeit</a></li>
+                        <li><a href="#docu-7-2">Berechnung des CO2-Ausstoßes</a></li>
+                        <li><a href="#docu-7-3">Berechnung des Spritverbrauchs</a></li>
+                        <li><a href="#docu-7-4">Berechnung der MAF-Werte</a></li>
+                        <li><a href="#docu-7-5">Berechnung der häufigsten Fahrzeugtypen</a></li>
+                    </ol>
+                </li>
+                <li><a href="#docu-8">Interpolationen</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-8-1">Interpolation mit inverser Distanzgewichtung</a></li>
+                        <li><a href="#docu-8-2">Interpolation mit Kriging</a></li>
+                    </ol>
+                </li>
+                
+                <li><a href="#docu-9">Extern hervorgerufene Limitierungen und Probleme</a></li>
+					<ol class=secondLevel>
+                        <li><a href="#docu-9-1">Messpunkte werden auf einzelnen Seiten übergeben</a></li>
+                        <li><a href="#docu-9-2">Einige Tracks enthalten extrem viele Duplikate</a></li>
+						<li><a href="#docu-9-3">Messpunkte eines Tracks enthalten nur teilweise Daten</a></li>
+						<li><a href="#docu-9-4">Messungen enthalten nicht ihren zugehörigen Track</a></li>
+                    </ol>
+
+                <li><a href="#docu-10">Quellen</a>
+                    <ol class=secondLevel>
+                        <li><a href="#docu-10-1">Quellenverzeichnis</a></li>
+                        <li><a href="#docu-10-2">Kartenmaterial</a></li>
+                    </ol>
+                </li>
+            </ol>
+>>>>>>> FETCH_HEAD
             <!-- end of the table of content -->
             
             <div id=next>
@@ -479,6 +547,40 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 </div>
 
                 <h3 id=docu-9>9. Extern hervorgerufene Limitierungen und Probleme</h3>
+				
+				<h4 id=docu-9-1>9.1 Messpunkte werden auf einzelnen Seiten übergeben</h4>
+				
+				<p>Die enviroCar REST-API erlaubt leider nur maximal 100 Messpunkte pro Seite. In unserer Applikation werden immer nur die auf dem aktuellen Kartenausschnitt sichtbaren Messpunkte geladen. Wir benutzen dazu die Erweiterung</p> 
+
+				<p>/measurements?bbox=swLng,swLat,neLng,neLat</p>
+ 
+				bei der Abfrage.<br>
+				
+				<p>Für große Kartenausschnitte müssen aber deutlich mehr als 100 Messpunkte geladen werden. Das bedeutet dann, dass unsere Applikation anstatt einer Abfrage, teilweise mehr als 150 senden müsste, um alle Punkte zu erhalten. Das konnten wir leider aus unterschiedlichen Gründen nicht umsetzen. Zum einen steigen die Ladezeiten bei der Karteninteraktion damit enorm. Der Nutzer müsste nach einem einfachen pan mehrere Sekunden warten. Hinzu kommt, dass bei einigen Tests nicht alle Anfragen von enviroCar beantwortet werden konnten. Eine Fehlermeldung wurde uns stattdessen übergeben. Wir vermuten, dass bei ca. 150 Anfragen in einer Sekunde der Server überlastet wird.</p>
+
+				Wir haben uns daher für einen Mittelweg entschieden. Der Nutzer kann über eine Dropdown-List aus einer Auswahl wählen, wieviele Messpunkte er maximal angezeigt bekommen will. Die Entscheidung zwischen Performance und vollständigen Daten liegt somit nun beim Benutzer.
+
+				
+				<h4 id=docu-9-2>9.2 Einige Tracks enthalten extrem viele Duplikate</h4>
+				
+				<p>Das Auswählen, die Visualisierung und die Interpolation einiger Tracks führt zu Einbrüchen der Performance. Nach näherer Betrachtung dieser Tracks haben wir festgestellt, dass hier teils alle Messpunkte mehrfach vorliegen. Hier ein Beispiel für solch einen Track:</p>
+
+				<p>https://envirocar.org/api/stable/tracks/528349bee4b08cecc5a0b98d</p>
+
+				Der Track enthält 1741 Messpunkte, von denen jedoch viele doppelt oder sogar dreifach vorliegen. Die Analyse solcher Tracks ist theoretisch dennoch möglich, kann jedoch auch zum Absturz der Applikation bzw. des Browsers führen. Außerdem führen die Duplikate natürlich zu verfälschten Ergebnissen.
+
+				<h4 id=docu-9-3>9.3 Messpunkte eines Tracks enthalten nur teilweise Daten</h4>
+				
+				<p>Die Messpunkte mancher Tracks enthalten teilweise Werte zu bestimmten Attributen, die jedoch nicht in jedem Messpunkt zu finden sind. Diese Tracks machen Analysen und Interpolation sehr schwierig, da für jeden Messpunkt überprüft werden muss, ob das Attribut belegt ist. Hier ein Beispiel für solch einen Track:</p>
+
+				<p>https://envirocar.org/api/stable/tracks/52e39b02e4b0d8e8c22665c3</p>
+
+				Natürlich sind diese Daten nicht fehlerhaft, jedoch erschweren sie unsere Analysen enorm. Unsere Applikation kann also nicht pauschal für einen Track festlegen, ob das Attribut vorhanden ist oder nicht. Für jeden einzelnen Messpunkt muss geprüft werden, ob auch hier das Attribut einen zugewiesenen Wert besitzt.
+
+				<h4 id=docu-9-4>9.4 Messungen enthalten nicht ihren zugehörigen Track</h4>
+				
+				<p>Werden über die API Messpunkte insgesamt oder über eine Bounding-Box angefragt, so enthalten diese neben der eigenen ID und der Sensor-ID leider nicht die Track-ID. Soll unsere Applikation nun also von einem Messpunkt auf den zugehörigen Track schließen, so geht dies nur über Umwege. Dazu werden alle Tracks in der aktiven Bounding-Box angefragt. Anschließend werden die Tracks komplett iteriert und nach der ID des Messpunktes durchsucht. Diese zusätzlichen zwei geschachtelten Schleifen haben einige Auswirkungen auf die Performance unserer Applikation.</p>
+				Es wäre sehr wünschenswert, wenn zu jedem Messpunkt auch die entsprechende Track-ID übergeben wird.
 
                 <div id=next>
                     <a href="#docu-9">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
