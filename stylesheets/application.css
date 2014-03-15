@@ -46,9 +46,10 @@ Content
     6.3 Dividing lines
     6.4 Buttons
         6.4.1 Green submit-button
-        6.4.2 Red reset-button
-        6.4.3 Info-buttons
-        6.4.2 jQuery UI dialog button
+        6.4.2 Red cancel-button
+        6.4.3 Blue button
+        6.4.4 Info-buttons
+        6.4.5 jQuery UI dialog button
     6.5 Blue links
     6.6 Loading picture in popups 
     6.7 Measurement data details table
@@ -1042,9 +1043,10 @@ hr {
 
 
 /***********************************************
-    6.4.2 Red reset-button (drawing a polygon)
+    6.4.2 Red cancel-button (e.g. cancel
+          drawing a polygon)
 ***********************************************/
-.resetButton {
+.cancelButton {
     border: 2px solid rgb(255,0,0);
     padding:5px;
     border-radius:15px;
@@ -1053,7 +1055,7 @@ hr {
     font-weight:bold; 
 }
 
-.resetButton:hover, .resetButton:active{
+.cancelButton:hover, .cancelButton:active{
     border: 2px solid rgb(255,0,0);
     padding:5px;
     border-radius:15px;
@@ -1065,7 +1067,28 @@ hr {
 
 
 /***********************************************
-    6.4.3 Info-buttons (i-buttons for tooltips)
+    6.4.3 Blue button (e.g. reset a polygon)
+***********************************************/
+.blueButton {
+    border: 2px solid rgb(22,127,193);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(22,127,193);
+    color:rgb(255,255,255);
+    font-weight:bold; 
+}
+.blueButton:hover, .blueButton:active{
+    border: 2px solid rgb(22,127,193);
+    padding:5px;
+    border-radius:15px;
+    background-color: rgb(22,127,193);
+    color:rgb(255,255,255);
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+/***********************************************
+    6.4.4 Info-buttons (i-buttons for tooltips)
 ***********************************************/
 .info {
     background:rgb(255,255,255);
@@ -1102,7 +1125,7 @@ hr {
 }
 
 /***********************************************
-    6.4.4 jQuery UI dialog button (sourcecode of 
+    6.4.5 jQuery UI dialog button (sourcecode of 
           jQuery UI)
 ***********************************************/
 .jQueryButton {

@@ -34,7 +34,7 @@ Content
     <head>
         
 <!-- 1. Metadata -->
-        <title>enviroCar-Analyser</title>
+        <title>enviroCar-Analyser - Applikation</title>
         <meta charset=utf-8>
         <meta name="description" content="Internet-Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten">
         <meta name="keywords" content="enviroCar-Analyser">
@@ -327,11 +327,14 @@ Content
                                     <a onclick="" class=info id="trackSelectingInfo" original-title="Wenn Sie eine Track-ID haben, können Sie hier den Track suchen und alle Messpunkte direkt zur Auswahl hinzufügen.">i</a>
                                 </td>
                             </tr>
+                            </table>
+                            <table>
                             <tr>
                                 <td align="left" valign="top">
-                                    <input type="submit" id="searchTrack" name="searchTrack" value="OK" class=submitButton onClick="trackFilter()">
+                                    <input type="submit" id="visualizeTrack" name="visualizeTrack" value="Visualisieren" class=blueButton onClick="">&nbsp;
+                                    <input type="submit" id="searchTrack" name="searchTrack" value="Auswählen" class=submitButton onClick="trackFilter()">&nbsp;
+                                    <input type="reset" id="cancelTrack" name="cancelTrack" value="Abbrechen" class=cancelButton onClick="chooseTrackSelection()">
                                 </td>
-                                <td></td>
                             </tr>
                         </table>
                     </div>
@@ -346,11 +349,10 @@ Content
                         <br>
                         <table>
                             <tr>
-                                <td align="left" valign="top" width="30px">
-                                    <input type="submit" id="acceptPolygon" name="acceptPolygon" value="OK" class=submitButton onclick="confirmPolygon()">
-                                </td>
                                 <td align="left" valign="top">
-                                    <input type="reset" id="resetPolygon" name="resetPolygon" value="Reset" class=resetButton onclick="deletePolygon(); drawPolygon()"> 
+                                    <input type="reset" id="resetPolygon" name="resetPolygon" value="Reset" class=blueButton onclick="deletePolygon(); drawPolygon()">&nbsp;
+                                    <input type="submit" id="acceptPolygon" name="acceptPolygon" value="Auswählen" class=submitButton onclick="confirmPolygon()">&nbsp;
+                                    <input type="reset" id="cancelPolygon" name="cancelPolygon" value="Abbrechen" class=cancelButton onclick="choosePolygonSelection();">&nbsp;
                                 </td>
                                 <td align="right" valign="middle">
                                     <a onclick="" class=info id="polygonSelectingInfo" original-title="Klicken Sie auf der Karte nacheinander um einen Raumauschnitt zu definieren. Um den Raumausschnitt abzuschließen muss der Anfangspunkt gleich dem Endpunkt sein. Wenn Sie fertig sind, bestätigen Sie mit OK um die Messpunkte zu selektieren. Mit RESET können Sie den gezeichneten Raumausschnitt zurücksetzen und erneut definieren. Das Auswählen eines Polygons kann gegebenenfalls etwas länger dauern.">i</a>
