@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=de>
     <head>
-        <title>enviroCar-Analyser</title>
+        <title>enviroCar-Analyser - Benutzerhilfe</title>
         <meta charset=utf-8>
         <meta name="description" content="Internet-Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten">
         <meta name="keywords" content="enviroCar-Analyser">
@@ -46,61 +46,63 @@
             <h3>Überblick</h3>
                 
             <!-- begin of the table of content -->
-            <ol class=firstLevel>
-                <li><a href="#help-1">Einleitung</a></li>
-                <li><a href="#help-2">Systemvoraussetzungen</a></li>
-                <li><a href="#help-3">Der Aufbau der Applikation</a></li>
-                <li><a href="#help-4">Die Messpunkte</a>
-                    <ol class=secondLevel>
-                        <li><a href="#help-4-1">Verfügbare Werte</a></li>
-                        <li><a href="#help-4-2">Die Anzahl der Messpunkte</a></li>
-                    </ol>
-                </li>
-                <li><a href="#help-5">Die Karte</a>
-                    <ol class=secondLevel>
-                        <li><a href="#help-5-1">Die Navigationselemente</a></li>
-                        <li><a href="#help-5-2">Die Ortungsfunktion</a></li>
-                        <li><a href="#help-5-3">Verfügbares Kartenmaterial</a></li>
-                        <li><a href="#help-5-4">Die Messpunkte auf der Karte</a></li>
-                        <li><a href="#help-5-5">Visualisierungen zurücksetzten</a></li>
-                    </ol>
-                </li>
-                <li><a href="#help-6">Die Filteroptionen</a>
-                    <ol class=secondLevel>
-                        <li><a href="#help-6-1">Filtern nach der Zeit</a></li>
-                        <li><a href="#help-6-2">Filtern mit einer Sensor-ID</a></li>
-                        <li><a href="#help-6-3">Filtern über einen Autotyp</a></li>
-                        <li><a href="#help-6-4">Filtern mit einer Track-ID</a></li>
-                    </ol>
-                </li>
-                <li><a href="#help-7">Die Selektionswerkzeuge</a>
-                    <ol class=secondLevel>
-                        <li><a href="#help-7-1">Auswählen eines Messpunktes (bySinglePoint)</a></li>
-                        <li><a href="#help-7-2">Suchen &amp; Auswählen eines Tracks (byTrack)</a></li>
-                        <li><a href="#help-7-3">Auswählen über einen Raumausschnitt (byPolygon)</a></li>
-                    </ol>
-                </li>
-                <li><a href="#help-8">Die Selektierten Punkte</a>
-                    <ol class=secondLevel>
-                        <li><a href="#help-8-1">Punkte aus der Selektionstabelle löschen</a></li>
-                        <li><a href="#help-8-2">Alle Messwerte anzeigen</a></li>
-                        <li><a href="#help-8-3">Alle Messwerte downloaden</a></li>
-                    </ol>
-                </li>
-                <li><a href="#help-9">Die Analysefunktionen</a></li>
-                <li><a href="#help-10">Die Diagramme</a></li>
-                <li><a href="#help-11">Die Interpolationen</a>
-                    <ol class=secondLevel>
-                        <li><a href="#help-11-1">Interpolation mit inverser Distanzgewichtung</a></li>
-                        <li><a href="#help-11-2">Interpolation mit Kriging</a></li>
-                        <li><a href="#help-11-3">Die Legende</a></li>
-                        <li><a href="#help-11-4">Downloaden eines Interpolationsergebnisses</a></li>
-                        <li><a href="#help-11-5">Zurücksetzten einer Visualisierung</a></li>
-                    </ol>
-                </li>
-                <li><a href="#help-12">Fehlermeldungen &amp; Probleme</a></li>
-                <li><a href="#help-13">Glossar</a></li>
-            </ol>
+            <div id=tableOfContent>
+                <ol class=firstLevel>
+                    <li><a href="#help-1">Einleitung</a></li>
+                    <li><a href="#help-2">Systemvoraussetzungen</a></li>
+                    <li><a href="#help-3">Der Aufbau der Applikation</a></li>
+                    <li><a href="#help-4">Die Messpunkte</a>
+                        <ol class=secondLevel>
+                            <li><a href="#help-4-1">Verfügbare Werte</a></li>
+                            <li><a href="#help-4-2">Die Anzahl der Messpunkte</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#help-5">Die Karte</a>
+                        <ol class=secondLevel>
+                            <li><a href="#help-5-1">Die Navigationselemente</a></li>
+                            <li><a href="#help-5-2">Die Ortungsfunktion</a></li>
+                            <li><a href="#help-5-3">Verfügbares Kartenmaterial</a></li>
+                            <li><a href="#help-5-4">Die Messpunkte auf der Karte</a></li>
+                            <li><a href="#help-5-5">Visualisierungen zurücksetzten</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#help-6">Die Filteroptionen</a>
+                        <ol class=secondLevel>
+                            <li><a href="#help-6-1">Filtern nach der Zeit</a></li>
+                            <li><a href="#help-6-2">Filtern mit einer Sensor-ID</a></li>
+                            <li><a href="#help-6-3">Filtern über einen Autotyp</a></li>
+                            <li><a href="#help-6-4">Filtern mit einer Track-ID</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#help-7">Die Selektionswerkzeuge</a>
+                        <ol class=secondLevel>
+                            <li><a href="#help-7-1">Auswählen eines Messpunktes (bySinglePoint)</a></li>
+                            <li><a href="#help-7-2">Suchen &amp; Auswählen eines Tracks (byTrack)</a></li>
+                            <li><a href="#help-7-3">Auswählen über einen Raumausschnitt (byPolygon)</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#help-8">Die Selektierten Punkte</a>
+                        <ol class=secondLevel>
+                            <li><a href="#help-8-1">Punkte aus der Selektionstabelle löschen</a></li>
+                            <li><a href="#help-8-2">Alle Messwerte anzeigen</a></li>
+                            <li><a href="#help-8-3">Alle Messwerte downloaden</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#help-9">Die Analysefunktionen</a></li>
+                    <li><a href="#help-10">Die Diagramme</a></li>
+                    <li><a href="#help-11">Die Interpolationen</a>
+                        <ol class=secondLevel>
+                            <li><a href="#help-11-1">Interpolation mit inverser Distanzgewichtung</a></li>
+                            <li><a href="#help-11-2">Interpolation mit Kriging</a></li>
+                            <li><a href="#help-11-3">Die Legende</a></li>
+                            <li><a href="#help-11-4">Downloaden eines Interpolationsergebnisses</a></li>
+                            <li><a href="#help-11-5">Zurücksetzten einer Visualisierung</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#help-12">Fehlermeldungen &amp; Probleme</a></li>
+                    <li><a href="#help-13">Glossar</a></li>
+                </ol>
+            </div>
             <!-- end of the table of content -->
             
             <div id=next>

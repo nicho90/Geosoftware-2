@@ -36,7 +36,9 @@ Content
     5.6 nested lists with numbering in the  user help and in the dokmentation
     5.7 Headings
     5.8 Pictures in the documentation
-    5.9 Tables
+    5.9 Errortable
+    5.10 Systemrequirementtable
+    5.11 Intervaltables
 
 *********************************************************************************************/
 
@@ -179,12 +181,12 @@ article {
      3.2 Links in content area 
          (used in tables of content)
 ***********************************************/
-#content li a {
+#tableOfContent li a {
     text-decoration:none;
     color:rgb(22,127,193);
 }
 
-#content li a:hover {
+#tableOfContent li a:hover {
     text-decoration:underline;
     color:rgb(22,127,193);
 }
@@ -284,12 +286,12 @@ footer {
     list-style-type: none;
 }
 
-#footerText  a {
+#footerText a {
     color:rgb(255,255,255);
     text-decoration:none;
 }
 
-#footerText  a:hover {
+#footerText a:hover {
     color:rgb(255,255,255);
     text-decoration:underline;
 }
@@ -301,6 +303,18 @@ footer {
 }
 
 #footerShortLinks a:hover {
+    color:rgb(255,255,255);
+    text-decoration:underline;
+    font-weight:bold;
+}
+
+.footerLinks {
+    color:rgb(255,255,255);
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.footerLinks :hover {
     color:rgb(255,255,255);
     text-decoration:underline;
     font-weight:bold;
@@ -575,7 +589,7 @@ h4 {
 
 
 /***********************************************
-    5.9 Tables
+    5.9 Errortable
 ***********************************************/
 .errors {
     border: 1px solid #ddd;
@@ -584,6 +598,7 @@ h4 {
     display: table;
     border-collapse: collapse;
     font-family: Arial;
+    overflow: scroll;
 }
 
 .errors tr {
@@ -604,7 +619,7 @@ h4 {
 }
 
 .errors th {
-    padding: 8px 15px;
+    padding: 8px 16px;
     margin: 0;
     outline: 0;
     text-align: center;
@@ -634,6 +649,9 @@ h4 {
     width:40%;
 }
 
+/***********************************************
+    5.10 Systemrequirementtable
+***********************************************/
 #requirements {
     font-size: 13pt;
     font-weight: bold;
@@ -641,27 +659,57 @@ h4 {
     vertical-align: middle;
 }
 
-#interval {
-    font-size: 10pt;
+
+/***********************************************
+    5.11 Intervaltables
+***********************************************/
+.intervalTable {
+    border: 1px solid #ddd;
+    margin:0 auto;
+    width:100%;
+    display: table;
+    border-collapse: collapse;
+    font-family: Arial;
+    overflow: scroll;
+}
+
+.intervalTable td{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 0;
+    outline: 0;
+    text-align:center;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+}
+
+.interval {
+    font-size: 9pt;
     font-weight: bold;
     text-align: center;
     vertical-align: middle;
     background-color: rgb(255,255,255);
+    height:auto;
+    width:auto;
 }
 
-#intervalGrey {
-    font-size: 10pt;
+.intervalGrey {
+    font-size: 9pt;
     font-weight: bold;
     text-align: center;
     vertical-align: middle;
     background-color: rgb(248,248,248);
+    height:auto;
+    width:auto;
 }
 
-#intervalLast {
-    font-size: 10pt;
+.intervalLast {
+    font-size: 9pt;
     font-weight: bold;
     text-align: center;
     vertical-align: middle;
     color: rgb(255,255,255);
     background-color: rgb(235,164,0);
+    height:auto;
+    width:auto;
 }
