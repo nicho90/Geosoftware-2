@@ -42,7 +42,7 @@
         <div id=content>
         <article class=content role="article">
             <h1>Dokumentation</h1>
-            <small>Stand: <time datetime=2014-03-05 pubdate=2013-12-25>05. März 2014</time></small><br>
+            <small>Stand: <time datetime=2014-03-15 pubdate=2013-12-25>15. März 2014</time></small><br>
             <h3>Überblick</h3>
             
             <!-- begin of the table of content -->
@@ -294,21 +294,21 @@
                 
                 <h4 id=docu-6-1>6.1 Berechnung des Mittelwertes</h4>
                 <img src="images/docu/mean.png" class=imageMean>
-                Das arithmetische Mittel wird für die selektierten Punkte angezeigt.<br>
-                Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert “0”. Wahrscheinlich wurde dieser Wert nicht gemessen und per default “0” eingetragen. Dadurch kann das Ergebnis der Analyse verfälscht werden.<sup><a href="#docu-10-1" class=link>[1]</a></sup>
+                Das arithmetische Mittel <sup><a href="#docu-10-1" class=link>[1]</a></sup> wird für die selektierten Punkte angezeigt.<br>
+                Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis der Diagramme verfälscht werden.
                 
                 <h4 id=docu-6-6>5.2 Berechnung der Standardabweichung </h4>
                 <img src="images/docu/std.png" class=imageSTD>
-                Die emprirische Standardabweichung wird für die selektierten Punkte angezeigt.<br>
-                Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert “0”. Wahrscheinlich wurde dieser Wert nicht gemessen und per default “0” eingetragen. Dadurch kann das Ergebnis der Analyse verfälscht werden.<sup><a href="#docu-10-1" class=link>[2]</a></sup>
+                Die emprirische Standardabweichung <sup><a href="#docu-10-1" class=link>[2]</a></sup> wird für die selektierten Punkte angezeigt.<br>
+                Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis der Diagramme verfälscht werden.
 
                 <h4 id=docu-6-3>6.3 Berechnung des Maximums</h4>
                 Der niedrigste Wert der selektierten Punkte wird angezeigt.<br>
-Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert “0”. Wahrscheinlich wurde dieser Wert nicht gemessen und per default “0” eingetragen. Dadurch kann das Ergebnis der Analyse verfälscht werden.
+Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis der Diagramme verfälscht werden.
                 
                 <h4 id=docu-6-4>6.4 Berechnung des Minumums</h4>
                 Der höchste Wert der selektierten Punkte wird angezeigt.<br>
-Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert “0”. Wahrscheinlich wurde dieser Wert nicht gemessen und per default “0” eingetragen. Dadurch kann das Ergebnis der Analyse verfälscht werden.
+Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis der Diagramme verfälscht werden.
                 
                 <h4 id=docu-6-5>6.5 Berechnung des häufigsten Fahrzeugtyps</h4>
 
@@ -319,17 +319,136 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
 
 
                 <h3 id=docu-7>7. Diagramme</h3>
+                Damit der Benutzer eine bessere Übersicht über die Werte bekommt, wurden mit Hilfe des Frameworks Highcharts Diagramme erstellt. Sind mindestes 2 Messpunkte selektiert, können sie dargestellt werden.
 
                 <h4 id=docu-7-1>7.1 Berechnung der Geschwindigkeit</h4>
-
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist km/h.<br>
+                Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-5 km/h).<br>
+                
+                <p>Bei der Geschwindigkeit gibt es 2 Intervalleinteilungen. Die erste Intervalleinteilung ist so gewählt, dass sie vor allem für den Stadtbereich gilt. Ihr höchster Wert liegt bei 80 km/h. So erhält der Benutzer einen besseren Überblick über die Geschwindigkeiten, da auch kleinere Geschwindigkeiten, die gerade beim Anfahren entstehen können, erkennen kann.</p>
+                <table class=errors>
+                    <tr>
+                        <td id=interval>0-5</td>
+                        <td id=intervalGrey>5-10</td>
+                        <td id=interval>10-15</td>
+                        <td id=intervalGrey>15-20</td>
+                        <td id=interval>20-25</td>
+                        <td id=intervalGrey>25-30</td>
+                        <td id=interval>30-35</td>
+                        <td id=intervalGrey>35-40</td>
+                        <td id=interval>40-45</td>
+                        <td id=intervalGrey>45-50</td>
+                        <td id=interval>50-55</td>
+                        <td id=intervalGrey>55-60</td>
+                        <td id=interval>60-65</td>
+                        <td id=intervalGrey>65-70</td>
+                        <td id=interval>70-75</td>
+                        <td id=intervalGrey>75-80</td>
+                        <td id=intervalLast>>80</td>
+                    </tr>
+                </table>
+                <p>
+                Fährt ein Benutzer allerdings auf der Landstraße oder Autobahn, so kann wird automatisch eine neue Intervalleinteilung vorgenommen, die bis 160 km/h geht. Sie wird berechnet, sobald über <font style="color:rgb(235,164,0);">10% in dem Intervall >80 km/h</font> in der ersten Intervalleinteilung erreicht worden sind.</p>
+                <table class=errors>
+                    <tr>
+                        <td id=interval>0-10</td>
+                        <td id=intervalGrey>10-20</td>
+                        <td id=interval>20-30</td>
+                        <td id=intervalGrey>30-40</td>
+                        <td id=interval>40-50</td>
+                        <td id=intervalGrey>50-60</td>
+                        <td id=interval>60-70</td>
+                        <td id=intervalGrey>70-80</td>
+                        <td id=interval>80-90</td>
+                        <td id=intervalGrey>90-100</td>
+                        <td id=interval>100-110</td>
+                        <td id=intervalGrey>110-120</td>
+                        <td id=interval>120-130</td>
+                        <td id=intervalGrey>130-140</td>
+                        <td id=interval>140-150</td>
+                        <td id=intervalGrey>150-160</td>
+                        <td id=interval>>160</td>
+                    </tr>
+                </table>
+                <br>
+                
                 <h4 id=docu-7-2>7.2 Berechnung des CO<sub>2</sub>-Ausstoßes</h4>
-
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist g/s.<br>
+                Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-5 g/s).<br><br>
+                <table class=errors>
+                    <tr>
+                        <td id=interval>0-5</td>
+                        <td id=intervalGrey>5-10</td>
+                        <td id=interval>10-15</td>
+                        <td id=intervalGrey>15-20</td>
+                        <td id=interval>20-25</td>
+                        <td id=intervalGrey>25-30</td>
+                        <td id=interval>30-35</td>
+                        <td id=intervalGrey>35-40</td>
+                        <td id=interval>40-45</td>
+                        <td id=intervalGrey>45-50</td>
+                        <td id=interval>50-55</td>
+                        <td id=intervalGrey>55-60</td>
+                        <td id=interval>>60</td>
+                    </tr>
+                </table>
+                <br>
+                
                 <h4 id=docu-7-3>7.3 Berechnung des Spritverbrauchs</h4>
-
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist l/h.<br>
+                Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-1 l/h).<br><br>
+                <table class=errors>
+                    <tr>
+                        <td id=interval>0-1</td>
+                        <td id=intervalGrey>1-2</td>
+                        <td id=interval>2-3</td>
+                        <td id=intervalGrey>3-4</td>
+                        <td id=interval>4-5</td>
+                        <td id=intervalGrey>5-6</td>
+                        <td id=interval>6-7</td>
+                        <td id=intervalGrey>7-8</td>
+                        <td id=interval>8-9</td>
+                        <td id=intervalGrey>9-10</td>
+                        <td id=interval>10-11</td>
+                        <td id=intervalGrey>11-12</td>
+                        <td id=interval>12-13</td>
+                        <td id=intervalGrey>13-14</td>
+                        <td id=interval>14-15</td>
+                        <td id=intervalGrey>>15</td>
+                    </tr>
+                </table>
+                <br>
+                
                 <h4 id=docu-7-4>7.4 Berechnung der MAF-Werte</h4>
-
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist l/s.<br>
+                Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-5 l/s).<br><br>
+                <table class=errors>
+                    <tr>
+                        <td id=interval>0-5</td>
+                        <td id=intervalGrey>5-10</td>
+                        <td id=interval>10-15</td>
+                        <td id=intervalGrey>15-20</td>
+                        <td id=interval>20-25</td>
+                        <td id=intervalGrey>25-30</td>
+                        <td id=interval>30-35</td>
+                        <td id=intervalGrey>35-40</td>
+                        <td id=interval>40-45</td>
+                        <td id=intervalGrey>45-50</td>
+                        <td id=interval>50-55</td>
+                        <td id=intervalGrey>55-60</td>
+                        <td id=interval>60-65</td>
+                        <td id=intervalGrey>65-70</td>
+                        <td id=interval>70-75</td>
+                        <td id=intervalGrey>75-80</td>
+                        <td id=interval>>80</td>
+                    </tr>
+                </table>
+                <br>
+                
                 <h4 id=docu-7-5>7.5 Berechnung der häufigsten Fahrzeugtypen</h4>
-
+                Es wird ein Diagramm der absoluten Häufigkeit <sup><a href="#docu-10-1" class=link>[5]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet.<br>
+                Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden.<br><br>
+                
                 <div id=next>
                     <a href="#docu-7">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
                     <hr>
@@ -350,7 +469,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
 				
 				Der wesentliche Vorteil gegenüber einfacheren Methoden wie beispielsweise der Inversen Distanzgewichtung ist die Berücksichtigung der räumlichen Varianz, die sich mit Hilfe der Semivariogramme ermitteln lässt. Für einen gesuchten Wert werden dabei die Gewichte der in die Berechnung einfließenden Messwerte so bestimmt, dass die Schätzfehlervarianz möglichst gering ist. Der Fehler hängt dabei von der Qualität des Variogramms bzw. der Variogrammfunktion ab.<br>
 
-				In unserer Applikation haben wir für die Interpolation mit Kriging auf ein vorhandenes Framework zugegriffen<sup><a href="#docu-10-1" class=link>[3]</a></sup>. Dieses speziell für JavaScript entwickelte Tool ermöglicht dem Benutzer die Parameter für Sigma<sup>2</sup>, Alpha und das Modell selbst auszuwählen. Die Bedeutung der Parameter ist auf der Hilfe-Seite des verwendeten Frameworks ausführlich dokumentiert.<br>
+				In unserer Applikation haben wir für die Interpolation mit Kriging auf ein vorhandenes Framework <sup><a href="#docu-10-1" class=link>[3]</a></sup> zurückgegriffen. Dieses speziell für JavaScript entwickelte Tool ermöglicht dem Benutzer die Parameter für Sigma<sup>2</sup>, Alpha und das Modell selbst auszuwählen. Die Bedeutung der Parameter ist auf der Hilfe-Seite des verwendeten Frameworks ausführlich dokumentiert.<br>
 
                 <div id=next>
                     <a href="#docu-8">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
@@ -371,7 +490,9 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 [1] Wikipedia (2014): Mittelwert (online unter: <a href="http://de.wikipedia.org/wiki/Mittelwert" target="_blank" class=link>http://de.wikipedia.org/wiki/Mittelwert</a>, aufgerufen am 19.02.2014)<br>
                 [2] Wikipedia (2014): Standardabweichung (online unter: <a href="http://de.wikipedia.org/wiki/Standardabweichung" target="_blank" class=link>http://de.wikipedia.org/wiki/Standardabweichung</a>, aufgerufen am 19.02.2014)<br>
                 [3] Omar Olmedo (2013 ): kriging.js (online unter: <a href="https://github.com/oeo4b/kriging.js" target="_blank" class=link>https://github.com/oeo4b/kriging.js</a>, aufgerufen am 08.03.2014)<br>
-                [4] <br>
+                [4] Wikipedia (2014): (online unter: <a href="http://de.wikipedia.org/wiki/Relative_H%C3%A4ufigkeit" target="_blank" class=link>http://de.wikipedia.org/wiki/Relative_Häufigkeit</a>, aufgerufen am 15.03.2014)<br>
+                [5] Wikipedia (2013): (online unter: <a href="http://de.wikipedia.org/wiki/Absolute_H%C3%A4ufigkeit" target="_blank" class=link>http://de.wikipedia.org/wiki/Absolute_Häufigkeit</a>, aufgerufen am 15.03.2014)<br>
+                [6] Flaticon (2014): (online unter: <a href="http://www.flaticon.com/" target="_blank" class=link>http://www.flaticon.com/</a>, aufgerufen am 15.03.2014)<br>
                 
                 <h4 id=docu-10-2>10.2 Kartenmatierial</h4>
                 <ul type=square>
@@ -434,8 +555,8 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
             <div id="footerLine_2"></div>
             <div id="footerText">
                 <small>
-                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/">Institut für Geoinformatik</a><br>
-                    <a href="http://www.uni-muenster.de/">Westfälische Wilhelms-Universität Münster</a> &middot; <a href="http://envirocar.org/">enviroCar Projekt</a><br>
+                    &copy; 2014 <a href="http://www.uni-muenster.de/Geoinformatics/" target="_blank">Institut für Geoinformatik</a><br>
+                    <a href="http://www.uni-muenster.de/" target="_blank">Westfälische Wilhelms-Universität Münster</a> &middot; <a href="http://envirocar.org/">enviroCar Projekt</a><br>
                     <br>
                     Design by Johanna Möllmann &amp; Nicholas Schiestel<br>
                 </small>
@@ -447,7 +568,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                         <li><a href="help.html">Benutzerhilfe</a></li>
                         <li><a href="docu.html">Dokumentation</a></li>
                         <li><a href="impressum.html">Impressum</a></li>
-                        <li><a href="application.html">Applikation</a></li>
+                        <li><a href="application.html" target="_blank">Applikation</a></li>
                     </ul>
                 </small>
             </div>   

@@ -36,7 +36,7 @@ Content
     5.6 nested lists with numbering in the  user help and in the dokmentation
     5.7 Headings
     5.8 Pictures in the documentation
-    5.9 Errors
+    5.9 Tables
 
 *********************************************************************************************/
 
@@ -575,7 +575,7 @@ h4 {
 
 
 /***********************************************
-    5.9 Errors
+    5.9 Tables
 ***********************************************/
 .errors {
     border: 1px solid #ddd;
@@ -639,4 +639,29 @@ h4 {
     font-weight: bold;
     text-align: left;
     vertical-align: middle;
+}
+
+#interval {
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgb(255,255,255);
+}
+
+#intervalGrey {
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgb(248,248,248);
+}
+
+#intervalLast {
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    color: rgb(255,255,255);
+    background-color: rgb(235,164,0);
 }
