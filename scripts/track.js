@@ -12,6 +12,9 @@ Content
 
 3. Search/Add Track
 
+	3.1 Search/Add Track
+	3.2 VisualizeTrack from Selection Tool
+
 *********************************************************************************************/
 
 /***********************
