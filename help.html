@@ -274,10 +274,38 @@
 
                 <div id=clear></div>
                 <h4 id=help-5-4>5.4 Die Messpunkte auf der Karte</h4>
-                
+                Auf der Karte werden Messpunkte dargestellt. Klickt der Nutzer auf einen Messpunkt, so öffnet sich ein Popup.
+Dieses Popup zeigt die vorhandenen Daten zum Messpunkt an:<br>
+                <br>
+                <li>Latitude, Longitude: Geographische Breite sowie Länge, in Grad
+</li>
+                <li>Zeitstempel: Der Zeitpunkt der Messung, zu lesen als: Jahr-Monat-Tag Stunden:Minuten:Sekunden
+</li>
+                <li>Sensor-ID: Die interne Identifikationsnummer des Sensors im Fahrzeug</li>
+                <li>Fahrzeugtyp: Hersteller und Modell des Fahrzeugs
+</li>
+                <li>Geschwindikeit: Aktuelle Geschwindigkeit zum Messzeitpunkt, angegeben in km/h
+</li>
+                <li>CO2-Ausstoß: Aktueller CO2-Ausstoß zum Messzeitpunkt, angegeben in g/s
+</li>
+                <li>Spritverbrauch: Aktueller Spritverbrauch zum Messzeitpunkt, angegeben in l/s
+</li>
+                <li>MAF: Mass Air Flow, also der Luftdurchfluss zum Messzeitpunkt, angegeben in l/s
+</li>
+                <br>
+                Klickt der Benutzer auf “Auf Punkt zentrieren”, so wird der Kartenausschnitt so verschoben, dass der Messpunkt im Zentrum des Kartenbreichs liegt.
+Klickt der Benutzer auf “Zugehörigen Track anzeigen”, so wird der Kartenausschnit auf den Punkt zentriert und es öffnet sich nach kurzer Ladezeit ein Auswahlfenster.
+Dieses Auswahlfenster beinhaltet die ID des zum Punkt gehörigen Tracks. Der Benutzer hat nun die Möglichkeit, sich den Track anzeigen zu lassen (“Visualisieren”), den Track zur Auswahl hinzuzufügen (“Zur Auswahl hinzuzufügen”) bzw. die Aktion abzubrechen (“Abbrechen”).
+                Der Benutzer klickt auf “Visualisieren”. Das Auswahlfenster schließt sich und alle Punkte, die zum Track gehören, werden geladen und auf der Karte visualisiert. Die Messpunkte werden nun in einem hellen grün dargestellt. Des Weiteren zeigt eine rote Linie den Verlauf des Tracks an.
+Eine Visualisierung kann wieder zurückgesetzt werden (siehe 4.5).
+
+Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Punkte werden in die Tabelle unter “Selektierte Punkte” übernommen.
+
                 <div id=clear></div>
                 <h4 id=help-5-5>5.5 Visualisierungen zurücksetzten</h4>
-                
+                Voraussetzung ist, dass eine Visualisierung aktiv ist.
+Mit einem Klick auf den im Uhrzeigersinn gedrehten Pfeil kann der Benutzer die Visualisierung zurücksetzen. Der Zurücksetzungspfeil ist unter dem Button für die Kartenlayerauswahl positioniert.
+
                 <div id=clear></div>
                 <div id=next>
                     <a href="#help-5">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
@@ -596,8 +624,23 @@
                 
                 <div id=clear></div>
                 <h3 id=help-13>13. Glossar</h3>
+                <b>CO2:</b> Kohlenstoffdioxid <br>
+                <b>IDW:</b> Inverse Distanzwichtung ist ein nichtstatistisches Interpolationsverfahren der Geostatistik und wird zur einfachen Interpolation der räumlichen Abhängigkeit georeferenzierter Daten genutzt. <br>
+
+                <b>Interpolation:</b> Bei einer Interpolation werden numerische Werte zwischen bekannten Werten einer Funktion errechnet. <br>
+
+                <b>Kriging:</b> Kriging ist ein geostatistisches Verfahren, das es ermöglicht, Stichprobenwerte zu interpolieren oder anzunähern. Unter Berücksichtigung der räumlichen Varianz.<br>
                 
-                
+                <b>MAF:</b> Mass-Air-Flow. Der gemessene Massestrom der Luft ist proportional zur molaren
+Menge des enthaltenen Sauerstoffes und kann daher zur Regelung von Verbrennungsprozessen, insbesondere in Verbrennungsmotoren, herangezogen werden.<br>
+
+                <b>Pop-Up:</b> Ein visuell “aufspringendes” Element, das andere Inhalte überdeckt.<br>
+
+                <b>Track:</b> Ein Track ist eine Aufzeichnung, bzw. Spur eines zurückgelegten Weges.<br>
+
+                <b>Visualisierung:</b> Mit Visualisierung oder Veranschaulichung werden abstrakte Daten (z. B.
+Texte) und Zusammenhänge in eine graphische bzw. visuell erfassbare Form gebracht.<br>
+
                 <div id=clear></div>
                 <div id=next>
                     <a href="#help-13">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
