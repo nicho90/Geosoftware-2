@@ -196,7 +196,7 @@
                 <div id=clear></div>
                 <h4 id=help-4-1>4.1 Verfügbare Werte</h4>
                 Die Messpunkte beziehen sich auf die Daten aus der enviroCar-Datenbank und beinhalten neben ihren Koordinaten Werte zu den Attributen 
-				SensorID, Zeit, Autohersteller, Automodel, Geschwindigkeit, CO2-Ausstoß, Verbrauch und MAF-Werte. 
+				SensorID, Zeit, Autohersteller, Automodel, Geschwindigkeit, CO<sub>2</sub>-Ausstoß, Verbrauch und MAF-Werte. 
 				Sie sind nur verfügbar, wenn der enviroCar-Server erreichbar ist. 
                 <div id=clear></div>
                 <h4 id=help-4-2>4.2 Die Anzahl der Messpunkte</h4>
@@ -263,18 +263,18 @@
 				so werden ihm die verfügbaren Karten angezeigt. Mit einem Linksklick kann er einen Kartenlayer auswählen.<br>
 				Es stehen verschiedene Karten zur Verfügung: <br>
 				<br>
-				<li>Die OpenStreetMap</li>
-				<li>Die OpenStreetMap mit einer Cloudmade-Bearbeitung</li>
-				<li>Die OpenTopoMap, eine topographische Karte, basierend auf OpenStreetMap</li>
-				<li>Die DTK10, einer topographischen Karte von NRW </li>
-				<li>Die DTK10 panchromatisch, welche der DTK10 entspricht, allerdings schwarz-weiß ist</li>
-				<li>Und die Satellitenkarte von Google Maps</li>
+				<li>Eine schematische Karte von <u>OpenStreetMap</u></li>
+				<li>Eine schematische Karte von <u>Cloudmade</u>, die auf OpenStreetMap-Daten basiert</li>
+				<li>Eine topographische Karte von <u>OpenTopoMap</u>, basierend auf OpenStreetMap</li>
+				<li>Eine topographische Karte von NRW <u>DTK10</u></li>
+				<li>Eine panchromatische, topographische Karte von NRW <u>DTK10</u> (Schwarz-weiß)</li>
+				<li>Eine Satelliten- und Luftbildansicht von <u>Google Maps</u></li>
 
 
                 <div id=clear></div>
                 <h4 id=help-5-4>5.4 Die Messpunkte auf der Karte</h4>
                 <div class="imageBoxRight">
-                    <a href="images/help/help-5-4-s1.png" rel="shadowbox"><img src="images/help/help-5-4-s1.png" alt="verfügbare Kartenelemente" class=image width=250px></a>
+                    <a href="images/help/help-5-4-s1.png" rel="shadowbox"><img src="images/help/help-5-4-s1.png" alt="verfügbare Kartenelemente" class=image width=300px></a>
                     <div class="imageCaption">
                         Popup eines Messpunktes
                     </div>
@@ -291,7 +291,7 @@ Dieses Popup zeigt die vorhandenen Daten zum Messpunkt an:<br>
 </li>
                 <li>Geschwindikeit: Aktuelle Geschwindigkeit zum Messzeitpunkt, angegeben in km/h
 </li>
-                <li>CO2-Ausstoß: Aktueller CO2-Ausstoß zum Messzeitpunkt, angegeben in g/s
+                <li>CO<sub>2</sub>-Ausstoß: Aktueller CO<sub>2</sub>-Ausstoß zum Messzeitpunkt, angegeben in g/s
 </li>
                 <li>Spritverbrauch: Aktueller Spritverbrauch zum Messzeitpunkt, angegeben in l/s
 </li>
@@ -332,17 +332,25 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                     </div>
                 </div>
                 
-				Mithilfe der Filterfunktionen lassen sich die anzuzeigenden Messpunkte nach ihren Messwerten filtern. 
+				<p>Mithilfe der Filterfunktionen lassen sich die anzuzeigenden Messpunkte nach ihren Messwerten filtern. 
 				Die Filterung beginnt erst mit dem Betätigen des “OK”-Buttons. Anschließend können die Filter mithilfe 
 				eines Klicks auf “Zurücksetzen” zurückgesetzt werden, sodass wieder alle ungefilterten Messpunkte angezeigt 
-				werden. <br>
-				Die Textfelder sind mit Platzhaltern, welche eine beispielhafte Eingabe angeben, vorbefüllt.
+				werden. Die Textfelder sind mit Platzhaltern, welche eine beispielhafte Eingabe angeben, vorbefüllt.</p>
+                
+                <div class="imageBoxLeft">
+                    <img src="images/help/help-6-s2.png" alt="Filteroptionen" class=imageNoBorder width=40px></a>
+                    <div class="imageCaption">
+                        Aktivitätsanzeige
+                    </div>
+                </div>
+                
+                <p>Wenn Sie eine Filtereinstellung ausgeführt haben und der Filter aktiv ist, erscheint dieses Icon oben rechts im Filterbereich. So können Sie sich vergewissern, ob sie gerade gefilterte Punkte betrachten und die Einstellungen ggf. wieder zurücksetzten, wenn sie wieder mehr Messpunkte auf der Karte sehen möchten.</p>
 
                 <div id=clear></div>
                 <h4 id=help-6-1>6.1 Filtern nach der Zeit</h4>
 				
 				<div class="imageBoxLeft">
-                    <img src="images/help/help-6-s2.png" alt="Filter nach der Zeit" class=imageNoBorder width=290px>
+                    <img src="images/help/help-6-1-s1.png" alt="Filter nach der Zeit" class=imageNoBorder width=290px>
                     <div class="imageCaption">
                         Kalendar zur Auswahl eines Anfangs-<br>bzw. Enddatums
                     </div>
@@ -370,7 +378,7 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                 <h4 id=help-6-3>6.3 Filtern über einen Autotyp</h4>
 				
 				<div class="imageBoxRight">
-                    <img src="images/help/help-6-s3.png" alt="Filter nach Fahrzeugtyp" class=imageNoBorder width=210px></a>
+                    <img src="images/help/help-6-2-s1.png" alt="Filter nach Fahrzeugtyp" class=imageNoBorder width=210px></a>
                     <div class="imageCaption">
                         Datenliste zur Auswahl eines Fahrzeugtyps
                     </div>
@@ -569,7 +577,7 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                 
 				Der Nutzer kann hier zwischen Ansichten der Häufigkeitsverteilungen von <br><br>
 				<li>Geschwindigkeit, </li>
-				<li>CO2-Ausstoß, </li>
+				<li>CO<sub>2</sub>-Ausstoß, </li>
 				<li>Spritverbauch, </li>
 				<li>MAF und </li>
 				<li>Autotypen </li>
@@ -595,16 +603,19 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
 				
 				Interpolationen sind in unserer Applikation generell nur für exakt einen vollständigen Track möglich. Grund dafür ist, dass Interpolationen zwischen unterschiedlichen Fahrten, zu unterschiedlichen Jahres-, Tages- und Uhrzeiten, sowie mit unterschiedlichen Fahrzeugen generell wenig Sinn machen. Versucht ein Benutzer dennoch eine Interpolation mit ungültigen Werten durchzuführen, so ist dies nicht möglich und eine entsprechende Fehlermeldung wird angezeigt.<br>
 
-				Es werden nur Interpolation der Attribute Geschwindigkeit, Spritverbrauch, CO2-Ausstoß und MAF angeboten. Diese Werte sind am häufigsten vertreten und bieten sich besonders für Interpolationen an. Es ist daher nicht möglich über einen Track zu interpolieren, der keines dieser Attribute enthält.<br>
+				Es werden nur Interpolation der Attribute Geschwindigkeit, Spritverbrauch, CO<sub>2</sub>-Ausstoß und MAF angeboten. Diese Werte sind am häufigsten vertreten und bieten sich besonders für Interpolationen an. Es ist daher nicht möglich über einen Track zu interpolieren, der keines dieser Attribute enthält.<br>
 
 				Sind diese Vorraussetzungen erfüllt, kann der Nutzer die Interpolation durch setzen der Parameter in der Interpolationsbox (Sidebar) starten. Dazu muss zwischen einer der beiden Methoden gewählt werden und gegenfalls weitere Parameter ergänzt werden. Im Anschluss kann die Interpolation über “OK” gestartet werden.<br>
 
 				Nach Abschluss der Berechnungen, werden die Ergebnisse visuell auf der Karte dargestellt.<br>
 				
 				<div class="imageBoxLeft">
-                    <img src="images/help/help-11-s2.png" alt="Legende zur Interpolation" class=imageNoBorder width=300px>
+                    <a href="images/help/help-11-s2.png" rel="shadowbox[Vacation5]"><img src="images/help/help-11-s2.png" alt="Beispiel einer Interpolation" class=image width=300px></a>
+                    <a href="images/help/help-11-s3.png" rel="shadowbox[Vacation5]"></a>
+                    <a href="images/help/help-11-s4.png" rel="shadowbox[Vacation5]"></a>
+                    <a href="images/help/help-11-s4.png" rel="shadowbox[Vacation5]"></a>
                     <div class="imageCaption">
-                        Legende zur Interpolation
+                        Beispiel einer Interpolation
                     </div>
                 </div>
 				
@@ -628,8 +639,8 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
 
                 <div id=clear></div>
                 <h4 id=help-11-3>11.3 Die Legende</h4>
-                <div class="imageBoxLeft">
-                    <img src="images/help/help-11-3-s1.png" alt="Legende zur Interpolation" class=imageNoBorder width=300px>
+                <div class="imageBoxRight">
+                    <img src="images/help/help-11-3-s1.png" alt="Legende zur Interpolation" class=imageNoBorder width=170px>
                     <div class="imageCaption">
                         Legende zur Interpolation
                     </div>
@@ -638,16 +649,16 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                 <div id=clear></div>
                 <h4 id=help-11-4>11.4 Downloaden eines Interpolationsergebnisses</h4>
                 <div class="imageBoxRight">
-                    <img src="images/help/help-11-4-s1.png" alt="verfügbare Kartenelemente" class=imageNoBorder width=60px>
+                    <img src="images/help/help-11-4-s1.png" alt="Button zum Downloaden des Interpolationsergebnisses" class=imageNoBorder width=60px>
                     <div class="imageCaption">
-                        Button zum Zurücksetzten
+                        Button zum Downloaden<br>des Interpolationsergebnisses
                     </div>
                 </div>
                 
                 <div id=clear></div>
                 <h4 id=help-11-5>11.5 Zurücksetzten einer Visualisierung</h4>
                 <div class="imageBoxRight">
-                    <img src="images/help/help-5-5-s1.png" alt="verfügbare Kartenelemente" class=imageNoBorder width=60px>
+                    <img src="images/help/help-5-5-s1.png" alt="Button zum Zurücksetzten" class=imageNoBorder width=60px>
                     <div class="imageCaption">
                         Button zum Zurücksetzten
                     </div>
@@ -670,137 +681,148 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                         <th>Fehlermeldung</th>
                         <th>Problembehandlung</th>
                     </tr>
-                    <tr class = errorsGrey>
+                    <tr>
                         <td id=errorCodes>201</td>
                         <td id=errorMessage>
                         <p>Es ist schon ein Auswahlwerkzeug aktiv und es wird versucht, ein weiteres zu aktivieren.</p>
                         </td>
                         <td id=errorSolution>
-                        <p>Deaktivieren Sie zuerst das schon aktive Selektionswerkzeug und versuchen Sie danach erneut, das gewünschte Selektionswerkzeug zu aktivieren.</p>
+                            <p>Deaktivieren Sie zuerst das schon aktive Selektionswerkzeug und versuchen Sie danach erneut, das gewünschte Selektionswerkzeug zu aktivieren.</p>
                         </td>
                         </tr>
                     <tr class=errorsGrey>
                         <td id=errorCodes>202</td>
                         <td id=errorMessage>
-                        <p>Es wird versucht, eine Selektion per Polygon durchzuführen, aber das Polygon ist noch nicht fertig gezeichnet</p>
+                            <p>Es wird versucht, eine Selektion per Polygon durchzuführen, aber das Polygon ist noch nicht fertig gezeichnet</p>
                         </td>
                         <td id=errorSolution>
-                        <p> Zeichnen Sie zuerst ein geschlossenes Polygon, d.h. Klicken Sie auf den ersten von Ihnen gesetzten Punkt und danach auf “OK”.</p>
+                            <p>Zeichnen Sie zuerst ein geschlossenes Polygon, d.h. Klicken Sie auf den ersten von Ihnen gesetzten Punkt und danach auf “OK”.</p>
                         </td>
                     </tr>
-                    <tr class=errorsGrey>
+                    <tr>
                         <td id=errorCodes>203</td>
                         <td id=errorMessage>
                             <p>Es wurde eine Selektion per Polygon durchgeführt, aber einige Punkte befinden sich schon in der Auswahl</p>
-                            </td>
+                        </td>
                         <td id=errorSolution>
                             <p>Sie brauchen nichts weiter zu tun, denn die nicht vorhandenen Punkte werden zur Liste hinzugefügt, wohingegen die schon vorhandenen Punkte ignoriert werden.</p>
+                        </td>
+                    </tr>
+                    <tr class=errorsGrey>
+                        <td id=errorCodes>204</td>
+                        <td id=errorMessage>
+                            <p>Eine Einzelpunktselektion soll durchgeführt werden, aber der Punkt befindet sich schon in der Auswahl.</p>
+                        </td>
+                        <td id=errorSolutiom>
+                            <p>Wählen Sie einen anderen Punkt aus.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id=errorCodes>205</td>
+                        <td id=errorMessage>
+                            <p>Ein einzelner Punkt aus einem Track soll zur Auswahl hinzugefügt werden, befindet sich aber schon in der Selektionsliste.</p>
+                        </td>
+                        <td id = errorSolution>
+                            <p>Wählen Sie einen anderen Punkt aus. Womöglich haben Sie vorher den ganzen Track zur Auswahl hinzugeügt und somit befinden sich schon alle Punkte des Tracks in der Auswahl.</p>
+                        </td>
+                    </tr>
+                    <tr class=errorsGrey>
+                        <td id=errorCodes>206</td>
+                        <td id=errorMessage>
+                            <p>Aus der Selektionstabelle sollen Messwerte entfernt werden, die Tabelle ist aber leer oder es wurden keine zu löschenden Punkte selektiert.</p>
+                        </td>
+                        <td id=errorSolution>
+                            <p>Selektieren Sie die zu löschenden Punkte per Häkchen oder aber füllen Sie die Tabelle zuerst, um dann Punkte daraus löschen zu können und versuchen Sie dann erneut, die Operation durchzuführen.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id=errorCodes>301</td>
+                        <td id=errorMessage>
+                            <p>Es wird versucht, ein Diagramm zu erzeugen, aber es befinden sich nicht genug Punkte in der Auswahl.</p>
+                        </td>
+                        <td id=errorSolution>
+                            <p>Selektieren Sie so viele Messpunkte, dass sich mindestens 2 Punkte in der Auswahl befinden.</p>
+                        </td>
+                    </tr>
+                    <tr class=errorsGrey>
+                        <td id=errorCodes>401</td>
+                        <td id=errorMessage>
+                            <p>Es wird versucht, Messdaten zu filtern, es ist aber kein Filterkriterium angegeben.</p>
+                        </td>
+                        <td id = errorSolution>
+                            <p>Setzen Sie mindestens ein Filterkriterium.</p>
+                        </td>
+                        </tr>
+                    <tr>
+                        <td id=errorCodes>402</td>
+                        <td id=errorMessage>
+                            <p>Es wird versucht, Messdaten zu filtern, aber die gegenwärtigen Filtereinstellungen liefern keine Messpunkte zurück.</p>
+                        </td>
+                        <td id=errorSolution>
+                            <p>Ändern Sie die Filtereinstellungen.</p>
                             </td>
                     </tr>
                     <tr class=errorsGrey>
-                    <td id = errorCodes>204</td>
-                    <td id = errorMessage>
-                        <p>Eine Einzelpunktselektion soll durchgeführt werden, aber der Punkt befindet sich schon in der Auswahl.</p>
-                        </td>
-                    <td id=errorSolutiom>
-                        <p>
-                        Wählen Sie einen anderen Punkt aus.</p>
-                        </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>205</td>
-                        <td id = errorMessage>
-                            <p>Ein einzelner Punkt aus einem Track soll zur Auswahl hinzugefügt werden, befindet sich aber schon in der Selektionsliste.</p>
-                            </td>
-                        <td id = errorSolution>
-                            <p>Wählen Sie einen anderen Punkt aus. Womöglich haben Sie vorher den ganzen Track zur Auswahl hinzugeügt und somit befinden sich schon alle Punkte des Tracks in der Auswahl.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>206</td>
+                        <td id=errorCodes>501</td>
                         <td id=errorMessage>
-                            <p>Aus der Selektionstabelle sollen Messwerte entfernt werden, die Tabelle ist aber leer oder es wurden keine zu löschenden Punkte selektiert.</p>
-                            </td>
-                        <td id = errorSolution>
-                            <p>Selektieren Sie die zu löschenden Punkte per Häkchen oder aber füllen Sie die Tabelle zuerst, um dann Punkte daraus löschen zu können und versuchen Sie dann erneut, die Operation durchzuführen.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>301</td>
-                        <td id = errorMessage>
-                            <p>Es wird versucht, ein Diagramm zu erzeugen, aber es befinden sich nicht genug Punkte in der Auswahl.</p>
-                            </td>
-                        <td id = errorSolution>
-                            <p>Selektieren Sie so viele Messpunkte, dass sich mindestens 2 Punkte in der Auswahl befinden.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>401</td>
-                        <td id = errorMessage>
-                            <p>Es wird versucht, Messdaten zu filtern, es ist aber kein Filterkriterium angegeben.</p>
-                            </td>
-                        <td id = errorSolution>
-                            <p>Setzen Sie mindestens ein Filterkriterium.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>402</td>
-                        <td id = errorMessage>
-                            <p>Es wird versucht, Messdaten zu filtern, aber die gegenwärtigen Filtereinstellungen liefern keine Messpunkte zurück.</p>
-                            </td>
-                        <td id = errorSolution>
-                            <p>Ändern Sie die Filtereinstellungen.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>501</td>
-                        <td id = errorMessage>
                             <p>Es wird versucht, die Downloadfunktion zu nutzen, es ist aber kein Punkt selektiert.</p>
-                            </td>
-                        <td id = errorSolution>
-                        <p>Selektieren Sie mindestens einen Punkt und versuchen Sie erneut, die Downloadfunktion auszuführen.</p>
                         </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>601</td>
-                        <td id = errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber es befindet sich kein Track in der Auswahl.</p></td>
-                        <td id = errorSolution>
+                        <td id=errorSolution>
+                            <p>Selektieren Sie mindestens einen Punkt und versuchen Sie erneut, die Downloadfunktion auszuführen.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id=errorCodes>601</td>
+                        <td id=errorMessage>
+                            <p>Es wird versucht, eine Interpolation durchzuführen, aber es befindet sich kein Track in der Auswahl.</p>
+                        </td>
+                        <td id=errorSolution>
                             <p>Selektieren Sie einen Track.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>602</td>
-                        <td id = errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber es befinden sich mehr als 1 Track in der Auswahl.</p></td>
-                            <td id = errorSolution>
-                                Entfernen Sie so viele Tracks aus der Auswahl, sodass Sie genau einen Track selektiert haben.</td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>603</td>
-                        <td id = errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält keine Attribute, über die man interpolieren kann.</p></td>
-                        <td id = errorSolution>
+                        </td>
+                    </tr>
+                    <tr class=errorsGrey>
+                        <td id=errorCodes>602</td>
+                        <td id=errorMessage>
+                            <p>Es wird versucht, eine Interpolation durchzuführen, aber es befinden sich mehr als 1 Track in der Auswahl.</p>
+                        </td>
+                        <td id=errorSolution>
+                            <p>Entfernen Sie so viele Tracks aus der Auswahl, sodass Sie genau einen Track selektiert haben.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id=errorCodes>603</td>
+                        <td id=errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält keine Attribute, über die man interpolieren kann.</p></td>
+                        <td id=errorSolution>
                             <p>Deselektieren Sie den aktuellen Track und wählen Sie einen anderen, welcher Attribute zum Interpolieren enthält, aus.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>604</td>
-                        <td id = errorMessage><p>
-                           Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält das zu interpolierende Attribut nicht. </p>
-                                </td>
-                        <td id = errorSolution><p>Es existieren zwei Möglichkeiten:
-1.) Wählen Sie ein anderes Attribut für die Interpolation aus.
-2.) Wählen Sie einen anderen Track, der das gewünschte Attribut enthält, aus.</p>
-                            </td>
-                        </tr>
-                    <tr class = errorsGrey>
-                        <td id = errorCodes>Status Error X</td>
-                        <td id = errorMessage><p>
-                           Es wird versucht, eine Verbindung zum enviroCar-Server aufzubauen, die URL ist aber nicht aufrufbar.</p>
-                            </td>
-                        <td id = errorSolution>
+                        </td>
+                    </tr>
+                    <tr class=errorsGrey>
+                        <td id=errorCodes>604</td>
+                        <td id=errorMessage>
+                            <p>Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält das zu interpolierende Attribut nicht. </p>
+                        </td>
+                        <td id=errorSolution>
+                            <p>Es existieren zwei Möglichkeiten:
+                            <ol>
+                                <li>
+                                    Wählen Sie ein anderes Attribut für die Interpolation aus.
+                                </li>
+                                <li>
+                                    Wählen Sie einen anderen Track, der das gewünschte Attribut enthält, aus.
+                                </li>
+                            </ol>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id=errorCodes>Status Error [X]</td>
+                        <td id=errorMessage>
+                            <p>Es wird versucht, eine Verbindung zum enviroCar-Server aufzubauen, die URL ist aber nicht aufrufbar.</p>
+                        </td>
+                        <td id=errorSolution>
                             <p>Überprüfen Sie Ihre Internetverbindung. Möglicherweise sind Sie nicht mit dem Internet verbunden. Ein weiterer Grund können interne Probleme des enviroCar-Servers sein. Bitte probieren Sie es später erneut.</p>
-                            </td>
-                        </tr>
-                    
+                        </td>
+                    </tr>
                 </table>
                 
                 <div id=clear></div>
@@ -814,7 +836,7 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                 
                 <table class=errors>
                     <tr>
-                        <td id=requirements>CO<sup>2</sup></td>
+                        <td id=requirements>CO<sub>2</sub></td>
                         <td id=requirementsText>
                             Kohlenstoffdioxid
                         </td>

@@ -368,6 +368,13 @@ footer {
     font-size:10pt;
 }
 
+.imageCaption2{
+    margin-top:3px;
+    padding-top:3px;
+    font-size:13pt;
+    font-weight: bold;
+}
+
 /***********************************************
     5.2 Thumbnail on the home page
         with a link to the application
@@ -656,11 +663,12 @@ h4 {
 }
 
 #errorMessage{
-    width:40%;
+    width:50%;
     font-family:Droid Sans; 
 }
 
 #errorSolution{
+    width:50%;
     font-family:Droid Sans; 
 }
 
