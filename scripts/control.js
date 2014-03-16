@@ -14,15 +14,11 @@ Content
 	1.3 Polygon Selection
 	1.4 Selectionbuttons Visualization
 	
-2. Filter
-	2.1 Start Filter
-	2.2 Reset Filter
-	
-3. Reset Visualization
-	3.1 Reset Track Visualization
-	3.2 Reset All Visualizations
+2. Reset Visualization
+	2.1 Reset Track Visualization
+	2.2 Reset All Visualizations
 
-4. Set Maximal Measurements
+3. Set Maximal Measurements
 
 *********************************************************************************************/
 
@@ -214,73 +210,14 @@ function colorize(button) {
             }
         } 
     }
- }
-
-
-/***********************
-	2. Filter
-***********************/
-//Variable needed to check whether startFilter() is invoked by pressing 'OK' or 'Zuruecksetzen'
-var isFilterReset = false;
-
-// 2.1 Start Filter
-// Description: Start the filter if button 'OK' is pressed 
-// Author: Christian Peters
-function startFilter() {
-    startForm = document.filterFormular.Start.value;
-    endForm = document.filterFormular.Ende.value;
-    typForm = document.filterFormular.Typ.value;
-    sensorForm = document.filterFormular.Sensor_ID.value;
-    
-    if(isFilterReset==true) {
-        drawMeasurements();
-        isFilterReset = false;
-        return;
-    }
-    
-    //Check if filter criteria are entered.
-    
-    else if(isFilterReset==false){
-    if(startForm==null || startForm=="") {
-        if(endForm==null || endForm=="") {
-            if(typForm==null || typForm=="") {
-                if(sensorForm==null || sensorForm=="") {
-    var dialog=$('<p>Sie haben keine Filterkriterien angegeben. Bitte setzen Sie mindestens ein Kriterium.</p>').dialog({
-        width: 600,
-        title: 'Error 401',
-        buttons:{
-            "OK":function(){dialog.dialog('close');}
-        }
-    });
-                    return false;
-                }
-            }
-        }
-    }
-    }
-    
-    drawMeasurements();
-}
-
-
-// 2.2 Reset Filter
-// Description: Reset the filter to update the measurements
-// Author: Christian Peters
-function resetFilter() {
-    document.filterFormular.Start.value = "";
-    document.filterFormular.Ende.value = "";
-    document.filterFormular.Typ.value = "";
-    document.filterFormular.Sensor_ID.value = "";
-    isFilterReset = true;
-    startFilter();
 }
 
 
 /***********************
-	3. Reset Visualizations
+	2. Reset Visualizations
 ***********************/
 
-// 3.1 Reset Track Visualization
+// 2.1 Reset Track Visualization
 // Description: Deletes Track and draws standard measurements
 // Authors: Rene Unrau & Nicholas Schiestel
 
@@ -323,7 +260,7 @@ function resetTrackSelection(){
     
 }
 
-// 3.2 Reset all Visualizations
+// 2.2 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
 // Author: Rene Unrau
 
@@ -352,10 +289,10 @@ function resetVisualization(){
 }
 
 /***********************
-	4. Set Maximum Measurements
+	3. Set Maximum Measurements
 ***********************/
 
-// 4 Set Maximum Measurements
+// 3 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
 // Author: Rene Unrau
 

@@ -301,28 +301,6 @@ function drawMeasurements() {
 		doNotLoad = false;
 		return;
 	}
-    
-	//the values which are filled in the form
-    var filtStart = startForm;
-    var filtEnde = endForm;
-    var filtTyp = typForm;
-    var filtSensor = sensorForm;
-    
-    //Fill the form with the currently activated filter
-    document.filterFormular.Start.value = startForm;
-    document.filterFormular.Ende.value = endForm;
-    document.filterFormular.Typ.value = typForm;
-    document.filterFormular.Sensor_ID.value = sensorForm;
-    
-    var splitStart = filtStart.split("/");
-	var filtStartMonth = parseInt(splitStart[0]);
-	var filtStartDay = parseInt(splitStart[1]); 
-	var filtStartYear = parseInt(splitStart[2]);
-
-	var splitEnd = filtEnde.split("/");
-	var filtEndMonth = parseInt(splitEnd[0]);
-	var filtEndDay = parseInt(splitEnd[1]);
-	var filtEndYear = parseInt(splitEnd[2]);
 
 	var bounds = mainMap.getBounds();
 	
@@ -351,20 +329,17 @@ function drawMeasurements() {
 				}
 			},
             error: function(jqXHR, textStatus, errorThrown){
-            var dialog = $('<p>Beim Abruf der Messpunkte ist folgender Fehler aufgetreten: '+jqXHR.status+'. Im Benutzerhandbuch können Sie  weitere Informationen zu diesem Fehler erhalten.</p>').dialog({
-			modal: true,
-            width:600,
-            title: "Status Error "+jqXHR.status,
-			buttons: {
-				"OK":  function() {dialog.dialog('close');}
+				var dialog = $('<p>Beim Abruf der Messpunkte ist folgender Fehler aufgetreten: '+jqXHR.status+'. Im Benutzerhandbuch können Sie  weitere Informationen zu diesem Fehler erhalten.</p>').dialog({
+					modal: true,
+					width:600,
+					title: "Status Error "+jqXHR.status,
+					buttons: {
+						"OK":  function() {dialog.dialog('close');}
+					}
+				}); 
 			}
-        })
-                                                                                                                                                                                     }
-		});
-                   
-        }
-    
-                                                                        
+		});        
+    }                                                               
 	
 	$.each(currentMeasurements, function(i, measurement){
 	
@@ -478,7 +453,7 @@ function drawMeasurements() {
 				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugeh&ouml;rigen Track anzeigen</a></td></tr></table></html>');
+				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
 	
 			// Insert the container into the popup
 			marker.bindPopup(container[0]);
@@ -495,118 +470,26 @@ function drawMeasurements() {
 		
 		//add all points to the array 'markers'
 		markers.push(marker);
-                                                                         
 		
-		//split the time into 'day', 'month', 'year'
-		var splitTime = properties.time.split("-");
-		var year = parseInt(splitTime[0]);
-		var month = parseInt(splitTime[1]);
-		var day = parseInt(splitTime[2].substring(0,2));
-		var cartype = sensor.properties.manufacturer + " " + sensor.properties.model;
-		
-        //If true the marker is already deleted. If false the marker is not deleted
-		var isDeleted = false;
-		
-		//filter the points
-        if(filtStart != "" && isDeleted == false) {
-		
-            //delete the points which not fit to the filter 'period of time'
-            if(year < filtStartYear) {
-			
-				markers.pop();
-				isDeleted = true;
-				
-			}else if(year > filtStartYear) {
-				
-			}else {
-			
-				if(month < filtStartMonth) {
-				
-					markers.pop();
-					isDeleted = true;
-					
-				}else if(month > filtStartMonth) {
-				
-				} else {
-					
-					if(day < filtStartDay) {
-					
-						markers.pop();
-						isDeleted = true;
-						
-					}
-				}
-			}
-		}
-		
-		if(filtEnde != "" && isDeleted == false) {	
-		
-			if(year > filtEndYear) {
-			
-				markers.pop();
-				isDeleted = true;
-				
-			} else if(year < filtEndYear) {
-				
-			} else {
-			
-				if(month > filtEndMonth) {
-					markers.pop();
-					isDeleted = true;
-					
-				} else if(month < filtEndMonth) {
-				
-					} else {
-					
-					if(day > filtEndDay) {
-					
-						markers.pop();
-						isDeleted = true;
-						
-					}
-				}
-			}
-        }
-		
-        if(filtTyp != "" && isDeleted == false) {
-		
-            //delete the points which not fit to the filter 'type'
-			if(cartype.toLowerCase().indexOf(filtTyp.toLowerCase()) == -1) {
-			
-				markers.pop();
-				isDeleted = true;
-				
-			}
-        } 
-       		
-        if(filtSensor != "" && isDeleted == false) {
-			
-        //delete the points which not fit to the filter 'sensor-id'
-            if(sensor.properties.id.indexOf(filtSensor) == -1) {
-				
-                markers.pop();
-				isDeleted = true;
-            }	
-        }
-			
+		checkFilter(measurement);
 	});
-    
-         
-           //if no measurements are returned
+	
+    //if no measurements are returned
     if(markers.length==0) {
-        var dialog = $('<p>Mit den gegenw&auml;rtig gew&auml;hlten Filtereinstellungen konnten keine Messpunkte gefunden werden. Bitte &auml;ndern Sie die Filtereinstellungen</p>').dialog({
+        var dialog = $('<p>Mit den gegenwärtig gewählten Filtereinstellungen konnten keine Messpunkte gefunden werden. Alle Felder wurden zurückgesetzt.</p>').dialog({
             modal:true,
             width:600,
             title: 'Error 402',
             buttons: {
-                "OK": function() {dialog.dialog('close');}
+                "OK": function() {resetFilter();dialog.dialog('close');}
             }
         })
         return;
-    }      
 		
-	for(var i = 0; i < markers.length; i++) {
-		mainMap.addLayer(markers[i]);
+    }else{
+		for(var i = 0; i < markers.length; i++) {
+			mainMap.addLayer(markers[i]);
+		}
 	}
 }
 
