@@ -228,7 +228,7 @@ header {
 #filterActivity {
     margin-top:7px;
     float: right;
-    display: block;
+    display: none;
 }
 
 #filterActivityInfo {

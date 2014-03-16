@@ -16,6 +16,8 @@ Content
 
 *********************************************************************************************/
 
+// activity of a filter
+var filterActive = false;
 
 /***********************
 	1. Check Filter
@@ -23,7 +25,7 @@ Content
 
 // Check Filter
 // Description: Checks for a single measurment if it should be drawn on map
-// Author: Reneé Unrau, Christian Peters
+// Author: René Unrau, Christian Peters
 function checkFilter(measurement){
 
 	var geometry = measurement.geometry;
@@ -150,7 +152,7 @@ function checkFilter(measurement){
 	2. Start Filter
 ***********************/
 
-// 2 Start Filter
+// Start Filter
 // Description: Start the filter if button 'OK' is pressed 
 // Author: Christian Peters
 function startFilter() {
@@ -176,14 +178,24 @@ function startFilter() {
             }
         }
     }
+    
+    // shows an orange activity-button in the filter-area
+    if (filterActive==false) {
+        toggle_visibility('filterActivity');
+        filterActive = true;
+    }
+    else {
+        filterActive = true;
+    }
+    
 	drawMeasurements();
 }
 
 /***********************
-	3. Start Filter
+	3. Reset Filter
 ***********************/
 
-// 3 Reset Filter
+// Reset Filter
 // Description: Reset the filter to update the measurements
 // Author: Christian Peters, René Unrau
 function resetFilter() {
@@ -197,5 +209,14 @@ function resetFilter() {
 	typForm = "";
 	sensorForm = "";
 	
+    // hides the orange activity-button in the filter-area
+    if (filterActive==true) {
+        toggle_visibility('filterActivity');
+        filterActive = false;
+    }
+    else {
+        filterActive = false;
+    }
+    
     drawMeasurements();
 }
