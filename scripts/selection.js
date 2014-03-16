@@ -373,6 +373,7 @@ function clearSelection(){
 	} else {
 		var dialog = $('<p>Es wurden noch keine Messpunkte selektiert.</p>').dialog({
             width:600,
+            title:"Error 206",
 			buttons: {
 				"OK": function() {dialog.dialog('close');},
 			}

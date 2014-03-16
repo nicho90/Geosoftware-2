@@ -40,7 +40,7 @@ else{
 				"OK": function() {downloadmpDialog.dialog('close');}
 			},
 			width: 600,
-            title: "Error"
+            title: "Error 501"
 		});
 	}
 
