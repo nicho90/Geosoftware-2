@@ -23,7 +23,7 @@ Content
 
 // Check Filter
 // Description: Checks for a single measurment if it should be drawn on map
-// Author: Reneé Unrau, Christian Peters
+// Author: ReneÃ© Unrau, Christian Peters
 function checkFilter(measurement){
 
 	var geometry = measurement.geometry;
@@ -185,7 +185,7 @@ function startFilter() {
 
 // 3 Reset Filter
 // Description: Reset the filter to update the measurements
-// Author: Christian Peters, René Unrau
+// Author: Christian Peters, RenÃ© Unrau
 function resetFilter() {
     document.filterFormular.Start.value = "";
     document.filterFormular.Ende.value = "";
