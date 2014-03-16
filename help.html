@@ -670,30 +670,137 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                         <th>Fehlermeldung</th>
                         <th>Problembehandlung</th>
                     </tr>
-                    <tr>
-                        <td id=errorCodes>101</td>
+                    <tr class = errorsGrey>
+                        <td id=errorCodes>201</td>
                         <td id=errorMessage>
-                            <p>zirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943q</p>
+                        <p>Es ist schon ein Auswahlwerkzeug aktiv und es wird versucht, ein weiteres zu aktivieren.</p>
                         </td>
                         <td id=errorSolution>
-                            <p>bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh obruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4üzirkgh4 oituI$§ bruiegrrbgeiuhprtz3408th ht38943qt 4oiräbgljr 48z3qpogh oä5zß#0q4ü</p>
+                        <p>Deaktivieren Sie zuerst das schon aktive Selektionswerkzeug und versuchen Sie danach erneut, das gewünschte Selektionswerkzeug zu aktivieren.</p>
+                        </td>
+                        </tr>
+                    <tr class=errorsGrey>
+                        <td id=errorCodes>202</td>
+                        <td id=errorMessage>
+                        <p>Es wird versucht, eine Selektion per Polygon durchzuführen, aber das Polygon ist noch nicht fertig gezeichnet</p>
+                        </td>
+                        <td id=errorSolution>
+                        <p> Zeichnen Sie zuerst ein geschlossenes Polygon, d.h. Klicken Sie auf den ersten von Ihnen gesetzten Punkt und danach auf “OK”.</p>
                         </td>
                     </tr>
                     <tr class=errorsGrey>
-                        <td id=errorCodes>102</td>
-                        <td id=errorMessage></td>
-                        <td id=errorSolution></td>
-                    </tr>
-                    <tr>
-                        <td id=errorCodes>201</td>
-                        <td id=errorMessage></td>
-                        <td id=errorSolution></td>
+                        <td id=errorCodes>203</td>
+                        <td id=errorMessage>
+                            <p>Es wurde eine Selektion per Polygon durchgeführt, aber einige Punkte befinden sich schon in der Auswahl</p>
+                            </td>
+                        <td id=errorSolution>
+                            <p>Sie brauchen nichts weiter zu tun, denn die nicht vorhandenen Punkte werden zur Liste hinzugefügt, wohingegen die schon vorhandenen Punkte ignoriert werden.</p>
+                            </td>
                     </tr>
                     <tr class=errorsGrey>
-                        <td id=errorCodes>202</td>
-                        <td id=errorMessage></td>
-                        <td id=errorSolution></td>
-                    </tr>
+                    <td id = errorCodes>204</td>
+                    <td id = errorMessage>
+                        <p>Eine Einzelpunktselektion soll durchgeführt werden, aber der Punkt befindet sich schon in der Auswahl.</p>
+                        </td>
+                    <td id=errorSolutiom>
+                        <p>
+                        Wählen Sie einen anderen Punkt aus.</p>
+                        </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>205</td>
+                        <td id = errorMessage>
+                            <p>Ein einzelner Punkt aus einem Track soll zur Auswahl hinzugefügt werden, befindet sich aber schon in der Selektionsliste.</p>
+                            </td>
+                        <td id = errorSolution>
+                            <p>Wählen Sie einen anderen Punkt aus. Womöglich haben Sie vorher den ganzen Track zur Auswahl hinzugeügt und somit befinden sich schon alle Punkte des Tracks in der Auswahl.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>206</td>
+                        <td id=errorMessage>
+                            <p>Aus der Selektionstabelle sollen Messwerte entfernt werden, die Tabelle ist aber leer oder es wurden keine zu löschenden Punkte selektiert.</p>
+                            </td>
+                        <td id = errorSolution>
+                            <p>Selektieren Sie die zu löschenden Punkte per Häkchen oder aber füllen Sie die Tabelle zuerst, um dann Punkte daraus löschen zu können und versuchen Sie dann erneut, die Operation durchzuführen.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>301</td>
+                        <td id = errorMessage>
+                            <p>Es wird versucht, ein Diagramm zu erzeugen, aber es befinden sich nicht genug Punkte in der Auswahl.</p>
+                            </td>
+                        <td id = errorSolution>
+                            <p>Selektieren Sie so viele Messpunkte, dass sich mindestens 2 Punkte in der Auswahl befinden.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>401</td>
+                        <td id = errorMessage>
+                            <p>Es wird versucht, Messdaten zu filtern, es ist aber kein Filterkriterium angegeben.</p>
+                            </td>
+                        <td id = errorSolution>
+                            <p>Setzen Sie mindestens ein Filterkriterium.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>402</td>
+                        <td id = errorMessage>
+                            <p>Es wird versucht, Messdaten zu filtern, aber die gegenwärtigen Filtereinstellungen liefern keine Messpunkte zurück.</p>
+                            </td>
+                        <td id = errorSolution>
+                            <p>Ändern Sie die Filtereinstellungen.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>501</td>
+                        <td id = errorMessage>
+                            <p>Es wird versucht, die Downloadfunktion zu nutzen, es ist aber kein Punkt selektiert.</p>
+                            </td>
+                        <td id = errorSolution>
+                        <p>Selektieren Sie mindestens einen Punkt und versuchen Sie erneut, die Downloadfunktion auszuführen.</p>
+                        </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>601</td>
+                        <td id = errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber es befindet sich kein Track in der Auswahl.</p></td>
+                        <td id = errorSolution>
+                            <p>Selektieren Sie einen Track.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>602</td>
+                        <td id = errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber es befinden sich mehr als 1 Track in der Auswahl.</p></td>
+                            <td id = errorSolution>
+                                Entfernen Sie so viele Tracks aus der Auswahl, sodass Sie genau einen Track selektiert haben.</td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>603</td>
+                        <td id = errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält keine Attribute, über die man interpolieren kann.</p></td>
+                        <td id = errorSolution>
+                            <p>Deselektieren Sie den aktuellen Track und wählen Sie einen anderen, welcher Attribute zum Interpolieren enthält, aus.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>604</td>
+                        <td id = errorMessage><p>
+                           Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält das zu interpolierende Attribut nicht. </p>
+                                </td>
+                        <td id = errorSolution><p>Es existieren zwei Möglichkeiten:
+1.) Wählen Sie ein anderes Attribut für die Interpolation aus.
+2.) Wählen Sie einen anderen Track, der das gewünschte Attribut enthält, aus.</p>
+                            </td>
+                        </tr>
+                    <tr class = errorsGrey>
+                        <td id = errorCodes>Status Error X</td>
+                        <td id = errorMessage><p>
+                           Es wird versucht, eine Verbindung zum enviroCar-Server aufzubauen, die URL ist aber nicht aufrufbar.</p>
+                            </td>
+                        <td id = errorSolution>
+                            <p>Überprüfen Sie Ihre Internetverbindung. Möglicherweise sind Sie nicht mit dem Internet verbunden. Ein weiterer Grund können interne Probleme des enviroCar-Servers sein. Bitte probieren Sie es später erneut.</p>
+                            </td>
+                        </tr>
+                    
                 </table>
                 
                 <div id=clear></div>
