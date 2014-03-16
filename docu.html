@@ -249,7 +249,7 @@
                 <div id=clear></div>
                 <h3 id=docu-3>3. Benutzeroberfläche der Applikation</h3>
 				
-                Das Portal, sowie die Applikation passen sich dynamisch an die Größe des Computerbildschrims an. Liegt die Bildschrimauflösung unter der Mindestauflösung von 1280 x 600 Pixel kann es unter Umständen dazuführen, dass einige Bedienelemente, gerade im Filterbereich und in den Sidebarelementen verrutschen. Dennoch bleibt der Aufbau der Applikation vollständig erhalten.
+                Das Portal, sowie die Applikation passen sich dynamisch an die Größe des Computerbildschrims an. Liegt die Bildschrimauflösung unter der Mindestauflösung von 1280 x 600 Pixel kann es unter Umständen dazuführen, dass einige Bedienelemente, gerade im Filterbereich und in den Sidebarelementen verrutschen. Dennoch bleibt der Aufbau der Applikation vollständig erhalten und bedienbar.
                 Die Appliaktion gliedert sich in folgende Bereiche:
                 <br><br>
                 <table class=errors>
@@ -261,13 +261,10 @@
                                     Hier befindet sich ein Logo über das der Benutzer wieder zur Startseite des Portals gelangen kann.
                                 </li>
                                 <li>
-                                    Danach befindet sich das erste Bedienelement
+                                    Danach befindet sich das erste Bedienelement, durch das der Benutzer die Anzahl der Messpunkte festlegen kann.
                                 </li>
                                 <li>
-                                    
-                                </li>
-                                <li>
-                                    
+                                    Danach folgt der Filterbereich für die Messpunkte.
                                 </li>
                             </ul>
                         </td>
@@ -277,13 +274,13 @@
                         <td id=structureText>
                             <ul style="list-style-type:square;">
                                 <li>
-                                
+                                    Die Karte enthält links oben Bedienelemente zum Rein- und Rauszoomen, sowie die Navigationselemente und eine Lokalisierungsfunktion.
                                 </li>
                                 <li>
-                                
+                                    Auf der rechten Seiten befinden sich die Auswahl des Kartentyps, sowie Buttons, die nur beim bestimmten Ereignissen erscheinen. Ein Button zur Symbolisierung, dass eine Visualisierung vorliegt. Durch das Anklicken kann die Visualisierung wieder zurückgesetzt werden. Darunter befindet sich ein Button der erscheint, sobald eine Interpolation durchgeführt wurde. Er dient dazu, die Interpolationsergebnisse zu downloaden.
                                 </li>
                                 <li>
-                                    
+                                    Links unten wird beim Ausführen einer Interpolationen eine Legende eingeblendet.
                                 </li>     
                             </ul>
                         </td>
@@ -293,16 +290,16 @@
                         <td id=structureText>
                             <ul style="list-style-type:square;">
                                 <li>
-                                    
+                                    Das erste Bedienelement der Sidebar sind die 3 Selektierwerkzeuge.
                                 </li>
                                 <li>
-                                    
+                                    Darunter befindet sich eine Liste mit den selektierten Punkten.
                                 </li>
                                 <li>
-                                    
+                                    Danach folgt der Analysebereich mit einer kurzen textlichen Darstellung des Mittelwerts, der Standardabweichung, sowie des Minimums und Maximums. Die Werte werden automatisch aktualisiert, sobald Punkte hinzukommen oder entfernt werden. Darunter folgt ein Button um zu den Diagrammen zu gelangen.
                                 </li>
                                 <li>
-                                    
+                                    Als letztes Sidebarelement folgt die Interpolation. Hier können die Einstellungen zur Berechnung einer Interpolation ausgewählt werden.
                                 </li>
                             </ul>
                         </td>
@@ -310,7 +307,7 @@
                     <tr class=errorsGrey>
                         <td id=structure>Fußbereich (Footer)</td>
                         <td id=structureText>
-                            <ul style="list-style-type:none">
+                            <ul style="list-style-type:square;">
                                 <li>
                                     Hier befindet sich Links um schnell zu den entsprechenden Portalseiten zu gelangen.
                                 </li>
@@ -327,7 +324,7 @@
                 </div>
                 <br>
                 <br>
-                Aufgrund dieser klaren Gliederung entsteht eine logische Bedienreihenfolge, wie sie in der neben stehenden Abbildung zu erkennen ist.<br>
+                Aufgrund dieser klaren Gliederung entsteht eine logische Bedienreihenfolge, wie sie in der neben stehenden Abbildung gut zu erkennen ist.<br>
                 Durch implementierte Funktionen werden die Sidebarelemente aufgeklappt, sobald sie genutzt werden können. Dies ist vor allem für Nutzer interessant, die die Applikation zum ersten Mal bedienen. Zum Beispiel wird der Bereich der "Selektierten Punkte" automatisch ausgeklappt, sobald sich mindestens 1 Messpunkt in der Auswahl befindet. Auch wenn Selektionswerkzeuge aktiviert werden, wie "Auswählen byTrack" oder "Auswählen byPolygon" erscheinen ihre jeweiligen Bedienelemente. Der Bereich der Analysen erscheint erst, wenn sich mindestens 2 Punkte in der Auswahl befinden und der Bereich der Interpolationen erst dann, wenn nur 1 Track zur Auswahl hinzugefügt wurde.
                 <div class="imageBoxLeft">
                     <img src="images/docu/docu-3-s2.png" alt="Tooltips" class=imageNoBorder width=200px>
