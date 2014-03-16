@@ -9,7 +9,7 @@ Content
 
 1. Draw Polygon
 
-2. Delete Polygon
+2. Reset Polygon
 
 3. Confirm Polygon
 
@@ -35,14 +35,28 @@ function drawPolygon(){
 }
 
 /***********************
-	2. Delete Polygon
+	2. Reset Polygon
 ***********************/
 
-// 2 Delete polygon
+// 2 Reset polygon
 // Description: Delete polygon layer from map
 // Author: Oliver Kosky
-function deletePolygon(){
-    mainMap.removeLayer(polygonLayer);
+function resetPolygon(){
+
+	// If not closed -> delete unfinished Polygon
+	if(polygonLayer == undefined){
+		polygon.disable();
+	// If closed -> delete completed Polygon
+	}else{
+		mainMap.removeLayer(polygonLayer);
+	}
+	
+	//Remove all completed (maybe not visible) polygons
+	polygonLayer = null;
+	
+	// Allow user to draw new polygon
+	polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
+	polygon.enable();
 }
 
 /***********************

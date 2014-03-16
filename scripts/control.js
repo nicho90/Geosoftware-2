@@ -66,7 +66,7 @@ function chooseSingleSelection(id) {
 
 // 1.2 Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
-// Authors: Rene Unrau & Nicholas Schiestel
+// Authors: René Unrau & Nicholas Schiestel
 
 function chooseTrackSelection() {  
     // check if singlePointSelection or polygonSelection is active
@@ -99,7 +99,7 @@ function chooseTrackSelection() {
 
 // 1.3 Polygon Selection 
 // Description: User wants to add measurements by drawing a polygon on the map
-// Authors: Rene Unrau, Johanna, Oli K. & Nicholas Schiestel
+// Authors: René Unrau, Johanna, Oli K. & Nicholas Schiestel
 function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
@@ -114,14 +114,20 @@ function choosePolygonSelection() {
 		});
     }
     
-    // if no other selcetionmode is active, then continue with polygonSelection
+    // if no other selectionmode is active, then continue with polygonSelection
     else {
         if(polygonSelection){
             polygonSelection = false;
             colorize('choosePolygon');
             toggle_visibility('drawingPolygon');
             polygon.disable();
-            mainMap.removeLayer(polygonLayer);
+			
+			// Clear polygon-tool and all possible (and maybe not visible) Polygons from map
+			polygon.disable();
+			if(polygonLayer != null || polygonLayer != undefined){
+				mainMap.removeLayer(polygonLayer);
+				polygonLayer = null;
+			}
         }
         else {
             polygonSelection = true;
