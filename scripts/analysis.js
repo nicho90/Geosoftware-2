@@ -654,8 +654,10 @@ function refreshManufacturers(){
 	manufacturerFrequency = new Array();
 	
 	for(var key in manufacturerSelection){
-		manufacturerNames.push(key);
-		manufacturerFrequency.push(manufacturerSelection[key]);
+		if(key != 'max' && key != 'min' && key != 'mean' && key != 'rep' && key != 'pip'){
+			manufacturerNames.push(key);
+			manufacturerFrequency.push(manufacturerSelection[key]);
+		}
 	}
 	
 	// Get and return maximum
