@@ -95,7 +95,7 @@
                             <li><a href="#help-11-1">Interpolation mit inverser Distanzgewichtung</a></li>
                             <li><a href="#help-11-2">Interpolation mit Kriging</a></li>
                             <li><a href="#help-11-3">Die Legende</a></li>
-                            <li><a href="#help-11-4">Downloaden eines Interpolationsergebnisses</a></li>
+                            <li><a href="#help-11-4">Interpolationsergebnis Downloaden</a></li>
                             <li><a href="#help-11-5">Zurücksetzten einer Visualisierung</a></li>
                         </ol>
                     </li>
@@ -777,24 +777,39 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
 
                 <div id=clear></div>
                 <h4 id=help-11-3>11.3 Die Legende</h4>
-                <div class="imageBoxLeft_2">
+				
+				<div class="imageBoxRight_2">
                     <img src="images/help/help-11-3-s1.png" alt="Legende zur Interpolation" class=imageNoBorder width=170px>
                     <div class="imageCaption">
                         Legende zur Interpolation
                     </div>
                 </div>
+				
+				<p>Wenn sie eine Interpolation erfolgreich ausgeführt haben, so erscheint eine Legende im unteren linken Bereich der Karte. Hier bekommen sie eine Übersicht über die Einteilung und Färbung der Klassen, sowie über das aktuell ausgewählte Attribut der Interpolation.</p>
+
+				<p>Es besteht nun die Möglichkeit zwischen den verfügbaren Attributen des Tracks zu wechseln. Dabei passt sich die Visualisierung auf der Karten automatisch Ihrer Auswahl an. Wird ein Attribut ausgewählt, das nicht verfügbar ist, so erscheint eine Fehlermeldung und die Auswahl wird auf ein valides Attribut gesetzt.</p>
+
+				<p>Außerdem können Sie nach Belieben auswählen, welche Visualisierungskombinationen Sie auf der Karte dargestellt haben möchten. Dazu können die ursprünglichen Messwerte, die interpolierten Werte und die, gemäß der Interpolation, gefärbte Linie ein und ausgeblendet werden. Sie können also hier selbst entscheiden, welche Informationen für Sie hier relevant sind und so ein Überfrachten von Informationen auf der Karte vermeiden.</p>
                 
                 <div id=clear></div>
-                <h4 id=help-11-4>11.4 Downloaden eines Interpolationsergebnisses</h4>
+                <h4 id=help-11-4>11.4 Interpolationsergebnis Downloaden</h4>
+				
                 <div class="imageBoxRight">
                     <img src="images/help/help-11-4-s1.png" alt="Button zum Downloaden des Interpolationsergebnisses" class=imageNoBorder width=60px>
                     <div class="imageCaption">
                         Button zum Downloaden<br>des Interpolationsergebnisses
                     </div>
                 </div>
+				
+				<p>Wenn sie eine Interpolation erfolgreich ausgeführt haben, so besteht die Möglichkeit für Sie, Ihr Ergebnis herunterzuladen. Dazu wird ein Button im oberen rechten Bereich der Karte eingeblendet.</p>
+				
+				<p>Klicken sie auf diesen Button, so werden sie gefragt, ob die interpolierten Werte heruntergeladen werden sollen. Bei einer Bestätigung startet der Download automatisch.</p>
+
+				<p>Die Punkte werden dabei im JSON-Format gespeichert, sodass eine maschinelle Weiterverarbeitung durchaus möglich ist.</p>
                 
                 <div id=clear></div>
                 <h4 id=help-11-5>11.5 Zurücksetzten einer Visualisierung</h4>
+				
                 <div class="imageBoxRight">
                     <img src="images/help/help-5-5-s1.png" alt="Button zum Zurücksetzten" class=imageNoBorder width=60px>
                     <div class="imageCaption">
@@ -802,7 +817,11 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                     </div>
                 </div>
                 
-                
+                <p>Wenn sie eine Interpolation erfolgreich ausgeführt haben, so besteht die Möglichkeit für Sie die Visualisierung zurückzusetzen. Dazu wird ein Button im oberen rechten Bereich der Karte eingeblendet.</p>
+			
+				<p>Klicken sie auf diesen Button, so wird die Visualisierung der Interpolation zurückgesetzt und die Karte wieder in den “normalen Modus” versetzt. Das Bedeutet es werden nun wieder, wie zu Beginn, automatisch alle sichtbaren Messpunkte auf der Karte dargestellt und können ausgewählt und weiterverarbeitet werden.</p>
+			
+				<p>Der entsprechende Button verschwindet bei einer Auswahl automatisch.</p>
                 
                 <div id=clear></div>
                 <div id=next>
