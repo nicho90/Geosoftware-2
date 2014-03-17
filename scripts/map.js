@@ -15,6 +15,8 @@ Content
 3. Initial Functions
 	3.1 Draw MainMap
 	3.2 Draw Measurements
+	
+4. Geolocation
 
 *********************************************************************************************/
 
@@ -268,25 +270,8 @@ function drawMap() {
 
 	document.getElementById('up').onclick = function() {
     	map.panBy([0, -300]);
-	};
+	};	
 	
-    
-    
-	// Locate me - function 
-	// map pans to current position of the user and sets a marker
-	// Author: Johanna Moellmann
-	document.getElementById('locateMe').onclick = function() {
-       function handler(locateme){
-           var longitude = locateme.coords.longitude;
-           var latitude = locateme.coords.latitude;
-           map.panTo(new L.LatLng(latitude, longitude));
-           var markerIcon = L.divIcon({ className: 'locationIcon',
-                                        html: '<div class=pin bounce></div><div class=pulse></div>'
-                                      });
-           var location = L.marker([latitude, longitude],{icon: markerIcon}).addTo(map).bindPopup("Ihre Position: " + longitude + ", " + latitude);
-       }
-           navigator.geolocation.getCurrentPosition(handler); 
-	};
 	L.control.layers(layer).addTo(map);
     mainMap = map;
 }
@@ -474,8 +459,8 @@ function drawMeasurements() {
 		checkFilter(measurement);
 	});
 	
-    //if no measurements are returned
-    if(markers.length==0) {
+    //If filter is active and there are no measurements to display
+    if(markers.length==0 && filterActive) {
         var dialog = $('<p>Mit den gegenwärtig gewählten Filtereinstellungen konnten keine Messpunkte gefunden werden. Alle Felder wurden zurückgesetzt.</p>').dialog({
             modal:true,
             width:600,
@@ -493,6 +478,20 @@ function drawMeasurements() {
 	}
 }
 
-function downloadsite(){
-	window.open('test.html');
+
+/***********************
+	3. Geolocation
+***********************/
+
+// 4 Locate me - function 
+// map pans to current position of the user and sets a marker
+// Author: Johanna Moellmann, René Unrau
+function geolocation(){
+	
+	mainMap.locate({setView: true, maxZoom: 16});
+	
+	mainMap.on('locationfound', function(e){
+		var markerIcon = L.divIcon({ className: 'locationIcon', html: '<div class=pin bounce></div><div class=pulse></div>'});
+        var location = L.marker(e.latlng,{icon: markerIcon}).addTo(mainMap).bindPopup("Ihre Position: " + e.latlng.longitude + ", " + e.latlng.latitude);
+    });
 }
