@@ -399,6 +399,7 @@ footer {
     float:right;
     margin-left: 60px;
     text-align:center;
+    margin-top:20px;
 }
 
 .imagelink, .imagelink:hover, .imagelink:active{
