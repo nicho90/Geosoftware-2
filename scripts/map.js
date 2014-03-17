@@ -494,4 +494,16 @@ function geolocation(){
 		var markerIcon = L.divIcon({ className: 'locationIcon', html: '<div class=pin bounce></div><div class=pulse></div>'});
         var location = L.marker(e.latlng,{icon: markerIcon}).addTo(mainMap).bindPopup("Ihre Position: " + e.latlng.longitude + ", " + e.latlng.latitude);
     });
+	
+	mainMap.on('locationerror', function(e){
+		var dialog = $('<p>Die Position konnte nicht ermittelt werden oder wurde durch den Benutzer untersagt.</p>').dialog({
+            modal:true,
+            width:600,
+            title: 'Error |REPLACE ME|',
+            buttons: {
+                "OK": function() {dialog.dialog('close');}
+            }
+        })
+        return;
+    });
 }
