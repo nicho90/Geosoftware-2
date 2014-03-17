@@ -114,8 +114,16 @@
                 <h3 id=help-1>1. Einleitung</h3>
              <p>   Im Folgenden werden alle Programmier- und Markupsprachen, sowie eingeladene Frameworks gezeigt, die in diesem Projekt benutzt wurden. Viele der Technologien sind Open Source Software, bzw. dürfen in nicht kommerziellen Projekten kostenlos benutzt werden. Alle Internetseiten des Projekts basieren auf den derzeitigen Webstandards.</p>
                 
+                
+                <div class="imageBoxRight">
+                    <a href="http://envirocar.org" target="_blank"><img src="images/help/enviroCar.png" alt="enviroCar-Projekt" class=envirocar width=200px></a>
+                    <div class="imageCaption">
+                        Das enviroCar-Projekt
+                    </div>
+                </div>
+                
                 <p>Das Ziel des enviroCar-Projekts ist es, Menschen die Möglichkeit bereitzustellen, Informationen über die Daten ihres Fahrzeuges während des Fahrbetriebs zu bekommen. Mit Hilfe eines ODBII-Adapters, welcher im Fahrzeug an einen dafür vorgesehenen Steckplatz, angeschlossen wird, werden Daten der Fahrzeugsensorik ausgelesen. Diese Daten können dann per Android App (weitere Systeme sind geplant) auf die Server des enviroCar-Projekts übertragen werden. Es werden folgende Daten gesammelt: die geographische Position zum Messzeitpunkt, der Messzeitpunkt, das Fahrzeugmodell, die ID des Fahrzeugsensors, die Geschwindigkeit zum Messzeitpunkt, der CO2-Verbrauch zum Messzeitpunkt und der Luftdurchfluss (MAF).
-Weitere Informationen zum enviroCar-Projekt finden sich unter http://envirocar.org.
+Weitere Informationen zum enviroCar-Projekt finden sich unter <a href="http://envirocar.org" target="_blank" class=link>http://envirocar.org</a>.
 </p>
                 <p>
 Mit dem enviroCar-Analyser lassen sich nun diese Daten, welche an den enviroCar-Server übertragen wurden, auf einer Karte visualisieren und analysieren. Der Benutzer kann sich Messpunkte in einem bestimmten Kartenausschnitt anzeigen lassen, aber auch gezielt nach Messfahrten (Tracks) suchen bzw. die Messpunkte filtern.
@@ -181,15 +189,25 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
                 <div id=clear></div>
                 <h3 id=help-3>3. Der Aufbau der Applikation</h3>
 				<div class="imageBoxRight">
-                    <a href="images/help/help-2-s1.png" rel="shadowbox"><img src="images/help/help-2-s1.png" alt="Aufbau der Applikation" class=image width=300px></a>
+                    <a href="images/help/help-3-s1.png" rel="shadowbox"><img src="images/help/help-3-s1.png" alt="Aufbau der Applikation" class=image width=300px></a>
                     <div class="imageCaption">
                         Schematischer Aufbau der Applikation    
                     </div>
                 </div>
 								
-				Das Zentrum der Applikation wird von der Karte gebildet. Auf ihr werden bereits beim Starten der Applikation Punkte von EnviroCar dargestellt. Je nach dem, wie der Nutzer die Applikation nutzt, dient die Karte auch zur Darstellung von gefilterten Punkten, Analyseergebnissen, ausgewählten Tracks und Interpolationsergebnisse.
-				Die Applikation ist nach einer logischen Bedienreihenfolge aufgebaut. 
-				Diese ist an der neben stehenden Abbildung gut zu erkennen. Es ist dem Nutzer allerdings auch möglich, außerhalb der vorgesehenen Reihenfolge mit der Applikation zu interagieren. Die hier beschriebene Reihenfolge ist allerdings gerade bei der ersten Benutzung der Applikation zu empfehlen. Im ersten Schritt kann der Nutzer die angezeigten Punkte im Filterbereich im Header nach bestimmten Kriterien filtern, z.B. Datum oder Fahrzeugtyp. Es ist ihm auch möglich, über Selektierwerkzeuge die nun angezeigten, oder auch nicht vorhergefilterte Punkte zu selektieren, beispielsweise durch das anklicken eines Punktes, wenn das dazu bestimmte Selektierwerkzeug aktiviert ist. Die selektierten Punkte werden dem Nutzer nun in einer Tabelle angezeigt. Mit diesen Punkte gegebene mathematische Analysen durchführen und sich Diagramme für Häufigkeitsverteilungen der Attribute anschauen. Hat der Nutzer einen einzelnen Track in der Selektionstabelle, so kann er entlang dieses Tracks interpolieren.
+				<p>Das Zentrum der Applikation wird von der Karte gebildet. Auf ihr werden bereits beim Starten der Applikation Punkte von EnviroCar dargestellt. Je nach dem, wie der Nutzer die Applikation nutzt, dient die Karte auch zur Darstellung von gefilterten Punkten, Analyseergebnissen, ausgewählten Tracks und Interpolationsergebnisse.
+				Die Applikation ist nach einer logischen Bedienreihenfolge aufgebaut.
+				Diese ist an der neben stehenden Abbildung gut zu erkennen.<br>
+                    Es ist dem Nutzer allerdings auch möglich, außerhalb der vorgesehenen Reihenfolge mit der Applikation zu interagieren. Die hier beschriebene Reihenfolge ist allerdings gerade bei der ersten Benutzung der Applikation zu empfehlen. Im ersten Schritt kann der Nutzer die angezeigten Punkte im Filterbereich im Header nach bestimmten Kriterien filtern, z.B. Datum oder Fahrzeugtyp. Es ist ihm auch möglich, über Selektierwerkzeuge die nun angezeigten, oder auch nicht vorhergefilterte Punkte zu selektieren, beispielsweise durch das anklicken eines Punktes, wenn das dazu bestimmte Selektierwerkzeug aktiviert ist. Die selektierten Punkte werden dem Nutzer nun in einer Tabelle angezeigt. Mit diesen Punkte gegebene mathematische Analysen durchführen und sich Diagramme für Häufigkeitsverteilungen der Attribute anschauen. Hat der Nutzer einen einzelnen Track in der Selektionstabelle, so kann er entlang dieses Tracks interpolieren.</p>
+                
+                <div class="imageBoxLeft">
+                    <img src="images/help/help-3-s2.png" alt="Tooltips" class=imageNoBorder width=30px></a>
+                    <div class="imageCaption">
+                        Hinweise   
+                    </div>
+                </div>
+                <br>
+                <p>Hinweis: Die Applikation unterstützt Sie während Ihrer Arbeit mit vielen Hinweisen und Infos. Wenn Sie dieses Icon sehen, nutzen Sie es um direkt Hinweise zur Bedienung zu erfahren. Falls Sie weitere Informationen benötigen, nutzen Sie Benutzerhilfe.</p>
 
                 
                 <div id=clear></div>
@@ -208,13 +226,26 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
 				Sie sind nur verfügbar, wenn der enviroCar-Server erreichbar ist. 
                 <div id=clear></div>
                 <h4 id=help-4-2>4.2 Die Anzahl der Messpunkte</h4>
-                <div class="imageBoxLeft">
+                <div class="imageBoxRight">
                     <img src="images/help/help-4-2-s1.png" alt="Die Anzahl der Messpunkte" class=imageNoBorder width=120px>
                     <div class="imageCaption">
-                    Die Anzahl<br>der Messpunkte  
+                        Die Anzahl<br>der Messpunkte  
                     </div>
                 </div>
+                
                 Sie können die standardmäßige Anzahl der Messpunkten über ein Auswahlbutton in der Kopfzeile der Applikation verändern. Achtung: Dies verändert auch die Performance der Applikation. Je mehr Punkte Sie auswählen, desto mehr Anfragen werden an die enviroCar-Datenbank gestellt. Dadurch können lange Wartezeiten entstehen und die Applikation bleibt vorübergehend stehen.
+                
+                <div class="imageBoxLeft">
+                    <a href="images/help/help-4-2-s2.png" rel="shadowbox[Vacation6]"><img src="images/help/help-4-2-s2.png" alt="Beispiel für eine Ortung" class=image width=300px></a>
+                    <a href="images/help/help-4-2-s3.png" rel="shadowbox[Vacation6]"></a>
+                    <a href="images/help/help-4-2-s4.png" rel="shadowbox[Vacation6]"></a>
+                    <a href="images/help/help-4-2-s5.png" rel="shadowbox[Vacation6]"></a>
+                    <div class="imageCaption">
+                        Beispiele für die Anzahl der Messpunkte<br>(100, 500, 1000, 3000)
+                        
+                    </div>
+                </div>
+                
                 <div id=clear></div>
                 <div id=next>
                     <a href="#help-4">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
@@ -233,10 +264,10 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
 
                 <div id=clear></div>
                 <h4 id=help-5-1>5.1 Die Navigationselemente</h4>
-				<div class="imageBoxLeft">
+				<div class="imageBoxLeft_2">
                     <img src="images/help/help-5-1-s1.png" alt="Navigationselemente" class=imageNoBorder width=130px>
                     <div class="imageCaption">
-                    Navigationselemente  
+                        Navigationselemente  
                     </div>
                 </div>
 				
@@ -254,10 +285,23 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
                 <div id=clear></div>
                 <h4 id=help-5-2>5.2 Die Ortungsfunktion</h4>
 				
+                <div class="imageBoxRight">
+                    <img src="images/help/help-5-2-s1.png" alt="Button zur Lokalisierung" class=imageNoBorder width=40px>
+                    <div class="imageCaption">
+                        Button zur Lokalisierung
+                    </div>
+                </div>
 				In der linken oberen Ecke der Karte befindet sich neben den Buttons für die Navigation in der Karte ein weiterer Button, 
 				dieser befindet sich in der Mitte zwischen den Panning-Buttons. Wenn der Nutzer auf diesen Button klickt, 
 				wird seine momentane Funktion bestimmt, 
 				der Kartenausschnitt wird auf diesen Punkt verschoben, die Sicht wird an den Punkt herangezoomt und es wird dort ein Marker gesetz
+                <div class="imageBoxLeft">
+                    <a href="images/help/help-5-2-s2.png" rel="shadowbox"><img src="images/help/help-5-2-s2.png" alt="Beispiel für eine Ortung" class=image width=300px></a>
+                    <div class="imageCaption">
+                        Beispiel für eine Ortung
+                    </div>
+                </div>
+                
                 
                 <div id=clear></div>
                 <h4 id=help-5-3>5.3 Verfügbares Kartenmaterial</h4>
@@ -357,7 +401,7 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                 <div id=clear></div>
                 <h4 id=help-6-1>6.1 Filtern nach der Zeit</h4>
 				
-				<div class="imageBoxLeft">
+				<div class="imageBoxLeft_2">
                     <img src="images/help/help-6-1-s1.png" alt="Filter nach der Zeit" class=imageNoBorder width=290px>
                     <div class="imageCaption">
                         Kalendar zur Auswahl eines Anfangs-<br>bzw. Enddatums
@@ -415,22 +459,30 @@ Der Benutzer klickt auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen
                 
                 <div id=clear></div>
                 <h3 id=help-7>7. Die Selektierwerkzeuge</h3>
+                
                 <div class="imageBoxRight">
-                    <a href="images/help/help-7-selektierwerkzeuge.jpg" rel="shadowbox[Vacation3]"><img src="images/help/help-7-selektierwerkzeuge.jpg" alt="Ablauf einer Selektion" class=image width=320px></a>
-                    <a href="images/help/help-7-s2.png" rel="shadowbox[Vacation3]"></a>
-                    <a href="images/help/help-7-s3.png" rel="shadowbox[Vacation3]"></a>
+                    <img src="images/help/help-7-s1.png" alt="Der Bereich der Selektionswerkzeuge" class=imageNoBorder width=300px></a>
                     <div class="imageCaption">
-                        Bereich der Selektierwerkzeuge
+                        Der Bereich der Selektionswerkzeuge
                     </div>
-					
                 </div>
-				Der Bereich der Selektierwerkzeuge befindet sich oben rechts in der Kartenapplikation. Er dient zur Auswahl der angezeigten Messpunkte durch den Benutzer.  Es werden die Selektierwerkzeuge bySinglePoint, byTrack und byPolygon angeboten. Die Auswahl findet durch Anklicken von einem der grünen Kreise statt, welcher dann orange wird, so dass der Benutzer visualisiert bekommt, welches Werkzeug momentan in Verwendung ist. Es kann immer nur ein Werkzeug angewählt werden.
-                <br>
+				Der Bereich der Selektierwerkzeuge befindet sich oben rechts in der Applikation. Sie können die Selektierwerkzeuge "bySinglePoint", "byTrack" oder "byPolygon" verwenden. Klicken Sie einfach auf eines der Icons. Ist ein Selektionswerkzeug ausgewählt, so wird es orange umrandet. So können Sie sehen, ob ein Werkzeug gerade aktiv ist. Möchten Sie ein anderes verwenden, so müssen erst das gerade aktive Selektionswerkzeug schließen. Durch erneutes Klicken auf das Icon wird es wieder deaktiviert.<br>
+                
+                <div class="imageBoxLeft">
+                    <a href="images/help/help-7-s2.png" rel="shadowbox[Vacation3]"><img src="images/help/help-7-s2.png" alt="Ablauf einer Selektion" class=image width=250px></a>
+                    <a href="images/help/help-7-s3.png" rel="shadowbox[Vacation3]"></a>
+                    <a href="images/help/help-7-s4.png" rel="shadowbox[Vacation3]"></a>
+                    <div class="imageCaption">
+                        Ablauf einer Selektion
+                    </div>
+                </div>
+            
+                Durch das Selektieren von Punkten, werden weitere Bereiche der Applikation nutzbar. Dies können Sie in der nebensetehenden Abbildung sehen (Ablauf einer Selektion). Wird 1 Punkt selektiert, so erscheint dieser im Bereich der Selektierten Punkte. Mehr Informationen zu diesem Bereich finden Sie weitere unten in Kapitel 8. Befinden sich mindestens 2 Punkte in Ihrer Auswahl so wird der Analysebereich nutzbar. Befindet sich 1 ganzer Track in Ihrer Auswahl so können Sie eine Interpolation durchführen. Mehr Informationen zur Interpolation erhalten Sie in Kapitel 11.
 								
                 <div id=clear></div>
                 <h4 id=help-7-1>7.1 Auswählen eines Messpunktes (bySinglePoint)</h4>
                 <div class="imageBoxRight">
-                    <a href="images/help/help-7-1-s1.png" rel="shadowbox[Vacation3]"> <img src="images/help/help-7-1-s1.png" alt="verfügbare Kartenelemente" class=imageNoBorder width=300px></a>
+                    <img src="images/help/help-7-1-s1.png" alt="verfügbare Kartenelemente" class=imageNoBorder width=300px>
                     <div class="imageCaption">
                         Button zum Auswählen eines Messpunktes
                     </div>
@@ -630,9 +682,9 @@ Ansteuerbar ist die Downloadfunktion über dieses kleine Downloadsymbol
                 </div>
 				
 				<div class="imageBoxRight">
-                    <img src="images/download_2.png" alt="Downloadsymbol" class=imageNoBorder width=30px>
+                    <img src="images/help/download_2.png" alt="Downloadbutton" class=imageNoBorder width=30px>
                     <div class="imageCaption">
-                        Download ist über dieses Symbol ansteuerbar
+                        Downloadbutton
                     </div>
                 </div>
 				 <div id=clear></div>
@@ -656,7 +708,7 @@ Ansteuerbar ist die Downloadfunktion über dieses kleine Downloadsymbol
                 <div id=clear></div>
                 <h3 id=help-9>9. Die Analysefunktionen</h3>
 				
-                <div class="imageBoxLeft">
+                <div class="imageBoxLeft_2">
                     <img src="images/help/help-9-s1.png" alt="Der Analysebereich" class=imageNoBorder width=250px>
                     <div class="imageCaption">
                         Der Analysebereich
@@ -786,7 +838,7 @@ Ansteuerbar ist die Downloadfunktion über dieses kleine Downloadsymbol
 
                 <div id=clear></div>
                 <h4 id=help-11-3>11.3 Die Legende</h4>
-                <div class="imageBoxRight">
+                <div class="imageBoxLeft_2">
                     <img src="images/help/help-11-3-s1.png" alt="Legende zur Interpolation" class=imageNoBorder width=170px>
                     <div class="imageCaption">
                         Legende zur Interpolation
