@@ -314,10 +314,10 @@ function drawMeasurements() {
 				}
 			},
             error: function(jqXHR, textStatus, errorThrown){
-				var dialog = $('<p>Beim Abruf der Messpunkte ist folgender Fehler aufgetreten: '+jqXHR.status+'. Im Benutzerhandbuch können Sie  weitere Informationen zu diesem Fehler erhalten.</p>').dialog({
+				var dialog = $('<p>Beim Abruf der Messpunkte ist ein Fehler aufgetreten.</p>').dialog({
 					modal: true,
 					width:600,
-					title: "Status Error "+jqXHR.status,
+					title: "Status Error",
 					buttons: {
 						"OK":  function() {dialog.dialog('close');}
 					}
