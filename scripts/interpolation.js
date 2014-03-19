@@ -560,7 +560,7 @@ function checkVisualizationAttr(){
 
 	if(document.legendAttributs.interpolationAttribut[0].checked){
 	
-		if(!isNaN(interpolated.phenomenons.Speed[0])){
+		if(!isNaN(interpolated.phenomenons.Speed[1])){
 		
 			visualizeInterpolation('IntSpeed');
 		}else{
@@ -576,7 +576,7 @@ function checkVisualizationAttr(){
 			return;
 		}
 	}else if(document.legendAttributs.interpolationAttribut[1].checked){
-		if(!isNaN(interpolated.phenomenons.CO2[0])){
+		if(!isNaN(interpolated.phenomenons.CO2[1])){
 		
 			visualizeInterpolation('IntCO2');
 		}else{
@@ -593,7 +593,7 @@ function checkVisualizationAttr(){
 			checkVisualizationAttr();
 		}
 	}else if(document.legendAttributs.interpolationAttribut[2].checked){
-		if(!isNaN(interpolated.phenomenons.Consumption[0])){
+		if(!isNaN(interpolated.phenomenons.Consumption[1])){
 		
 			visualizeInterpolation('IntConsumption');
 		}else{
@@ -610,7 +610,7 @@ function checkVisualizationAttr(){
 			checkVisualizationAttr();
 		}
 	}else if(document.legendAttributs.interpolationAttribut[3].checked){
-		if(!isNaN(interpolated.phenomenons.MAF[0])){
+		if(!isNaN(interpolated.phenomenons.MAF[1])){
 		
 			visualizeInterpolation('IntMAF');
 		}else{
@@ -714,21 +714,4 @@ function switchIntPoints(){
 			mainMap.addLayer(interpolated.marker[i]);
 		}
 	}
-}
-
-// Author: Leon Vogel
-function converttxt(){
-	var table = "Latitude;Longitude;Consumption;CO2;MAF;Speed;\n";
-	var testtt = selection.length;
-	var tableLine = "";
-	 for(var i = 0; i < selection.length; ++i) {
-		tableLine += selection[i].geometry.coordinates[1].toString() + ";";
-		tableLine += selection[i].geometry.coordinates[0].toString() + ";";
-		tableLine += selection[i].properties.phenomenons.MAF.value.toString() + ";";
-		tableLine += selection[i].properties.phenomenons.Speed.value.toString() + ";\n";
-   
-		table += tableLine;
-		tableLine = "";
-	} 
-	return table;
 }
