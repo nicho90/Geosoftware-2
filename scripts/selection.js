@@ -65,7 +65,8 @@ function addSinglePoint(measurement){
 		height: 100,
 		width: 300,
 		autoOpen: true,   
-		modal: true, 
+		modal: true,
+        title: "Hinweis",
 		open: function(event, ui) { 
 			setTimeout(function(){ 
 			$('#infodialog').dialog('close'); }, 1000); } });
@@ -112,7 +113,8 @@ function addSinglePoint(measurement){
 		height: 100,
 		width: 300,
 		autoOpen: true,   
-		modal: true, 
+		modal: true,
+        title: "Hinweis",
 		open: function(event, ui) { 
 			setTimeout(function(){ 
 			$('#infodialog').dialog('close'); }, 500); } });
@@ -354,6 +356,18 @@ function clearSelection(){
 		if(document.getElementById('' + i).checked){
 			deletions.push(i);
 		}
+        
+	}
+    
+    if(deletions.length==0) {
+		var dialog = $('<p>Es konnten keine Punkte mehr gelöscht werden, da die Seketionstabelle bereits leer ist.</p>').dialog({
+            width:600,
+            title:"Error 206",
+			buttons: {
+				"OK": function() {dialog.dialog('close');},
+			}
+		});
+        return;
 	}
 	
 	// Start deleting from the ending
@@ -366,18 +380,11 @@ function clearSelection(){
 	updateSelectionList();
 	refreshManufacturers()
 	refreshAnalysis();
+    drawMeasurements();
 	
 	if(dialogTable != undefined && dialogTable.dialog('isOpen')) {
 	dialogTable.dialog('close');
 	showMeasurementDetails();
-	} else {
-		var dialog = $('<p>Es wurden noch keine Messpunkte selektiert.</p>').dialog({
-            width:600,
-            title:"Error 206",
-			buttons: {
-				"OK": function() {dialog.dialog('close');},
-			}
-		});	
 	}
 }
 

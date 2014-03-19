@@ -173,7 +173,7 @@ function drawMap() {
 	};
 	  
 	var map = L.map('map', {
-		center: new L.LatLng(51.96, 7.62),
+		center: new L.LatLng(51.96200180053711,7.61752986907959),
 		zoom: 15,
 		layers: [osm]
 	});
@@ -499,7 +499,7 @@ function geolocation(){
 		var dialog = $('<p>Die Position konnte nicht ermittelt werden oder wurde durch den Benutzer untersagt.</p>').dialog({
             modal:true,
             width:600,
-            title: 'Error |REPLACE ME|',
+            title: 'Error 101',
             buttons: {
                 "OK": function() {dialog.dialog('close');}
             }
