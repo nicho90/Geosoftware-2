@@ -99,6 +99,11 @@ function visualizeTrack(trackID){
 		
 		meas = track.features;
 		
+		// remove old trackline if there was one
+		if(trackLine != null){
+			mainMap.removeLayer(trackLine);
+		}
+		
 		trackLine = L.polyline([], {color: 'red'}).addTo(mainMap);
 		
 		$.each(meas, function(i, measurement){
@@ -186,9 +191,11 @@ function visualizeTrack(trackID){
 		// Set bounds of map to track
 		mainMap.fitBounds(trackLine.getBounds());
         
-        //show visualisation button on the map
-        toggle_visibility('visualisation');
-		button4 = true;
+        //show visualisation button on the map if it is not already there
+		if(!button4){
+			toggle_visibility('visualisation');
+			button4 = true;
+		}
 		
 		return track;
 	});
