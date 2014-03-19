@@ -52,9 +52,20 @@ else{
 
 function downloadInterpolation(){
 
-var selectionBox = document.getElementById('analysisSelectionBox');
 
-	if(selectionBox.options[selectionBox.selectedIndex].value == 'Geschwindigkeit'){
+$('#downloadInterpolationDialog').html('Von welchem Attrigut m&ouml;chten Sie die Interpolationsergebnisse .json-Datei herunterladen?<br><br> <form action="select.htm"><select name="interpAttr" size="5" onchange="newBoxInt(this.form.interpAttr.options[this.form.interpAttr.selectedIndex].value)">  <option value="Geschwindigkeit">Geschwindigkeit</option> <option value="CO2-Ausstoss">CO2-Aussto&szlig;</option> <option value="Spritverbrauch">Spritverbrauch</option><option value="MAF-Werte">MAF-Werte</option> </select> </form>');
+
+	$('#downloadInterpolationDialog').dialog({ 
+		width: 600,
+		autoOpen: true,   
+		modal: true,
+	});	
+}
+
+function newBoxInt(qrs){
+	
+	if(qrs == 'Geschwindigkeit'){
+	alert("v");
 			
 			var jsonStringInterpolationSpeed = '{"interpolated_speed_values": [';
 
@@ -67,10 +78,10 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 				var jsonResultInterpolationSp = jsonStringFInterpolationSp + "] }";
 				var jsonResultFileInterpolationSp = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResultInterpolationSp + ")")));
 	
-	downloadwindow(jsonResultFileInterpolationSp);
+	downloadwindow(jsonResultFileInterpolationSp,"interpolated_speed");
 	}
 
-	else if(selectionBox.options[selectionBox.selectedIndex].value == 'CO2'){
+	else if(qrs == 'CO2-Ausstoss'){
 			var jsonStringInterpolationCO = '{"interpolated_co2_values": [';
 
 		for(var i = 1; i < selection.length; i++){
@@ -81,10 +92,10 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 			var jsonStringFInterpolationCO = jsonStringInterpolationCO.substr(0, jsonStringInterpolationCO.length-1);
 			var jsonResultInterpolationCO = jsonStringFInterpolationCO + "] }";
 			var jsonResultFileInterpolationCO = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResultInterpolationCO + ")")));	
-			downloadwindow(jsonResultFileInterpolationCO);
+			downloadwindow(jsonResultFileInterpolationCO,"interpolated_co2");
 	}
 
-	else if(selectionBox.options[selectionBox.selectedIndex].value == 'Spritverbrauch'){
+	else if(qrs == 'Spritverbrauch'){
 		var jsonStringInterpolationCon = '{"interpolated_consumption_values": [';
 
 		for(var i = 1; i < selection.length; i++){
@@ -97,9 +108,9 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 
 			var jsonResultFileInterpolationCon = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResultInterpolationCon + ")")));
 		    
-			downloadwindow(jsonResultFileInterpolationCon);
+			downloadwindow(jsonResultFileInterpolationCon,"interpolated_consumption");
 	}
-	else if(selectionBox.options[selectionBox.selectedIndex].value == 'MAF'){
+	else if(qrs == 'MAF-Werte'){
 		
 		var jsonStringInterpolationMAF = '{"interpolated_MAF_values": [';
 
@@ -112,24 +123,27 @@ var selectionBox = document.getElementById('analysisSelectionBox');
 			var jsonResultInterpolationMAF = jsonStringFInterpolationMAF + "] }";
 
 			var jsonResultFileInterpolationMAF = "text/json;charset=utf-8," + escape(JSON.stringify(eval("(" + jsonResultInterpolationMAF + ")")));
-		downloadwindow(jsonResultFileInterpolationMAF);
+			
+		downloadwindow(jsonResultFileInterpolationMAF,"interpolated_MAF");
 	}
 }
 
 
 //Description: this function opens the window, which asks the user about the download
 //Author: Johanna and Nicho
-function downloadwindow(resultData){
+function downloadwindow(resultData,name){
 	
-$('#downloadInterpolationDialog').html('M&ouml;chten Sie die berechneten Interpolationsergebnisse als .json-Datei herunterladen?<br>');
-					
+$('#downloadInterpolationDialog').html('M&ouml;chten Sie die Interpolationsergebnisse als .json-Datei herunterladen?<br>');
+
+
 	$('#downloadInterpolationDialog').dialog({ 
 		width: 600,
 		autoOpen: true,   
 		modal: true,
 	});	
-
-
-$('<a href="data:' + resultData + '" download="' + "interpolated_values" + '.json"><div style="text-align: right;"><hr><input type="button" name="confirmDownload" value="Herunterladen" class="jQueryButton"></div></a>').appendTo('#downloadInterpolationDialog');		
 	
+	 $('<a href="data:' + resultData + '" download="' + name + '.json"><div style="text-align: right;"><hr><input type="button" name="confirmDownload" value="Herunterladen" class="jQueryButton"></div></a>').appendTo('#downloadInterpolationDialog');	
+	
+
 }
+
