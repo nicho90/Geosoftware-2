@@ -224,7 +224,7 @@ function addTrack(){
 			chooseTrackSelection();
 		},
         error: function(jqXHR, textStatus, errorThrown){
-			dialog = $('<p>Es wurde kein Track gefunden.<br>Bitte überprüfen sie ihre Eingabe</p>').dialog({
+			dialog = $('<p>Es wurde kein Track gefunden.<br>Bitte überprüfen Sie Ihre Eingabe</p>').dialog({
 				width: 600,
 				modal: true,
 				buttons: {

@@ -198,7 +198,7 @@ function addSinglePointFromTrack(trackMeasurement, track){
                 $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in Ihrer Auswahl');
                 $('#infodialog').dialog({ 
                     height: 100,
-                    width: 300,
+                    width: 600,
                     autoOpen: true,   
                     modal: true, 
                     title: "Error 205",
@@ -419,7 +419,10 @@ function visualizeSelection(){
 				container.on('click', '#showTrack', function() {
 					doNotLoad = true;
 					mainMap.setView([currentMeasurement.geometry.coordinates[1], currentMeasurement.geometry.coordinates[0]],18);
-					showTrack(currentMeasurement.properties.id);
+					setTimeout(function(){
+						showTrack(currentMeasurement.properties.id);
+					}, 500);
+					
 				} );
 
 				container.html('<html><table><tr><td><b>Latitude</b></td><td>' + selection[j].geometry.coordinates[1] + '</td></tr>' +

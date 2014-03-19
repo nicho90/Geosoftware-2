@@ -380,7 +380,9 @@ function drawMeasurements() {
 				container.on('click', '#showTrack', function() {
 					doNotLoad = true;
 					mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
-					showTrack(propertiesID);
+					setTimeout(function(){
+						showTrack(propertiesID);
+					}, 500);
 				});
 					container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 					'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
@@ -426,7 +428,9 @@ function drawMeasurements() {
 			
 			container.on('click', '#showTrack', function() {
 			    mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
-				showTrack(properties.id);
+				setTimeout(function(){
+					showTrack(properties.id);
+				}, 500);
 			});
 			
 			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
