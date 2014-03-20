@@ -1,4 +1,4 @@
-/********************************************************************************************
+﻿/********************************************************************************************
 		Interpolation
 		
 This file contains all functions needed for executing the different interpolation.
@@ -33,7 +33,7 @@ Content
 
 // 1.1 Start Interpolation
 // Description: Checks which interpolation is choosed and starts it
-// Author: Rene Unrau
+// Author: René Unrau
 function startInterpolation(){
 	
 	if(selection.length == 0){
@@ -102,10 +102,50 @@ function startInterpolation(){
 	//Compute Coords if interpolated values
 	computeCoords();
 	
+	/*
 	// Add all markers from array to map
 	for(var i = 0; i < selection.length; i++) {
 		markers.push(L.marker([selection[i].geometry.coordinates[1], selection[i].geometry.coordinates[0]], {icon: blueDot}));
 	}
+	*/
+	markers = new Array();
+	
+	$.each(selection, function(i, measurement){
+	
+		var geometry = measurement.geometry;
+		var properties = measurement.properties;
+		var sensor = properties.sensor;
+		var phenomenons = properties.phenomenons;
+		
+		marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
+		
+		var container = $('<div/>');
+
+		container.on('click', '#centerPoint', function() {
+			doNotLoad = true;
+			mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
+		} );
+		
+		container.on('click', '#showTrack', function() {
+			showTrack(properties.id);
+		} );
+
+		container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+			'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
+			'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
+			'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
+			'<tr><td><b>Fahrzeugtyp</b></td><td>' + sensor.properties.manufacturer + ' ' + sensor.properties.model + '</td></tr>' +
+			'<tr><td><b>Geschwindigkeit</b></td><td>' + phenomenons.Speed.value + ' ' + phenomenons.Speed.unit + '</td></tr>' +
+			'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
+			'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
+			'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
+			'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+					
+		// Insert the container into the popup
+		marker.bindPopup(container[0]);
+		
+		markers.push(marker);
+	});
 	
 	// Choose interpolaton
     if(document.interpolation.interpolationMethod[0].checked?"0":"1" == '0') {
@@ -154,7 +194,7 @@ function startInterpolation(){
 
 // 1.2 IDW Interpolation
 // Description: Compute Interpolation, Draw Points and start Line visualization
-// Author: Rene Unrau
+// Author: René Unrau
 function idwInterpolation(consumption, co2, maf, speed){
 		
 	for(var i = 1; i < selection.length; i++){
@@ -164,11 +204,16 @@ function idwInterpolation(consumption, co2, maf, speed){
 			var secondsum = 0;
 			
 			for(var j = 0; j < selection.length; j++){
-				var value = selection[j].properties.phenomenons.Consumption.value;
-				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
-				firstsum = firstsum + (value / dist);
+				var value = selection[j].properties.phenomenons.Consumption.value;				
 				
-				secondsum = secondsum + (1 / dist);
+				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
+				
+				//  use measurement only if distance to interpolated point is not zero
+				if(dist != 0){
+					firstsum = firstsum + (value / dist);
+				
+					secondsum = secondsum + (1 / dist);
+				}
 			}
 			
 			interpolated.phenomenons.Consumption[i-1] = firstsum / secondsum;
@@ -184,9 +229,13 @@ function idwInterpolation(consumption, co2, maf, speed){
 			for(var j = 0; j < selection.length; j++){
 				var value = selection[j].properties.phenomenons.CO2.value;
 				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
-				firstsum = firstsum + (value / dist);
 				
-				secondsum = secondsum + (1 / dist);
+				//  use measurement only if distance to interpolated point is not zero
+				if(dist != 0){
+					firstsum = firstsum + (value / dist);
+				
+					secondsum = secondsum + (1 / dist);
+				}
 			}
 			
 			interpolated.phenomenons.CO2[i-1] = firstsum / secondsum;
@@ -202,9 +251,13 @@ function idwInterpolation(consumption, co2, maf, speed){
 			for(var j = 0; j < selection.length; j++){
 				var value = selection[j].properties.phenomenons.MAF.value;
 				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
-				firstsum = firstsum + (value / dist);
 				
-				secondsum = secondsum + (1 / dist);
+				//  use measurement only if distance to interpolated point is not zero
+				if(dist != 0){
+					firstsum = firstsum + (value / dist);
+				
+					secondsum = secondsum + (1 / dist);
+				}
 			}
 			
 			interpolated.phenomenons.MAF[i-1] = firstsum / secondsum;
@@ -220,9 +273,13 @@ function idwInterpolation(consumption, co2, maf, speed){
 			for(var j = 0; j < selection.length; j++){
 				var value = selection[j].properties.phenomenons.Speed.value;
 				var dist = Math.sqrt(Math.pow(interpolated.latitude[i-1] - selection[j].geometry.coordinates[1],2) + Math.pow(interpolated.longitude[i-1] - selection[j].geometry.coordinates[0],2));
-				firstsum = firstsum + (value / dist);
 				
-				secondsum = secondsum + (1 / dist);
+				//  use measurement only if distance to interpolated point is not zero
+				if(dist != 0){
+					firstsum = firstsum + (value / dist);
+				
+					secondsum = secondsum + (1 / dist);
+				}
 			}
 			
 			interpolated.phenomenons.Speed[i-1] = firstsum / secondsum;
@@ -249,7 +306,7 @@ function idwInterpolation(consumption, co2, maf, speed){
 
 // 1.3 Kriging Interpolation
 // Description: Compute Interpolation, Draw Points and start Line visualization
-// Author: Rene Unrau
+// Author: René Unrau
 function krigingInterpolation(consumption, co2, maf, speed){
 	
 	// Kriging parameters, independent of target variables
@@ -371,7 +428,7 @@ function krigingInterpolation(consumption, co2, maf, speed){
 
 // 2 Visualize Interpolation
 // Description Draws colored line between measurements, based on selected attributes
-// Author: Rene Unrau
+// Author: René Unrau
 function visualizeInterpolation(phenomenon){
 	
 	// Remove old InterpolationLines from Map
@@ -517,12 +574,12 @@ function visualizeInterpolation(phenomenon){
 
 // 3.1 Check Interpolation-Requirements
 // Description: This function checks if a interpolation is allowed
-// Author: Rene Unrau
+// Author: René Unrau
 function checkIntRequirements(consumption, co2, maf, speed){
 	
 	// Cancel if there are measurements in selection from more than one track
 	if(!onlyOneTrack){
-		var dialog = $('<p>Bitte w&auml;hlen sie f&uuml;r eine Interpolation genau einen Track aus.</p>').dialog({
+		var dialog = $('<p>Bitte wählen sie für eine Interpolation genau einen Track aus.</p>').dialog({
 			modal: true,
             width:600,
             height:200,
@@ -536,7 +593,7 @@ function checkIntRequirements(consumption, co2, maf, speed){
 	
 	if(!consumption && !co2 && !maf && !speed){
 
-		var dialog = $('<p>Der ausgew&auml;hlte Track enth&auml;lt keine Attribute die Interpoliert werden k&ouml;nnen.</p>').dialog({
+		var dialog = $('<p>Der ausgewählte Track enthält keine Attribute die Interpoliert werden können.</p>').dialog({
 			modal: true,
             width:600,
             height:200,
@@ -553,18 +610,18 @@ function checkIntRequirements(consumption, co2, maf, speed){
 
 // 3.2 Check visualization-attribute
 // Looks for checkboxes and chooses Attribute to visualize
-// Author: Rene Unrau
+// Author: René Unrau
 function checkVisualizationAttr(){
 
 	var attribut = document.getElementsByName('legendAttributs').value;
 
 	if(document.legendAttributs.interpolationAttribut[0].checked){
 	
-		if(!isNaN(interpolated.phenomenons.Speed[1])){
+		if(!isNaN(interpolated.phenomenons.Speed[0])){
 		
 			visualizeInterpolation('IntSpeed');
 		}else{
-			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
                 height:200,
@@ -576,11 +633,11 @@ function checkVisualizationAttr(){
 			return;
 		}
 	}else if(document.legendAttributs.interpolationAttribut[1].checked){
-		if(!isNaN(interpolated.phenomenons.CO2[1])){
+		if(!isNaN(interpolated.phenomenons.CO2[0])){
 		
 			visualizeInterpolation('IntCO2');
 		}else{
-			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
                 height:200,
@@ -593,11 +650,11 @@ function checkVisualizationAttr(){
 			checkVisualizationAttr();
 		}
 	}else if(document.legendAttributs.interpolationAttribut[2].checked){
-		if(!isNaN(interpolated.phenomenons.Consumption[1])){
+		if(!isNaN(interpolated.phenomenons.Consumption[0])){
 		
 			visualizeInterpolation('IntConsumption');
 		}else{
-			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
                 height:200,
@@ -610,11 +667,11 @@ function checkVisualizationAttr(){
 			checkVisualizationAttr();
 		}
 	}else if(document.legendAttributs.interpolationAttribut[3].checked){
-		if(!isNaN(interpolated.phenomenons.MAF[1])){
+		if(!isNaN(interpolated.phenomenons.MAF[0])){
 		
 			visualizeInterpolation('IntMAF');
 		}else{
-			var dialog = $('<p>Dieser Track enth&auml;lt dieses Attribut nicht.</p>').dialog({
+			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
                 height:200,
@@ -632,7 +689,7 @@ function checkVisualizationAttr(){
 
 // 3.3 Compute coordinates for Interpolation
 // Description: Compute Coordinates between selected measurements
-// Author: Rene Unrau
+// Author: René Unrau
 function computeCoords(){
 
 	for(var i = 1; i < selection.length; i++){
@@ -656,7 +713,7 @@ function computeCoords(){
 
 // 4.1 Switch interpolation line
 // Description: turn draw/remove interpolation-line-layer
-// Author: Rene Unrau
+// Author: René Unrau
 function switchIntLine(){
 
 	if(!document.getElementById("intLines").checked){
@@ -677,7 +734,7 @@ function switchIntLine(){
 
 // 4.2 Switch interpolation measurements
 // Description: turn draw/remove interpolation-measurements-layer
-// Author: Rene Unrau
+// Author: René Unrau
 function switchIntMeasurements(){
 
 	if(!document.getElementById("intMeasurements").checked){
@@ -698,7 +755,7 @@ function switchIntMeasurements(){
 
 // 4.3 Switch interpolated points
 // Description: turn draw/remove interpolated-points-layer
-// Author: Rene Unrau
+// Author: René Unrau
 function switchIntPoints(){
 
 	if(!document.getElementById("intPoints").checked){

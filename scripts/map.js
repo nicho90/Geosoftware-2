@@ -372,7 +372,8 @@ function drawMeasurements() {
 				marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
 		
 				var container = $('<div/>');
-					container.on('click', '#centerPoint', function() {
+				
+				container.on('click', '#centerPoint', function() {
 					doNotLoad = true;
 					mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
 				});
@@ -384,7 +385,8 @@ function drawMeasurements() {
 						showTrack(propertiesID);
 					}, 500);
 				});
-					container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+				
+				container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 					'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 					'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 					'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
@@ -421,7 +423,8 @@ function drawMeasurements() {
 			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
 		
 			var container = $('<div/>');
-				container.on('click', '#centerPoint', function() {
+			
+			container.on('click', '#centerPoint', function() {
 				doNotLoad = true;
 				mainMap.setView([geometry.coordinates[1], geometry.coordinates[0]],18);
 			});
