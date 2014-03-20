@@ -449,29 +449,29 @@ function visualizeInterpolation(phenomenon){
 	
 	// Prepare Legend on map
 	if(phenomenon == 'IntConsumption'){
-		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' l/h';
-		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' l/h';
-		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' l/h';
-		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' l/h';
-		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' l/h';
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*10000)/10000 + ' l/h';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*10000)/10000 + ' l/h';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*10000)/10000 + ' l/h';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*10000)/10000 + ' l/h';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*10000)/10000 + ' l/h';
 	}else if(phenomenon == 'IntSpeed'){
-		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' km/h';
-		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' km/h';
-		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' km/h';
-		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' km/h';
-		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' km/h';
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*10000)/10000 + ' km/h';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*10000)/10000 + ' km/h';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*10000)/10000 + ' km/h';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*10000)/10000 + ' km/h';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*10000)/10000 + ' km/h';
 	}else if(phenomenon == 'IntCO2'){
-		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' g/s';
-		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' g/s';
-		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' g/s';
-		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' g/s';
-		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' g/s';
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*10000)/10000 + ' g/s';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*10000)/10000 + ' g/s';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*10000)/10000 + ' g/s';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*10000)/10000 + ' g/s';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*10000)/10000 + ' g/s';
 	}else if(phenomenon == 'IntMAF'){
-		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*100)/100 + ' l/s';
-		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*100)/100 + ' l/s';
-		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*100)/100 + ' l/s';
-		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*100)/100 + ' l/s';
-		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*100)/100 + ' l/s';
+		document.getElementById('darkGreenValue').innerHTML = '< ' + Math.round(firstFifth*10000)/10000 + ' l/s';
+		document.getElementById('greenValue').innerHTML = '< ' + Math.round(secondFifth*10000)/10000 + ' l/s';
+		document.getElementById('yellowValue').innerHTML = '< ' + Math.round(thirdFifth*10000)/10000 + ' l/s';
+		document.getElementById('orangeValue').innerHTML = '< ' + Math.round(fourthFifth*10000)/10000 + ' l/s';
+		document.getElementById('redValue').innerHTML = '> ' + Math.round(fourthFifth*10000)/10000 + ' l/s';
 	}
 	
 	//Start drawing lines

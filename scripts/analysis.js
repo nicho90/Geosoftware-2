@@ -154,7 +154,7 @@ function getMean(phenomenon){
 				sum = sum + selection[i].properties.phenomenons.Speed.value;
 			}
 		}
-		return Math.round(sum/n*100)/ 100;
+		return Math.round(sum/n*10000)/ 10000;
 		
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -165,7 +165,7 @@ function getMean(phenomenon){
 				n++;
 			}
 		}
-		return Math.round(sum/n*100)/ 100;
+		return Math.round(sum/n*10000)/ 10000;
 	
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
@@ -176,7 +176,7 @@ function getMean(phenomenon){
 				n++;
 			}
 		}
-		return Math.round(sum/n*100)/ 100;
+		return Math.round(sum/n*10000)/ 10000;
 	
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -187,7 +187,7 @@ function getMean(phenomenon){
 				n++;
 			}
 		}
-		return Math.round(sum/n*100)/ 100;
+		return Math.round(sum/n*10000)/ 10000;
 	}
 }
 
@@ -212,7 +212,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return Math.round(sd*100)/ 100;
+		return Math.round(sd*10000)/ 10000;
 	
 	//For phenomenon "CO2"
 	}else if(phenomenon == 'CO2'){
@@ -226,7 +226,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return Math.round(sd*100)/ 100;
+		return Math.round(sd*10000)/ 10000;
 	
 	//For phenomenon "Consumption"
 	}else if(phenomenon == 'Consumption'){
@@ -240,7 +240,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return Math.round(sd*100)/ 100;
+		return Math.round(sd*10000)/ 10000;
 		
 	//For phenomenon "MAF"
 	}else if(phenomenon == 'MAF'){
@@ -254,7 +254,7 @@ function getSD(phenomenon){
 			}
 		}
 		var sd = Math.sqrt((1 / (n - 1)) * pre);
-		return Math.round(sd*100)/ 100;
+		return Math.round(sd*10000)/ 10000;
 	}
 }
 
@@ -292,7 +292,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 	
 	//For phenomenon "CO2"
@@ -320,7 +320,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 
 	//For phenomenon "Consumption"
@@ -348,7 +348,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 
 	//For phenomenon "MAF"
@@ -376,7 +376,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 	
 	// For phenomenon "Interpolated Speed"
@@ -398,7 +398,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 	
 	// For phenomenon "Interpolated CO2"
@@ -420,7 +420,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 	
 	// For phenomenon "Interpolated Consumption"
@@ -442,7 +442,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 	
 	// For phenomenon "Interpolated Consumption"
@@ -464,7 +464,7 @@ function getMin(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(min*100)/ 100;
+		result.value = Math.round(min*10000)/ 10000;
 		return result;
 	}
 }
@@ -491,7 +491,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 	
 	//For phenomenon "CO2"
@@ -508,7 +508,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 		
 	
@@ -526,7 +526,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 		
 	//For phenomenon "MAF"
@@ -543,7 +543,7 @@ function getMax(phenomenon){
 				}
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 	
 	//For phenomenon "Manufacturer"
@@ -576,7 +576,7 @@ function getMax(phenomenon){
 				result.lng = interpolated.longitude[i];		
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 	
 	// For phenomenon "Interpolated CO2"
@@ -590,7 +590,7 @@ function getMax(phenomenon){
 				result.lng = interpolated.longitude[i];		
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 	
 	// For phenomenon "Interpolated Consumption"
@@ -604,7 +604,7 @@ function getMax(phenomenon){
 				result.lng = interpolated.longitude[i];		
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 	
 	// For phenomenon "Interpolated Consumption"
@@ -618,7 +618,7 @@ function getMax(phenomenon){
 				result.lng = interpolated.longitude[i];		
 			}
 		}
-		result.value = Math.round(max*100)/ 100;
+		result.value = Math.round(max*10000)/ 10000;
 		return result;
 	}
 }
