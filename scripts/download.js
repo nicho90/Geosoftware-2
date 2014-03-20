@@ -65,9 +65,8 @@ $('#downloadInterpolationDialog').html('Von welchem Attrigut m&ouml;chten Sie di
 function newBoxInt(qrs){
 	
 	if(qrs == 'Geschwindigkeit'){
-	alert("v");
-			
-			var jsonStringInterpolationSpeed = '{"interpolated_speed_values": [';
+	
+        var jsonStringInterpolationSpeed = '{"interpolated_speed_values": [';
 
 			for(var i = 1; i < selection.length; i++){
 				if( i < 100){
