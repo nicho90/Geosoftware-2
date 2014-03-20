@@ -329,6 +329,12 @@ function addTrackToSelection(track){
 // Author: René Unrau
 function deleteSingleMeasurement(measurementID){
 
+	// Do not allow deletion if interpolation is active
+	if(legend || button4 || button5){
+		alert('Not allowed if interpolation is active');
+		return;
+	}
+
 	for(var i = 0; i < selection.length; i++){
 	
 		if(selection[i].properties.id == measurementID){
@@ -348,6 +354,12 @@ function deleteSingleMeasurement(measurementID){
 // Description: Deletes selected measurements from selection-list
 // Author: René Unrau
 function clearSelection(){
+
+	// Do not allow deletion if interpolation is active
+	if(legend || button4 || button5){
+		alert('Not allowed if interpolation is active');
+		return;
+	}
 
 	var deletions = new Array();
 	
