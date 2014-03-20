@@ -568,7 +568,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
-                title: "Error 604",
+                title: "Error 604: Geschwindigkeit",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -584,7 +584,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
-                title: "Error 604",
+                title: "Error 604: CO2",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -601,7 +601,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
-                title: "Error 604",
+                title: "Error 604: Spritverbrauch",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
@@ -618,7 +618,7 @@ function checkVisualizationAttr(){
 				modal: true,
                 width:600,
                 height:200,
-                title: "Error 604",
+                title: "Error 604: MAF",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
 				}
