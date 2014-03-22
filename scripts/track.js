@@ -57,7 +57,7 @@ function showTrack(pointID) {
 					//If measurement matches with searched pointID
 					if(measurements.features[i].properties.id == pointID){
 						   dialog.dialog('close');
-                                dialog = $('<p>Dieser Punkt ist Teil des Tracks: <b>' + track.id + '</b><br><br>M&ouml;chten Sie diesen Track:</p>').dialog(
+                                dialog = $('<p>Dieser Punkt ist Teil des Tracks:<br><textarea class=copyTrackID>' + track.id + '</textarea><br><br>M&ouml;chten Sie diesen Track:</p>').dialog(
 							{
 	 								width: 600,
 	 								modal: true,

@@ -55,7 +55,8 @@ Content
     6.6 Loading picture in popups 
     6.7 Measurement data details table
     6.8 Diagram popup
-    6.9 Pulsing location-marker
+    6.9 Textarea in Dialogbox show-TrackID
+    6.10 Pulsing location-marker
 
 *********************************************************************************************/
 
@@ -1412,9 +1413,24 @@ hr {
     text-align: center;
 }
 
+/***********************************************
+    6.9 Textarea in Dialogbox show-TrackID
+***********************************************/
+.copyTrackID{
+    border: 2px solid rgb(22,127,193);
+    padding:5px;
+    border-radius:2px;
+    background-color:rgb(255,255,255);
+    width: 300px;
+    height: 20px;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: middle;
+    margin-top:5px;
+}
 
 /***********************************************
-    6.9 Pulsing location-marker
+    6.10 Pulsing location-marker
 ***********************************************/
 .locationIcon {
 }
