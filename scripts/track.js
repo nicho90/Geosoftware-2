@@ -217,7 +217,7 @@ function addTrack(){
 		url: "https://envirocar.org/api/stable/rest/tracks/" + trackID,
 		success: function(track){
 			//Reset Visualization
-			resetTrackSelection
+			resetVisualization();
 			//Add Track to selection
 			addTrackToSelection(track);
 			// Close Track-Selection Tool

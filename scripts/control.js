@@ -15,9 +15,8 @@ Content
 	1.4 Selectionbuttons Visualization
 	
 2. Reset Visualization
-	2.1 Reset Track Visualization
-	2.2 Reset All Visualizations
-	2.3 Reset Visualisation-Buttons + Legend
+	2.1 Reset All Visualizations
+	2.2 Reset Visualisation-Buttons + Legend
 
 3. Set Maximal Measurements
 
@@ -218,7 +217,7 @@ function colorize(button) {
 	2. Reset Visualizations
 ***********************/
 
-// 2.2 Reset all Visualizations
+// 2.1 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
 // Author: René Unrau
 
@@ -268,11 +267,13 @@ function resetVisualization(){
 function resetVisButtons(){
 
 	//reset and hide visualisation button on the map
-    toggle_visibility('visualisation');
-    button4 = false;
+	if(button4){
+		toggle_visibility('visualisation');
+		button4 = false;
+	}
     
     //reset and hide the download button, if it is active
-    if(button5==true){
+    if(button5){
         toggle_visibility('interpolationDownload');
         button5 = false;
     }
