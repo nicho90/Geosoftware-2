@@ -47,7 +47,7 @@
         <div id=content>
         <article class=content role="article">
             <h1>Dokumentation</h1>
-            <small>Stand: <time datetime=2014-03-15 pubdate=2013-12-25>15. März 2014</time></small><br>
+            <small>Stand: <time datetime=2014-03-25 pubdate=2013-12-25>25. März 2014</time></small><br>
             <h3>Überblick</h3>
             
             <!-- begin of the table of content -->
@@ -109,13 +109,13 @@
                             <li><a href="#docu-9-3">Messpunkte eines Tracks enthalten nur teilweise Daten</a></li>
                             <li><a href="#docu-9-4">Messungen enthalten nicht ihren zugehörigen Track</a></li>
                         </ol>
-                    <li><a href="#docu-10">Quellen</a>
+                    <li><a href="#docu-10">Testbericht</a></li>
+                    <li><a href="#docu-11">Quellen</a>
                         <ol class=secondLevel>
-                            <li><a href="#docu-10-1">Quellenverzeichnis</a></li>
-                            <li><a href="#docu-10-2">Kartenmaterial</a></li>
+                            <li><a href="#docu-11-1">Quellenverzeichnis</a></li>
+                            <li><a href="#docu-11-2">Kartenmaterial</a></li>
                         </ol>
                     </li>
-                    <li><a href="#docu-11">Testbericht</a></li>
                 </ol>
             </div>
             <!-- end of the table of content -->
@@ -353,7 +353,7 @@
                 
                 <p>Zudem werden dem Nutzer viele Hinweis und Fehlermeldungen angezeigt, die durchnummiert wurden, sodass er sie für weitere Informationen und eine entsprechende Fehlerbehandlung in der Benutzerhilfe nachschlagen kann.</p>
                 
-                <p>Um das Design abzurunden, sind viele Elemente mit Hover-Effekten versehen. Zudem unterstützen Icons die Darstellung von Bedienelementen und verringern den Textanteil auf der Seite. Die meisten Icons wurden selbst erstellt, einige wie die des Downloadbuttons und der Navigationselemte stammen von der Seite "Flaticon" <sup><a href="#docu-10-1" class=link>[6]</a></sup>.</p>
+                <p>Um das Design abzurunden, sind viele Elemente mit Hover-Effekten versehen. Zudem unterstützen Icons die Darstellung von Bedienelementen und verringern den Textanteil auf der Seite. Die meisten Icons wurden selbst erstellt, einige wie die des Downloadbuttons und der Navigationselemte stammen von der Seite "Flaticon" <sup><a href="#docu-11-1" class=link>[6]</a></sup>.</p>
                 
                 <div id=clear></div>
                 <div id=next>
@@ -411,12 +411,12 @@
                 
                 <h4 id=docu-6-1>6.1 Berechnung des Mittelwertes</h4>
                 <img src="images/docu/mean.png" class=imageMean>
-                Das arithmetische Mittel <sup><a href="#docu-10-1" class=link>[1]</a></sup> wird für die selektierten Punkte angezeigt.<br>
+                Das arithmetische Mittel <sup><a href="#docu-11-1" class=link>[1]</a></sup> wird für die selektierten Punkte angezeigt.<br>
                 Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis der Diagramme verfälscht werden.
                 
                 <h4 id=docu-6-6>5.2 Berechnung der Standardabweichung </h4>
                 <img src="images/docu/std.png" class=imageSTD>
-                Die emprirische Standardabweichung <sup><a href="#docu-10-1" class=link>[2]</a></sup> wird für die selektierten Punkte angezeigt.<br>
+                Die emprirische Standardabweichung <sup><a href="#docu-11-1" class=link>[2]</a></sup> wird für die selektierten Punkte angezeigt.<br>
                 Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis der Diagramme verfälscht werden.
 
                 <h4 id=docu-6-3>6.3 Berechnung des Maximums</h4>
@@ -428,7 +428,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
 Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht berücksichtigt. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis der Diagramme verfälscht werden.
                 
                 <h4 id=docu-6-5>6.5 Berechnung des häufigsten Fahrzeugtyps</h4>
-                Die höchste absolute Häufigkeit <sup><a href="#docu-10-1" class=link>[5]</a></sup> eines Fahrzeugtyps wird angezeigt.<br>
+                Die höchste absolute Häufigkeit <sup><a href="#docu-11-1" class=link>[5]</a></sup> eines Fahrzeugtyps wird angezeigt.<br>
                 Von jedem Messpunkt wird der Fahrzeugtyp ermittelt. Dabei wird nicht nach einem bestimmten Modell unterschieden, sondern es werden die Automarken unterschieden (z.B. BMW, VW, Mercedes Benz, usw.) und die zugehörigen Messpunkte dazugezählt. Anschließend wird der höchste gezählte Wert ausgegeben.
                 
                 <div id=next>
@@ -441,7 +441,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 Damit der Benutzer eine bessere Übersicht über die Werte bekommt, wurden mit Hilfe des Frameworks Highcharts Diagramme erstellt. Sind mindestes 2 Messpunkte selektiert, können sie dargestellt werden.
 
                 <h4 id=docu-7-1>7.1 Berechnung der Geschwindigkeit</h4>
-                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist km/h.<br>
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-11-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist km/h.<br>
                 Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-5 km/h).<br>
                 
                 <p>Bei der Geschwindigkeit gibt es 2 Intervalleinteilungen. Die erste Intervalleinteilung ist so gewählt, dass sie vor allem für den Stadtbereich gilt. Ihr höchster Wert liegt bei 80 km/h. So erhält der Benutzer einen besseren Überblick über die Geschwindigkeiten, da auch kleinere Geschwindigkeiten, die gerade beim Anfahren entstehen können, erkennen kann.</p>
@@ -492,7 +492,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 <br>
                 
                 <h4 id=docu-7-2>7.2 Berechnung des CO<sub>2</sub>-Ausstoßes</h4>
-                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist g/s.<br>
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-11-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist g/s.<br>
                 Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-5 g/s).<br><br>
                 <table class=intervalTable>
                     <tr>
@@ -514,7 +514,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 <br>
                 
                 <h4 id=docu-7-3>7.3 Berechnung des Spritverbrauchs</h4>
-                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist l/h.<br>
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-11-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist l/h.<br>
                 Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-1 l/h).<br><br>
                 <table class=intervalTable>
                     <tr>
@@ -539,7 +539,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 <br>
                 
                 <h4 id=docu-7-4>7.4 Berechnung der MAF-Werte</h4>
-                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-10-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist l/s.<br>
+                Es wird ein Diagramm der relativen Häufigkeit <sup><a href="#docu-11-1" class=link>[4]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet. Die Einheit der Intervalle ist l/s.<br>
                 Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden (z.B. 100% bei 0-5 l/s).<br><br>
                 <table class=intervalTable>
                     <tr>
@@ -565,7 +565,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 <br>
                 
                 <h4 id=docu-7-5>7.5 Berechnung der häufigsten Fahrzeugtypen</h4>
-                Es wird ein Diagramm der absoluten Häufigkeit <sup><a href="#docu-10-1" class=link>[5]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet.<br>
+                Es wird ein Diagramm der absoluten Häufigkeit <sup><a href="#docu-11-1" class=link>[5]</a></sup> berechnet. Liegt der Messwert in einem der unten angebenen Intervallen wird er dort einsortiert und in dem Intervall gezählt. Anschließend werden die gezählten Werte der Intervalle durch die Gesamtanzahl der einsortierten Messwerte geteilt und in Prozentangaben umgerechnet.<br>
                 Hinweis: Bei der Berechnung kann es vorkommen, dass Messwerte keinen Wert besitzten, z.B. " - ". Es findet eine Überprüfung statt, sodass diese Werte ignoriert werden und nicht in der Berechung mitgezählt werden. Außerdem enthalten einige Messpunkte für ein Attribut durchgehend den Wert "0". Wahrscheinlich konnte der Wert im Sensor nicht gemessen werden und wurde per default-Einstellung auf "0" gesetzt. Dadurch kann das Ergebnis des Diagrams verfälscht werden.<br><br>
                 
                 <div id=next>
@@ -588,7 +588,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
 				
 				Der wesentliche Vorteil gegenüber einfacheren Methoden wie beispielsweise der Inversen Distanzgewichtung ist die Berücksichtigung der räumlichen Varianz, die sich mit Hilfe der Semivariogramme ermitteln lässt. Für einen gesuchten Wert werden dabei die Gewichte der in die Berechnung einfließenden Messwerte so bestimmt, dass die Schätzfehlervarianz möglichst gering ist. Der Fehler hängt dabei von der Qualität des Variogramms bzw. der Variogrammfunktion ab.<br>
 
-				In unserer Applikation haben wir für die Interpolation mit Kriging auf ein vorhandenes Framework <sup><a href="#docu-10-1" class=link>[3]</a></sup> zurückgegriffen. Dieses speziell für JavaScript entwickelte Tool ermöglicht dem Benutzer die Parameter für Sigma<sup>2</sup>, Alpha und das Modell selbst auszuwählen. Die Bedeutung der Parameter ist auf der Hilfe-Seite des verwendeten Frameworks ausführlich dokumentiert.<br>
+				In unserer Applikation haben wir für die Interpolation mit Kriging auf ein vorhandenes Framework <sup><a href="#docu-11-1" class=link>[3]</a></sup> zurückgegriffen. Dieses speziell für JavaScript entwickelte Tool ermöglicht dem Benutzer die Parameter für Sigma<sup>2</sup>, Alpha und das Modell selbst auszuwählen. Die Bedeutung der Parameter ist auf der Hilfe-Seite des verwendeten Frameworks ausführlich dokumentiert.<br>
 
                 <div id=next>
                     <a href="#docu-8">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
@@ -642,10 +642,20 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                     <hr>
                 </div>
                 
-
-                <h3 id=docu-10>10. Quellen</h3>
                 
-                <h4 id=docu-10-1>10.1 Quellenverzeichnis</h4>
+                <h3 id=docu-10>10. Testbericht</h3>
+                
+                <p>Die Applikation wurde auf der Grundlage des <a href="docs/Geosoftware2-Pflichtenheft_Version_1_2.pdf" target="_blank" class=link>Pflichtenheftes (Version 1.2)</a> getestet.<br>Einen Bericht mit allen durchgeführten Tests finden Sie <a href="docs/Geosoftware2-Testbericht.pdf" target="_blank" class=link>hier</a>.</p>Bei Problemen mit der Seite oder der Applikation teile Sie uns diese gerne per Email mit. Ihre möglichen Ansprechpartner mit Ihrer Emailadresse finden Sie im Impressum.
+                
+                <div id=next>
+                    <a href="#docu-10">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    <hr>
+                </div>
+                
+
+                <h3 id=docu-11>11. Quellen</h3>
+                
+                <h4 id=docu-11-1>11.1 Quellenverzeichnis</h4>
                 [1] Wikipedia (2014): Mittelwert (online unter: <a href="http://de.wikipedia.org/wiki/Mittelwert" target="_blank" class=link>http://de.wikipedia.org/wiki/Mittelwert</a>, aufgerufen am 19.02.2014)<br>
                 [2] Wikipedia (2014): Standardabweichung (online unter: <a href="http://de.wikipedia.org/wiki/Standardabweichung" target="_blank" class=link>http://de.wikipedia.org/wiki/Standardabweichung</a>, aufgerufen am 19.02.2014)<br>
                 [3] Omar Olmedo (2013 ): kriging.js (online unter: <a href="https://github.com/oeo4b/kriging.js" target="_blank" class=link>https://github.com/oeo4b/kriging.js</a>, aufgerufen am 08.03.2014)<br>
@@ -653,7 +663,7 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                 [5] Wikipedia (2013): (online unter: <a href="http://de.wikipedia.org/wiki/Absolute_H%C3%A4ufigkeit" target="_blank" class=link>http://de.wikipedia.org/wiki/Absolute_Häufigkeit</a>, aufgerufen am 15.03.2014)<br>
                 [6] Flaticon (2014): (online unter: <a href="http://www.flaticon.com/" target="_blank" class=link>http://www.flaticon.com/</a>, aufgerufen am 15.03.2014)<br>
                 
-                <h4 id=docu-10-2>10.2 Kartenmatierial</h4>
+                <h4 id=docu-11-2>11.2 Kartenmatierial</h4>
                 <ul type=square>
                     <li>
                         Layer 1: Schmatische Karte, die auf freien <a href="http://www.openstreetmap.org" target="_blank" class=link>OpenStreetMap</a>-Daten basiert.
@@ -679,17 +689,10 @@ Messpunkte die keinen Wert für das zu berechnende Attribut haben werden nicht b
                     </li>
                 </ul>
                 <div id=next>
-                    <a href="#docu-10">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
-                    <hr>
-                </div>
-                
-                <h3 id=docu-11>11. Testbericht</h3>
-                
-                <p>Die Applikation wurde auf der Grundlage des <a href="docs/Geosoftware2-Pflichtenheft_Version_1_2.pdf" target="_blank" class=link>Pflichtenheftes (Version 1.2)</a> getestet.<br>Einen Bericht mit allen durchgeführten Tests finden Sie <a href="docs/Geosoftware2-Testbericht.pdf" target="_blank" class=link>hier</a>.</p>Bei Problemen mit der Seite oder der Applikation teile Sie uns diese gerne per Email mit. Ihre möglichen Ansprechpartner mit Ihrer Emailadresse finden Sie im Impressum.
-                
-                <div id=next>
                     <a href="#docu-11">zum Kapitelanfang</a>&nbsp;&nbsp;<a href="#top">nach oben</a>&nbsp;&nbsp;
+                    
                 </div>
+                
             </div>
         </article>
         <footer>
