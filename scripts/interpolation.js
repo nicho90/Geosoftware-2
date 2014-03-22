@@ -1,4 +1,4 @@
-﻿/********************************************************************************************
+/********************************************************************************************
 		Interpolation
 		
 This file contains all functions needed for executing the different interpolation.
@@ -40,7 +40,6 @@ function startInterpolation(){
 		var dialog = $('<p>Es befindet sich kein Track in Ihrer Auswahl.</p>').dialog({
 			modal: true,
             title: "Error 601",
-            height:200,
             width:600,
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
@@ -579,10 +578,9 @@ function checkIntRequirements(consumption, co2, maf, speed){
 	
 	// Cancel if there are measurements in selection from more than one track
 	if(!onlyOneTrack){
-		var dialog = $('<p>Bitte wählen sie für eine Interpolation genau einen Track aus.</p>').dialog({
+		var dialog = $('<p>Bitte wählen Sie für eine Interpolation genau einen Track aus.</p>').dialog({
 			modal: true,
             width:600,
-            height:200,
             title: "Error 602",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
@@ -593,10 +591,9 @@ function checkIntRequirements(consumption, co2, maf, speed){
 	
 	if(!consumption && !co2 && !maf && !speed){
 
-		var dialog = $('<p>Der ausgewählte Track enthält keine Attribute die Interpoliert werden können.</p>').dialog({
+		var dialog = $('<p>Der ausgewählte Track enthält keine Attribute, die interpoliert werden können.</p>').dialog({
 			modal: true,
             width:600,
-            height:200,
             title: "Error 603",
 			buttons: {
 				"OK":  function() {dialog.dialog('close');}
@@ -624,7 +621,6 @@ function checkVisualizationAttr(){
 			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
-                height:200,
                 title: "Error 604: Geschwindigkeit",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
@@ -640,7 +636,6 @@ function checkVisualizationAttr(){
 			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
-                height:200,
                 title: "Error 604: CO2",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
@@ -657,7 +652,6 @@ function checkVisualizationAttr(){
 			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
-                height:200,
                 title: "Error 604: Spritverbrauch",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}
@@ -674,7 +668,6 @@ function checkVisualizationAttr(){
 			var dialog = $('<p>Dieser Track enthält dieses Attribut nicht.</p>').dialog({
 				modal: true,
                 width:600,
-                height:200,
                 title: "Error 604: MAF",
 				buttons: {
 					"OK":  function() {dialog.dialog('close');}

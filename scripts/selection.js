@@ -331,7 +331,13 @@ function deleteSingleMeasurement(measurementID){
 
 	// Do not allow deletion if interpolation is active
 	if(legend || button4 || button5){
-		alert('Not allowed if interpolation is active');
+		var dialog = $('<p>Sie können momentan keine Punkte aus der Selektion löschen. Bitte setzen Sie erst die Visualisierung der Interpolation zurück.</p>').dialog({
+            width:600,
+            title:"Error 207",
+			buttons: {
+				"OK": function() {dialog.dialog('close');},
+			}
+		});
 		return;
 	}
 
@@ -357,7 +363,13 @@ function clearSelection(){
 
 	// Do not allow deletion if interpolation is active
 	if(legend || button4 || button5){
-		alert('Not allowed if interpolation is active');
+		var dialog = $('<p>Sie können momentan keine Punkte aus der Selektion löschen. Bitte setzen Sie erst die Visualisierung der Interpolation zurück.</p>').dialog({
+            width:600,
+            title:"Error 207",
+			buttons: {
+				"OK": function() {dialog.dialog('close');},
+			}
+		});
 		return;
 	}
 
