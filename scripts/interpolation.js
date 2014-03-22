@@ -101,12 +101,36 @@ function startInterpolation(){
 	//Compute Coords if interpolated values
 	computeCoords();
 	
-	/*
-	// Add all markers from array to map
-	for(var i = 0; i < selection.length; i++) {
-		markers.push(L.marker([selection[i].geometry.coordinates[1], selection[i].geometry.coordinates[0]], {icon: blueDot}));
+	// Start Interpolation
+	try{
+		// Execute interpolaton
+		if(document.interpolation.interpolationMethod[0].checked?"0":"1" == '0') {
+			idwInterpolation(consumption, co2, maf, speed);
+		}
+    
+		else if(document.interpolation.interpolationMethod[1].checked?"0":"1" == '1') {
+			krigingInterpolation(consumption, co2, maf, speed);
+		}
+	
 	}
-	*/
+	catch(err){
+		var dialog = $('<p>Bei der Berechnung ist ein Fehler aufgetreten, bitte benutzen Sie eine andere Interpolationsmethode.</p>').dialog({
+			modal: true,
+            width: 600,
+            title: "Error 605",
+			buttons: {
+				"OK":  function() {
+				dialog.dialog('close');
+				resetVisualization();
+				drawMeasurements();
+				mainMap.on('moveend', drawMeasurements);
+				}
+			}
+		});
+		return;
+		
+	}
+	
 	markers = new Array();
 	
 	$.each(selection, function(i, measurement){
@@ -146,14 +170,6 @@ function startInterpolation(){
 		markers.push(marker);
 	});
 	
-	// Choose interpolaton
-    if(document.interpolation.interpolationMethod[0].checked?"0":"1" == '0') {
-        idwInterpolation(consumption, co2, maf, speed);
-    }
-    
-    else if(document.interpolation.interpolationMethod[1].checked?"0":"1" == '1') {
-        krigingInterpolation(consumption, co2, maf, speed);
-    }
 	
 	// show legende on the map
     if(legend!=true){
