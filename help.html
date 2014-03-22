@@ -845,13 +845,13 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                         <th>Problembehandlung</th>
                     </tr>
                     <tr>
-                    <td id = errorCodes>101</td>
-                    <td id = errorMessage>
-                        <p>Sie versuchen, die Lokalisierungsfunktion auszuf&uuml;hren, was aber fehlschl&auml;t</p></td>
-                    <td id = errorSolution>
-                        Probieren Sie es erneut. Unter Umst&auml;nden sind Sie nicht mit dem Internet verbunden oder Sie haben es untersagt, dass Ihr Standort an die Applikation weitergegeben wird. Um Ihren Standort ermitteln zu k&ouml;nnen, muss dieser aber zwingend an die Applikation &uuml;bermittelt werden.</td>
+                    <td id=errorCodes>101</td>
+                    <td id=errorMessage>
+                        <p>Die Position konnte nicht ermittelt werden. Überprüfen Sie Ihre GPS-Einstellungen und erteilen Sie ggf. Ihrem Browser die Standortbestimmung.</p></td>
+                    <td id=errorSolution>
+                        Probieren Sie es ggf. erneut. Unter Umst&auml;nden sind Sie nicht mit dem Internet verbunden oder Sie haben Ihrem Browser untersagt Ihren Standort zu bestimmen. Stellen Sie sicher, dass Ihre Einstellungen im Browser richtig sind und Ihr Standort  an die Applikation &uuml;bermittelt werden kann.</td>
                     </tr>
-                    <tr>
+                    <tr class=errorsGrey>
                         <td id=errorCodes>201</td>
                         <td id=errorMessage>
                         <p>Es ist schon ein Auswahlwerkzeug aktiv und Sie versuchen, ein weiteres zu aktivieren.</p>
@@ -860,7 +860,7 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                             <p>Deaktivieren Sie zuerst das schon aktive Selektionswerkzeug und versuchen Sie danach erneut, das gewünschte Selektionswerkzeug zu aktivieren.</p>
                         </td>
                         </tr>
-                    <tr class=errorsGrey>
+                    <tr>
                         <td id=errorCodes>202</td>
                         <td id=errorMessage>
                             <p>Es wird versucht, eine Selektion per Polygon durchzuführen, aber das Polygon ist noch nicht fertig gezeichnet</p>
@@ -869,7 +869,7 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                             <p>Zeichnen Sie zuerst ein geschlossenes Polygon, d.h. Klicken Sie auf den ersten von Ihnen gesetzten Punkt und danach auf “OK”.</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class=errorsGrey>
                         <td id=errorCodes>203</td>
                         <td id=errorMessage>
                             <p>Es wurde eine Selektion per Polygon durchgeführt, aber einige Punkte befinden sich schon in der Auswahl</p>
@@ -878,31 +878,40 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                             <p>Sie brauchen nichts weiter zu tun, denn die nicht vorhandenen Punkte werden zur Liste hinzugefügt, wohingegen die schon vorhandenen Punkte ignoriert werden.</p>
                         </td>
                     </tr>
-                    <tr class=errorsGrey>
+                    <tr>
                         <td id=errorCodes>204</td>
                         <td id=errorMessage>
                             <p>Eine Einzelpunktselektion soll durchgeführt werden, aber der Punkt befindet sich schon in der Auswahl.</p>
                         </td>
-                        <td id=errorSolutiom>
+                        <td id=errorSolution>
                             <p>Wählen Sie einen anderen Punkt aus.</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class=errorsGrey>
                         <td id=errorCodes>205</td>
                         <td id=errorMessage>
                             <p>Ein einzelner Punkt aus einem Track soll zur Auswahl hinzugefügt werden, befindet sich aber schon in der Selektionsliste.</p>
                         </td>
-                        <td id = errorSolution>
+                        <td id=errorSolution>
                             <p>Wählen Sie einen anderen Punkt aus. Womöglich haben Sie vorher den ganzen Track zur Auswahl hinzugefügt und somit befinden sich schon alle Punkte des Tracks in der Auswahl.</p>
                         </td>
                     </tr>
-                    <tr class=errorsGrey>
+                    <tr>
                         <td id=errorCodes>206</td>
                         <td id=errorMessage>
                             <p>Aus der Selektionstabelle sollen Messwerte entfernt werden, die Tabelle ist aber leer oder es wurden keine zu löschenden Punkte selektiert.</p>
                         </td>
                         <td id=errorSolution>
                             <p>Selektieren Sie die zu löschenden Punkte per Häkchen oder aber füllen Sie die Tabelle zuerst, um dann Punkte daraus löschen zu können und versuchen Sie dann erneut, die Operation durchzuführen.</p>
+                        </td>
+                    </tr>
+                    <tr class=errorsGrey>
+                        <td id=errorCodes>207</td>
+                        <td id=errorMessage>
+                            <p>Sie können momentan keine Punkte aus der Selektion löschen. Bitte setzen Sie erst die Visualisierung der Interpolation zurück.</p>
+                        </td>
+                        <td id=errorSolution>
+                            <p>Da momentan eine Visualisierung aktiv ist, müssen Sie diese Darstellung zunächst zurücksetzten, bevor Sie Punkte aus der Selektionstabelle löschen können. Wie Sie eine Visualisierung zurücksetzten erfahren Sie in Kapitel 11.5.</p>
                         </td>
                     </tr>
                     <tr>

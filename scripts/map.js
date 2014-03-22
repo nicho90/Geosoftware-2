@@ -314,7 +314,7 @@ function drawMeasurements() {
 				}
 			},
             error: function(jqXHR, textStatus, errorThrown){
-				var dialog = $('<p>Beim Abruf der Messpunkte ist ein Fehler aufgetreten.</p>').dialog({
+				var dialog = $('<p>Beim Abrufen der Messpunkte ist ein Fehler aufgetreten.</p>').dialog({
 					modal: true,
 					width:600,
 					title: "Status Error",
@@ -503,7 +503,7 @@ function geolocation(){
     });
 	
 	mainMap.on('locationerror', function(e){
-		var dialog = $('<p>Die Position konnte nicht ermittelt werden oder wurde durch den Benutzer untersagt.</p>').dialog({
+		var dialog = $('<p>Die Position konnte nicht ermittelt werden. Überprüfen Sie Ihre GPS-Einstellungen und erteilen Sie ggf. Ihrem Browser die Standortbestimmung.</p>').dialog({
             modal:true,
             width:600,
             title: 'Error 101',
