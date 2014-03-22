@@ -1,4 +1,4 @@
-/********************************************************************************************
+﻿/********************************************************************************************
 		Control
 		
 This file contains all functions needed for interaction with our provided tools.
@@ -17,6 +17,7 @@ Content
 2. Reset Visualization
 	2.1 Reset Track Visualization
 	2.2 Reset All Visualizations
+	2.3 Reset Visualisation-Buttons + Legend
 
 3. Set Maximal Measurements
 
@@ -29,7 +30,7 @@ Content
 
 // 1.1 Single Point-Selection 
 // Description: User wants to add measurement for analysis by clicking on a single point on the map
-// Authors: Rene Unrau & Nicholas Schiestel
+// Authors: René Unrau & Nicholas Schiestel
 
 function chooseSingleSelection(id) {
     
@@ -62,7 +63,7 @@ function chooseSingleSelection(id) {
 
 // 1.2 Track Selection
 // Description: A user can search for a track-ID and select this track and visualize this track on the map
-// Authors: Ren� Unrau & Nicholas Schiestel
+// Authors: René Unrau & Nicholas Schiestel
 
 function chooseTrackSelection() {  
     // check if singlePointSelection or polygonSelection is active
@@ -95,7 +96,7 @@ function chooseTrackSelection() {
 
 // 1.3 Polygon Selection 
 // Description: User wants to add measurements by drawing a polygon on the map
-// Authors: Ren� Unrau, Johanna, Oli K. & Nicholas Schiestel
+// Authors: René Unrau, Johanna, Oli K. & Nicholas Schiestel
 function choosePolygonSelection() {
     
     // check if singlePointSelection or trackSelection is active
@@ -217,21 +218,56 @@ function colorize(button) {
 	2. Reset Visualizations
 ***********************/
 
-// 2.1 Reset Track Visualization
-// Description: Deletes Track and draws standard measurements
-// Authors: Rene Unrau & Nicholas Schiestel
+// 2.2 Reset all Visualizations
+// Description: Resets all visualizations and return to normal mode
+// Author: René Unrau
 
-function resetTrackSelection(){
-	mainMap.removeLayer(trackLine);
-	for(var i = 0; i < markers.length; i++) {
-		mainMap.removeLayer(markers[i]);	
+function resetVisualization(){
+
+	if(trackLine != undefined){
+		mainMap.removeLayer(trackLine);
 	}
-	drawMeasurements();
+	
+	if(document.getElementById("intLines").checked){
+		for(var i = 0; i < interpolationLines.length; i++){
+			mainMap.removeLayer(interpolationLines[i]);
+		}
+	}
+	
+	if(markers.length > 0){
+		for(var i = 0; i < markers.length; i++) {
+			mainMap.removeLayer(markers[i]);	
+		}
+	}
+	
+	if(document.getElementById("intMeasurements").checked){
+		for(var i = 0; i < markers.length; i++){
+			mainMap.removeLayer(markers[i]);
+		}
+	}
+	
+	if(document.getElementById("intPoints").checked){
+		for(var i = 0; i < interpolated.marker.length; i++){
+			mainMap.removeLayer(interpolated.marker[i]);
+		}
+	}
+	
 	document.getElementById('Track_ID').value = '';
+	
+	resetVisButtons();
+	
+	drawMeasurements();
+	
 	mainMap.on('moveend', drawMeasurements);
-    
-    
-    //reset and hide visualisation button on the map
+}
+
+// 2.2 Reset all Visualizations-Buttons + Legend
+// Description: Resets all visualizations-buttons
+// Author: René Unrau
+
+function resetVisButtons(){
+
+	//reset and hide visualisation button on the map
     toggle_visibility('visualisation');
     button4 = false;
     
@@ -256,37 +292,8 @@ function resetTrackSelection(){
         legend = false;
         toggle_visibility('legende');   
     }
-    
-    
 }
 
-// 2.2 Reset all Visualizations
-// Description: Resets all visualizations and return to normal mode
-// Author: Rene Unrau
-
-function resetVisualization(){
-	
-	if(document.getElementById("intLines").checked){
-		for(var i = 0; i < interpolationLines.length; i++){
-			mainMap.removeLayer(interpolationLines[i]);
-		}
-	}
-	
-	if(document.getElementById("intMeasurements").checked){
-		for(var i = 0; i < markers.length; i++){
-			mainMap.removeLayer(markers[i]);
-		}
-	}
-	
-	if(document.getElementById("intPoints").checked){
-		for(var i = 0; i < interpolated.marker.length; i++){
-			mainMap.removeLayer(interpolated.marker[i]);
-		}
-	}
-	
-	resetTrackSelection();
-	drawMeasurements();
-}
 
 /***********************
 	3. Set Maximum Measurements
@@ -294,7 +301,7 @@ function resetVisualization(){
 
 // 3 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
-// Author: Rene Unrau
+// Author: René Unrau
 
 function setMaxMeas(){
 
