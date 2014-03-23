@@ -116,8 +116,7 @@ function confirmPolygon(){
 	if(!duplicate){
 	
 		$('#infodialog').html('Punkte wurden hinzugef&uuml;gt.');
-		$('#infodialog').dialog({ 
-			height: 100,
+		$('#infodialog').dialog({
 			width: 300,
 			autoOpen: true,   
 			modal: true, 
@@ -129,15 +128,14 @@ function confirmPolygon(){
 		
 	}else{
 	
-		$('#infodialog').html('Die ausgew&auml;hlten Punkte wurden hinzugef&uuml;gt. Einige Punkte befinden sich bereits in Ihrer Auswahl und wurde deshalb nicht erneut hinzugef&uuml;gt.');
-		$('#infodialog').dialog({ 
+		$('#infodialog3').html('Die ausgew&auml;hlten Punkte wurden hinzugef&uuml;gt. Einige Punkte befinden sich bereits in Ihrer Auswahl und wurde deshalb nicht erneut hinzugef&uuml;gt.');
+		$('#infodialog3').dialog({ 
 			width: 600,
-			autoOpen: true,   
-			modal: true,
+			autoOpen: true,
             title: "Error 203",
 			open: function(event, ui) { 
 				setTimeout(function(){ 
-				$('#infodialog').dialog('close'); }, 5000); 
+				$('#infodialog3').dialog('close'); }, 5000); 
 			} 
 		});
 	}

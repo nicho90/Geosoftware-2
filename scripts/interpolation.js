@@ -142,7 +142,7 @@ function startInterpolation(){
 		
 		marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
 		
-		var container = $('<div/>');
+		var container = $('<div>');
 
 		container.on('click', '#centerPoint', function() {
 			doNotLoad = true;
@@ -153,7 +153,7 @@ function startInterpolation(){
 			showTrack(properties.id);
 		} );
 
-		container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+		container.html('<table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 			'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 			'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 			'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
@@ -162,7 +162,7 @@ function startInterpolation(){
 			'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 			'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 			'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-			'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+			'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></div>');
 					
 		// Insert the container into the popup
 		marker.bindPopup(container[0]);
@@ -305,13 +305,13 @@ function idwInterpolation(consumption, co2, maf, speed){
 		// Add interpolations to map
 		interpolated.marker[i-1] = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: yellowDot});
 		
-		var container = $('<div/>');
+		var container = $('<div>');
 		
-		container.html('<html><table><tr><td><b>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+		container.html('<table><tr><td><b>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
 			'<tr><td><b>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
 			'<tr><td><b>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
 			'<tr><td><b>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
-			'</table></html>');
+			'</table></div>');
 			
 		// Insert the container into the popup
 		interpolated.marker[i-1].bindPopup(container[0]);
@@ -422,13 +422,13 @@ function krigingInterpolation(consumption, co2, maf, speed){
 		// Add interpolations to map
 		interpolated.marker[i-1] = L.marker([interpolated.latitude[i-1], interpolated.longitude[i-1]], {icon: yellowDot});
 		
-		var container = $('<div/>');
+		var container = $('<div>');
 		
-		container.html('<html><table><tr><td><b>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
+		container.html('<table><tr><td><b>Speed</b></td><td>' + interpolated.phenomenons.Speed[i-1] + ' km/h</td></tr>' + 
 			'<tr><td><b>CO2</b></td><td>' + interpolated.phenomenons.CO2[i-1] + ' g/s</td></tr>' + 
 			'<tr><td><b>Consumption</b></td><td>' + interpolated.phenomenons.Consumption[i-1] + ' l/h</td></tr>' +
 			'<tr><td><b>MAF</b></td><td>' + interpolated.phenomenons.MAF[i-1] + ' l/s</td></tr>' + 
-			'</table></html>');
+			'</table></div>');
 			
 		// Insert the container into the popup
 		interpolated.marker[i-1].bindPopup(container[0]);

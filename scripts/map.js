@@ -371,7 +371,7 @@ function drawMeasurements() {
 			
 				marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: blueDot});
 		
-				var container = $('<div/>');
+				var container = $('<div>');
 				
 				container.on('click', '#centerPoint', function() {
 					doNotLoad = true;
@@ -386,7 +386,7 @@ function drawMeasurements() {
 					}, 500);
 				});
 				
-				container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+				container.html('<table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 					'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 					'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 					'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
@@ -395,7 +395,7 @@ function drawMeasurements() {
 					'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 					'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 					'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugeh&ouml;rigen Track anzeigen</a></td></tr></table></html>');
+					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugeh&ouml;rigen Track anzeigen</a></td></tr></table></div>');
 
 				// Insert the container into the popup
 				marker.bindPopup(container[0]);
@@ -422,7 +422,7 @@ function drawMeasurements() {
 	
 			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
 		
-			var container = $('<div/>');
+			var container = $('<div>');
 			
 			container.on('click', '#centerPoint', function() {
 				doNotLoad = true;
@@ -436,7 +436,7 @@ function drawMeasurements() {
 				}, 500);
 			});
 			
-			container.html('<html><table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
+			container.html('<table><tr><td><b>Latitude</b></td><td>' + geometry.coordinates[1] + '</td></tr>' +
 				'<tr><td><b>Longitude</b></td><td>' + geometry.coordinates[0] + '</td></tr>' +
 				'<tr><td><b>Zeitstempel</b></td><td>'  + properties.time + '</td></tr>' +
 				'<tr><td><b>Sensor-ID</b></td><td>' + sensor.properties.id + '</td></tr>' +
@@ -445,7 +445,7 @@ function drawMeasurements() {
 				'<tr><td><b>CO2-Ausstoß</b></td><td>' + phenomenons.CO2.value + ' ' + phenomenons.CO2.unit + '</td></tr>' +
 				'<tr><td><b>Spritverbrauch</b></td><td>' + phenomenons.Consumption.value + ' ' + phenomenons.Consumption.unit + '</td></tr>' +
 				'<tr><td><b>MAF</b></td><td>' + phenomenons.MAF.value + ' ' + phenomenons.MAF.unit + '</td></tr>' +
-				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+				'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></div>');
 	
 			// Insert the container into the popup
 			marker.bindPopup(container[0]);
@@ -503,7 +503,7 @@ function geolocation(){
     });
 	
 	mainMap.on('locationerror', function(e){
-		var dialog = $('<p>Die Position konnte nicht ermittelt werden. Überprüfen Sie Ihre GPS-Einstellungen und erteilen Sie ggf. Ihrem Browser die Standortbestimmung.</p>').dialog({
+		var dialog = $('<p>Die Position konnte nicht ermittelt werden. Überprüfen Sie Ihre GPS-Einstellungen und erteilen Sie ggf. Ihrem Browser die Berechtigung zur Standortbestimmung.</p>').dialog({
             modal:true,
             width:600,
             title: 'Error 101',

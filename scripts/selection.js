@@ -61,8 +61,8 @@ function addSinglePoint(measurement){
         //Open and Close info-popup
         //Authors: Nicholas Schiestel and Johanna Moellmann
 		$('#infodialog').html('Punkt wurde hinzugef&uuml;gt.');
-		$('#infodialog').dialog({ 
-		height: 100,
+		$('#infodialog').dialog({
+        height: 100,
 		width: 300,
 		autoOpen: true,   
 		modal: true,
@@ -79,16 +79,15 @@ function addSinglePoint(measurement){
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
 			if(measurement.properties.id == selection[i].properties.id){
-                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in Ihrer Auswahl');
-                $('#infodialog').dialog({ 
-                    height: 100,
-                    width: 300,
+                $('#infodialog2').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in Ihrer Auswahl');
+                $('#infodialog2').dialog({
+                    width: 600,
                     autoOpen: true,   
                     modal: true, 
                     title: "Error 204",
                     open: function(event, ui) { 
                         setTimeout(function(){ 
-                            $('#infodialog').dialog('close'); 
+                            $('#infodialog2').dialog('close'); 
                         }, 1000); 
                     } 
                 });
@@ -109,8 +108,8 @@ function addSinglePoint(measurement){
 		//Open and Close info-popup
 		//Authors: Nicholas Schiestel and Johanna Moellmann	
 		$('#infodialog').html('Punkt wurde hinzugef&uuml;gt.');
-		$('#infodialog').dialog({ 
-		height: 100,
+		$('#infodialog').dialog({
+        height: 100,
 		width: 300,
 		autoOpen: true,   
 		modal: true,
@@ -195,16 +194,15 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
 			if(measurement.properties.id == selection[i].properties.id){
-                $('#infodialog').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in Ihrer Auswahl');
-                $('#infodialog').dialog({ 
-                    height: 100,
+                $('#infodialog2').html('Der Messpunkt: ' + measurement.properties.id + ' befindet sich bereits in Ihrer Auswahl');
+                $('#infodialog2').dialog({
                     width: 600,
                     autoOpen: true,   
                     modal: true, 
                     title: "Error 205",
                     open: function(event, ui) { 
                         setTimeout(function(){ 
-                            $('#infodialog').dialog('close'); 
+                            $('#infodialog2').dialog('close'); 
                         }, 1000); 
                     } 
                 });
@@ -331,7 +329,7 @@ function deleteSingleMeasurement(measurementID){
 
 	// Do not allow deletion if interpolation is active
 	if(legend || button4 || button5){
-		var dialog = $('<p>Sie können momentan keine Punkte aus der Selektion löschen. Bitte setzen Sie erst die Visualisierung der Interpolation zurück.</p>').dialog({
+		var dialog = $('<p>Sie können momentan keine Punkte aus der Selektion löschen. Bitte setzen Sie zuerst die Visualisierung der Interpolation zurück.</p>').dialog({
             width:600,
             title:"Error 207",
 			buttons: {
@@ -434,7 +432,7 @@ function visualizeSelection(){
 				
 				marker = L.marker([selection[j].geometry.coordinates[1], selection[j].geometry.coordinates[0]], {icon: blueDot});
 			
-				var container = $('<div/>');
+				var container = $('<div>');
 
 				container.on('click', '#centerPoint', function() {
 					doNotLoad = true;
@@ -449,7 +447,7 @@ function visualizeSelection(){
 					
 				} );
 
-				container.html('<html><table><tr><td><b>Latitude</b></td><td>' + selection[j].geometry.coordinates[1] + '</td></tr>' +
+				container.html('<table><tr><td><b>Latitude</b></td><td>' + selection[j].geometry.coordinates[1] + '</td></tr>' +
 					'<tr><td><b>Longitude</b></td><td>' + selection[j].geometry.coordinates[0] + '</td></tr>' +
 					'<tr><td><b>Zeitstempel</b></td><td>'  + selection[j].properties.time + '</td></tr>' +
 					'<tr><td><b>Sensor-ID</b></td><td>' + selection[j].properties.sensor.properties.id + '</td></tr>' +
@@ -458,7 +456,7 @@ function visualizeSelection(){
 					'<tr><td><b>CO2-Ausstoß</b></td><td>' + selection[j].properties.phenomenons.CO2.value + ' ' + selection[j].properties.phenomenons.CO2.unit + '</td></tr>' +
 					'<tr><td><b>Spritverbrauch</b></td><td>' + selection[j].properties.phenomenons.Consumption.value + ' ' + selection[j].properties.phenomenons.Consumption.unit + '</td></tr>' +
 					'<tr><td><b>MAF</b></td><td>' + selection[j].properties.phenomenons.MAF.value + ' ' + selection[j].properties.phenomenons.MAF.unit + '</td></tr>' +
-					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></html>');
+					'<tr><td><a href="#" id="centerPoint" class="link">Auf Punkt zentrieren</a></td><td><a href="#" id="showTrack" class="link">Zugehörigen Track anzeigen</a></td></tr></table></div>');
 
 				// Insert the container into the popup
 				marker.bindPopup(container[0]);
@@ -472,6 +470,8 @@ function visualizeSelection(){
 						mainMap.closePopup();
 						var dialog = $('<p>Möchten Sie diesen Punkt von der Auswahl entfernen?</p>').dialog({
                             width:600,
+                            autoOpen:true,
+                            modal:true,
 							buttons: {
 								"Ja": function() {deleteSingleMeasurement(measurement.properties.id);dialog.dialog('close');},
 								"Nein":  function() {dialog.dialog('close');}
