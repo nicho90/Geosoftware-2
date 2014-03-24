@@ -233,11 +233,10 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
                 
                 <div id=clear></div>
                 <h3 id=help-4>4. Die Messpunkte</h3>
-				Ihnen werden in der Applikation erst einmal standardmäßig 100 Messpunkte auf der Karte präsentiert.
+				Beim Start der Applikation werden standardmäßig nur 100 Messpunkte geladen und auf der Karte dargestellt.
                 <div id=clear></div>
                 <h4 id=help-4-1>4.1 Verfügbare Werte</h4>
-                Die Messpunkte beziehen sich auf die Daten aus der enviroCar-Datenbank und beinhalten neben ihren Koordinaten Werte zu den Attributen 
-				SensorID, Zeit, Autohersteller, Automodel, Geschwindigkeit, CO<sub>2</sub>-Ausstoß, Verbrauch und MAF-Werte. 
+                Die Messpunkte beziehen sich auf die Daten aus der enviroCar-Datenbank und beinhalten neben ihren Koordinaten Werte zu den Attributen SensorID, Zeit, Autohersteller, Automodel, Geschwindigkeit, CO<sub>2</sub>-Ausstoß, Verbrauch und MAF-Werte. 
 				Sie sind nur verfügbar, wenn der enviroCar-Server erreichbar ist. 
                 <div id=clear></div>
                 <h4 id=help-4-2>4.2 Die Anzahl der Messpunkte</h4>
@@ -269,13 +268,11 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
 
                 <div id=clear></div>
                 <h3 id=help-5>5. Die Karte</h3>
-				Die Karte ist das Zentrum der Applikation, auf ihr werdendie Messpunkte angezeigt, 
+				Die Karte ist das Zentrum der Applikation, auf ihr werden die Messpunkte angezeigt, 
 				mit denen Sie arbeiten können. Auch die Ergebnisse einiger Methoden der Applikation werden auf ihr visualisiert. 
-				Standardmäßig wird beim Laden der Applikation eine Karte des WMS Leaflet angezeigt. 
-				Es ist Ihnen allerdings möglich, über ein Menü in der oberen rechten Ecke des Kartenausschnittes Layer anzuwählen, 
-				dies sind ein Satellitenbild und eine topographische Karte. Beim Laden der topographischen Karte ist darauf zu achten, dass 
-				dies nur ab einer bestimmten Zoomstufe möglich ist.
-
+				Standardmäßig wird beim Laden der Applikation eine OpenStreetMap-Karte angezeigt. 
+				Über den Button in der oberen rechten Ecke des Kartenbereichs können Sie einen anderen Kartentyp auswählen, z.B.
+				eine Satelliten- und Luftbildansicht oder eine topographische Karte. Beim Laden einer topographischen Karte ist darauf zu achten, dass dies nur innerhalb einer bestimmten Zoomstufe möglich ist.
 
                 <div id=clear></div>
                 <h4 id=help-5-1>5.1 Die Navigationselemente</h4>
@@ -286,17 +283,14 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
                     </div>
                 </div>
 				
-				
-				In der ober linken Ecke auf der Karte befinden sich die Navigationselemente, mit denen Sie mit der Karte interagieren können.
-				Bei einem klick auf den Plus-, bzw. Minus-Button zoomen Sie um jeweils eine Zoomstufe in die Karte, bzw. aus der Karte heraus.
+				In der oberen linken Ecke der Karte befinden sich die Navigationselemente, mit denen Sie mit der Karte interagieren können.
+				Bei einem klick auf den Plus-, bzw. Minus-Button zoomen Sie um jeweils eine Zoomstufe in die Karte hinein, bzw. aus der Karte heraus.
 				Mit einem Klick auf das jeweilige Pfeilsymbol ist es Ihnen möglich, den Karteausschnitt in die jeweilige Richtung zu verschieben.<br>
-				Sie können alternativ zu dem oben beschriebenen Verfahren auch nur mithilfe der Maus zoomen. 
-				Um in das Bild hinein zu zoomen, kann er mit einem Doppelklick der linken Maustaste in die Karte klicken.
-				Das Hinein- und Hinauszoomen ist außerdem mit Hilfe des Mausrades möglich. Hierfür sollten Sie das Rad je nach gewünschter 
-				Richtung nach vorne, bzw. nach hinten drehen. Auch Panning funktioniert alternativ zu den dafür vorgesehenen Buttons mit Hilfe der Maus. 
-				Hier können Sie die Karte mit gedrückter linker Maustaste per Hand verschieben.
+				Sie können alternativ zu dem oben beschriebenen Verfahren auch mit Ihrer Comuptermaus zoomen. 
+				Das Hinein- und Hinauszoomen ist mit Hilfe des Mausrades möglich. Hierfür sollten Sie das Rad je nach gewünschter 
+				Richtung nach vorne, bzw. nach hinten drehen. Das Hineinzoomen, kann alternativ auch mittels einfachem Doppelklick der linken Maustaste auf der Karte, ausgeführt werden.
+                Auch das Verschieben des Kartenausschnitts funktioniert alternativ zu den dafür vorgesehenen Buttons mit Hilfe der Maus. Hierzu können Sie die Karte mit gedrückter linker Maustaste per Hand verschieben. 
 
-				
                 <div id=clear></div>
                 <h4 id=help-5-2>5.2 Die Ortungsfunktion</h4>
 				
@@ -306,10 +300,8 @@ Eine weitere wichtige Funktion ist die Berechnung von Interpolationen, also Zwis
                         Button zur Lokalisierung
                     </div>
                 </div>
-				In der linken oberen Ecke der Karte befindet sich neben den Buttons für die Navigation in der Karte ein weiterer Button, 
-				dieser befindet sich in der Mitte zwischen den Panning-Buttons. Wenn Sie auf diesen Button klicken, 
-				wird Ihre momentane Position bestimmt, 
-				der Kartenausschnitt wird auf diesen Punkt verschoben, die Sicht wird an den Punkt herangezoomt und es wird dort ein Marker gesetzt.
+				In der linken oberen Ecke der Karte befindet sich neben den Buttons für die Navigation ein weiterer Button. Er befindet sich in der Mitte zwischen den Pfeilsymbolen. Wenn Sie auf diesen Button klicken, 
+				wird Ihre momentane Position bestimmt und der Kartenausschnitt wird auf Ihren Standort verschoben und herangezoomt. Ein Klick auf den neu erstellten blauen Marker, liefert Ihnen die GPS-Koordinaten Ihres Standorts.<br>
                 <div class="imageBoxLeft">
                     <a href="images/help/help-5-2-s2.png" rel="shadowbox"><img src="images/help/help-5-2-s2.png" alt="Beispiel für eine Ortung" class=image width=300px></a>
                     <div class="imageCaption">
@@ -365,13 +357,12 @@ Dieses Popup zeigt die vorhandenen Daten zum Messpunkt an:<br>
                 <li>MAF: Mass Air Flow, also der Luftdurchfluss zum Messzeitpunkt, angegeben in l/s
 </li>
                 <br>
-                Wenn Sie auf “Auf Punkt zentrieren” klicken, so wird der Kartenausschnitt so verschoben, dass der Messpunkt im Zentrum des Kartenbreichs liegt.
+                Wenn Sie “Auf Punkt zentrieren” klicken, so wird der Kartenausschnitt so verschoben, dass der Messpunkt im Zentrum des Kartenbereichs liegt.<br>
 Mit einem Klick auf “Zugehörigen Track anzeigen” wird der Kartenausschnit auf den Punkt zentriert und es öffnet sich nach kurzer Ladezeit ein Auswahlfenster.
-Dieses Auswahlfenster beinhaltet die ID des zum Punkt gehörigen Tracks. Sie haben nun die Möglichkeit, sich den Track anzeigen zu lassen (“Visualisieren”), den Track zur Auswahl hinzuzufügen (“Zur Auswahl hinzuzufügen”) bzw. die Aktion abzubrechen (“Abbrechen”).
-                Sie klicken auf “Visualisieren”. Das Auswahlfenster schließt sich und alle Punkte, die zum Track gehören, werden geladen und auf der Karte visualisiert. Die Messpunkte werden nun in einem dunklen grün dargestellt. Des Weiteren zeigt eine rote Linie den Verlauf des Tracks an.
-Eine Visualisierung kann wieder zurückgesetzt werden (siehe 4.5).
-
-Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Punkte werden in die Tabelle unter “Selektierte Punkte” übernommen.
+Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere Informationen zur Track-ID und was Sie damit tun können, erfahren Sie im Kapitel 7.2).<br>
+                Nun haben Sie die Möglichkeit sich den Verlauf des Tracks auf der Karte anzeigen zu lassen (“Visualisieren”) oder den Track direkt zur Auswahl hinzuzufügen (“Zur Auswahl hinzuzufügen”) (mehr Informationen dazu in Kapitel 7.2), bzw. die Aktion abzubrechen (“Abbrechen”).<br>
+                Wenn Sie auf den Button “Visualisieren” klicken, schließt sich das Auswahlfenster und alle Punkte, die zum Track gehören, werden geladen und auf der Karte angezeigt. Die zugehörigen Messpunkte werden nun in einem dunklen Grün dargestellt. Des Weiteren zeigt eine rote Linie den Verlauf des Tracks an. Da es sich nun um eine Visualisierung auf der Karte handelt, werden Ihnen nicht mehr die ursprünglichen Messpunkte angezeigt. Dies erkennen Sie an dem neuen Symbol unter dem Button zur Kartenlayerauswahl (siehe: Kaptiel 5.5). Möchten Sie die Visualisierung schließen um wieder alle Punkte angezeigt zu bekommen, muss sie wieder zurückgesetzt werden (siehe: Kaptiel 5.5).<br>
+                Wenn Sie auf den Button “Zur Auswahl hinzufügen” klicken, werden alle zum Track zugehörigen Messpunkte zur Selektion hinzugefügt. Weitere Informationen dazu finden Sie in den Kapiteln 7 und 8. 
 
                 <div id=clear></div>
                 <h4 id=help-5-5>5.5 Visualisierungen zurücksetzten</h4>
@@ -381,7 +372,7 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                         Button zum Zurücksetzten
                     </div>
                 </div>
-                Voraussetzung ist, dass eine Visualisierung aktiv ist. Dies k&ouml;nnen Sie an dem Button auf der Karte erkennen. Durch den Button kann mit einem Klick  die Visualisierung wieder zurücksetzt werden und Sie gelangen zur ursprünglichen Kartendarstellung. Der Zurücksetzungspfeil ist unter dem Button für die Kartenlayerauswahl positioniert.
+                Voraussetzung ist, dass eine Visualisierung aktiv ist. Dies k&ouml;nnen Sie an dem Button auf der Karte erkennen. Durch den Button kann mit einem Klick die Visualisierung wieder zurücksetzt werden und Sie gelangen zur ursprünglichen Kartendarstellung. Der Zurücksetzungspfeil befindet sich unter dem Button für die Kartenlayerauswahl.
 
                 <div id=clear></div>
                 <div id=next>
@@ -399,10 +390,11 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
                 
-				<p>Mithilfe der Filterfunktionen können Sie die anzuzeigenden Messpunkte nach ihren Messwerten filtern. 
-				Die Filterung beginnt erst mit dem Betätigen des “OK”-Buttons. Anschließend können Sie die Filter mithilfe 
+				<p>Mithilfe der Filterfunktionen können Sie die anzuzeigenden Messpunkte nach Ihren Kriterien filtern. 
+				Die Filterung beginnt mit dem Betätigen des “OK”-Buttons. Anschließend können Sie die Filter mithilfe 
 				eines Klicks auf “Zurücksetzen” zurücksetzen, sodass wieder alle ungefilterten Messpunkte angezeigt 
-				werden. Die Textfelder sind mit Platzhaltern, welche eine beispielhafte Eingabe angeben, vorbefüllt.</p>
+				werden. Die Textfelder sind mit Platzhaltern befüllt, um Ihnen eine beispielhafte Eingabe zu zeigen.</p>
+                Hinweis: Falls Sie ein gültiges Filterkriterium gesetzt haben, sich aber dennoch keine Punkte filtern lassen, erhöhen Sie ggf. die Anzahl der Messpunkte auf Ihrer Karte (siehe: Kapitel 4.2). 
                 
                 <div class="imageBoxLeft">
                     <img src="images/help/help-6-s2.png" alt="Filteroptionen" class=imageNoBorder width=40px></a>
@@ -411,7 +403,7 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
                 
-                <p>Wenn Sie eine Filtereinstellung ausgeführt haben und der Filter aktiv ist, erscheint dieses Icon oben rechts im Filterbereich. So können Sie sich vergewissern, ob sie gerade gefilterte Punkte betrachten und die Einstellungen ggf. wieder zurücksetzen, wenn Sie wieder mehr Messpunkte auf der Karte sehen möchten.</p>
+                <p>Wenn Sie eine Filtereinstellung ausgeführt haben und der Filter aktiv ist, erscheint dieses Icon oben rechts im Filterbereich. So können Sie sich vergewissern, ob Sie gerade gefilterte Punkte betrachten und die Einstellungen ggf. wieder zurücksetzen, wenn Sie wieder mehr Messpunkte auf der Karte sehen möchten.</p>
 
                 <div id=clear></div>
                 <h4 id=help-6-1>6.1 Filtern nach der Zeit</h4>
@@ -424,23 +416,24 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                 </div>
 
 				Durch die Eingabe eines Anfangs- bzw. Enddatums können Sie die Messpunkte nach der Zeit filtern. Das 
-				Datumsformat sieht folgendermaßen aus: MM/TT/JJJJ. <br>
+				Datumsformat sieht folgendermaßen aus: "MM/TT/JJJJ". <br>
 				Wenn Sie nur das Anfangsdatum angeben, werden alle Messpunkte ab diesem Zeitpunkt dargestellt. Wenn Sie 
 				stattdessen nur das Enddatum angeben, werden alle Messpunkte, die bis zu diesem Zeitpunkt gemessen 
 				wurden, dargestellt. Bei der Eingabe beider Zeitpunkte (Anfangs- und Enddatum) werden alle Messpunkte 
-				innerhalb dieses Intervalls (einschließlich Anfangs- und Enddatum) auf der Karte visualisiert. <br>
+				innerhalb dieses Intervalls (einschließlich Anfangs- und Enddatum) auf der Karte dargestellt. <br>
 				Zur einfacheren Auswahl eines Datums öffnet sich ein Kalendar beim Klick ins Textfeld des Anfangs- bzw. 
-				Enddatums. Wählen Sie bei dem Kalendar zunächst den gewünschten Monat und klicken anschließend auf den 
-				entsprechenden Tag. Das ausgesuchte Datum wird automatisch in das Textfeld eingetragen.
+				Enddatums. Wählen Sie bei dem Kalendar zunächst den gewünschten Monat und klicken Sie anschließend auf den 
+				entsprechenden Tag. Das ausgesuchte Datum wird Ihnen automatisch in das Textfeld eingetragen.
 
                 <div id=clear></div>
                 <h4 id=help-6-2>6.2 Filtern mit einer Sensor-ID</h4>
                 
 				Die anzuzeigenden Punkte können Sie auch nach ihrer Sensor-ID filtern. Bei der Filterung mit einer 
-				Sensor-ID werden alle Messpunkte, die die Zeichenkette des Filters in der Sensor-ID enthalten, dargestellt. 
+				Sensor-ID werden alle Messpunkte, die diese Sensor-ID enthalten, dargestellt.<br>
 				So werden bei der Eingabe “52” in das Textfeld des Filters alle Messpunkte angezeigt, die in ihrer Sensor-ID 
-				eine “52” enthalten.
-
+				eine “52” enthalten.<br>
+                Wenn Sie nach einer eindeutigen Sensor-ID filtern möchten, Ihnen die Sensor-ID aber unbekannt ist, können Sie sie in den Daten der Messpunkte finden. Klicken Sie dazu einen beliebigen Punkt auf der Karte an, um das Popup mit allen Werten zu öffnen (siehe: Kapitel 5.4).
+            
                 <div id=clear></div>
                 <h4 id=help-6-3>6.3 Filtern über einen Autotyp</h4>
 				
@@ -451,19 +444,18 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
 				Eine Filterung nach einem Autotyp ist ebenfalls möglich. Bei diesem Filter ist zu beachten, dass zunächst 
-				die Marke gefolgt von einem Leerzeichen und dem Modell anzugeben ist (z.B.: “BMW 525”). Eine Eingabe wie 
+				die Marke gefolgt von einem Leerzeichen und dem Modell anzugeben ist (z.B. “BMW 525”). Eine Eingabe wie 
 				“BMW525” führt zu keinem Ergebnis. Allerdings können Sie hier auch nach Teilzeichenketten, die im Autotyp enthalten 
-				sein sollen, filtern. Bei Eingabe von “bmw” bzw. “525” werden alle Autotypen angezeigt, die “bmw” 
+				sein sollen, filtern. Bei der Eingabe von “bmw” bzw. “525” werden alle Autotypen angezeigt, die “bmw” 
 				bzw. “525” beinhalten.<br>
-				Zur einfacheren Auswahl eines Autotyps klappt bei einem Klick in das Textfeld eine Datenliste aus. Aus dieser 
-				Datenliste können Sie nun ein Autotyp auswählen.
-
+				Zur einfacheren Auswahl eines Autotyps klappt bei einem Klick in das Textfeld eine Dropdownliste aus. Aus dieser 
+				Datenliste können Sie nun ein Autotyp auswählen.<br>
 
                 <div id=clear></div>
                 <h4 id=help-6-4>6.4 Filtern mit einer Track-ID</h4>
                 
-				Außerdem besteht auch die Möglichkeit die Punkte nach ihrer Track-ID zu filtern. Diese Filteroption befindet 
-				sich unter den Selektierwerkzeugen. Weitere Informationen dazu unter Punkt 7.2.
+				Außerdem besteht auch die Möglichkeit Messpunkte über Track-ID zu suchen. Diese Option befindet 
+				sich unter den Selektierwerkzeugen. Weitere Informationen dazu finden Sie im Kaptiel 7.2.
 
                 <div id=clear></div>
                 <div id=next>
@@ -669,7 +661,7 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
                 
-				Die selektierten Punkte werden ab einer Anzahl von mindestens zwei Messpunkten automatisch analysiert. Diese Analyse aktualisiert sich auch automatisch, wenn Sie Punkte hinzugefügen oder löschen. Sie können alle Analyseergebnisse über die Sidebar im Bereich “Analysefunktionen” einsehen und über die Dropdown-Liste wechseln. Ist ein Attribut ausgewählt so können Sie eines der vier folgenden Analysen betrachten. Messpunkte die ein Attribut nicht enthalten, werden bei der Analyse für das entsprechende Attribut nicht berücksichtigt.
+				Die selektierten Punkte werden ab einer Anzahl von mindestens zwei Messpunkten automatisch analysiert. Diese Analyse aktualisiert sich auch automatisch, wenn Sie Punkte hinzugefügen oder löschen. Sie können alle Analyseergebnisse über die Sidebar im Bereich “Analysefunktionen” einsehen und über die Dropdown-Liste wechseln. Ist ein Attribut ausgewählt so können Sie eine der vier folgenden Analysen betrachten. Messpunkte, die keine Werte in einem Attribut enthalten, werden bei der Analyse für das entsprechende Attribut nicht berücksichtigt.
 
 				<div id=clear></div>
                 <h4 id=help-9-1>9.1 Der Mittelwert</h4>
@@ -684,17 +676,16 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
 				<div id=clear></div>
                 <h4 id=help-9-3>9.3 Das Minimium</h4>
 				
-				Das Minimum ist der niedrigste Wert eines Attributes aus den selektierten Messpunkten. Klicken Sie auf diesen Wert, so wird der Kartenausschnitt auf den entsprechenden Punkt zentriert und das PopUp des Messpunktes öffnet sich.
+				Das Minimum ist der niedrigste Wert eines Attributes aus den selektierten Messpunkten. Wenn Sie auf diesen Wert klicken, wird der Kartenausschnitt zu dem entsprechenden Punkt verschoben und es öffnet sich das Popup des Messpunktes.
 
 				<div id=clear></div>
                 <h4 id=help-9-4>9.4 Das Maximum</h4>
-				Das Maximum ist der höchste Wert eines Attributes aus den selektierten Messpunkten. Klicken Sie auf diesen Wert, so wird der Kartenausschnitt auf den entsprechenden Punkt zentriert und das PopUp des Messpunktes öffnet sich.
+				Das Maximum ist der höchste Wert eines Attributes aus den selektierten Messpunkten. Wenn Sie auf diesen Wert klicken, wird der Kartenausschnitt zu dem entsprechenden Punkt verschoben und es öffnet sich das Popup des Messpunktes.
 				
                 <div id=clear></div>
                 <h4 id=help-9-5>9.5 Der häufigste Fahrzeugtyp</h4>
 				
-				In dieser Analyse wird der Fahrzeugtyp angezeigt, zu dem die meisten Messpunkte in der Selektion sind. Die Zahl in der Klammer gibt die Häufigkeit dieses Fahrzeugtyps an. Die weiteren Fahrzeugtypen können Sie hier nicht betrachten. Die Diagrammfunktionen bieten jedoch eine bessere Übersicht über die Verteilung aller ausgewählten Fahrzeugtypen.
-
+				In dieser Analyse wird der Fahrzeugtyp angezeigt, zu dem die meisten Messpunkte in der Selektion gehören. Die Zahl in der Klammer gibt die absolute Häufigkeit dieses Fahrzeugtyps an. Die weiteren Fahrzeugtypen können Sie hier nicht betrachten. Die Diagrammfunktion bieten Ihnen jedoch die Möglichkeit auch diese Ergebnisse zu sehen. Weitere Informationen dazu finden Sie im Kapiel 10.
 				
                 <div id=clear></div>
                 <div id=next>
@@ -713,8 +704,7 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                 </div>
 				
 				Im Analysebereich der Applikation befindet sich der in der hier gezeigte Button. 
-				Wenn sich mindestens zwei Messpunkte in der Selektionstabelle befinden, werden nach seiner Betätigung in einem Popup Diagramme gezeichnet. 
-				Die Diagramme beziehen sich auf die Messwerte aller Punkte aus der Selektionstabelle.
+				Befinden sich mindestens zwei Messpunkte in der Selektionstabelle, können Sie mit Klicken auf den Button ein Popup öffnen, welches Ihnen Digramme zeigt. Die Diagramme beziehen sich auf die Messwerte aller Punkte aus der Selektionstabelle.
 				Es ist nicht möglich, Messpunkte aus den Häufigkeitsbereichnungen für die Daigramme auszuschließen.<br>
                 
 				<div class="imageBoxLeft">
@@ -729,14 +719,13 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                 </div>
                 <br>
                 
-				Sie können hier zwischen Ansichten der Häufigkeitsverteilungen von <br><br>
-				<li>Geschwindigkeit, </li>
-				<li>CO<sub>2</sub>-Ausstoß, </li>
-				<li>Spritverbauch, </li>
-				<li>MAF und </li>
-				<li>Autotypen </li>
-				wählen. Es ist dabei nicht von Bedeutung, welches Attribut bereits im Analysebereich ausgewählt ist. 
-				In der nebenstehenden Abbildung befindet sich ein Beispieldiagramm für eine Geschwindigkeitsverteilung.
+				Sie können innerhalb des Popups zwischen den verschieden Ansichten der Häufigkeitsverteilungen wählen:<br><br>
+				<li>Geschwindigkeit,</li>
+				<li>CO<sub>2</sub>-Ausstoß,</li>
+				<li>Spritverbauch,</li>
+				<li>MAF und</li>
+				<li>Autotypen</li>
+				In der nebenstehenden Abbildung befinden sich ein paar Beispieldiagramme.
                 
                 <div id=clear></div>
                 <div id=next>
@@ -755,13 +744,13 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
 				
-				Interpolationen sind in unserer Applikation generell nur für exakt einen vollständigen Track möglich. Grund dafür ist, dass Interpolationen zwischen unterschiedlichen Fahrten, zu unterschiedlichen Jahres-, Tages- und Uhrzeiten, sowie mit unterschiedlichen Fahrzeugen generell wenig Sinn machen. Versuchen Sie dennoch eine Interpolation mit ungültigen Werten durchzuführen, so ist dies nicht möglich und eine entsprechende Fehlermeldung wird angezeigt.<br>
+                Interpolationen sind in der Applikation generell nur für exakt einen vollständigen Track möglich. Grund dafür ist, dass Interpolationen zwischen unterschiedlichen Fahrten, zu unterschiedlichen Jahres-, Tages- und Uhrzeiten, sowie mit unterschiedlichen Fahrzeugen wenig Sinn machen würden. Daher beschränkt sich die Interpolation nur auf die Messpunkte eines ganzen Tracks. Wie Sie diesen auswählen können, erfahren Sie in Kapitel 7.2. Versuchen Sie dennoch eine Interpolation mit Messpunkten unterschiedlicher Tracks durchzuführen, so ist dies nicht möglich und eine entsprechende Fehlermeldung wird angezeigt.<br>
 
-				Es werden nur Interpolation der Attribute Geschwindigkeit, Spritverbrauch, CO<sub>2</sub>-Ausstoß und MAF angeboten. Diese Werte sind am häufigsten vertreten und bieten sich besonders für Interpolationen an. Es ist daher nicht möglich über einen Track zu interpolieren, der keines dieser Attribute enthält.<br>
+				Es sind nur Interpolation für die Attribute Geschwindigkeit, Spritverbrauch, CO<sub>2</sub>-Ausstoß und MAF möglich. Diese Werte sind am häufigsten vertreten und bieten sich besonders für Interpolationen an. Es ist daher nicht möglich über einen Track zu interpolieren, der keines dieser Attribute enthält.<br>
 
-				Sind diese Vorraussetzungen erfüllt, können Sie die Interpolation durch setzen der Parameter in der Interpolationsbox (Sidebar) starten. Dazu muss zwischen einer der beiden Methoden gewählt werden und gegenfalls weitere Parameter ergänzt werden. Im Anschluss kann die Interpolation über “OK” gestartet werden.<br>
+				Sind diese Vorraussetzungen erfüllt, können Sie die Interpolationsmethode in dem Bereich der Interpolation (Sidebar) wählen. Ggf. müssen Sie noch weitere Parameter setzen. Im Anschluss kann die Interpolation über “OK” gestartet werden.<br>
 
-				Nach Abschluss der Berechnungen, werden die Ergebnisse visuell auf der Karte dargestellt.<br>
+				Nach erfolgreicher Berechnungen, werden Ihnen die Ergebnisse auf der Karte visualisiert. Wie Sie eine Interpolation, bzw. Visualisierung wider zurücksetzten können, erfahren Sie in Kapitel 11.5.<br>
 				
 				<div class="imageBoxLeft">
                     <a href="images/help/help-11-s2.png" rel="shadowbox[Vacation5]"><img src="images/help/help-11-s2.png" alt="Beispiel einer Interpolation" class=image width=300px></a>
@@ -773,33 +762,24 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
 				
-				Standardmäßig bekommen Sie nur den Verlauf der Fahrt farbig interpoliert für das Attribut Geschwindigkeit auf der Karte dargestellt. 
-				Es besteht aber die Möglichkeit die interpolierten Werte, ursprünglichen Messpunkte und die Linie über die Legende in der unteren 
-				linken Ecke der Karte ein- und auszublenden.<br>
-
-				Hier können Sie auch das Attribut auswählen, dass Sie als farbige Linie auf der Karte abgebildet haben möchten. 
-				Auch hier besteht nur eine Auswahl zwischen den oben genannten Attributen. 
-				Ist ein Attribut im Track nicht vorhanden, so kann dieses auch nicht für die Visualisierung ausgewählt werden. 
-				Eine Hinweismeldung erscheint und die Visualisation wird standardmäßig auf Geschwindigkeit gesetzt.
+				<p>Standardmäßig wird Ihnen auf der Karte die Interpolation für das Attribut Geschwindigkeit visualisiert. Die Visualisierung besteht dabei aus interpolierten Linien, deren Abschnitte nach entsprechendem Wert eingefärbt sind. So entsteht ein farbiger Verlauf für einen Track, in dem Sie schnell einen Überblick über die räumliche Verteilung von hohen, bzw. niedrigen Werten erhalten. Das nebenstehende Beispiel zeigt einen solchen Farbverlauf.</p>
+        
+				Es besteht die Möglichkeit, die interpolierten Linien auch auszublenden. In der Legende (siehe: Kapitel 11.3) können Sie dazu die entsprechenden Einstellungen vornehmen. So ist es auch möglich die konkreten Interpolsaiotnswerte auf der Karte anzeigen zu lassen um genaure Informationen zu einem bestimmten Punkt zu erhalten. Desweiteren können Sie in der Legende entscheiden, welches Attribut Sie auf der Karte als farbige Linie visualisiert bekommen möchten. Ist ein Attribut im Track nicht vorhanden, so kann dieses auch nicht für die Visualisierung benutzt werden. Eine entsprechende Hinweismeldung wird Ihnen dann eingeblendet und die Visualisierung standardmäßig auf Geschwindigkeit zurückgesetzt.
 
                 <div id=clear></div>
                 <h4 id=help-11-1>11.1 Interpolation mit inverser Distanzgewichtung</h4>
 				
 				Die Inverse Distanzwichtung (IDW) ist ein nichtstatistisches Interpolationsverfahren der Geostatistik und wird zur einfachen 
-				Interpolation der räumlichen Abhängigkeit georeferenzierter Daten genutzt. 
-				Dabei gilt als Grundannahme, dass die Ähnlichkeit eines unbekannten Wertes zum bekannten Messwert mit der Entfernung von diesem abnimmt, 
-				die Daten also umso unähnlicher sind, je weiter sie auseinander liegen. 
-				Dieser Zusammenhang wird bei der inversen Distanzwichtung dadurch zum Ausdruck gebracht, 
-				dass der Messwert mit einem Gewicht multipliziert wird, das proportional zum Inversen des Abstands zwischen Schätzpunkt und Messort ist.<br>
+				Interpolation der räumlichen Abhängigkeit georeferenzierter Daten genutzt. Dabei gilt als Grundannahme, dass die Ähnlichkeit eines unbekannten Wertes zum bekannten Messwert mit der Entfernung von diesem abnimmt, die Daten also umso unähnlicher sind, je weiter sie auseinander liegen. Dieser Zusammenhang wird bei der inversen Distanzwichtung dadurch zum Ausdruck gebracht, dass der Messwert mit einem Gewicht multipliziert wird, das proportional zum Inversen des Abstands zwischen Schätzpunkt und Messort ist.<br>
 
-				In unserer Applikation kann IDW unter den oben genannten Vorraussetzungen ausgewählt und aktiviert werden. Sie setzen dazu in der Interpolationsbox die Auswahl auf “Inverse Distanzwichtung”. Da bei dieser Interpolation keine weiteren Eingabeparameter von Ihnen notwendig sind, reicht ein einfacher klick auf “OK”. Die Visualisierungsoptionen sind identisch zu Kriging und werden im Abschnitt “Interpolation” erklärt.
+				In der Applikation kann IDW unter den oben genannten Vorraussetzungen ausgewählt und aktiviert werden. Setzen Sie dazu in dem Bereich der Interpolation (Sidebar) die Interpolationsmethode auf “Inverse Distanzwichtung”. Da bei dieser Interpolation keine weiteren Eingabeparameter von Ihnen notwendig sind, reicht ein einfacher Klick auf “OK”. Die Visualisierungsoptionen sind identisch zu Kriging und werden im Abschnitt “Interpolation” erklärt.
                 
                 <div id=clear></div>
                 <h4 id=help-11-2>11.2 Interpolation mit Kriging</h4>
 				
 				Unter Kriging versteht man ein geostatistisches Verfahren, mit dem man Werte an Orten, für die keine Stichprobe vorliegt durch umliegende Messwerte interpolieren oder auch annähern kann. Der wesentliche Vorteil gegenüber einfacheren Methoden wie beispielsweise der Inversen Distanzgewichtung ist die Berücksichtigung der räumlichen Varianz, die sich mit Hilfe der Semivariogramme ermitteln lässt. Für einen gesuchten Wert werden dabei die Gewichte der in die Berechnung einfließenden Messwerte so bestimmt, dass die Schätzfehlervarianz möglichst gering ist. Der Fehler hängt dabei von der Qualität des Variogramms bzw. der Variogrammfunktion ab.<br>
 
-				In unserer Applikation kann Kriging unter den oben genannten Vorraussetzungen ausgewählt und aktiviert werden. Sie setzen dazu in der Interpolationsbox die Auswahl auf “Kriging”. Anschließend kann die Variogrammfunktion gewählt und die Werte für Sigma2 und Alphagesetzt werden”. Die Visualisierungsoptionen sind identisch zu IDW und werden im Abschnitt “Interpolation” erklärt.
+				In der Applikation kann Kriging unter den oben genannten Vorraussetzungen ausgewählt und aktiviert werden. Setzen Sie dazu in dem Bereich der Interpolation (Sidebar) die Interpolationsmethode auf “Kriging”. Anschließend können Sie über ein Dropdown-Menü eine Variogrammfunktion auswählen und die Werte für "Sigma2" und "Alpha" setzten. Standardmäßig können Sie die vorgebenen Einstellungen für Kriging wählen. Wenn Sie weitere Informationen zu der Berechnung, bzw. Einstellungen erhalten möchten, klicken Sie <a href="https://github.com/oeo4b/kriging.js" target="_blank" class=link>hier</a>. Die Visualisierungsoptionen sind identisch zu IDW und werden im Abschnitt “Interpolation” erklärt.
 
                 <div id=clear></div>
                 <h4 id=help-11-3>11.3 Die Legende</h4>
@@ -811,11 +791,11 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
 				
-				<p>Wenn sie eine Interpolation erfolgreich ausgeführt haben, so erscheint eine Legende im unteren linken Bereich der Karte. Hier bekommen sie eine Übersicht über die Einteilung und Färbung der Klassen, sowie über das aktuell ausgewählte Attribut der Interpolation.</p>
+				<p>Wenn Sie eine Interpolation erfolgreich ausgeführt haben, so erscheint eine Legende im unteren linken Bereich der Karte. Hier erhalten Sie eine Übersicht über die Einteilung und Färbung der Intervalle, sowie über das aktuell ausgewählte Attribut der Interpolation.</p>
 
-				<p>Es besteht nun die Möglichkeit zwischen den verfügbaren Attributen des Tracks zu wechseln. Dabei passt sich die Visualisierung auf der Karten automatisch Ihrer Auswahl an. Wird ein Attribut ausgewählt, das nicht verfügbar ist, so erscheint eine Fehlermeldung und die Auswahl wird auf ein valides Attribut gesetzt.</p>
+				<p>Es besteht nun die Möglichkeit zwischen den verfügbaren Attributen des Tracks zu wechseln. Dabei passt sich die Visualisierung auf der Karten automatisch Ihrer Auswahl an. Wird ein Attribut ausgewählt, das nicht verfügbar ist, so erscheint eine entsprechende Fehlermeldung und die Auswahl wird auf ein gültiges Attribut gesetzt.</p>
 
-				<p>Außerdem können Sie nach Belieben auswählen, welche Visualisierungskombinationen Sie auf der Karte dargestellt haben möchten. Dazu können die ursprünglichen Messwerte, die interpolierten Werte und die, gemäß der Interpolation, gefärbte Linie ein und ausgeblendet werden. Sie können also hier selbst entscheiden, welche Informationen für Sie hier relevant sind und so ein Überfrachten von Informationen auf der Karte vermeiden.</p>
+				<p>Außerdem können Sie nach Belieben auswählen, welche Visualisierungskombinationen Sie auf der Karte dargestellt haben möchten. Dazu können Sie die ursprünglichen Messwerte, die interpolierten Werte und die, gemäß der Interpolation, gefärbte Linie ein- und ausgeblenden. Wenn Sie auf einen interpolierten Wert klicken, also einen gelben Punkt auf der Karte, öffnet sich ein Popup mit allen interpolierten Werten. Wenn Sie sich alle ursprünglichen Werte einblenden, bekommen Sie mit Klick auf einen blauen Punkt auf der Karte, alle Messwerte des Punktes in einem Popup angezeigt.<br>Sie können also selbst entscheiden, welche Informationen für Sie relevant sind und so ein Überfrachten von Informationen auf der Karte vermeiden.</p>
                 
                 <div id=clear></div>
                 <h4 id=help-11-4>11.4 Interpolationsergebnis downloaden</h4>
@@ -827,11 +807,11 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
 				
-				<p>Wenn sie eine Interpolation erfolgreich ausgeführt haben, so besteht die Möglichkeit für Sie, Ihr Ergebnis herunterzuladen. Dazu wird ein Button im oberen rechten Bereich der Karte eingeblendet.</p>
+				<p>Wenn Sie eine Interpolation erfolgreich ausgeführt haben, so besteht die Möglichkeit Ihr Ergebnis herunterzuladen. Dazu wird ein Button im oberen rechten Bereich der Karte eingeblendet.</p>
 				
-				<p>Klicken sie auf diesen Button, so werden sie gefragt, ob die interpolierten Werte heruntergeladen werden sollen. Bei einer Bestätigung startet der Download automatisch.</p>
+				<p>Klicken Sie auf diesen Button und ein Popup öffnet sich. Bestätigen Sie dort über den Button "Herunterladen" und der Download der interpolierten Werte startet automatisch.</p>
 
-				<p>Die Punkte werden dabei im JSON-Format gespeichert, sodass eine maschinelle Weiterverarbeitung durchaus möglich ist.</p>
+				<p>Die Punkte werden dabei im JSON-Format gespeichert, sodass eine anschließende maschinelle Weiterverarbeitung möglich ist.</p>
                 
                 <div id=clear></div>
                 <h4 id=help-11-5>11.5 Zurücksetzten einer Visualisierung</h4>
@@ -843,11 +823,11 @@ Nun klicken Sie auf “Zur Auswahl hinzufügen”. Alle zum Track gehörigen Pun
                     </div>
                 </div>
                 
-                <p>Wenn sie eine Interpolation erfolgreich ausgeführt haben, so besteht die Möglichkeit für Sie die Visualisierung zurückzusetzen. Dazu wird ein Button im oberen rechten Bereich der Karte eingeblendet.</p>
+                <p>Wenn Sie eine Interpolation erfolgreich ausgeführt haben, so besteht die Möglichkeit die Visualisierung wieder zurückzusetzen. Dies ist nötig, falls Sie z.B. einen anderen Track untersuchen und interpolieren möchten. Dazu wird ein Button im oberen rechten Bereich der Karte eingeblendet.</p>
 			
-				<p>Klicken sie auf diesen Button, so wird die Visualisierung der Interpolation zurückgesetzt und die Karte wieder in den “normalen Modus” versetzt. Das Bedeutet es werden nun wieder, wie zu Beginn, automatisch alle sichtbaren Messpunkte auf der Karte dargestellt und können ausgewählt und weiterverarbeitet werden.</p>
+				<p>Klicken Sie auf diesen Button und die Visualisierung der Interpolation wird zurückgesetzt und die Karte wieder in den “normalen Modus” versetzt. Das bedeutet, es werden nun wieder alle sichtbaren Messpunkte, sowie Ihre selektierten Punkte auf der Karte dargestellt und die Legende wird ausgeblendet.</p>
 			
-				<p>Der entsprechende Button verschwindet bei einer Auswahl automatisch.</p>
+				<p>Der entsprechende Button, sowie der Downloadbutton werden bei der Auswahl automatisch ausgeblendet.</p>
                 
                 <div id=clear></div>
                 <div id=next>
