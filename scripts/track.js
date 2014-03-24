@@ -196,6 +196,8 @@ function visualizeTrack(trackID){
 			toggle_visibility('visualisation');
 			button4 = true;
 		}
+        
+        visualizationActive=true;
 		
 		return track;
 	});

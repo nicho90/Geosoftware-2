@@ -156,6 +156,17 @@ function checkFilter(measurement){
 // Description: Start the filter if button 'OK' is pressed 
 // Author: Christian Peters
 function startFilter() {
+    
+    if(visualizationActive) {
+        var dialog = $('<p>Es ist momentan eine Visualisierung aktiv. Bitte setzen Sie diese erst zurück, bevor Sie eine Filterung vornehmen</p>').dialog({
+            width: 600,
+            title: 'Error 403',
+            buttons:{
+                "OK":function(){dialog.dialog('close');}
+            }
+        });
+        return;
+    }
 
     startForm = document.filterFormular.Start.value;
     endForm = document.filterFormular.Ende.value;
@@ -199,6 +210,18 @@ function startFilter() {
 // Description: Reset the filter to update the measurements
 // Author: Christian Peters, René Unrau
 function resetFilter() {
+    
+    if(visualizationActive){
+        var dialog = $('<p>Es ist momentan eine Visualisierung aktiv. Bitte setzen Sie diese erst zurück, bevor Sie eine Filterung vornehmen</p>').dialog({
+            width: 600,
+            title: 'Error 403',
+            buttons:{
+                "OK":function(){dialog.dialog('close');}
+            }
+        });
+        return;
+    }
+        
     document.filterFormular.Start.value = "";
     document.filterFormular.Ende.value = "";
     document.filterFormular.Typ.value = "";

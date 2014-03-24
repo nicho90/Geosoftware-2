@@ -577,6 +577,8 @@ function visualizeInterpolation(phenomenon){
 	
 		mainMap.addLayer(interpolationLines[i]);
 	}
+    
+    visualizationActive = true;
 	
 	document.getElementById("intMeasurements").checked = false;
 	document.getElementById("intPoints").checked = false;

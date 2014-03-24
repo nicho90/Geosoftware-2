@@ -256,6 +256,8 @@ function resetVisualization(){
 	resetVisButtons();
 	
 	drawMeasurements();
+    
+    visualizationActive = false;
 	
 	mainMap.on('moveend', drawMeasurements);
 }

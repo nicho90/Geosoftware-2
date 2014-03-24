@@ -104,6 +104,8 @@ var blueDot = L.icon({iconUrl: 'images/dots/blueDot.png'});
 
 var yellowDot = L.icon({iconUrl: 'images/dots/yellowDot.png'});
 
+// Checking whether a visualization is active
+var visualizationActive = false;
 
 /***********************
 	2. Event register
