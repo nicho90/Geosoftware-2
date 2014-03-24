@@ -27,11 +27,12 @@ Content
 // Author: Oliver Kosky
 function drawPolygon(){
     
-        if(mainMap.hasLayer(polygonLayer)){
-            mainMap.removeLayer(polygonLayer);
-        }
-        polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
-        polygon.enable();
+	// if there is already a polygon -> remove it from map
+    if(mainMap.hasLayer(polygonLayer)){
+        mainMap.removeLayer(polygonLayer);
+    }
+    polygon = new L.Draw.Polygon(mainMap, drawControl.options.polygon);
+    polygon.enable();
 }
 
 /***********************
@@ -81,13 +82,14 @@ function confirmPolygon(){
 		return;
 	}
 	
+	// get all corners for algorithm
 	var polygonCorners = polygonLayer.getLatLngs();
 	
 	duplicate = false;
 	
     polygon.disable;
 	centerPolygon(polygonCorners);
-	//For each measurement in current map-bounds
+	//For each measurement in current map-bounds check if polaygon contains it
 	for(var i = 0; i < currentMeasurements.length; i++){
 	
 		//Check if it is in Polygon
@@ -111,8 +113,7 @@ function confirmPolygon(){
 	
 	}
 	
-	//Open and Close info-popup
-	//Authors: Nicholas Schiestel and Johanna Moellmann
+	// Check if there were already some points in selction -> throw warning
 	if(!duplicate){
 	
 		$('#infodialog').html('Punkte wurden hinzugef&uuml;gt.');
@@ -140,12 +141,15 @@ function confirmPolygon(){
 		});
 	}
 	
+	// delete polygon from map
     mainMap.removeLayer(polygonLayer);
-       
+    
+	// disable tool
     polygonSelection = false;
     colorize('choosePolygon');
     toggle_visibility('drawingPolygon');
 }
+
 
 /***********************
 	4 Center Polygon
@@ -155,6 +159,8 @@ function confirmPolygon(){
 // Description: Center map-view on polygon
 // Author: Johanna Moellmann
 function centerPolygon(polygonCorners){
+
+	// get polygon corners
 	var xmin = polygonCorners[0].lat;
 	var xmax = polygonCorners[0].lat;
 	var ymin = polygonCorners[0].lng;
@@ -178,8 +184,10 @@ function centerPolygon(polygonCorners){
 			ymax = ynew;
 		} 
 	}
+	
 	var southWest = L.latLng(xmin, ymin),  northEast = L.latLng(xmax, ymax);
 	var bounds = L.latLngBounds(southWest, northEast);
-	mainMap.fitBounds(bounds);
 	
+	// set map-bounds
+	mainMap.fitBounds(bounds);
 }
