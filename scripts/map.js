@@ -110,11 +110,22 @@ var visualizationActive = false;
 /***********************
 	2. Event register
 ***********************/
+
+// On Window-Load
+// Description: Initial functions with start of application
 window.onload = function() {
+	
+	// set interfaces to default
 	document.getElementById('interpolationMethod')[0].checked = true;
 	document.legendAttributs.interpolationAttribut[0].checked = true;
+	
+	// init map
 	drawMap();
+	
+	// set maximum measurments
 	setMaxMeas();
+	
+	// activate map listener for redraw of measurements
 	mainMap.on('moveend', drawMeasurements);
 }
 
@@ -127,12 +138,13 @@ window.onload = function() {
 // Description: Initializes main map and navigation-elements
 // Author: René Unrau
 function drawMap() {
-	// create a map in the "map" div, set the view to a given place and zoom
 
+	// osm default layer
     var osm = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	});
     
+	// osm cycle layer
     var osm_cm = new L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
         key: '2a08ced180ac4d00a9d92267b347b6be',
         styleId: 997,
@@ -157,13 +169,14 @@ function drawMap() {
     format: 'image/png'
     });
     
+	// topo layer
     var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
         attribution: 'Kartendaten: &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, <a href="http://viewfinderpanoramas.org">SRTM</a> | Kartendarstellung: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
         minZoom: 5,
         maxZoom: 15
     });
 	  
-
+	// create layer array
 	var layer = {
 		"OpenStreetMap": osm,
         "OpenStreetMap (Cloudmade)": osm_cm,
@@ -171,9 +184,9 @@ function drawMap() {
         "DTK10 (NRW)": DTK10,
         "DTK10 (NRW) panchromatisch ": DTK10_panchromatic,
         "Google Maps (Satellite)": google
-        
 	};
 	  
+	// init map
 	var map = L.map('map', {
 		center: new L.LatLng(51.96200180053711,7.61752986907959),
 		zoom: 15,
@@ -181,9 +194,8 @@ function drawMap() {
 	});
     
     
-    //adds zoomListener to ensure a map is displayed in case the zoom level is too 
-    //low for DTK10 or DTK10_panchromatic layers
-    
+    // adds zoomListener to ensure a map is displayed in case the zoom level is too 
+    // low for DTK10 or DTK10_panchromatic layers
     map.on('zoomend', onZoomend);
     
     function onZoomend(){
@@ -195,11 +207,11 @@ function drawMap() {
         }
         
         if(map.hasLayer(DTK10)||map.hasLayer(DTK10_panchromatic)){
-            if(map.getZoom()<14)
+            if(map.getZoom()<14){
                 map.setZoom(14);
-        
-    }
-    }
+			}
+		}
+	}
     
     //adds listener being fired while baselayer is changed
     //ensures that if DTK10, DTK10_panchromatic or openTopoMap are chosen the maps are not out of zoom bounds
@@ -208,19 +220,22 @@ function drawMap() {
     
     function onBaseLayerChange(){
         if(map.hasLayer(topo)) {
-            if(map.getZoom()<=5) 
+            if(map.getZoom()<=5){
                 map.setZoom(5);
-            if(map.getZoom()>=15)
+			}
+            if(map.getZoom()>=15){
                 map.setZoom(15);
+			}
         }
         
         if(map.hasLayer(DTK10)||map.hasLayer(DTK10_panchromatic)){
-            if(map.getZoom()<14)
+            if(map.getZoom()<14){
                 map.setZoom(14);
-    }
+			}
+		}
     }
     
-    //create a new FeatureGroup to store drawn items
+    // create a new FeatureGroup to store drawn items
     drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
 
@@ -235,13 +250,12 @@ function drawMap() {
             polyline: false,
             polygon: false
         },
-            edit: {
-                featureGroup: drawnItems,
-                remove:false,
-                edit:false
-                
-            }
-    } );
+        edit: {
+            featureGroup: drawnItems,
+            remove:false,
+            edit:false
+        }
+    });
     
     map.addControl(drawControl);
     
@@ -252,7 +266,7 @@ function drawMap() {
 
         //space for our actions
         map.addLayer(polygonLayer);
-    } );
+    });
    
     
     // navigation elements
@@ -279,23 +293,25 @@ function drawMap() {
 }
 
 
-
 // 3.2 Draw Measurements
 // Description: Adds dots to the map and controls click events
 // Author: René Unrau
 function drawMeasurements() {
+
+	// check if there is a special case where no measurements should be drawn (i.e. popup is open)
 	if(doNotLoad){
 		doNotLoad = false;
 		return;
 	}
 
+	// get bounds
 	var bounds = mainMap.getBounds();
-	
 	var neLat = bounds.getNorthEast().lat;
 	var neLng = bounds.getNorthEast().lng;
 	var swLat = bounds.getSouthWest().lat;
 	var swLng = bounds.getSouthWest().lng;
 	
+	// remove old markers from map
 	for (var i=0; i < markers.length; i++){
 		mainMap.removeLayer(markers[i]);
     }
@@ -304,6 +320,7 @@ function drawMeasurements() {
 	currentMeasurements = new Array();
 	markers = new Array();
 	
+	//depending on maximum measurements, sends request to envirocar with actual mapextent
 	for(var i = 0; i < maxMeas; i++){
 	
 		jQuery.ajax({
@@ -324,10 +341,12 @@ function drawMeasurements() {
 						"OK":  function() {dialog.dialog('close');}
 					}
 				}); 
+				return;
 			}
 		});        
     }                                                               
 	
+	// iterate all measurements and create marker + popups
 	$.each(currentMeasurements, function(i, measurement){
 	
 		var geometry = measurement.geometry;
@@ -420,6 +439,7 @@ function drawMeasurements() {
 			}
 		}
 			
+		// if measurements is not in selection
 		if(!found){
 	
 			marker = L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon: redDot});
@@ -465,11 +485,12 @@ function drawMeasurements() {
 		//add all points to the array 'markers'
 		markers.push(marker);
 		
+		// check for filters
 		checkFilter(measurement);
 	});
 	
     //If filter is active and there are no measurements to display
-    if(markers.length==0 && filterActive) {
+    if(markers.length == 0 && filterActive) {
         var dialog = $('<p>Mit den gegenwärtig gewählten Filtereinstellungen konnten keine Messpunkte gefunden werden. Alle Felder wurden zurückgesetzt.</p>').dialog({
             modal:true,
             width:600,
@@ -481,6 +502,7 @@ function drawMeasurements() {
         return;
 		
     }else{
+		// if everything is finde -> draw markers on map
 		for(var i = 0; i < markers.length; i++) {
 			mainMap.addLayer(markers[i]);
 		}
@@ -497,13 +519,16 @@ function drawMeasurements() {
 // Author: Johanna Moellmann, René Unrau
 function geolocation(){
 	
+	// set map-exten to current position
 	mainMap.locate({setView: true, maxZoom: 16});
 	
+	// draw marker icon
 	mainMap.on('locationfound', function(e){
 		var markerIcon = L.divIcon({ className: 'locationIcon', html: '<div class=pin bounce></div><div class=pulse></div>'});
         var location = L.marker(e.latlng,{icon: markerIcon}).addTo(mainMap).bindPopup("Ihre Position: " + e.latlng.longitude + ", " + e.latlng.latitude);
     });
 	
+	// on error throw alert
 	mainMap.on('locationerror', function(e){
 		var dialog = $('<p>Die Position konnte nicht ermittelt werden. Überprüfen Sie Ihre GPS-Einstellungen und erteilen Sie ggf. Ihrem Browser die Berechtigung zur Standortbestimmung.</p>').dialog({
             modal:true,
