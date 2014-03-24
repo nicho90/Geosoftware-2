@@ -1,104 +1,123 @@
-// Visualize the diagram for the analysis
-// Authors: Nicholas Schiestel and Johanna Möllmann
+/********************************************************************************************
+		Diagram
 
-/***********************************************
-    1. Diagram-loader
-***********************************************/
+This file contains all functions needed for drawing the diagrams.
+
+********************************************************************************************
+Content
+
+1. Init diagrams
+
+2. Draw Diagrams
+	2.1 Speed Diagram
+	2.2 CO2 Diagram
+	2.3 Consumption Diagram
+	2.4 MAF Diagram
+	2.5 Manufacturer Diagram
+	
+3. Error Message
+
+*********************************************************************************************/
+
+/****************************
+	1. Init diagrams
+****************************/
+
+// 1 Init Diagrams
+// Description: Visualize the diagram for the analysis
+// Authors: René Unrau + Nicholas Schiestel + Johanna Möllmann
 function diagrams() {
+
 	if(selection.length > 1){
     
-    $('#diagram').html('<div id=diagramBar class=popuplinks>'+
-                            '<ul>'+
-                            '<li><a href="#diagram" onclick="diagramSpeed()" class=link>Geschwindigkeit</a></li>'+
-                            '<li><a href="#diagram" onclick="diagramCO2()" class=link>CO2-Aussto&szlig;</a></li>'+
-                            '<li><a href="#diagram" onclick="diagramConsumption()" class=link>Spritverbrauch</a></li>'+
-                            '<li><a href="#diagram" onclick="diagramMAF()" class=link>MAF</a></li>'+
-                            '<li><a href="#diagram" onclick="diagramCarType()" class=link>Fahrzeugtypen</a></li>'+
-                            '</ul>'+
-                        '</div>'+
-                        '<div id=container style="width: 100%; height: 520px; margin: 0 auto;"></div>');
-    $('#diagram').dialog({
-    //autoOpen: true,
-    //modal: true,
-    width: 900,
-    height: 620});
+		$('#diagram').html('<div id=diagramBar class=popuplinks>'+
+            '<ul>'+
+            '<li><a href="#diagram" onclick="diagramSpeed()" class=link>Geschwindigkeit</a></li>'+
+            '<li><a href="#diagram" onclick="diagramCO2()" class=link>CO2-Aussto&szlig;</a></li>'+
+            '<li><a href="#diagram" onclick="diagramConsumption()" class=link>Spritverbrauch</a></li>'+
+            '<li><a href="#diagram" onclick="diagramMAF()" class=link>MAF</a></li>'+
+            '<li><a href="#diagram" onclick="diagramCarType()" class=link>Fahrzeugtypen</a></li>'+
+            '</ul>'+
+            '</div>'+
+            '<div id=container style="width: 100%; height: 520px; margin: 0 auto;"></div>'
+		);
+		
+		$('#diagram').dialog({
+			width: 900,
+			height: 620
+		});
 
-    // Standarddiagram
-    diagramSpeed();
-        
+		// Draw standard-diagram
+		diagramSpeed();
+	} else {
+	
+		var diagramDialog = $('<p>F&uuml;r die Diagrammberechnungen m&uuml;ssen sich mindestens zwei Punkte in Ihrer Auswahl befinden. <br>Bitte selektieren Sie Punkte.</p>').dialog({
+			width: 600,
+			title: "Error 301",
+			buttons: {
+				"OK": function() {diagramDialog.dialog('close');}
+			},
+		});
 	}
-	else {
-	var diagramDialog = $('<p>F&uuml;r die Diagrammberechnungen m&uuml;ssen sich mindestens zwei Punkte in Ihrer Auswahl befinden. <br>Bitte selektieren Sie Punkte.</p>').dialog({
-        width: 600,
-        title: "Error 301",
-		buttons: {
-			"OK": function() {diagramDialog.dialog('close');}
-		},
-    });
-	}
-
 }
 
+/****************************
+	2. Draw Diagrams
+****************************/
 
-
-
-/***********************************************
-    2. Diagram for speed
-***********************************************/
+// 2.1 Speed Diagram
+// Description: Draw Diagram for Speed
+// Authors: Nicholas Schiestel + Johanna Möllmann
 function diagramSpeed() {
 
-// Variables for speed diagram for small values, e.g. city traffic
-var interval_0_5 = 0;
-var interval_5_10 = 0;
-var interval_10_15 = 0;
-var interval_15_20 = 0;
-var interval_20_25 = 0;
-var interval_25_30 = 0;
-var interval_30_35 = 0;
-var interval_35_40 = 0;
-var interval_40_45 = 0;
-var interval_45_50 = 0;
-var interval_50_55 = 0;
-var interval_55_60 = 0;
-var interval_60_65 = 0;
-var interval_65_70 = 0;
-var interval_70_75 = 0;
-var interval_75_80 = 0;
-var interval_gr_80 = 0;
-// Variables for speed diagram for big values, e.g. highway traffic
-var interval_0_10 = 0;
-var interval_10_20 = 0;
-var interval_20_30 = 0;
-var interval_30_40 = 0;
-var interval_40_50 = 0;
-var interval_50_60 = 0;
-var interval_60_70 = 0;
-var interval_70_80 = 0;
-var interval_80_90 = 0;
-var interval_90_100 = 0;
-var interval_100_110 = 0;
-var interval_110_120 = 0;
-var interval_120_130 = 0;
-var interval_130_140 = 0;
-var interval_140_150 = 0;
-var interval_150_160 = 0;
-var interval_gr_160 = 0;
+	// Variables for speed diagram for small values, e.g. city traffic
+	var interval_0_5 = 0;
+	var interval_5_10 = 0;
+	var interval_10_15 = 0;
+	var interval_15_20 = 0;
+	var interval_20_25 = 0;
+	var interval_25_30 = 0;
+	var interval_30_35 = 0;
+	var interval_35_40 = 0;
+	var interval_40_45 = 0;
+	var interval_45_50 = 0;
+	var interval_50_55 = 0;
+	var interval_55_60 = 0;
+	var interval_60_65 = 0;
+	var interval_65_70 = 0;
+	var interval_70_75 = 0;
+	var interval_75_80 = 0;
+	var interval_gr_80 = 0;
+	// Variables for speed diagram for big values, e.g. highway traffic
+	var interval_0_10 = 0;
+	var interval_10_20 = 0;	
+	var interval_20_30 = 0;
+	var interval_30_40 = 0;
+	var interval_40_50 = 0;
+	var interval_50_60 = 0;
+	var interval_60_70 = 0;
+	var interval_70_80 = 0;
+	var interval_80_90 = 0;
+	var interval_90_100 = 0;
+	var interval_100_110 = 0;
+	var interval_110_120 = 0;
+	var interval_120_130 = 0;
+	var interval_130_140 = 0;
+	var interval_140_150 = 0;
+	var interval_150_160 = 0;
+	var interval_gr_160 = 0;
 
 
+	// Low Speed Values
 
+	var s_total = selection.length;
 
-/***********************************************
-    2.1 Diagram for low speed values
-***********************************************/
-
-var s_total = selection.length;
-
-for (var i = 0; i < selection.length; i++){
-	// If speed is not undefined
-	if (selection[i].properties.phenomenons.Speed.value == '-'){
-		s_total = s_total-1;
-	}
-	// If speed is defined
+	for (var i = 0; i < selection.length; i++){
+		// If speed is not undefined
+		if (selection[i].properties.phenomenons.Speed.value == '-'){
+			s_total = s_total-1;
+		}
+		// If speed is defined
 	else {
 		// check if value is a positive value; values smaller 0 will be ignored
 		if( selection[i].properties.phenomenons.Speed.value < 0){
@@ -400,15 +419,16 @@ if(s_total > 0){
 	}
 }
 
-// if there are no existing speed values
-else{
-	errorMessage();
-}
+	// if there are no existing speed values
+	else{
+		errorMessage();
+	}
 }
 
-/***********************************************
-	3. Diagram for CO2  
-***********************************************/
+
+// 2.2 CO2 Diagram
+// Description: Draw Diagram for CO2
+// Authors: Nicholas Schiestel + Johanna Möllmann
 function diagramCO2() {
 
 var co_interval_0_5   = 0;
@@ -555,14 +575,14 @@ $(function () {
         });
     });
 }
-else {
-	errorMessage();
-}
+	else {
+		errorMessage();
+	}
 }
 
-/***********************************************
-	4. Diagram for Consumption 
-***********************************************/
+// 2.3 Consumption Diagram
+// Description: Draw Diagram for Consumption
+// Authors: Nicholas Schiestel + Johanna Möllmann
 
 function diagramConsumption() {
 
@@ -733,64 +753,63 @@ else {
 }
 
 
-/***********************************************
-	5. Diagram for MAF 
-***********************************************/
-
+// 2.4 MAF Diagram
+// Description: Draw Diagram for MAF
+// Authors: Nicholas Schiestel + Johanna Möllmann
 function diagramMAF() {
 
-var m_interval_0_5   = 0;
-var m_interval_5_10  = 0;
-var m_interval_10_15 = 0;
-var m_interval_15_20 = 0;
-var m_interval_20_25 = 0;
-var m_interval_25_30 = 0;
-var m_interval_30_35 = 0;
-var m_interval_35_40 = 0;
-var m_interval_40_45 = 0;
-var m_interval_45_50 = 0;
-var m_interval_50_55 = 0;
-var m_interval_55_60 = 0;
-var m_interval_60_65 = 0;
-var m_interval_65_70 = 0;
-var m_interval_70_75 = 0;
-var m_interval_75_80 = 0;
-var m_interval_gr_80 = 0;
+	var m_interval_0_5   = 0;
+	var m_interval_5_10  = 0;
+	var m_interval_10_15 = 0;
+	var m_interval_15_20 = 0;
+	var m_interval_20_25 = 0;
+	var m_interval_25_30 = 0;
+	var m_interval_30_35 = 0;
+	var m_interval_35_40 = 0;
+	var m_interval_40_45 = 0;
+	var m_interval_45_50 = 0;
+	var m_interval_50_55 = 0;
+	var m_interval_55_60 = 0;
+	var m_interval_60_65 = 0;
+	var m_interval_65_70 = 0;
+	var m_interval_70_75 = 0;
+	var m_interval_75_80 = 0;
+	var m_interval_gr_80 = 0;
 
-var m_total = selection.length;
-for(var i = 0; i < selection.length; i++){
-			// If MAF is not undefined
-			if (selection[i].properties.phenomenons.MAF.value == '-'){
+	var m_total = selection.length;
+	for(var i = 0; i < selection.length; i++){
+		// If MAF is not undefined
+		if (selection[i].properties.phenomenons.MAF.value == '-'){
+			m_total = m_total-1;
+		}
+		// If MAF is defined
+		else {
+			// check if value is a positive value; values smaller 0 will be ignored
+			if( selection[i].properties.phenomenons.MAF.value < 0){
 				m_total = m_total-1;
 			}
-			// If MAF is defined
-			else {
-				// check if value is a positive value; values smaller 0 will be ignored
-				if( selection[i].properties.phenomenons.MAF.value < 0){
-					m_total = m_total-1;
-				}
-				// checks for the right interval
-				if(selection[i].properties.phenomenons.MAF.value >= 0 && selection[i].properties.phenomenons.MAF.value  <= 5){m_interval_0_5++;}
-				if(selection[i].properties.phenomenons.MAF.value >  5 && selection[i].properties.phenomenons.MAF.value  <= 10){m_interval_5_10++;}
-				if(selection[i].properties.phenomenons.MAF.value > 10 && selection[i].properties.phenomenons.MAF.value  <= 15){m_interval_10_15++;}
-				if(selection[i].properties.phenomenons.MAF.value > 15 && selection[i].properties.phenomenons.MAF.value  <= 20){m_interval_15_20++;}
-				if(selection[i].properties.phenomenons.MAF.value > 20 && selection[i].properties.phenomenons.MAF.value  <= 25){m_interval_20_25++;}
-				if(selection[i].properties.phenomenons.MAF.value > 25 && selection[i].properties.phenomenons.MAF.value  <= 30){m_interval_25_30++;}
-				if(selection[i].properties.phenomenons.MAF.value > 30 && selection[i].properties.phenomenons.MAF.value  <= 35){m_interval_30_35++;}
-				if(selection[i].properties.phenomenons.MAF.value > 35 && selection[i].properties.phenomenons.MAF.value  <= 40){m_interval_35_40++;}
-				if(selection[i].properties.phenomenons.MAF.value > 40 && selection[i].properties.phenomenons.MAF.value  <= 45){m_interval_40_45++;}
-				if(selection[i].properties.phenomenons.MAF.value > 45 && selection[i].properties.phenomenons.MAF.value  <= 50){m_interval_45_50++;}
-				if(selection[i].properties.phenomenons.MAF.value > 50 && selection[i].properties.phenomenons.MAF.value  <= 55){m_interval_50_55++;}
-				if(selection[i].properties.phenomenons.MAF.value > 55 && selection[i].properties.phenomenons.MAF.value  <= 60){m_interval_55_60++;}
-				if(selection[i].properties.phenomenons.MAF.value > 60 && selection[i].properties.phenomenons.MAF.value  <= 65){m_interval_60_65++;}
-				if(selection[i].properties.phenomenons.MAF.value > 65 && selection[i].properties.phenomenons.MAF.value  <= 70){m_interval_65_70++;}
-				if(selection[i].properties.phenomenons.MAF.value > 70 && selection[i].properties.phenomenons.MAF.value  <= 75){m_interval_70_75++;}
-				if(selection[i].properties.phenomenons.MAF.value > 75 && selection[i].properties.phenomenons.MAF.value  <= 80){m_interval_75_80++;}
-				if(selection[i].properties.phenomenons.MAF.value > 80){m_interval_gr_80++;}
-			}
-}
-if(m_total > 0){
-var result_MAF = new Array(
+			// checks for the right interval
+			if(selection[i].properties.phenomenons.MAF.value >= 0 && selection[i].properties.phenomenons.MAF.value  <= 5){m_interval_0_5++;}
+			if(selection[i].properties.phenomenons.MAF.value >  5 && selection[i].properties.phenomenons.MAF.value  <= 10){m_interval_5_10++;}
+			if(selection[i].properties.phenomenons.MAF.value > 10 && selection[i].properties.phenomenons.MAF.value  <= 15){m_interval_10_15++;}
+			if(selection[i].properties.phenomenons.MAF.value > 15 && selection[i].properties.phenomenons.MAF.value  <= 20){m_interval_15_20++;}
+			if(selection[i].properties.phenomenons.MAF.value > 20 && selection[i].properties.phenomenons.MAF.value  <= 25){m_interval_20_25++;}
+			if(selection[i].properties.phenomenons.MAF.value > 25 && selection[i].properties.phenomenons.MAF.value  <= 30){m_interval_25_30++;}
+			if(selection[i].properties.phenomenons.MAF.value > 30 && selection[i].properties.phenomenons.MAF.value  <= 35){m_interval_30_35++;}
+			if(selection[i].properties.phenomenons.MAF.value > 35 && selection[i].properties.phenomenons.MAF.value  <= 40){m_interval_35_40++;}
+			if(selection[i].properties.phenomenons.MAF.value > 40 && selection[i].properties.phenomenons.MAF.value  <= 45){m_interval_40_45++;}
+			if(selection[i].properties.phenomenons.MAF.value > 45 && selection[i].properties.phenomenons.MAF.value  <= 50){m_interval_45_50++;}
+			if(selection[i].properties.phenomenons.MAF.value > 50 && selection[i].properties.phenomenons.MAF.value  <= 55){m_interval_50_55++;}
+			if(selection[i].properties.phenomenons.MAF.value > 55 && selection[i].properties.phenomenons.MAF.value  <= 60){m_interval_55_60++;}
+			if(selection[i].properties.phenomenons.MAF.value > 60 && selection[i].properties.phenomenons.MAF.value  <= 65){m_interval_60_65++;}
+			if(selection[i].properties.phenomenons.MAF.value > 65 && selection[i].properties.phenomenons.MAF.value  <= 70){m_interval_65_70++;}
+			if(selection[i].properties.phenomenons.MAF.value > 70 && selection[i].properties.phenomenons.MAF.value  <= 75){m_interval_70_75++;}
+			if(selection[i].properties.phenomenons.MAF.value > 75 && selection[i].properties.phenomenons.MAF.value  <= 80){m_interval_75_80++;}
+			if(selection[i].properties.phenomenons.MAF.value > 80){m_interval_gr_80++;}
+		}
+	}
+	if(m_total > 0){
+	var result_MAF = new Array(
                         (m_interval_0_5/m_total)*100,
                         (m_interval_5_10/m_total)*100,
                         (m_interval_10_15/m_total)*100,
@@ -913,82 +932,85 @@ else {
 }
 }
 
-/***********************************************
-    6. Diagram for Fahrzeugtypen
-***********************************************/
-
+// 2.3 Manufacturer Diagram
+// Description: Draw Diagram for Consumption
+// Authors: René Unrau
 function diagramCarType() {
 
-if(manufacturerNames.length > 0){
+	if(manufacturerNames.length > 0){
 
-    $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Fahrzeughersteller'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: manufacturerNames,
-		},
-		yAxis: {
-            min: 0,
-			max: manufacturerSelection[getMax('Manufacturer')],
-            title: {
-                text: 'absolute Haeufigkeit'
-            },
-			labels: {
-                    overflow: 'justify'
-                }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                   '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-        bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-        },
-		legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 100,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: '#FFFFFF',
-                shadow: true
-            },
-            credits: {
-                enabled: false
-            },
-	series: [{
-	name: 'Anzahl',
-	data: manufacturerFrequency,
-	color: '#483D8B'
-}]
-});
-}
-else {
-	errorMessage();
+		$('#container').highcharts({
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Fahrzeughersteller'
+			},
+			subtitle: {
+				text: ''
+			},
+			xAxis: {
+				categories: manufacturerNames,
+			},
+			yAxis: {
+				min: 0,
+				max: manufacturerSelection[getMax('Manufacturer')],
+				title: {
+					text: 'absolute Haeufigkeit'
+				},
+				labels: {
+					overflow: 'justify'
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				bar: {
+					dataLabels: {
+						enabled: true
+					}
+				}
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -40,
+				y: 100,
+				floating: true,
+				borderWidth: 1,
+				backgroundColor: '#FFFFFF',
+				shadow: true
+			},
+			credits: {
+				enabled: false
+			},
+			series: [{
+				name: 'Anzahl',
+				data: manufacturerFrequency,
+				color: '#483D8B'
+			}]
+		});
+	}else {
+		errorMessage();
 	}
 };
 	
-/***********************************************************************
-	7. errorMessage, if there are no values for drawing a diagram
-***********************************************************************/
+/****************************
+	3. Error Message
+****************************/
+
+// 3 Error Message
+// Description: Throw Error Message if no data is available
+// Authors: Nicholas Schiestel + Johannes Möllmann
 function errorMessage(){
+
 	var errorText = document.getElementById("container");
 	errorText.style.fontSize = "12pt";
 	errorText.style.color = '#B22222';

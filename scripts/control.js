@@ -330,22 +330,10 @@ function setMaxMeas(){
 		maxMeas = 9;
 	}else if(e.options[e.selectedIndex].value == '1000'){
 		maxMeas = 10;
-	}else if(e.options[e.selectedIndex].value == '2000'){
-		maxMeas = 20;
 	}else if(e.options[e.selectedIndex].value == '3000'){
 		maxMeas = 30;
-	}else if(e.options[e.selectedIndex].value == '4000'){
-		maxMeas = 40;
 	}else if(e.options[e.selectedIndex].value == '5000'){
 		maxMeas = 50;
-	}else if(e.options[e.selectedIndex].value == '6000'){
-		maxMeas = 60;
-	}else if(e.options[e.selectedIndex].value == '7000'){
-		maxMeas = 70;
-	}else if(e.options[e.selectedIndex].value == '8000'){
-		maxMeas = 80;
-	}else if(e.options[e.selectedIndex].value == '9000'){
-		maxMeas = 90;
 	}else if(e.options[e.selectedIndex].value == '10000'){
 		maxMeas = 100;    
 	}
