@@ -50,16 +50,16 @@ function addSinglePoint(measurement){
 	if(selection.length == 0){
 		selection.push(measurement);
 	
+		// update analysis
 		updateSelectionList();
 		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
 		
+		// do not allow interpolation
 		onlyOneTrack = false;
-
 	
-        //Open and Close info-popup
-        //Authors: Nicholas Schiestel and Johanna Moellmann
+		// info for user that everything worked
 		$('#infodialog').html('Punkt wurde hinzugef&uuml;gt.');
 		$('#infodialog').dialog({
         height: 100,
@@ -74,8 +74,7 @@ function addSinglePoint(measurement){
     }
     
     else{
-        
-		// Loop already selected measurements and check if measurement-to-be-added is already inside selection
+		// loop already selected measurements and check if measurement-to-be-added is already inside selection
 		for(var i = 0; i < selection.length; i++){
 			// If already inside, do not add and throw alert
 			if(measurement.properties.id == selection[i].properties.id){
@@ -95,18 +94,20 @@ function addSinglePoint(measurement){
 				return true;;
 			}
 		}
+		
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
 		
+		// update analysis
 		updateSelectionList();
 		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
 		
+		// do not allow interpolation
 		onlyOneTrack = false;
 		
-		//Open and Close info-popup
-		//Authors: Nicholas Schiestel and Johanna Moellmann	
+		// info for user that everything worked
 		$('#infodialog').html('Punkt wurde hinzugef&uuml;gt.');
 		$('#infodialog').dialog({
         height: 100,
@@ -123,12 +124,12 @@ function addSinglePoint(measurement){
 
 // 1.2 Add Single Measurement to Selection from a Track
 // Description: Adds a single measurement to the selection from a track
-// Measurement-object needs to be changed before insert
 // Author: René Unrau
 function addSinglePointFromTrack(trackMeasurement, track){
 
 	var measurement = new Object();
 		
+	// Measurement-object needs to be changed before insert
 	// Adjust parameters, so that are similar to single measurements from EnviroCar
 	measurement.geometry = new Object();
 	measurement.geometry.coordinates = new Array();
@@ -213,11 +214,13 @@ function addSinglePointFromTrack(trackMeasurement, track){
 		//If not already inside, add to selection, update-sidebar-selection-list and current-analysis
 		selection.push(measurement);
 		
+		// update analysis
 		updateSelectionList();
 		refreshManufacturers();
 		refreshAnalysis();
 		visualizeSelection();
 		
+		// do not allow interpolation
 		onlyOneTrack = false;
 	}	
 }
@@ -227,10 +230,12 @@ function addSinglePointFromTrack(trackMeasurement, track){
 // Description: Adds a single track to the selection
 // Author: René Unrau
 function addTrackToSelection(track){
+
 	var measurements = track.features
 	
 	// If selection is empty before adding track -> now there is only one track in selection
 	if(selection.length == 0){
+		// allow interpolation
 		onlyOneTrack = true;
 	}
 	
@@ -292,6 +297,7 @@ function addTrackToSelection(track){
 		
 		selection.push(measurement);
 	}
+	// update analysis
 	updateSelectionList();
 	refreshManufacturers();
 	refreshAnalysis();
@@ -311,12 +317,11 @@ function addTrackToSelection(track){
 		}
 	});
     
-    
     // If a track is selected, show the interpolationbox
     var e = document.getElementById('interpolationBox');
     e.style.display = 'block';
-    
 }
+
 
 /****************************
 	2. Delete from Selection
@@ -339,6 +344,7 @@ function deleteSingleMeasurement(measurementID){
 		return;
 	}
 
+	// execute deletion
 	for(var i = 0; i < selection.length; i++){
 	
 		if(selection[i].properties.id == measurementID){
@@ -353,6 +359,7 @@ function deleteSingleMeasurement(measurementID){
 	// redraw measurements, so that selected will be unselected on map
 	drawMeasurements();
 }
+
 
 // 2.2 Delete measurements from selection
 // Description: Deletes selected measurements from selection-list
@@ -378,10 +385,10 @@ function clearSelection(){
 		if(document.getElementById('' + i).checked){
 			deletions.push(i);
 		}
-        
 	}
     
-    if(deletions.length==0) {
+	// throw error if there is nothing to delete
+    if(deletions.length == 0) {
 		var dialog = $('<p>Es konnten keine Punkte mehr gelöscht werden, da die Seketionstabelle bereits leer ist.</p>').dialog({
             width:600,
             title:"Error 206",
@@ -395,18 +402,21 @@ function clearSelection(){
 	// Start deleting from the ending
 	deletions.reverse();
 	
+	// execute deletion
 	for(var i = 0; i < deletions.length; i++){
 		selection.splice(deletions[i],1);
 	}
 	
+	// update analysis
 	updateSelectionList();
 	refreshManufacturers()
 	refreshAnalysis();
     drawMeasurements();
 	
+	// refresh detail-table
 	if(dialogTable != undefined && dialogTable.dialog('isOpen')) {
-	dialogTable.dialog('close');
-	showMeasurementDetails();
+		dialogTable.dialog('close');
+		showMeasurementDetails();
 	}
 }
 
@@ -588,16 +598,14 @@ function showMeasurementDetails() {
 	});
 
     updatedList.append("</table>");
-	//$('#selectionTable').replaceWith(updatedList);
 	
 	var table = $("<div id=measurementDetails>");
 	table.append(updatedList);
 	table.append("</div>");
 	
-    dialogTable=$(table).dialog(
-        {
+    dialogTable=$(table).dialog({
 		height: 620,
 		width: 900,
 		title: "Alle ausgewählten Messwerte"
-        });
+    });
 }
