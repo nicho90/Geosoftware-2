@@ -45,7 +45,7 @@ function chooseSingleSelection(id) {
 		});
     }
     
-    // if no other Selcetionmode is active, then continue with singlePointSelection
+    // if no other Selectionmode is active, then continue with singlePointSelection
     else {
         if(singlePointSelection){
 		    singlePointSelection = false;
@@ -65,6 +65,7 @@ function chooseSingleSelection(id) {
 // Authors: René Unrau & Nicholas Schiestel
 
 function chooseTrackSelection() {  
+
     // check if singlePointSelection or polygonSelection is active
     if(singlePointSelection || polygonSelection){
 		var dialog = $('<p>Es ist noch ein anderes Werkzeug aktiv, bitte schlie&szlig;en Sie dieses zuerst.</p>').dialog({
@@ -75,7 +76,7 @@ function chooseTrackSelection() {
 				"OK":  function() {dialog.dialog('close');}
 			}
 		});
-}
+	}
     
     // if no other selcetionmode is active, then continue with singlePointSelection
     else {
@@ -138,8 +139,8 @@ function choosePolygonSelection() {
 // 1.4 Selectionsbuttons Visualization
 // Selectionsbuttons change their color from green to orange, if they are active
 // Author: Nicholas Schiestel
-
 function colorize(button) {
+
     // for singlePointSelection
     if(button == 'chooseSinglePoint'){
         if(button1 == false) {
@@ -220,52 +221,53 @@ function colorize(button) {
 // 2.1 Reset all Visualizations
 // Description: Resets all visualizations and return to normal mode
 // Author: René Unrau
-
 function resetVisualization(){
 
+	// reset measurements if available
+	if(markers.length > 0){
+		for(var i = 0; i < markers.length; i++) {
+			mainMap.removeLayer(markers[i]);	
+		}
+	}
+
+	// reset trackLines from "track-visualization" if available
 	if(trackLine != undefined){
 		mainMap.removeLayer(trackLine);
 	}
 	
+	// reset interpolated lines if available
 	if(document.getElementById("intLines").checked){
 		for(var i = 0; i < interpolationLines.length; i++){
 			mainMap.removeLayer(interpolationLines[i]);
 		}
 	}
 	
-	if(markers.length > 0){
-		for(var i = 0; i < markers.length; i++) {
-			mainMap.removeLayer(markers[i]);	
-		}
-	}
-	
-	if(document.getElementById("intMeasurements").checked){
-		for(var i = 0; i < markers.length; i++){
-			mainMap.removeLayer(markers[i]);
-		}
-	}
-	
+	// reset interpolated values if available
 	if(document.getElementById("intPoints").checked){
 		for(var i = 0; i < interpolated.marker.length; i++){
 			mainMap.removeLayer(interpolated.marker[i]);
 		}
 	}
 	
+	// reset track-textbox of track-selection-tool
 	document.getElementById('Track_ID').value = '';
 	
+	// reset visualization buttons
 	resetVisButtons();
 	
+	// draw measurements
 	drawMeasurements();
     
+	// set vis-boolean false
     visualizationActive = false;
 	
+	// enable autmatic redraw of measurements
 	mainMap.on('moveend', drawMeasurements);
 }
 
 // 2.2 Reset all Visualizations-Buttons + Legend
 // Description: Resets all visualizations-buttons
 // Author: René Unrau
-
 function resetVisButtons(){
 
 	//reset and hide visualisation button on the map
@@ -305,7 +307,6 @@ function resetVisButtons(){
 // 3 Set Maximum Measurements
 // Description: Sets the maximum amount of measurements drawn at once
 // Author: René Unrau
-
 function setMaxMeas(){
 
 	var e = document.getElementById("measurementNumber");
@@ -349,6 +350,6 @@ function setMaxMeas(){
 		maxMeas = 100;    
 	}
     
-	
+	// redraw measurements
     drawMeasurements();
 }
