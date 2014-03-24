@@ -928,10 +928,10 @@ Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere I
                         <td id=errorMessage>
                             <p>Es wird versucht, Messdaten zu filtern, es ist aber kein Filterkriterium angegeben.</p>
                         </td>
-                        <td id = errorSolution>
+                        <td id=errorSolution>
                             <p>Setzen Sie mindestens ein Filterkriterium.</p>
                         </td>
-                        </tr>
+                    </tr>
                     <tr>
                         <td id=errorCodes>402</td>
                         <td id=errorMessage>
@@ -939,16 +939,18 @@ Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere I
                         </td>
                         <td id=errorSolution>
                             <p>Ändern Sie die Filtereinstellungen.</p>
-                            </td>
-                    </tr>
-                     <tr>
-                    <td id = errorCodes>403</td>
-                    <td id = errorMessage>
-                        <p> Es wird versucht, eine Filterung vorzunehmen, es ist aber noch eine Visualisierung (Track oder Interpolation) aktiv.</p>
                         </td>
-                    <td id = errorSolution>
-                        <p>Setzen Sie erst die Visualisierung zurück und filtern Sie dann erneut.</p></td></tr>
+                    </tr>
                     <tr class=errorsGrey>
+                        <td id=errorCodes>403</td>
+                        <td id=errorMessage>
+                            <p> Es wird versucht, eine Filterung vorzunehmen, es ist aber noch eine Visualisierung (Track oder Interpolation) aktiv.</p>
+                        </td>
+                        <td id=errorSolution>
+                            <p>Setzen Sie erst die Visualisierung zurück und filtern Sie dann erneut.</p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td id=errorCodes>501</td>
                         <td id=errorMessage>
                             <p>Es wird versucht, die Downloadfunktion zu nutzen, es ist aber kein Punkt selektiert.</p>
@@ -957,7 +959,7 @@ Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere I
                             <p>Selektieren Sie mindestens einen Punkt und versuchen Sie erneut, die Downloadfunktion auszuführen.</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class=errorsGrey>
                         <td id=errorCodes>601</td>
                         <td id=errorMessage>
                             <p>Es wird versucht, eine Interpolation durchzuführen, aber es befindet sich kein Track in der Auswahl.</p>
@@ -966,7 +968,7 @@ Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere I
                             <p>Selektieren Sie einen Track.</p>
                         </td>
                     </tr>
-                    <tr class=errorsGrey>
+                    <tr>
                         <td id=errorCodes>602</td>
                         <td id=errorMessage>
                             <p>Es wird versucht, eine Interpolation durchzuführen, aber es befindet sich mehr als 1 Track in der Auswahl.</p>
@@ -975,14 +977,14 @@ Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere I
                             <p>Entfernen Sie so viele Tracks aus der Auswahl, sodass Sie genau einen Track selektiert haben.</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class=errorsGrey>
                         <td id=errorCodes>603</td>
                         <td id=errorMessage><p>Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält keine Attribute, über die man interpolieren kann.</p></td>
                         <td id=errorSolution>
                             <p>Deselektieren Sie den aktuellen Track und wählen Sie einen anderen, welcher Attribute zum Interpolieren enthält, aus.</p>
                         </td>
                     </tr>
-                    <tr class=errorsGrey>
+                    <tr>
                         <td id=errorCodes>604</td>
                         <td id=errorMessage>
                             <p>Es wird versucht, eine Interpolation durchzuführen, aber der selektierte Track enthält das zu interpolierende Attribut nicht. </p>
@@ -1000,7 +1002,7 @@ Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere I
                             </p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class=errorsGrey>
                         <td id=errorCodes>605</td>
                         <td id=errorMessage>
                             <p>Bei der Berechnung ist ein Fehler aufgetreten, bitte benutzen Sie eine andere Interpolationsmethode.</p>
@@ -1009,7 +1011,7 @@ Dieses Auswahlfenster beinhaltet die zugehörige Track-ID des Punktes. Weitere I
                             <p>Bei der Berechnung von Interpolationen können interne Fehler auftreten, die unter anderem Browserabhängig sind. Sie können entweder eine andere Interpolationsmethode nutzen oder den Browser wechseln. Vor allem unter "Google Chrome" kann dieser Fehler auftreten. Versuchen Sie es ggf. mit einem anderen Browser, z.B. "Mozialla Firefox".</p>
                         </td>
                     </tr>
-                    <tr class=errorsGrey>
+                    <tr>
                         <td id=errorCodes>Status Error</td>
                         <td id=errorMessage>
                             <p>Es ist ein Fehler bei der Kommunikation mit dem enviroCar-Server aufgetreten.</p>
