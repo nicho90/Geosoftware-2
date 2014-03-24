@@ -1,10 +1,26 @@
-// Download the results of the user interaction with the application
+/********************************************************************************************
+		Download
+		
+This file contains all functions needed downloading selected or interpolated measurements.
+
+********************************************************************************************
+Content
+
+1. Download Measurements
+	1.1 Selected Measurement
+	1.2 Interpolated Measurements
+
+2. Download Window
+
+*********************************************************************************************/
+
+/****************************
+	1. Download Measurements
+****************************/
+
+// 1.1 Download selected measurement
+// Description: Create JSON and offer download
 // Author: Johanna Möllmann
-
-/***********************************************
-    1. Download the selected measurement points
-***********************************************/
-
 function download_measurementPoints(){
 
 if(selection.length > 0){
@@ -46,12 +62,11 @@ else{
 
 }
 
-/***********************************************
-    2. Download the interpolation result
-***********************************************/
 
+// 1.2 Download interpolated points
+// Description: Create JSON and offer download
+// Author: Johanna Möllmann
 function downloadInterpolation(){
-
 
 $('#downloadInterpolationDialog').html('Von welchem Attrigut m&ouml;chten Sie die Interpolationsergebnisse .json-Datei herunterladen?<br><br> <form action="select.htm"><select name="interpAttr" size="5" onchange="newBoxInt(this.form.interpAttr.options[this.form.interpAttr.selectedIndex].value)">  <option value="Geschwindigkeit">Geschwindigkeit</option> <option value="CO2-Ausstoss">CO2-Aussto&szlig;</option> <option value="Spritverbrauch">Spritverbrauch</option><option value="MAF-Werte">MAF-Werte</option> </select> </form>');
 
@@ -128,12 +143,16 @@ function newBoxInt(qrs){
 }
 
 
-//Description: this function opens the window, which asks the user about the download
-//Author: Johanna and Nicho
+/****************************
+	2. Download Window
+****************************/
+
+// 2 Download Window
+// Description: open window
+// Author: Johanna Möllmann + Nicholas Schiestel
 function downloadwindow(resultData,name){
 	
-$('#downloadInterpolationDialog').html('M&ouml;chten Sie die Interpolationsergebnisse als .json-Datei herunterladen?<br>');
-
+	$('#downloadInterpolationDialog').html('M&ouml;chten Sie die Interpolationsergebnisse als .json-Datei herunterladen?<br>');
 
 	$('#downloadInterpolationDialog').dialog({ 
 		width: 600,
@@ -141,8 +160,6 @@ $('#downloadInterpolationDialog').html('M&ouml;chten Sie die Interpolationsergeb
 		modal: true,
 	});	
 	
-	 $('<a href="data:' + resultData + '" download="' + name + '.json"><div style="text-align: right;"><hr><input type="button" name="confirmDownload" value="Herunterladen" class="jQueryButton"></div></a>').appendTo('#downloadInterpolationDialog');	
-	
-
+	$('<a href="data:' + resultData + '" download="' + name + '.json"><div style="text-align: right;"><hr><input type="button" name="confirmDownload" value="Herunterladen" class="jQueryButton"></div></a>').appendTo('#downloadInterpolationDialog');	
 }
 
