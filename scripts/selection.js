@@ -523,13 +523,14 @@ function updateSelectionList() {
 		div.append("</tr>");
 		div.find("a").click(function(){
 			mainMap.setView([selection[i].geometry.coordinates[1],selection[i].geometry.coordinates[0]],18);
-			for(var j = 0; j < markers.length; j++){
-				if(markers[j].getLatLng().lat == selection[i].geometry.coordinates[1] && markers[j].getLatLng().lng == selection[i].geometry.coordinates[0]){
-					doNotLoad = true;
-					markers[j].openPopup();
-					break;
+			setTimeout(function(){
+				for(var j = 0; j < markers.length; j++){
+					if(markers[j].getLatLng().lat == selection[i].geometry.coordinates[1] && markers[j].getLatLng().lng == selection[i].geometry.coordinates[0]){
+						markers[j].openPopup();
+						break;
+					}
 				}
-			}
+			}, 500);
 		});
 		updatedList.append(div);
 	});
