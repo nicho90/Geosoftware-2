@@ -333,7 +333,16 @@ function addTrackToSelection(track){
 function deleteSingleMeasurement(measurementID){
 
 	// Do not allow deletion if interpolation is active
-	if(legend || button4 || button5){
+	if(!legend && button4){
+		var dialog = $('<p>Sie können momentan keine Punkte aus der Selektion löschen. Bitte setzen Sie zuerst die Visualisierung des Tracks zurück.</p>').dialog({
+            width:600,
+            title:"Error 207",
+			buttons: {
+				"OK": function() {dialog.dialog('close');},
+			}
+		});
+		return;
+	} else if(legend && button4 && button5){
 		var dialog = $('<p>Sie können momentan keine Punkte aus der Selektion löschen. Bitte setzen Sie zuerst die Visualisierung der Interpolation zurück.</p>').dialog({
             width:600,
             title:"Error 207",
