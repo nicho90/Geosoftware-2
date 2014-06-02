@@ -8,6 +8,8 @@ Geosoftware-2
 **Link to our project:** <br/>
 * **Official: http://giv-geosoft2d.uni-muenster.de/** (Server should be online 24/7)<br/>
 * **If Server is not available try: http://giv-geosoft2d.no-ip.org/** (Server should be online from 8°° A.M. to 11°° P.M. CET/CEST, Location: Berlin)<br/>
+* **If 2nd Server is not available try it again after 30 Minutes**
+* **If no option works, please send Nicho a email: n.schiestel[AT]uni-muenster.de** 
 
 ***
 
